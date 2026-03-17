@@ -9,7 +9,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#111010;--ink-mid:#555250;--ink-light:#9a9690;
+  --ink:#111010;--ink-mid:#3d3a38;--ink-light:#706c68;
   --ink-faint:#d8d4cc;--ink-ghost:#eeebe4;
   --cream:#f5f1e8;--cream-dark:#ece8dc;--page:#ffffff;
   --accent:#8c1a13;--accent-light:#fdf3f2;
@@ -75,10 +75,10 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .grid-book:hover .grid-cover{box-shadow:4px 4px 0 #1a191812;transform:translateY(-2px)}
 .grid-cover-b{position:absolute;inset:4px;border:.5px solid #1a191812}
 .grid-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
-.grid-num{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.35rem}
+.grid-num{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.35rem}
 .grid-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;line-height:1.2;margin-bottom:.2rem}
-.grid-author{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.65rem}
-.grid-excerpt{font-size:13px;line-height:1.75;color:var(--ink-mid);flex:1}
+.grid-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.65rem}
+.grid-excerpt{font-size:14px;line-height:1.8;color:var(--ink-mid);flex:1}
 .grid-tag{margin-top:1rem;font-size:12px;color:var(--ink-light);font-style:italic}
 
 /* Tesis band */
@@ -105,14 +105,14 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .cat-row:hover .cat-cover{box-shadow:5px 5px 0 #1a191810;transform:translateY(-2px)}
 .cat-cover-b{position:absolute;inset:5px;border:.5px solid #1a191810}
 .cat-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
-.cat-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.4rem}
+.cat-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.4rem}
 .cat-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;line-height:1.1;margin-bottom:.3rem}
-.cat-author{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.9rem}
-.cat-desc{font-size:14px;line-height:1.8;color:var(--ink-mid);max-width:500px}
+.cat-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.9rem}
+.cat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:500px}
 .cat-quote{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink-mid);line-height:1.7;max-width:500px;margin-top:.75rem}
 .cat-right{text-align:right;display:flex;flex-direction:column;gap:.75rem}
 .cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--ink-faint);color:var(--ink-mid);display:inline-block}
-.cat-avail{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.6}
+.cat-avail{font-size:13px;color:var(--ink-light);font-style:italic;line-height:1.6}
 .copies-track{width:80px;height:1px;background:var(--ink-ghost);margin-left:auto}
 .copies-fill{height:100%;background:var(--ink)}
 .copies-note{font-size:10px;color:var(--ink-light);margin-top:4px;font-style:italic}
@@ -317,10 +317,10 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   .cat-h1{font-size:36px}
   .cat-note{text-align:left}
   .cat-section{padding:.75rem 1.25rem}
-  .cat-row{grid-template-columns:1fr;gap:1rem;padding:1.5rem 1.25rem}
-  .cat-cover{display:none}
+  .cat-row{grid-template-columns:76px 1fr;gap:.75rem 1rem;padding:1.5rem 1.25rem;align-items:start}
+  .cat-cover{width:76px;height:107px}
   .cat-title{font-size:22px}
-  .cat-right{text-align:left}
+  .cat-right{grid-column:2;text-align:left;margin-top:.25rem}
   .copies-track{margin-left:0}
 
   /* Detail */
