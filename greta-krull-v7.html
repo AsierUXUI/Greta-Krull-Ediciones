@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greta Krull Ediciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#111010;--ink-mid:#555250;--ink-light:#9a9690;
+  --ink-faint:#d8d4cc;--ink-ghost:#eeebe4;
+  --cream:#f5f1e8;--cream-dark:#ece8dc;--page:#ffffff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:60px}
+.nav-logo{display:flex;align-items:center;cursor:pointer;height:36px}
+.nav-logo img{height:32px;width:auto;display:block;filter:none}
+.nav-links{display:flex;gap:0;list-style:none;height:100%}
+.nav-links li{height:100%;display:flex;align-items:center}
+.nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;padding:0 1.25rem;height:100%;display:flex;align-items:center;border-left:1px solid var(--ink-faint);transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--ink);background:var(--cream)}
+.nav-links a.active{color:var(--ink);border-bottom:2px solid var(--ink)}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block;animation:fadeUp .25s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ── HOME ── */
+.home-hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink);min-height:500px}
+.hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}
+.hero-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2.5rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;line-height:.97;font-style:italic;letter-spacing:-.015em}
+.hero-title em{font-style:normal;color:var(--ink-mid)}
+.hero-body{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:360px;margin-bottom:1.75rem}
+.hero-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;transition:opacity .15s}
+.hero-cta:hover{opacity:.4}
+.hero-right{position:relative;overflow:hidden;cursor:pointer;background:var(--cream);display:flex;flex-direction:column;transition:background .2s}
+.hero-right:hover{background:var(--cream-dark)}
+.hero-book-area{flex:1;display:flex;align-items:center;justify-content:center;padding:3.5rem 4rem 2rem}
+.book-obj{width:196px;height:274px;background:#f0ece0;border:.5px solid #2a2a2a2a;position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:9px 9px 0 #1a191812,18px 18px 0 #1a191808;transition:transform .3s,box-shadow .3s}
+.hero-right:hover .book-obj{transform:translateY(-5px) rotate(.4deg);box-shadow:14px 14px 0 #1a191812,26px 26px 0 #1a191808}
+.book-obj-b1{position:absolute;inset:7px;border:.5px solid #1a191820}
+.book-obj-b2{position:absolute;inset:11px;border:.5px solid #1a191810}
+.book-obj-spine{position:absolute;left:-7px;top:3px;bottom:3px;width:7px;background:#d4d0c4;border:.5px solid #2a2a2a1a}
+.book-obj-txt{position:relative;z-index:1;text-align:center;width:100%}
+.bt{font-size:8px;text-transform:uppercase;letter-spacing:.07em;color:#1a1918;line-height:1.45}
+.bi{font-size:7.5px;font-style:italic;color:#1a1918;line-height:1.55}
+.bo{font-size:9px;color:#1a191840;margin:5px 0}
+.bs{font-size:6.5px;text-transform:uppercase;letter-spacing:.1em;color:#1a191870}
+.hero-caption{padding:1.5rem 2.5rem 2rem;border-top:1px solid var(--ink-faint)}
+.hero-cap-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.4rem}
+.hero-cap-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;font-style:italic;line-height:1.15;margin-bottom:.25rem}
+.hero-cap-author{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid)}
+
+/* Grid */
+.section-bar{padding:1rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.section-bar-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light)}
+.section-bar-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;text-decoration:none;transition:color .15s}
+.section-bar-link:hover{color:var(--ink)}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
+.grid-book{padding:2rem 1.75rem 2.5rem;border-right:1px solid var(--ink-faint);cursor:pointer;transition:background .15s;display:flex;flex-direction:column}
+.grid-book:last-child{border-right:none}
+.grid-book:hover{background:var(--cream)}
+.grid-book.dim{opacity:.38;cursor:default}
+.grid-book.dim:hover{background:transparent}
+.grid-cover-wrap{margin-bottom:1.25rem;display:flex;justify-content:center}
+.grid-cover{width:108px;height:150px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:box-shadow .2s,transform .2s}
+.grid-book:hover .grid-cover{box-shadow:4px 4px 0 #1a191812;transform:translateY(-2px)}
+.grid-cover-b{position:absolute;inset:4px;border:.5px solid #1a191812}
+.grid-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
+.grid-num{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.35rem}
+.grid-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;line-height:1.2;margin-bottom:.2rem}
+.grid-author{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.65rem}
+.grid-excerpt{font-size:13px;line-height:1.75;color:var(--ink-mid);flex:1}
+.grid-tag{margin-top:1rem;font-size:12px;color:var(--ink-light);font-style:italic}
+
+/* Tesis band */
+.home-band{padding:4rem 3.5rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
+.band-left-col{display:flex;flex-direction:column;gap:1.5rem}
+.band-about-cta{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:2px;text-decoration:none;transition:opacity .15s;align-self:flex-start}
+.band-about-cta:hover{opacity:.4}
+.band-quote{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;font-style:italic;line-height:1.2;color:var(--ink-mid)}
+.band-list{}
+.band-item{display:flex;gap:1.5rem;align-items:baseline;padding:.9rem 0;border-top:.5px solid var(--ink-faint)}
+.band-n{font-size:12px;color:var(--ink-faint);min-width:1.75rem;font-style:italic;flex-shrink:0}
+.band-t{font-size:14px;line-height:1.75;color:var(--ink-mid)}
+
+/* ── CATÁLOGO ── */
+.cat-header{padding:3.5rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end}
+.cat-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic}
+.cat-note{font-size:13px;color:var(--ink-light);font-style:italic;text-align:right;line-height:1.8}
+.cat-section{padding:.9rem 2.5rem;border-bottom:1px solid var(--ink);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);display:flex;justify-content:space-between;background:var(--cream)}
+.cat-row{display:grid;grid-template-columns:100px 1fr auto;gap:2.5rem;padding:2.25rem 2.5rem;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .15s;align-items:start}
+.cat-row:hover{background:var(--cream)}
+.cat-row.dim{opacity:.45;cursor:default}.cat-row.dim:hover{background:transparent}
+.cat-row.dimmer{opacity:.22;cursor:default}.cat-row.dimmer:hover{background:transparent}
+.cat-cover{width:100px;height:140px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:box-shadow .2s,transform .2s}
+.cat-row:hover .cat-cover{box-shadow:5px 5px 0 #1a191810;transform:translateY(-2px)}
+.cat-cover-b{position:absolute;inset:5px;border:.5px solid #1a191810}
+.cat-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
+.cat-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.4rem}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;font-style:italic;line-height:1.1;margin-bottom:.3rem}
+.cat-author{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.9rem}
+.cat-desc{font-size:14px;line-height:1.8;color:var(--ink-mid);max-width:500px}
+.cat-quote{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink-mid);line-height:1.7;max-width:500px;margin-top:.75rem}
+.cat-right{text-align:right;display:flex;flex-direction:column;gap:.75rem}
+.cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--ink-faint);color:var(--ink-mid);display:inline-block}
+.cat-avail{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.6}
+.copies-track{width:80px;height:1px;background:var(--ink-ghost);margin-left:auto}
+.copies-fill{height:100%;background:var(--ink)}
+.copies-note{font-size:10px;color:var(--ink-light);margin-top:4px;font-style:italic}
+
+/* ── DETAIL ── */
+.breadcrumb{padding:1rem 2.5rem;border-bottom:1px solid var(--ink-faint);font-size:12px;color:var(--ink-light);letter-spacing:.06em;background:var(--cream)}
+.breadcrumb span{cursor:pointer;transition:color .15s}.breadcrumb span:hover{color:var(--ink)}
+.breadcrumb .sep{margin:0 .6rem;color:var(--ink-faint)}
+.detail-layout{display:grid;grid-template-columns:300px 1fr;border-bottom:1px solid var(--ink)}
+.detail-left{border-right:1px solid var(--ink);padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;gap:2rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.detail-cover{width:180px;height:252px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:8px 8px 0 #1a191810,16px 16px 0 #1a191808}
+.dc-b1{position:absolute;inset:7px;border:.5px solid #1a191820}
+.dc-b2{position:absolute;inset:11px;border:.5px solid #1a191810}
+.dc-spine{position:absolute;left:-6px;top:3px;bottom:3px;width:6px;background:#d4d0c4;border:.5px solid #2a2a2a18}
+.dc-txt{position:relative;z-index:1;text-align:center;width:100%}
+.detail-caption{font-size:11px;color:var(--ink-light);text-align:center;font-style:italic}
+.detail-copies{width:100%}
+.detail-copies-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-mid);margin-bottom:7px}
+.detail-copies-track{height:1px;background:var(--ink-ghost)}
+.detail-copies-fill{height:100%;background:var(--ink);width:34%}
+.detail-copies-note{font-size:10px;color:var(--ink-light);margin-top:6px;text-align:center;font-style:italic}
+.btn-primary{width:100%;padding:11px;border:1px solid var(--ink);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:background .15s,color .15s}
+.btn-primary:hover{background:var(--ink);color:#fff}
+.btn-ghost{width:100%;padding:11px;border:1px solid var(--ink-faint);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink-mid);transition:background .15s;margin-top:.5rem}
+.btn-ghost:hover{background:var(--cream);color:var(--ink)}
+.detail-specs{width:100%}
+.spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:.5rem 0;border-top:.5px solid var(--ink-faint);font-size:12px}
+.spec-row:last-child{border-bottom:.5px solid var(--ink-faint)}
+.spec-k{color:var(--ink-light)}
+.spec-v{color:var(--ink);text-align:right}
+.spec-v em{font-style:italic}
+.detail-right{padding:3.5rem 3.5rem 5rem}
+.detail-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1.25rem}
+.detail-h1{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;font-style:italic;line-height:1.0;letter-spacing:-.01em;margin-bottom:.4rem}
+.detail-subtitle{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:300;font-style:italic;color:var(--ink-mid);line-height:1.3;margin-bottom:2rem}
+.detail-authors{margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--ink-faint)}
+.detail-author-row{display:flex;justify-content:space-between;align-items:baseline;padding:.3rem 0}
+.detail-author-name{font-size:14px;letter-spacing:.07em;text-transform:uppercase}
+.detail-author-role{font-size:12px;color:var(--ink-light);font-style:italic}
+.pull-quote{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;font-style:italic;line-height:1.6;color:var(--ink-mid);border-left:2px solid var(--ink);padding:.5rem 0 .5rem 1.5rem;margin:2.5rem 0}
+.detail-synopsis{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;line-height:1.9;color:var(--ink-mid);margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--ink-faint)}
+.contents-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1rem}
+.contents-item{display:flex;gap:1.25rem;align-items:baseline;padding:.65rem 0;border-top:.5px solid var(--ink-faint)}
+.contents-n{font-size:12px;color:var(--ink-faint);min-width:1.5rem;font-style:italic;flex-shrink:0}
+.contents-t{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300}
+.contents-sub{font-size:12px;color:var(--ink-light);margin-top:2px}
+.colophon{margin-top:2.5rem;font-size:12px;color:var(--ink-light);line-height:2;font-style:italic}
+.booknav{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+.booknav-card{padding:2rem 2.5rem;cursor:pointer;transition:background .15s;display:flex;flex-direction:column;gap:.35rem}
+.booknav-card:hover{background:var(--cream)}
+.booknav-card.off{opacity:.25;cursor:default}.booknav-card.off:hover{background:transparent}
+.booknav-card:first-child{border-right:1px solid var(--ink-faint)}
+.booknav-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light)}
+.booknav-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:300}
+.booknav-author{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light)}
+
+/* ── DISTRIBUCIÓN ── */
+.dist-header{padding:4rem 3.5rem 3rem;border-bottom:1px solid var(--ink);max-width:680px}
+.dist-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;margin-bottom:1.5rem}
+.dist-intro{font-size:16px;line-height:1.9;color:var(--ink-mid);max-width:560px}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+.dist-block{padding:3rem 3.5rem;border-right:1px solid var(--ink-faint);border-bottom:1px solid var(--ink-faint)}
+.dist-block:nth-child(2n){border-right:none}
+.dist-block:nth-last-child(-n+2){border-bottom:none}
+.dist-block-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1rem}
+.dist-block-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;margin-bottom:1rem}
+.dist-block-text{font-size:14px;line-height:1.85;color:var(--ink-mid)}
+.dist-block-detail{margin-top:1.25rem;display:flex;flex-direction:column;gap:.35rem}
+.dist-detail-row{display:flex;align-items:baseline;gap:.75rem;font-size:13px}
+.dist-detail-label{color:var(--ink-light);min-width:80px;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+.dist-detail-val{color:var(--ink)}
+.dist-statement{padding:3.5rem;border-top:1px solid var(--ink);background:var(--cream)}
+.dist-statement-inner{max-width:640px;margin:0 auto;text-align:center}
+.dist-statement-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;font-style:italic;color:var(--ink-mid);margin-bottom:1rem}
+.dist-statement-text{font-size:14px;line-height:1.9;color:var(--ink-mid)}
+
+/* ── CONTACTO ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 61px)}
+.contact-left{border-right:1px solid var(--ink);padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:space-between;background:var(--cream)}
+.contact-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;line-height:1.05;margin-bottom:2rem}
+.contact-body{font-size:15px;line-height:1.9;color:var(--ink-mid);max-width:380px}
+.contact-info{display:flex;flex-direction:column;gap:1.75rem;margin-top:3rem}
+.contact-info-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.25rem}
+.contact-info-val{font-size:15px;color:var(--ink)}
+.contact-foot{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.8}
+.contact-right{padding:5rem 3.5rem;display:flex;flex-direction:column;gap:1.75rem}
+.contact-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light)}
+.cf{display:flex;flex-direction:column;gap:.4rem}
+.cf label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-light)}
+.cf input,.cf select,.cf textarea{font-family:'EB Garamond',serif;font-size:16px;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--ink-faint);padding:.5rem 0;outline:none;transition:border-color .15s;width:100%}
+.cf input:focus,.cf select:focus,.cf textarea:focus{border-bottom-color:var(--ink)}
+.cf textarea{resize:none;height:88px;line-height:1.7}
+.cf-submit{align-self:flex-start;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);padding:10px 28px;cursor:pointer;transition:background .15s,color .15s;margin-top:.5rem}
+.cf-submit:hover{background:var(--ink);color:#fff}
+.cf-note{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.8}
+
+/* FOOTER */
+footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+.footer-l{font-size:11px;color:var(--ink-light);letter-spacing:.1em;text-transform:uppercase;line-height:1.9}
+.footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink-light);font-style:italic}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;font-size:13px;letter-spacing:.05em;padding:12px 28px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── GRETA KRULL / ABOUT ── */
+.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh}
+.about-header-left{border-right:1px solid var(--ink);padding-right:3.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.about-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:3rem}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,7vw,96px);font-weight:300;font-style:italic;line-height:.92;letter-spacing:-.025em;color:var(--ink)}
+.about-name-sub{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--ink-light);margin-top:.75rem;letter-spacing:.02em}
+.about-header-intro{font-size:15px;line-height:1.9;color:var(--ink-mid);max-width:420px;margin-top:auto;padding-top:2.5rem}
+.about-header-right{padding-left:3.5rem;display:flex;flex-direction:column;justify-content:flex-end}
+.about-pull{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,28px);font-weight:300;font-style:italic;line-height:1.4;color:var(--ink);max-width:480px;border-left:2px solid var(--ink);padding-left:2rem;margin-bottom:2rem}
+.about-pull-attr{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);padding-left:2rem}
+.about-manifesto{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink)}
+.manifesto-left{padding:4rem 3.5rem;border-right:1px solid var(--ink)}
+.manifesto-section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2rem}
+.manifesto-prose{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;line-height:1.9;color:var(--ink-mid)}
+.manifesto-prose p{margin-bottom:1.5rem}
+.manifesto-prose p:last-child{margin-bottom:0}
+.manifesto-right{padding:4rem 3.5rem;background:var(--cream)}
+.tesis-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2rem}
+.tesis-list{display:flex;flex-direction:column}
+.tesis-item{display:flex;gap:1.5rem;align-items:baseline;padding:1.1rem 0;border-top:.5px solid var(--ink-faint)}
+.tesis-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--ink-faint);min-width:2rem;flex-shrink:0}
+.tesis-text{font-size:15px;line-height:1.8;color:var(--ink-mid)}
+.about-closing{padding:4rem 3rem;background:var(--cream);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.about-closing-text{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;line-height:1.35;color:var(--ink-mid);max-width:520px}
+.about-closing-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;white-space:nowrap;transition:opacity .15s;flex-shrink:0}
+.about-closing-cta:hover{opacity:.4}
+
+/* ── PURCHASE MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(17,16,16,0.55);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--page);width:520px;max-width:calc(100vw - 2rem);max-height:90vh;overflow-y:auto;border:1px solid var(--ink);animation:modalIn .25s ease both}
+@keyframes modalIn{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.modal-header{padding:1.5rem 2rem 1.25rem;border-bottom:.5px solid var(--ink-faint);display:flex;justify-content:space-between;align-items:baseline}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic}
+.modal-close{background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink-light);line-height:1;transition:color .15s;padding:0 0 0 1rem}
+.modal-close:hover{color:var(--ink)}
+.modal-body{padding:1.5rem 2rem 2rem;display:flex;flex-direction:column;gap:.75rem}
+.modal-intro{font-size:13px;color:var(--ink-light);font-style:italic;margin-bottom:.25rem}
+.purchase-option{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;border:1px solid var(--ink-faint);cursor:pointer;text-decoration:none;transition:border-color .2s,background .2s;gap:1rem}
+.purchase-option:hover{border-color:var(--ink);background:var(--cream)}
+.purchase-option.featured{border-color:var(--ink);background:var(--cream)}
+.purchase-option.featured:hover{background:var(--cream-dark)}
+.po-left{display:flex;flex-direction:column;gap:.2rem}
+.po-badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.1rem}
+.po-name{font-size:16px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-style:italic}
+.po-desc{font-size:12px;color:var(--ink-light)}
+.po-arrow{font-size:18px;color:var(--ink-light);flex-shrink:0}
+.purchase-divider{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);text-align:center;padding:.25rem 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="go('home')">
+    <img src="data:image/png;base64,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" alt="Greta Krull Ediciones">
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="go('catalog')" id="nl-catalog">Catálogo</a></li>
+    <li><a onclick="go('distrib')" id="nl-distrib">Distribución</a></li>
+    <li><a onclick="go('contact')" id="nl-contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div id="page-home" class="page active">
+  <div class="home-hero">
+    <div class="hero-left">
+      <div>
+        <div class="hero-label">Madrid · Est. Marzo 2026</div>
+        <h1 class="hero-title">Cuadernos<br>Poesía y<br><em>Traducción</em></h1>
+      </div>
+      <div>
+        <p class="hero-body">Ediciones críticas bilingües de poesía europea moderna. Cien ejemplares por número, numerados a mano. Sin reimpresión.</p>
+        <a class="hero-cta" onclick="go('catalog')">Ver el catálogo &rarr;</a>
+      </div>
+    </div>
+    <div class="hero-right" onclick="go('detail')">
+      <div class="hero-book-area">
+        <div class="book-obj">
+          <div class="book-obj-spine"></div>
+          <div class="book-obj-b1"></div>
+          <div class="book-obj-b2"></div>
+          <div class="book-obj-txt">
+            <div class="bo">— □□□ —</div>
+            <div class="bt">Artaud y Prevel</div>
+            <div class="bo">—</div>
+            <div class="bi">Un paseo por la<br>dramática de<br>la adicción</div>
+            <div class="bo" style="margin:8px 0">□</div>
+            <div class="bs">Miguel Vega Manrique</div>
+            <div class="bo" style="margin:7px 0">— □ —</div>
+            <div class="bi" style="font-size:6.5px">Seguido de Diez</div>
+            <div class="bt" style="font-size:7px;font-style:italic;margin:2px 0">Poemas Mortales</div>
+            <div class="bi" style="font-size:6.5px">de Jacques Prevel</div>
+            <div class="bs" style="font-size:5.5px;margin-top:2px">(edición bilingüe)</div>
+            <div class="bo" style="margin:9px 0 3px">— □□□ —</div>
+            <div class="bs" style="font-size:5.5px">Cuadernos Poesía y Traducción</div>
+            <div class="bs" style="font-size:5.5px">Madrid · Marzo 2026 · N.º 1</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-caption">
+        <div class="hero-cap-num">N.º 1 · Disponible · 66 ejemplares restantes</div>
+        <div class="hero-cap-title">Artaud y Prevel</div>
+        <div class="hero-cap-author">Miguel Vega Manrique · Jacques Prevel</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-bar">
+    <span class="section-bar-label">La colección</span>
+    <a class="section-bar-link" onclick="go('catalog')">Catálogo completo &rarr;</a>
+  </div>
+
+  <div class="home-grid">
+    <div class="grid-book" onclick="go('detail')">
+      <div class="grid-cover-wrap">
+        <div class="grid-cover">
+          <div class="grid-cover-b"></div>
+          <div class="grid-cover-txt">
+            <div class="bo" style="font-size:8px">— □□□ —</div>
+            <div class="bt">Artaud y Prevel</div>
+            <div class="bo">—</div>
+            <div class="bi" style="font-size:6.5px">Un paseo por la<br>dramática<br>de la adicción</div>
+            <div class="bo">□</div>
+            <div class="bs" style="font-size:5.5px;margin-top:3px">Vega Manrique</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-num">N.º 1 · Marzo 2026</div>
+      <div class="grid-title">Artaud y Prevel</div>
+      <div class="grid-author">Miguel Vega Manrique</div>
+      <div class="grid-excerpt">Primera edición en español de la poesía de Prevel, con ensayo crítico sobre la dramática de la adicción.</div>
+      <div class="grid-tag">Disponible · 66 restantes</div>
+    </div>
+    <div class="grid-book dim">
+      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6px">Antonin Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
+      <div class="grid-num">N.º 2 · Próximamente</div>
+      <div class="grid-title">Carta contra la Cábala</div>
+      <div class="grid-author">Antonin Artaud</div>
+      <div class="grid-excerpt">Edición bilingüe. Primera traducción al español de este texto capital.</div>
+      <div class="grid-tag">En preparación</div>
+    </div>
+    <div class="grid-book dim">
+      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6px">Mallarmé</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
+      <div class="grid-num">N.º 3 · 2026</div>
+      <div class="grid-title">Veinte cartas sobre la poesía</div>
+      <div class="grid-author">Stéphane Mallarmé</div>
+      <div class="grid-excerpt">Traducción y estudio de las cartas poéticas de Mallarmé. Edición bilingüe.</div>
+      <div class="grid-tag">En preparación</div>
+    </div>
+    <div class="grid-book dim">
+      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6px">Philippe Muray</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
+      <div class="grid-num">N.º 4 · 2026</div>
+      <div class="grid-title">La última alegría de Baudelaire</div>
+      <div class="grid-author">Philippe Muray</div>
+      <div class="grid-excerpt">Ensayo crítico. Primera traducción al español.</div>
+      <div class="grid-tag">En preparación</div>
+    </div>
+  </div>
+
+  <div class="home-band">
+    <div class="band-left-col">
+      <div class="band-quote">No se trata de ampliar catálogo, sino de intervenir en la tradición disponible.</div>
+      <a class="band-about-cta" onclick="go('about')">Greta Krull — El proyecto &rarr;</a>
+    </div>
+    <div class="band-list">
+      <div class="band-item"><span class="band-n">1.</span><span class="band-t">Toda traducción es una intervención en la tradición disponible.</span></div>
+      <div class="band-item"><span class="band-n">2.</span><span class="band-t">La recuperación de una obra no debe obedecer a la inercia del canon ni a la lógica del mercado.</span></div>
+      <div class="band-item"><span class="band-n">3.</span><span class="band-t">La edición bilingüe no responde a un gesto estético, sino a una exigencia filológica.</span></div>
+      <div class="band-item"><span class="band-n">4.</span><span class="band-t">Cada volumen ha de justificar su aparición como acto crítico singular.</span></div>
+      <div class="band-item"><span class="band-n">5.</span><span class="band-t">Las zonas marginales no son exteriores al centro de la tradición: lo estructuran silenciosamente.</span></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
+    <div class="footer-r">Una edición. Sin reimpresión.</div>
+  </footer>
+</div>
+
+<!-- ═══ CATÁLOGO ═══ -->
+<div id="page-catalog" class="page">
+  <div class="cat-header">
+    <h1 class="cat-h1">Catálogo</h1>
+    <div class="cat-note">Cuadernos Poesía y Traducción<br>100 ejemplares · Sin reimpresión</div>
+  </div>
+  <div class="cat-section"><span>Publicados</span><span>1 título</span></div>
+  <div class="cat-row" onclick="go('detail')">
+    <div class="cat-cover"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi" style="font-size:7px">Un paseo por la<br>dramática<br>de la adicción</div><div class="bo">□</div><div class="bs" style="font-size:5.5px">Vega Manrique</div><div class="bo" style="margin-top:6px">— □□□ —</div><div class="bs" style="font-size:5px">Madrid · 2026 · N.º1</div></div></div>
+    <div>
+      <div class="cat-num">N.º 1 · Marzo 2026</div>
+      <div class="cat-title">Artaud y Prevel</div>
+      <div class="cat-author">Miguel Vega Manrique · Jacques Prevel</div>
+      <div class="cat-desc">Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica cosida.</div>
+      <div class="cat-quote">«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»</div>
+    </div>
+    <div class="cat-right">
+      <div class="cat-badge">Disponible</div>
+      <div class="copies-track"><div class="copies-fill" style="width:34%"></div></div>
+      <div class="copies-note">66 / 100 restantes</div>
+      <div class="cat-avail">Sin reimpresión<br>Edición única</div>
+    </div>
+  </div>
+  <div class="cat-section" style="margin-top:.5rem"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>
+  <div class="cat-row dim">
+    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Antonin Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
+    <div>
+      <div class="cat-num">N.º 2 · Próximamente</div>
+      <div class="cat-title">Carta contra la Cábala<br>dirigida a Jacques Prevel</div>
+      <div class="cat-author">Antonin Artaud</div>
+      <div class="cat-desc">Edición bilingüe. Primera traducción al español de este texto capital de Artaud, revisitado desde la correspondencia con Prevel.</div>
+    </div>
+    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">100 ejemplares · Sin reimpr.</div></div>
+  </div>
+  <div class="cat-row dim">
+    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Mallarmé</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
+    <div>
+      <div class="cat-num">N.º 3 · 2026</div>
+      <div class="cat-title">Veinte cartas sobre la poesía</div>
+      <div class="cat-author">Stéphane Mallarmé</div>
+      <div class="cat-desc">Traducción y estudio de las cartas poéticas de Mallarmé. Edición bilingüe francés–español.</div>
+    </div>
+    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div></div>
+  </div>
+  <div class="cat-row dimmer">
+    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Philippe Muray</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
+    <div>
+      <div class="cat-num">N.º 4 · 2026</div>
+      <div class="cat-title">La última alegría de Charles Baudelaire</div>
+      <div class="cat-author">Philippe Muray</div>
+      <div class="cat-desc">Ensayo crítico. Primera traducción al español.</div>
+    </div>
+    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div></div>
+  </div>
+  <footer>
+    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
+    <div class="footer-r">Una edición. Sin reimpresión.</div>
+  </footer>
+</div>
+
+<!-- ═══ DETAIL ═══ -->
+<div id="page-detail" class="page">
+  <div class="breadcrumb">
+    <span onclick="go('home')">Inicio</span><span class="sep">&rsaquo;</span><span onclick="go('catalog')">Catálogo</span><span class="sep">&rsaquo;</span><span onclick="go('catalog')">Cuadernos Poesía y Traducción</span><span class="sep">&rsaquo;</span><span style="color:var(--ink);cursor:default">N.º 1</span>
+  </div>
+  <div class="detail-layout">
+    <div class="detail-left">
+      <div class="detail-cover">
+        <div class="dc-spine"></div><div class="dc-b1"></div><div class="dc-b2"></div>
+        <div class="dc-txt">
+          <div class="bo">— □□□ —</div>
+          <div class="bt">Artaud y Prevel</div>
+          <div class="bo">—</div>
+          <div class="bi">Un paseo por la dramática<br>de la adicción</div>
+          <div class="bo" style="margin:8px 0">□</div>
+          <div class="bs">Miguel Vega Manrique</div>
+          <div class="bo" style="margin:8px 0">— □ —</div>
+          <div class="bi" style="font-size:7px">Seguido de Diez</div>
+          <div class="bt" style="font-size:7.5px;font-style:italic;margin:2px 0">Poemas Mortales</div>
+          <div class="bi" style="font-size:7px">de Jacques Prevel</div>
+          <div class="bs" style="font-size:6px;margin-top:2px">(edición bilingüe)</div>
+          <div class="bo" style="margin:10px 0 4px">— □□□ —</div>
+          <div class="bs" style="font-size:6px">Cuadernos Poesía y Traducción</div>
+          <div class="bs" style="font-size:6px">Madrid · Marzo 2026 · N.º 1</div>
+        </div>
+      </div>
+      <div class="detail-caption">Cuadernos Poesía y Traducción · N.º 1</div>
+      <div class="detail-copies">
+        <div class="detail-copies-label"><span>Ejemplares restantes</span><span>66 / 100</span></div>
+        <div class="detail-copies-track"><div class="detail-copies-fill"></div></div>
+        <div class="detail-copies-note">Edición única · Sin reimpresión</div>
+      </div>
+      <button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>
+      <button class="btn-ghost" onclick="go('contact')">Consulta &rarr;</button>
+      <div class="detail-specs">
+        <div class="spec-row"><span class="spec-k">Colección</span><span class="spec-v">Cuadernos Poesía y Traducción</span></div>
+        <div class="spec-row"><span class="spec-k">Número</span><span class="spec-v">N.º 1 · Marzo 2026</span></div>
+        <div class="spec-row"><span class="spec-k">Tipografía</span><span class="spec-v"><em>Garamond</em></span></div>
+        <div class="spec-row"><span class="spec-k">Papel</span><span class="spec-v"><em>Verjurado ahuesado</em></span></div>
+        <div class="spec-row"><span class="spec-k">Encuadernación</span><span class="spec-v">Rústica cosida</span></div>
+        <div class="spec-row"><span class="spec-k">Edición</span><span class="spec-v">Bilingüe fr.–es.</span></div>
+        <div class="spec-row"><span class="spec-k">Ejemplares</span><span class="spec-v">100 · sin reimpr.</span></div>
+      </div>
+    </div>
+    <div class="detail-right">
+      <div class="detail-eyebrow">Cuadernos Poesía y Traducción · N.º 1 · Marzo 2026</div>
+      <h1 class="detail-h1">Artaud y Prevel</h1>
+      <div class="detail-subtitle">Un paseo por la dramática de la adicción</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;font-style:italic;color:var(--ink-light);margin-bottom:2rem;letter-spacing:.01em">Jacques Prevel: Diario y poemas</div>
+      <div class="detail-authors">
+        <div class="detail-author-row"><span class="detail-author-name">Miguel Vega Manrique</span><span class="detail-author-role">Ensayo</span></div>
+        <div class="detail-author-row"><span class="detail-author-name">Jacques Prevel</span><span class="detail-author-role">Poemas · traducción del francés</span></div>
+        <div class="detail-author-row"><span class="detail-author-name">Gustaf Bolin</span><span class="detail-author-role">Retrato del autor</span></div>
+      </div>
+      <div class="detail-synopsis">
+        <p style="margin-bottom:1.5rem">El primer número de Cuadernos Poesía y Traducción inaugura el catálogo de Greta Krull Ediciones con una apuesta de recuperación y lectura crítica: la figura de Jacques Prevel (1915–1951), poeta francés de posguerra cuya obra poética permanece todavía inédita en lengua española.</p>
+        <p style="margin-bottom:1.5rem">El volumen contiene, en la primera parte, un ensayo que aborda la lectura del diario <em>En compagnie d'Antonin Artaud</em>, situando a Prevel en el contexto de los últimos años de Artaud en París tras su salida del hospital psiquiátrico de Rodez. Lejos de reducirse a la condición de testigo, Prevel emerge como conciencia paralela, figura limítrofe cuya escritura dialoga con la experiencia radical del teatro de la crueldad, la enfermedad, la marginalidad y la supervivencia literaria.</p>
+        <p style="margin-bottom:1.5rem">La segunda parte del libro presenta, por primera vez en español, una antología bilingüe de diez poemas de <em>Poèmes Mortels</em> (1945), el primer libro publicado por Prevel. Esta edición enfrenta el texto francés con su traducción española, respetando ritmo, disposición y tensión original.</p>
+        <p style="margin-bottom:1.5rem">Cuidada en todos sus aspectos materiales —compuesta en Garamond, impresa en papel verjurado ahuesado y encuadernada en rústica— esta primera entrega inaugura una colección que aspira a tender puentes entre poesía y traducción desde el rigor filológico, la exigencia crítica y el respeto absoluto por la singularidad de cada obra.</p>
+        <p>Greta Krull Ediciones inicia así un proyecto que combina investigación, recuperación y edición literaria con vocación de permanencia.</p>
+      </div>
+      <div class="contents-label">Contenido del volumen</div>
+      <div class="contents-item"><div class="contents-n">I</div><div><div class="contents-t">Artaud y Prevel: un paseo por la dramática de la adicción</div><div class="contents-sub">Ensayo · Miguel Vega Manrique</div></div></div>
+      <div class="contents-item"><div class="contents-n">II</div><div><div class="contents-t">Diez Poemas Mortales / Dix Poèmes Mortels (1945)</div><div class="contents-sub">Edición bilingüe · Jacques Prevel · Con retrato de Gustaf Bolin</div></div></div>
+      <div class="colophon">
+        Impreso en Madrid. Primera edición, marzo de 2026.<br>
+        100 ejemplares numerados a mano. No se prevé reimpresión.<br>
+        Primera traducción al español de la poesía de Jacques Prevel.
+      </div>
+    </div>
+  </div>
+  <div class="booknav">
+    <div class="booknav-card off"><div class="booknav-label">Anterior</div><div class="booknav-title" style="color:#ccc">—</div></div>
+    <div class="booknav-card" onclick="go('catalog')"><div class="booknav-label">Próximo en la colección</div><div class="booknav-title">Carta contra la Cábala<br>dirigida a Jacques Prevel</div><div class="booknav-author">Antonin Artaud · N.º 2 &rarr;</div></div>
+  </div>
+  <footer>
+    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
+    <div class="footer-r">Una edición. Sin reimpresión.</div>
+  </footer>
+</div>
+
+<!-- ═══ DISTRIBUCIÓN ═══ -->
+<div id="page-distrib" class="page">
+  <div class="dist-header">
+    <h1 class="dist-h1">Distribución</h1>
+    <p class="dist-intro">Greta Krull Ediciones distribuye directamente, sin intermediarios. Cada ejemplar sale de Madrid numerado a mano. Los pedidos se gestionan por correo electrónico.</p>
+  </div>
+  <div class="dist-grid">
+    <div class="dist-block">
+      <div class="dist-block-num">01</div>
+      <div class="dist-block-title">Venta directa</div>
+      <div class="dist-block-text">La única forma de adquirir nuestros títulos es a través de solicitud directa. No existe tienda en línea ni pasarela de pago. Confirmamos disponibilidad, acordamos el envío y facilitamos los datos para la transferencia.</div>
+      <div class="dist-block-detail">
+        <div class="dist-detail-row"><span class="dist-detail-label">Respuesta</span><span class="dist-detail-val">En 48 horas</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Pago</span><span class="dist-detail-val">Transferencia bancaria</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Contacto</span><span class="dist-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dbb3b4b7ba9bbca9beafbab0a9aeb7b7f5b8b4b6">[email&#160;protected]</a></span></div>
+      </div>
+    </div>
+    <div class="dist-block">
+      <div class="dist-block-num">02</div>
+      <div class="dist-block-title">Envíos</div>
+      <div class="dist-block-text">Enviamos a España y a cualquier país hispanohablante. Los gastos de envío se calculan según destino y se informan antes de confirmar el pedido. Cada ejemplar se envía en sobre rígido protegido.</div>
+      <div class="dist-block-detail">
+        <div class="dist-detail-row"><span class="dist-detail-label">España</span><span class="dist-detail-val">Correos certificado</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Internacional</span><span class="dist-detail-val">Según destino</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Plazo</span><span class="dist-detail-val">3–7 días hábiles</span></div>
+      </div>
+    </div>
+    <div class="dist-block">
+      <div class="dist-block-num">03</div>
+      <div class="dist-block-title">Librerías y bibliotecas</div>
+      <div class="dist-block-text">Estamos abiertos a acuerdos con librerías independientes y fondos bibliotecarlos que compartan nuestro criterio editorial. Las condiciones se negocian directamente para cada título.</div>
+      <div class="dist-block-detail">
+        <div class="dist-detail-row"><span class="dist-detail-label">Descuento</span><span class="dist-detail-val">A convenir</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Mínimo</span><span class="dist-detail-val">5 ejemplares</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Consulta</span><span class="dist-detail-val">distribució<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef81af889d8a9b8e849d9a8383c18c8082">[email&#160;protected]</a></span></div>
+      </div>
+    </div>
+    <div class="dist-block">
+      <div class="dist-block-num">04</div>
+      <div class="dist-block-title">Prensa y reseñas</div>
+      <div class="dist-block-text">Enviamos ejemplares de reseña a medios especializados, revistas literarias y críticos. Solicitudes por correo con identificación del medio y el título de interés.</div>
+      <div class="dist-block-detail">
+        <div class="dist-detail-row"><span class="dist-detail-label">Ejemplares</span><span class="dist-detail-val">Limitados por título</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Formato</span><span class="dist-detail-val">Impreso únicamente</span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Solicitud</span><span class="dist-detail-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a7d7d5c2c9d4c6e7c0d5c2d3c6ccd5d2cbcb89c4c8ca">[email&#160;protected]</a></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="dist-statement">
+    <div class="dist-statement-inner">
+      <div class="dist-statement-title">Objeto-libro, no producto.</div>
+      <p class="dist-statement-text">Cada cuaderno está pensado para durar. La distribución directa no es una limitación operativa, sino una decisión editorial: queremos saber a quién llegan nuestros libros.</p>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
+    <div class="footer-r">Una edición. Sin reimpresión.</div>
+  </footer>
+</div>
+
+<!-- ═══ CONTACTO ═══ -->
+<div id="page-contact" class="page">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div>
+        <h1 class="contact-h1">Solicitar<br>un ejemplar</h1>
+        <p class="contact-body">No hay tienda. No hay carrito de compra. Para adquirir un ejemplar, escríbenos directamente. Respondemos en 48 horas y acordamos el envío por correo.</p>
+        <div class="contact-info">
+          <div><div class="contact-info-label">Editorial</div><div class="contact-info-val">Greta Krull Ediciones</div></div>
+          <div><div class="contact-info-label">Sede</div><div class="contact-info-val">Madrid, España</div></div>
+          <div><div class="contact-info-label">Correo general</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="83ebecefe2c3e4f1e6f7e2e8f1f6efefade0ecee">[email&#160;protected]</a></div></div>
+          <div><div class="contact-info-label">Distribución</div><div class="contact-info-val">distribució<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96f8d6f1e4f3e2f7fde4e3fafab8f5f9fb">[email&#160;protected]</a></div></div>
+          <div><div class="contact-info-label">Prensa</div><div class="contact-info-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bacac8dfd4c9dbfaddc8dfcedbd1c8cfd6d694d9d5d7">[email&#160;protected]</a></div></div>
+        </div>
+      </div>
+      <div class="contact-foot">
+        Los envíos se realizan desde Madrid.<br>
+        Cada ejemplar sale numerado a mano.<br>
+        No se realizan reimpresiones.
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-eyebrow">Formulario de solicitud</div>
+      <div class="cf"><label>Nombre</label><input type="text" placeholder="Su nombre completo"></div>
+      <div class="cf"><label>Correo electrónico</label><input type="email" placeholder="correo@dominio.com"></div>
+      <div class="cf">
+        <label>Título solicitado</label>
+        <select>
+          <option value="">Seleccionar título</option>
+          <option>N.º 1 · Artaud y Prevel — Miguel Vega Manrique</option>
+          <option>N.º 2 · Carta contra la Cábala — Artaud (en prep.)</option>
+          <option>N.º 3 · Veinte cartas sobre la poesía — Mallarmé (en prep.)</option>
+          <option>N.º 4 · La última alegría de Baudelaire — Muray (en prep.)</option>
+        </select>
+      </div>
+      <div class="cf"><label>País de envío</label><input type="text" placeholder="España, México, Argentina…"></div>
+      <div class="cf"><label>Tipo de solicitud</label>
+        <select>
+          <option value="">Seleccionar tipo</option>
+          <option>Ejemplar personal</option>
+          <option>Librería o distribución</option>
+          <option>Reseña / prensa</option>
+          <option>Biblioteca</option>
+          <option>Consulta general</option>
+        </select>
+      </div>
+      <div class="cf"><label>Mensaje (opcional)</label><textarea placeholder="Cualquier indicación o pregunta…"></textarea></div>
+      <button class="cf-submit" onclick="showToast('Solicitud enviada — respondemos en 48 h.')">Enviar solicitud</button>
+      <p class="cf-note">Sin pasarela de pago. Confirmamos disponibilidad<br>y acordamos el envío por correo electrónico.</p>
+    </div>
+  </div>
+</div>
+<!-- ═══ GRETA KRULL ═══ -->
+<div id="page-about" class="page">
+  <div class="breadcrumb">
+    <span onclick="go('home')">Inicio</span><span class="sep">&rsaquo;</span><span style="color:var(--ink);cursor:default">Greta Krull</span>
+  </div>
+  <div class="about-header">
+    <div class="about-header-left">
+      <div>
+        <div class="about-overline">El proyecto &middot; Madrid &middot; Est. 2026</div>
+        <h1 class="about-name">Greta<br>Krull</h1>
+        <div class="about-name-sub">Ediciones</div>
+      </div>
+      <p class="about-header-intro">Greta Krull Ediciones es un proyecto editorial independiente fundado en Madrid en 2026. Su cat&aacute;logo se articula en torno a una sola colecci&oacute;n: <em>Cuadernos Poes&iacute;a y Traducci&oacute;n</em>, dedicada a la edici&oacute;n cr&iacute;tica y biling&uuml;e de poes&iacute;a europea moderna. Cada cuaderno se limita a cien ejemplares numerados a mano, sin posibilidad de reimpresi&oacute;n.</p>
+    </div>
+    <div class="about-header-right">
+      <div class="about-pull">
+        &laquo;Toda traducci&oacute;n es una intervenci&oacute;n en la tradici&oacute;n disponible. Publicar un texto extranjero no ampl&iacute;a simplemente un cat&aacute;logo: modifica el mapa de lectura de una lengua.&raquo;
+      </div>
+      <div class="about-pull-attr">Tesis para una pr&aacute;ctica editorial &middot; Greta Krull Ediciones</div>
+    </div>
+  </div>
+
+  <div class="about-manifesto">
+    <div class="manifesto-left">
+      <div class="manifesto-section-label">El proyecto</div>
+      <div class="manifesto-prose">
+        <p>Greta Krull Ediciones nace de la convicci&oacute;n de que hay textos que esperan en los m&aacute;rgenes de la lengua: obras decisivas, poetas que escribieron en los l&iacute;mites de su tiempo, voces que la historia literaria ha reducido a notas al pie. La colecci&oacute;n <em>Cuadernos Poes&iacute;a y Traducci&oacute;n</em> existe para devolverles su lugar.</p>
+        <p>Cada n&uacute;mero es un gesto doble: editar y traducir como un mismo acto cr&iacute;tico. El ensayo no contextualiza de manera ornamental &mdash; formula una hip&oacute;tesis interpretativa. La traducci&oacute;n no acompa&ntilde;a: confronta el original y permite verificar la lectura. La edici&oacute;n biling&uuml;e no responde a un gesto est&eacute;tico, sino a una exigencia filol&oacute;gica.</p>
+        <p>No se trata de ampliar cat&aacute;logo. Se trata de intervenir en la tradici&oacute;n disponible, de complejizar el mapa, de reconocer que junto a las figuras can&oacute;nicas hubo voces que escribieron desde la intemperie sin haber sido a&uacute;n plenamente le&iacute;das.</p>
+        <p>Cada volumen &mdash; compuesto en Garamond, impreso en papel verjurado ahuesado, encuadernado en r&uacute;stica cosida, numerado a mano &mdash; es una declaraci&oacute;n de permanencia. No habr&aacute; segunda edici&oacute;n. El libro es el acto.</p>
+      </div>
+    </div>
+    <div class="manifesto-right">
+      <div class="tesis-label">Tesis para una pr&aacute;ctica editorial</div>
+      <div class="tesis-list">
+        <div class="tesis-item"><span class="tesis-num">I</span><span class="tesis-text">Toda traducci&oacute;n es una intervenci&oacute;n en la tradici&oacute;n disponible. Publicar un texto extranjero no ampl&iacute;a simplemente un cat&aacute;logo: modifica el mapa de lectura de una lengua.</span></div>
+        <div class="tesis-item"><span class="tesis-num">II</span><span class="tesis-text">La recuperaci&oacute;n de una obra no debe obedecer a la inercia del canon ni a la l&oacute;gica del mercado, sino a la necesidad cr&iacute;tica de reexaminar los encuadres heredados.</span></div>
+        <div class="tesis-item"><span class="tesis-num">III</span><span class="tesis-text">La edici&oacute;n biling&uuml;e no responde a un gesto est&eacute;tico, sino a una exigencia filol&oacute;gica: ofrecer al lector los elementos para evaluar ritmo, sintaxis y tensi&oacute;n verbal.</span></div>
+        <div class="tesis-item"><span class="tesis-num">IV</span><span class="tesis-text">Ensayo y traducci&oacute;n no son dos partes yuxtapuestas, sino un mismo movimiento cr&iacute;tico: leer es ya traducir; traducir es explicitar una lectura.</span></div>
+        <div class="tesis-item"><span class="tesis-num">V</span><span class="tesis-text">Cada volumen ha de justificar su aparici&oacute;n como acto cr&iacute;tico singular. No se trata de ampliar cat&aacute;logo, sino de intervenir en la tradici&oacute;n disponible.</span></div>
+        <div class="tesis-item"><span class="tesis-num">VI</span><span class="tesis-text">La tarea editorial no consiste en mitificar autores olvidados, sino en devolverles su complejidad, incluso cuando esa complejidad incomoda los relatos consolidados.</span></div>
+        <div class="tesis-item"><span class="tesis-num">VII</span><span class="tesis-text">Las zonas marginales no son exteriores al centro de la tradici&oacute;n: lo estructuran silenciosamente. Empezar por Prevel es afirmar que la periferia tambi&eacute;n estructura el centro.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-closing">
+    <div class="about-closing-text">&laquo;Comenzar con Prevel significa afirmar que las zonas marginales no son exteriores al centro de la tradici&oacute;n: lo estructuran silenciosamente.&raquo;</div>
+    <a class="about-closing-cta" onclick="go('catalog')">Ver el cat&aacute;logo &rarr;</a>
+  </div>
+
+  <footer>
+    <div class="footer-l">Greta Krull Ediciones<br>Madrid, Espa&ntilde;a &middot; Est. Marzo 2026</div>
+    <div class="footer-r">Una edici&oacute;n. Sin reimpresi&oacute;n.</div>
+  </footer>
+</div>
+
+<!-- ── PURCHASE MODAL ── -->
+<div class="modal-overlay" id="purchase-modal" onclick="closePurchaseModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">C&oacute;mo adquirir este ejemplar</span>
+      <button class="modal-close" onclick="closePurchaseModal(null)">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-intro">Artaud y Prevel &middot; N.&ordm; 1 &middot; 66 ejemplares disponibles</div>
+      <a class="purchase-option featured" href="https://www.iberlibro.com/primera-edicion/ARTAUD-PREVEL-paseo-dram%C3%A1tica-adicci%C3%B3n-MIGUEL/32408732281/bd" target="_blank" rel="noopener">
+        <div class="po-left">
+          <div class="po-badge">Compra en l&iacute;nea &middot; Recomendado</div>
+          <div class="po-name">IberLibro</div>
+          <div class="po-desc">Compra directa. Env&iacute;o internacional disponible.</div>
+        </div>
+        <div class="po-arrow">&#8599;</div>
+      </a>
+      <div class="purchase-divider">o bien</div>
+      <div class="purchase-option" onclick="closePurchaseModal(null);go('contact')" style="cursor:pointer">
+        <div class="po-left">
+          <div class="po-badge">Solicitud directa</div>
+          <div class="po-name">Escribir a la editorial</div>
+          <div class="po-desc">Respondemos en 48 horas. Pago por transferencia.</div>
+        </div>
+        <div class="po-arrow">&rarr;</div>
+      </div>
+      <div class="purchase-option" onclick="closePurchaseModal(null);go('distrib')" style="cursor:pointer">
+        <div class="po-left">
+          <div class="po-badge">Distribuci&oacute;n</div>
+          <div class="po-name">Librer&iacute;as y bibliotecas</div>
+          <div class="po-desc">Para libreros, distribuidores e instituciones.</div>
+        </div>
+        <div class="po-arrow">&rarr;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast-el"></div>
+
+<script>
+var PAGES=['home','about','catalog','detail','distrib','contact'];
+var NAV_MAP={home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact'};
+function go(name){
+  PAGES.forEach(function(p){
+    var el=document.getElementById('page-'+p);
+    if(el)el.classList.remove('active');
+  });
+  var pg=document.getElementById('page-'+name);
+  if(pg)pg.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+  var nid=NAV_MAP[name];
+  if(nid){var nel=document.getElementById(nid);if(nel)nel.classList.add('active');}
+  window.scrollTo(0,0);
+}
+function showToast(msg){
+  var t=document.getElementById('toast-el');
+  if(!t)return;
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+function openPurchaseModal(){
+  var m=document.getElementById('purchase-modal');
+  if(m){m.classList.add('open');document.body.style.overflow='hidden';}
+}
+function closePurchaseModal(e){
+  var m=document.getElementById('purchase-modal');
+  if(!m)return;
+  if(e&&e.target!==m)return;
+  m.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePurchaseModal(null);});
+go('home');
+</script>
+</body>
+</html>
