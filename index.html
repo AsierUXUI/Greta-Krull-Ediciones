@@ -12,6 +12,7 @@
   --ink:#111010;--ink-mid:#555250;--ink-light:#9a9690;
   --ink-faint:#d8d4cc;--ink-ghost:#eeebe4;
   --cream:#f5f1e8;--cream-dark:#ece8dc;--page:#ffffff;
+  --accent:#8c1a13;--accent-light:#fdf3f2;
 }
 html{scroll-behavior:smooth}
 body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6}
@@ -39,7 +40,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .hero-title em{font-style:normal;color:var(--ink-mid)}
 .hero-body{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:360px;margin-bottom:1.75rem}
 .hero-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;transition:opacity .15s}
-.hero-cta:hover{opacity:.4}
+.hero-cta:hover{opacity:1;color:var(--accent);border-bottom-color:var(--accent)}
 .hero-right{position:relative;overflow:hidden;cursor:pointer;background:var(--cream);display:flex;flex-direction:column;transition:background .2s}
 .hero-right:hover{background:var(--cream-dark)}
 .hero-book-area{flex:1;display:flex;align-items:center;justify-content:center;padding:3.5rem 4rem 2rem}
@@ -84,7 +85,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .home-band{padding:4rem 3.5rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
 .band-left-col{display:flex;flex-direction:column;gap:1.5rem}
 .band-about-cta{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:2px;text-decoration:none;transition:opacity .15s;align-self:flex-start}
-.band-about-cta:hover{opacity:.4}
+.band-about-cta:hover{opacity:1;color:var(--accent);border-bottom-color:var(--accent)}
 .band-quote{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;font-style:italic;line-height:1.2;color:var(--ink-mid)}
 .band-list{}
 .band-item{display:flex;gap:1.5rem;align-items:baseline;padding:.9rem 0;border-top:.5px solid var(--ink-faint)}
@@ -134,9 +135,9 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .detail-copies-fill{height:100%;background:var(--ink);width:34%}
 .detail-copies-note{font-size:10px;color:var(--ink-light);margin-top:6px;text-align:center;font-style:italic}
 .btn-primary{width:100%;padding:11px;border:1px solid var(--ink);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:background .15s,color .15s}
-.btn-primary:hover{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--accent);color:#fff}
 .btn-ghost{width:100%;padding:11px;border:1px solid var(--ink-faint);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink-mid);transition:background .15s;margin-top:.5rem}
-.btn-ghost:hover{background:var(--cream);color:var(--ink)}
+.btn-ghost:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
 .detail-specs{width:100%}
 .spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:.5rem 0;border-top:.5px solid var(--ink-faint);font-size:12px}
 .spec-row:last-child{border-bottom:.5px solid var(--ink-faint)}
@@ -205,7 +206,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .cf input:focus,.cf select:focus,.cf textarea:focus{border-bottom-color:var(--ink)}
 .cf textarea{resize:none;height:88px;line-height:1.7}
 .cf-submit{align-self:flex-start;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);padding:10px 28px;cursor:pointer;transition:background .15s,color .15s;margin-top:.5rem}
-.cf-submit:hover{background:var(--ink);color:#fff}
+.cf-submit:hover{background:var(--accent);color:#fff}
 .cf-note{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.8}
 
 /* FOOTER */
@@ -242,7 +243,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .about-closing{padding:4rem 3rem;background:var(--cream);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:3rem}
 .about-closing-text{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;line-height:1.35;color:var(--ink-mid);max-width:520px}
 .about-closing-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;white-space:nowrap;transition:opacity .15s;flex-shrink:0}
-.about-closing-cta:hover{opacity:.4}
+.about-closing-cta:hover{opacity:1;color:var(--accent);border-bottom-color:var(--accent)}
 
 /* ── PURCHASE MODAL ── */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(17,16,16,0.55);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px)}
@@ -266,6 +267,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .po-arrow{font-size:18px;color:var(--ink-light);flex-shrink:0}
 .purchase-divider{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);text-align:center;padding:.25rem 0}
 </style>
+<script src="books.js"></script>
 </head>
 <body>
 
@@ -293,36 +295,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
         <a class="hero-cta" onclick="go('catalog')">Ver el catálogo &rarr;</a>
       </div>
     </div>
-    <div class="hero-right" onclick="go('detail')">
-      <div class="hero-book-area">
-        <div class="book-obj">
-          <div class="book-obj-spine"></div>
-          <div class="book-obj-b1"></div>
-          <div class="book-obj-b2"></div>
-          <div class="book-obj-txt">
-            <div class="bo">— □□□ —</div>
-            <div class="bt">Artaud y Prevel</div>
-            <div class="bo">—</div>
-            <div class="bi">Un paseo por la<br>dramática de<br>la adicción</div>
-            <div class="bo" style="margin:8px 0">□</div>
-            <div class="bs">Miguel Vega Manrique</div>
-            <div class="bo" style="margin:7px 0">— □ —</div>
-            <div class="bi" style="font-size:6.5px">Seguido de Diez</div>
-            <div class="bt" style="font-size:7px;font-style:italic;margin:2px 0">Poemas Mortales</div>
-            <div class="bi" style="font-size:6.5px">de Jacques Prevel</div>
-            <div class="bs" style="font-size:5.5px;margin-top:2px">(edición bilingüe)</div>
-            <div class="bo" style="margin:9px 0 3px">— □□□ —</div>
-            <div class="bs" style="font-size:5.5px">Cuadernos Poesía y Traducción</div>
-            <div class="bs" style="font-size:5.5px">Madrid · Marzo 2026 · N.º 1</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-caption">
-        <div class="hero-cap-num">N.º 1 · Disponible · 66 ejemplares restantes</div>
-        <div class="hero-cap-title">Artaud y Prevel</div>
-        <div class="hero-cap-author">Miguel Vega Manrique · Jacques Prevel</div>
-      </div>
-    </div>
+    <div id="home-hero-book" class="hero-right"></div>
   </div>
 
   <div class="section-bar">
@@ -330,52 +303,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     <a class="section-bar-link" onclick="go('catalog')">Catálogo completo &rarr;</a>
   </div>
 
-  <div class="home-grid">
-    <div class="grid-book" onclick="go('detail')">
-      <div class="grid-cover-wrap">
-        <div class="grid-cover">
-          <div class="grid-cover-b"></div>
-          <div class="grid-cover-txt">
-            <div class="bo" style="font-size:8px">— □□□ —</div>
-            <div class="bt">Artaud y Prevel</div>
-            <div class="bo">—</div>
-            <div class="bi" style="font-size:6.5px">Un paseo por la<br>dramática<br>de la adicción</div>
-            <div class="bo">□</div>
-            <div class="bs" style="font-size:5.5px;margin-top:3px">Vega Manrique</div>
-          </div>
-        </div>
-      </div>
-      <div class="grid-num">N.º 1 · Marzo 2026</div>
-      <div class="grid-title">Artaud y Prevel</div>
-      <div class="grid-author">Miguel Vega Manrique</div>
-      <div class="grid-excerpt">Primera edición en español de la poesía de Prevel, con ensayo crítico sobre la dramática de la adicción.</div>
-      <div class="grid-tag">Disponible · 66 restantes</div>
-    </div>
-    <div class="grid-book dim">
-      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6px">Antonin Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
-      <div class="grid-num">N.º 2 · Próximamente</div>
-      <div class="grid-title">Carta contra la Cábala</div>
-      <div class="grid-author">Antonin Artaud</div>
-      <div class="grid-excerpt">Edición bilingüe. Primera traducción al español de este texto capital.</div>
-      <div class="grid-tag">En preparación</div>
-    </div>
-    <div class="grid-book dim">
-      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6px">Mallarmé</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
-      <div class="grid-num">N.º 3 · 2026</div>
-      <div class="grid-title">Veinte cartas sobre la poesía</div>
-      <div class="grid-author">Stéphane Mallarmé</div>
-      <div class="grid-excerpt">Traducción y estudio de las cartas poéticas de Mallarmé. Edición bilingüe.</div>
-      <div class="grid-tag">En preparación</div>
-    </div>
-    <div class="grid-book dim">
-      <div class="grid-cover-wrap"><div class="grid-cover" style="background:#eeeae0"><div class="grid-cover-b"></div><div class="grid-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6px">Philippe Muray</div><div class="bo" style="margin-top:5px">— □□□ —</div></div></div></div>
-      <div class="grid-num">N.º 4 · 2026</div>
-      <div class="grid-title">La última alegría de Baudelaire</div>
-      <div class="grid-author">Philippe Muray</div>
-      <div class="grid-excerpt">Ensayo crítico. Primera traducción al español.</div>
-      <div class="grid-tag">En preparación</div>
-    </div>
-  </div>
+  <div id="home-grid" class="home-grid"></div>
 
   <div class="home-band">
     <div class="band-left-col">
@@ -403,54 +331,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     <h1 class="cat-h1">Catálogo</h1>
     <div class="cat-note">Cuadernos Poesía y Traducción<br>100 ejemplares · Sin reimpresión</div>
   </div>
-  <div class="cat-section"><span>Publicados</span><span>1 título</span></div>
-  <div class="cat-row" onclick="go('detail')">
-    <div class="cat-cover"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi" style="font-size:7px">Un paseo por la<br>dramática<br>de la adicción</div><div class="bo">□</div><div class="bs" style="font-size:5.5px">Vega Manrique</div><div class="bo" style="margin-top:6px">— □□□ —</div><div class="bs" style="font-size:5px">Madrid · 2026 · N.º1</div></div></div>
-    <div>
-      <div class="cat-num">N.º 1 · Marzo 2026</div>
-      <div class="cat-title">Artaud y Prevel</div>
-      <div class="cat-author">Miguel Vega Manrique · Jacques Prevel</div>
-      <div class="cat-desc">Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica cosida.</div>
-      <div class="cat-quote">«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»</div>
-    </div>
-    <div class="cat-right">
-      <div class="cat-badge">Disponible</div>
-      <div class="copies-track"><div class="copies-fill" style="width:34%"></div></div>
-      <div class="copies-note">66 / 100 restantes</div>
-      <div class="cat-avail">Sin reimpresión<br>Edición única</div>
-    </div>
-  </div>
-  <div class="cat-section" style="margin-top:.5rem"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>
-  <div class="cat-row dim">
-    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Antonin Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
-    <div>
-      <div class="cat-num">N.º 2 · Próximamente</div>
-      <div class="cat-title">Carta contra la Cábala<br>dirigida a Jacques Prevel</div>
-      <div class="cat-author">Antonin Artaud</div>
-      <div class="cat-desc">Edición bilingüe. Primera traducción al español de este texto capital de Artaud, revisitado desde la correspondencia con Prevel.</div>
-    </div>
-    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">100 ejemplares · Sin reimpr.</div></div>
-  </div>
-  <div class="cat-row dim">
-    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Mallarmé</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
-    <div>
-      <div class="cat-num">N.º 3 · 2026</div>
-      <div class="cat-title">Veinte cartas sobre la poesía</div>
-      <div class="cat-author">Stéphane Mallarmé</div>
-      <div class="cat-desc">Traducción y estudio de las cartas poéticas de Mallarmé. Edición bilingüe francés–español.</div>
-    </div>
-    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div></div>
-  </div>
-  <div class="cat-row dimmer">
-    <div class="cat-cover" style="background:#eeeae0"><div class="cat-cover-b"></div><div class="cat-cover-txt"><div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Philippe Muray</div><div class="bo" style="margin-top:8px">— □□□ —</div></div></div>
-    <div>
-      <div class="cat-num">N.º 4 · 2026</div>
-      <div class="cat-title">La última alegría de Charles Baudelaire</div>
-      <div class="cat-author">Philippe Muray</div>
-      <div class="cat-desc">Ensayo crítico. Primera traducción al español.</div>
-    </div>
-    <div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div></div>
-  </div>
+  <div id="catalog-rows"></div>
   <footer>
     <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
     <div class="footer-r">Una edición. Sin reimpresión.</div>
@@ -458,85 +339,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 </div>
 
 <!-- ═══ DETAIL ═══ -->
-<div id="page-detail" class="page">
-  <div class="breadcrumb">
-    <span onclick="go('home')">Inicio</span><span class="sep">&rsaquo;</span><span onclick="go('catalog')">Catálogo</span><span class="sep">&rsaquo;</span><span onclick="go('catalog')">Cuadernos Poesía y Traducción</span><span class="sep">&rsaquo;</span><span style="color:var(--ink);cursor:default">N.º 1</span>
-  </div>
-  <div class="detail-layout">
-    <div class="detail-left">
-      <div class="detail-cover">
-        <div class="dc-spine"></div><div class="dc-b1"></div><div class="dc-b2"></div>
-        <div class="dc-txt">
-          <div class="bo">— □□□ —</div>
-          <div class="bt">Artaud y Prevel</div>
-          <div class="bo">—</div>
-          <div class="bi">Un paseo por la dramática<br>de la adicción</div>
-          <div class="bo" style="margin:8px 0">□</div>
-          <div class="bs">Miguel Vega Manrique</div>
-          <div class="bo" style="margin:8px 0">— □ —</div>
-          <div class="bi" style="font-size:7px">Seguido de Diez</div>
-          <div class="bt" style="font-size:7.5px;font-style:italic;margin:2px 0">Poemas Mortales</div>
-          <div class="bi" style="font-size:7px">de Jacques Prevel</div>
-          <div class="bs" style="font-size:6px;margin-top:2px">(edición bilingüe)</div>
-          <div class="bo" style="margin:10px 0 4px">— □□□ —</div>
-          <div class="bs" style="font-size:6px">Cuadernos Poesía y Traducción</div>
-          <div class="bs" style="font-size:6px">Madrid · Marzo 2026 · N.º 1</div>
-        </div>
-      </div>
-      <div class="detail-caption">Cuadernos Poesía y Traducción · N.º 1</div>
-      <div class="detail-copies">
-        <div class="detail-copies-label"><span>Ejemplares restantes</span><span>66 / 100</span></div>
-        <div class="detail-copies-track"><div class="detail-copies-fill"></div></div>
-        <div class="detail-copies-note">Edición única · Sin reimpresión</div>
-      </div>
-      <button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>
-      <button class="btn-ghost" onclick="go('contact')">Consulta &rarr;</button>
-      <div class="detail-specs">
-        <div class="spec-row"><span class="spec-k">Colección</span><span class="spec-v">Cuadernos Poesía y Traducción</span></div>
-        <div class="spec-row"><span class="spec-k">Número</span><span class="spec-v">N.º 1 · Marzo 2026</span></div>
-        <div class="spec-row"><span class="spec-k">Tipografía</span><span class="spec-v"><em>Garamond</em></span></div>
-        <div class="spec-row"><span class="spec-k">Papel</span><span class="spec-v"><em>Verjurado ahuesado</em></span></div>
-        <div class="spec-row"><span class="spec-k">Encuadernación</span><span class="spec-v">Rústica cosida</span></div>
-        <div class="spec-row"><span class="spec-k">Edición</span><span class="spec-v">Bilingüe fr.–es.</span></div>
-        <div class="spec-row"><span class="spec-k">Ejemplares</span><span class="spec-v">100 · sin reimpr.</span></div>
-      </div>
-    </div>
-    <div class="detail-right">
-      <div class="detail-eyebrow">Cuadernos Poesía y Traducción · N.º 1 · Marzo 2026</div>
-      <h1 class="detail-h1">Artaud y Prevel</h1>
-      <div class="detail-subtitle">Un paseo por la dramática de la adicción</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;font-style:italic;color:var(--ink-light);margin-bottom:2rem;letter-spacing:.01em">Jacques Prevel: Diario y poemas</div>
-      <div class="detail-authors">
-        <div class="detail-author-row"><span class="detail-author-name">Miguel Vega Manrique</span><span class="detail-author-role">Ensayo</span></div>
-        <div class="detail-author-row"><span class="detail-author-name">Jacques Prevel</span><span class="detail-author-role">Poemas · traducción del francés</span></div>
-        <div class="detail-author-row"><span class="detail-author-name">Gustaf Bolin</span><span class="detail-author-role">Retrato del autor</span></div>
-      </div>
-      <div class="detail-synopsis">
-        <p style="margin-bottom:1.5rem">El primer número de Cuadernos Poesía y Traducción inaugura el catálogo de Greta Krull Ediciones con una apuesta de recuperación y lectura crítica: la figura de Jacques Prevel (1915–1951), poeta francés de posguerra cuya obra poética permanece todavía inédita en lengua española.</p>
-        <p style="margin-bottom:1.5rem">El volumen contiene, en la primera parte, un ensayo que aborda la lectura del diario <em>En compagnie d'Antonin Artaud</em>, situando a Prevel en el contexto de los últimos años de Artaud en París tras su salida del hospital psiquiátrico de Rodez. Lejos de reducirse a la condición de testigo, Prevel emerge como conciencia paralela, figura limítrofe cuya escritura dialoga con la experiencia radical del teatro de la crueldad, la enfermedad, la marginalidad y la supervivencia literaria.</p>
-        <p style="margin-bottom:1.5rem">La segunda parte del libro presenta, por primera vez en español, una antología bilingüe de diez poemas de <em>Poèmes Mortels</em> (1945), el primer libro publicado por Prevel. Esta edición enfrenta el texto francés con su traducción española, respetando ritmo, disposición y tensión original.</p>
-        <p style="margin-bottom:1.5rem">Cuidada en todos sus aspectos materiales —compuesta en Garamond, impresa en papel verjurado ahuesado y encuadernada en rústica— esta primera entrega inaugura una colección que aspira a tender puentes entre poesía y traducción desde el rigor filológico, la exigencia crítica y el respeto absoluto por la singularidad de cada obra.</p>
-        <p>Greta Krull Ediciones inicia así un proyecto que combina investigación, recuperación y edición literaria con vocación de permanencia.</p>
-      </div>
-      <div class="contents-label">Contenido del volumen</div>
-      <div class="contents-item"><div class="contents-n">I</div><div><div class="contents-t">Artaud y Prevel: un paseo por la dramática de la adicción</div><div class="contents-sub">Ensayo · Miguel Vega Manrique</div></div></div>
-      <div class="contents-item"><div class="contents-n">II</div><div><div class="contents-t">Diez Poemas Mortales / Dix Poèmes Mortels (1945)</div><div class="contents-sub">Edición bilingüe · Jacques Prevel · Con retrato de Gustaf Bolin</div></div></div>
-      <div class="colophon">
-        Impreso en Madrid. Primera edición, marzo de 2026.<br>
-        100 ejemplares numerados a mano. No se prevé reimpresión.<br>
-        Primera traducción al español de la poesía de Jacques Prevel.
-      </div>
-    </div>
-  </div>
-  <div class="booknav">
-    <div class="booknav-card off"><div class="booknav-label">Anterior</div><div class="booknav-title" style="color:#ccc">—</div></div>
-    <div class="booknav-card" onclick="go('catalog')"><div class="booknav-label">Próximo en la colección</div><div class="booknav-title">Carta contra la Cábala<br>dirigida a Jacques Prevel</div><div class="booknav-author">Antonin Artaud · N.º 2 &rarr;</div></div>
-  </div>
-  <footer>
-    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-    <div class="footer-r">Una edición. Sin reimpresión.</div>
-  </footer>
-</div>
+<div id="page-detail" class="page"></div>
 
 <!-- ═══ DISTRIBUCIÓN ═══ -->
 <div id="page-distrib" class="page">
@@ -625,12 +428,8 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
       <div class="cf"><label>Correo electrónico</label><input type="email" placeholder="correo@dominio.com"></div>
       <div class="cf">
         <label>Título solicitado</label>
-        <select>
+        <select id="contact-title-select">
           <option value="">Seleccionar título</option>
-          <option>N.º 1 · Artaud y Prevel — Miguel Vega Manrique</option>
-          <option>N.º 2 · Carta contra la Cábala — Artaud (en prep.)</option>
-          <option>N.º 3 · Veinte cartas sobre la poesía — Mallarmé (en prep.)</option>
-          <option>N.º 4 · La última alegría de Baudelaire — Muray (en prep.)</option>
         </select>
       </div>
       <div class="cf"><label>País de envío</label><input type="text" placeholder="España, México, Argentina…"></div>
@@ -714,72 +513,317 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
       <span class="modal-title">C&oacute;mo adquirir este ejemplar</span>
       <button class="modal-close" onclick="closePurchaseModal(null)">&times;</button>
     </div>
-    <div class="modal-body">
-      <div class="modal-intro">Artaud y Prevel &middot; N.&ordm; 1 &middot; 66 ejemplares disponibles</div>
-      <a class="purchase-option featured" href="https://www.iberlibro.com/primera-edicion/ARTAUD-PREVEL-paseo-dram%C3%A1tica-adicci%C3%B3n-MIGUEL/32408732281/bd" target="_blank" rel="noopener">
-        <div class="po-left">
-          <div class="po-badge">Compra en l&iacute;nea &middot; Recomendado</div>
-          <div class="po-name">IberLibro</div>
-          <div class="po-desc">Compra directa. Env&iacute;o internacional disponible.</div>
-        </div>
-        <div class="po-arrow">&#8599;</div>
-      </a>
-      <div class="purchase-divider">o bien</div>
-      <div class="purchase-option" onclick="closePurchaseModal(null);go('contact')" style="cursor:pointer">
-        <div class="po-left">
-          <div class="po-badge">Solicitud directa</div>
-          <div class="po-name">Escribir a la editorial</div>
-          <div class="po-desc">Respondemos en 48 horas. Pago por transferencia.</div>
-        </div>
-        <div class="po-arrow">&rarr;</div>
-      </div>
-      <div class="purchase-option" onclick="closePurchaseModal(null);go('distrib')" style="cursor:pointer">
-        <div class="po-left">
-          <div class="po-badge">Distribuci&oacute;n</div>
-          <div class="po-name">Librer&iacute;as y bibliotecas</div>
-          <div class="po-desc">Para libreros, distribuidores e instituciones.</div>
-        </div>
-        <div class="po-arrow">&rarr;</div>
-      </div>
-    </div>
+    <div id="modal-body" class="modal-body"></div>
   </div>
 </div>
 
 <div class="toast" id="toast-el"></div>
 
 <script>
-var PAGES=['home','about','catalog','detail','distrib','contact'];
-var NAV_MAP={home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact'};
-function go(name){
-  PAGES.forEach(function(p){
-    var el=document.getElementById('page-'+p);
-    if(el)el.classList.remove('active');
+// ─── Page navigation ────────────────────────────────────────────────────────
+var PAGES = ['home','about','catalog','detail','distrib','contact'];
+var NAV_MAP = {home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact'};
+var currentBookId = 1;
+
+function go(name, bookId) {
+  PAGES.forEach(function(p) {
+    var el = document.getElementById('page-' + p);
+    if (el) el.classList.remove('active');
   });
-  var pg=document.getElementById('page-'+name);
-  if(pg)pg.classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
-  var nid=NAV_MAP[name];
-  if(nid){var nel=document.getElementById(nid);if(nel)nel.classList.add('active');}
-  window.scrollTo(0,0);
+  if (name === 'detail') {
+    if (bookId) currentBookId = bookId;
+    renderDetail(currentBookId);
+  }
+  var pg = document.getElementById('page-' + name);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  var nid = NAV_MAP[name];
+  if (nid) { var nel = document.getElementById(nid); if (nel) nel.classList.add('active'); }
+  window.scrollTo(0, 0);
 }
-function showToast(msg){
-  var t=document.getElementById('toast-el');
-  if(!t)return;
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},3000);
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+function bookById(id) {
+  for (var i = 0; i < BOOKS.length; i++) { if (BOOKS[i].id === id) return BOOKS[i]; }
+  return null;
 }
-function openPurchaseModal(){
-  var m=document.getElementById('purchase-modal');
-  if(m){m.classList.add('open');document.body.style.overflow='hidden';}
+function copiesPct(book) {
+  if (!book.copiesTotal || book.copiesRemaining === null) return 0;
+  return Math.round((book.copiesRemaining / book.copiesTotal) * 100);
 }
-function closePurchaseModal(e){
-  var m=document.getElementById('purchase-modal');
-  if(!m)return;
-  if(e&&e.target!==m)return;
+function statusLabel(book) {
+  if (book.status === 'available') return 'Disponible · ' + book.copiesRemaining + ' restantes';
+  if (book.status === 'upcoming')  return 'En preparación';
+  return 'Anunciado';
+}
+
+// ─── Home hero ──────────────────────────────────────────────────────────────
+function renderHomeHero() {
+  var book = null;
+  for (var i = 0; i < BOOKS.length; i++) { if (BOOKS[i].status === 'available') { book = BOOKS[i]; break; } }
+  if (!book) book = BOOKS[0];
+  var el = document.getElementById('home-hero-book');
+  if (!el) return;
+  el.setAttribute('onclick', 'go(\'detail\',' + book.id + ')');
+  el.innerHTML =
+    '<div class="hero-book-area">' +
+      '<div class="book-obj">' +
+        '<div class="book-obj-spine"></div><div class="book-obj-b1"></div><div class="book-obj-b2"></div>' +
+        '<div class="book-obj-txt">' + book.coverHtml + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="hero-caption">' +
+      '<div class="hero-cap-num">' + book.num + ' · ' + (book.status === 'available' ? 'Disponible · ' + book.copiesRemaining + ' ejemplares restantes' : 'En preparación') + '</div>' +
+      '<div class="hero-cap-title">' + book.title + '</div>' +
+      '<div class="hero-cap-author">' + book.authorByline + '</div>' +
+    '</div>';
+}
+
+// ─── Home grid ──────────────────────────────────────────────────────────────
+function renderHomeGrid() {
+  var el = document.getElementById('home-grid');
+  if (!el) return;
+  var html = '';
+  var shown = BOOKS.slice(0, 4);
+  shown.forEach(function(book) {
+    var dim = book.status !== 'available' ? ' dim' : '';
+    var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
+    var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
+    html +=
+      '<div class="grid-book' + dim + '"' + click + '>' +
+        '<div class="grid-cover-wrap">' +
+          '<div class="grid-cover"' + coverBg + '>' +
+            '<div class="grid-cover-b"></div>' +
+            '<div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="grid-num">' + book.num + ' · ' + book.date + '</div>' +
+        '<div class="grid-title">' + book.title + '</div>' +
+        '<div class="grid-author">' + book.authorByline + '</div>' +
+        '<div class="grid-excerpt">' + book.descShort + '</div>' +
+        '<div class="grid-tag">' + statusLabel(book) + '</div>' +
+      '</div>';
+  });
+  el.innerHTML = html;
+}
+
+// ─── Catalog ────────────────────────────────────────────────────────────────
+function renderCatalog() {
+  var el = document.getElementById('catalog-rows');
+  if (!el) return;
+  var published = BOOKS.filter(function(b) { return b.status === 'available'; });
+  var upcoming  = BOOKS.filter(function(b) { return b.status === 'upcoming'; });
+  var announced = BOOKS.filter(function(b) { return b.status === 'announced'; });
+  var html = '';
+
+  function catRow(book) {
+    var dim = book.status === 'upcoming' ? ' dim' : book.status === 'announced' ? ' dimmer' : '';
+    var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
+    var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
+    var rightCol = '';
+    if (book.status === 'available') {
+      rightCol =
+        '<div class="cat-right">' +
+          '<div class="cat-badge">Disponible</div>' +
+          '<div class="copies-track"><div class="copies-fill" style="width:' + copiesPct(book) + '%"></div></div>' +
+          '<div class="copies-note">' + book.copiesRemaining + ' / ' + book.copiesTotal + ' restantes</div>' +
+          '<div class="cat-avail">Sin reimpresión<br>Edición única</div>' +
+        '</div>';
+    } else {
+      rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">' + book.copiesTotal + ' ejemplares · Sin reimpr.</div></div>';
+    }
+    return '<div class="cat-row' + dim + '"' + click + '>' +
+      '<div class="cat-cover"' + coverBg + '><div class="cat-cover-b"></div><div class="cat-cover-txt">' + book.coverHtmlSmall + '</div></div>' +
+      '<div>' +
+        '<div class="cat-num">' + book.num + ' · ' + book.date + '</div>' +
+        '<div class="cat-title">' + (book.titleCatalog || book.title) + '</div>' +
+        '<div class="cat-author">' + book.authorByline + '</div>' +
+        '<div class="cat-desc">' + book.descCatalog + '</div>' +
+        (book.quote ? '<div class="cat-quote">' + book.quote + '</div>' : '') +
+      '</div>' +
+      rightCol +
+    '</div>';
+  }
+
+  if (published.length) {
+    html += '<div class="cat-section"><span>Publicados</span><span>' + published.length + ' título' + (published.length > 1 ? 's' : '') + '</span></div>';
+    published.forEach(function(b) { html += catRow(b); });
+  }
+  if (upcoming.length || announced.length) {
+    html += '<div class="cat-section" style="margin-top:.5rem"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>';
+    upcoming.forEach(function(b)  { html += catRow(b); });
+    announced.forEach(function(b) { html += catRow(b); });
+  }
+  html += '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div><div class="footer-r">Una edición. Sin reimpresión.</div></footer>';
+  el.innerHTML = html;
+}
+
+// ─── Detail page ────────────────────────────────────────────────────────────
+function renderDetail(bookId) {
+  var book = bookById(bookId);
+  var el = document.getElementById('page-detail');
+  if (!el || !book) return;
+
+  // Previous / next books
+  var idx = BOOKS.indexOf(book);
+  var prev = idx > 0 ? BOOKS[idx - 1] : null;
+  var next = idx < BOOKS.length - 1 ? BOOKS[idx + 1] : null;
+
+  var specsHtml = '';
+  if (book.specs) {
+    book.specs.forEach(function(s) {
+      specsHtml += '<div class="spec-row"><span class="spec-k">' + s.k + '</span><span class="spec-v">' + s.v + '</span></div>';
+    });
+  }
+
+  var authorsHtml = '';
+  book.authors.forEach(function(a) {
+    authorsHtml += '<div class="detail-author-row"><span class="detail-author-name">' + a.name + '</span><span class="detail-author-role">' + a.role + '</span></div>';
+  });
+
+  var synopsisHtml = '';
+  if (book.synopsis) {
+    book.synopsis.forEach(function(p, i) {
+      synopsisHtml += '<p style="' + (i < book.synopsis.length - 1 ? 'margin-bottom:1.5rem' : '') + '">' + p + '</p>';
+    });
+  }
+
+  var contentsHtml = '';
+  if (book.contents) {
+    contentsHtml = '<div class="contents-label">Contenido del volumen</div>';
+    book.contents.forEach(function(c) {
+      contentsHtml += '<div class="contents-item"><div class="contents-n">' + c.n + '</div><div><div class="contents-t">' + c.title + '</div><div class="contents-sub">' + c.sub + '</div></div></div>';
+    });
+  }
+
+  var leftButtons = '';
+  if (book.status === 'available') {
+    leftButtons = '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
+                  '<button class="btn-ghost" onclick="go(\'contact\')">Consulta &rarr;</button>';
+  }
+
+  var copiesHtml = '';
+  if (book.status === 'available' && book.copiesRemaining !== null) {
+    copiesHtml =
+      '<div class="detail-copies">' +
+        '<div class="detail-copies-label"><span>Ejemplares restantes</span><span>' + book.copiesRemaining + ' / ' + book.copiesTotal + '</span></div>' +
+        '<div class="detail-copies-track"><div class="detail-copies-fill" style="width:' + copiesPct(book) + '%"></div></div>' +
+        '<div class="detail-copies-note">Edición única · Sin reimpresión</div>' +
+      '</div>';
+  }
+
+  var prevCard = prev
+    ? '<div class="booknav-card" onclick="go(\'detail\',' + prev.id + ')"><div class="booknav-label">Anterior</div><div class="booknav-title">' + prev.title + '</div><div class="booknav-author">' + prev.authorByline + ' · ' + prev.num + ' &larr;</div></div>'
+    : '<div class="booknav-card off"><div class="booknav-label">Anterior</div><div class="booknav-title" style="color:#ccc">—</div></div>';
+
+  var nextCard = next
+    ? '<div class="booknav-card" onclick="go(\'detail\',' + next.id + ')"><div class="booknav-label">Próximo en la colección</div><div class="booknav-title">' + next.title + '</div><div class="booknav-author">' + next.authorByline + ' · ' + next.num + ' &rarr;</div></div>'
+    : '<div class="booknav-card off"><div class="booknav-label">Próximo</div><div class="booknav-title" style="color:#ccc">—</div></div>';
+
+  el.innerHTML =
+    '<div class="breadcrumb">' +
+      '<span onclick="go(\'home\')">Inicio</span><span class="sep">&rsaquo;</span>' +
+      '<span onclick="go(\'catalog\')">Catálogo</span><span class="sep">&rsaquo;</span>' +
+      '<span onclick="go(\'catalog\')">' + book.collection + '</span><span class="sep">&rsaquo;</span>' +
+      '<span style="color:var(--ink);cursor:default">' + book.num + '</span>' +
+    '</div>' +
+    '<div class="detail-layout">' +
+      '<div class="detail-left">' +
+        '<div class="detail-cover">' +
+          '<div class="dc-spine"></div><div class="dc-b1"></div><div class="dc-b2"></div>' +
+          '<div class="dc-txt">' + book.coverHtml + '</div>' +
+        '</div>' +
+        '<div class="detail-caption">' + book.collection + ' · ' + book.num + '</div>' +
+        copiesHtml +
+        leftButtons +
+        (specsHtml ? '<div class="detail-specs">' + specsHtml + '</div>' : '') +
+      '</div>' +
+      '<div class="detail-right">' +
+        '<div class="detail-eyebrow">' + book.collection + ' · ' + book.num + ' · ' + book.date + '</div>' +
+        '<h1 class="detail-h1">' + book.title + '</h1>' +
+        (book.subtitle ? '<div class="detail-subtitle">' + book.subtitle + '</div>' : '') +
+        (book.subtitleSub ? '<div style="font-family:\'Cormorant Garamond\',serif;font-size:19px;font-weight:300;font-style:italic;color:var(--ink-light);margin-bottom:2rem;letter-spacing:.01em">' + book.subtitleSub + '</div>' : '') +
+        '<div class="detail-authors">' + authorsHtml + '</div>' +
+        (synopsisHtml ? '<div class="detail-synopsis">' + synopsisHtml + '</div>' : '') +
+        contentsHtml +
+        (book.colophon ? '<div class="colophon">' + book.colophon + '</div>' : '') +
+      '</div>' +
+    '</div>' +
+    '<div class="booknav">' + prevCard + nextCard + '</div>' +
+    '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div><div class="footer-r">Una edición. Sin reimpresión.</div></footer>';
+}
+
+// ─── Purchase modal ──────────────────────────────────────────────────────────
+function renderPurchaseModal(bookId) {
+  var book = bookById(bookId);
+  var el = document.getElementById('modal-body');
+  if (!el || !book) return;
+  var onlineOption = '';
+  if (book.purchaseUrl) {
+    onlineOption =
+      '<a class="purchase-option featured" href="' + book.purchaseUrl + '" target="_blank" rel="noopener">' +
+        '<div class="po-left">' +
+          '<div class="po-badge">Compra en línea · Recomendado</div>' +
+          '<div class="po-name">' + book.purchaseLabel + '</div>' +
+          '<div class="po-desc">' + book.purchaseDesc + '</div>' +
+        '</div>' +
+        '<div class="po-arrow">&#8599;</div>' +
+      '</a>' +
+      '<div class="purchase-divider">o bien</div>';
+  }
+  el.innerHTML =
+    '<div class="modal-intro">' + book.title + ' &middot; ' + book.num + (book.copiesRemaining ? ' &middot; ' + book.copiesRemaining + ' ejemplares disponibles' : '') + '</div>' +
+    onlineOption +
+    '<div class="purchase-option" onclick="closePurchaseModal(null);go(\'contact\')" style="cursor:pointer">' +
+      '<div class="po-left"><div class="po-badge">Solicitud directa</div><div class="po-name">Escribir a la editorial</div><div class="po-desc">Respondemos en 48 horas. Pago por transferencia.</div></div>' +
+      '<div class="po-arrow">&rarr;</div>' +
+    '</div>' +
+    '<div class="purchase-option" onclick="closePurchaseModal(null);go(\'distrib\')" style="cursor:pointer">' +
+      '<div class="po-left"><div class="po-badge">Distribución</div><div class="po-name">Librerías y bibliotecas</div><div class="po-desc">Para libreros, distribuidores e instituciones.</div></div>' +
+      '<div class="po-arrow">&rarr;</div>' +
+    '</div>';
+}
+
+// ─── Contact select ──────────────────────────────────────────────────────────
+function renderContactSelect() {
+  var sel = document.getElementById('contact-title-select');
+  if (!sel) return;
+  var html = '<option value="">Seleccionar título</option>';
+  BOOKS.forEach(function(book) {
+    var label = book.num + ' · ' + book.title + ' — ' + book.authors[0].name + (book.status !== 'available' ? ' (en prep.)' : '');
+    html += '<option>' + label + '</option>';
+  });
+  sel.innerHTML = html;
+}
+
+// ─── Modal ───────────────────────────────────────────────────────────────────
+function openPurchaseModal() {
+  renderPurchaseModal(currentBookId);
+  var m = document.getElementById('purchase-modal');
+  if (m) { m.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closePurchaseModal(e) {
+  var m = document.getElementById('purchase-modal');
+  if (!m) return;
+  if (e && e.target !== m) return;
   m.classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closePurchaseModal(null);});
+
+// ─── Toast ───────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  var t = document.getElementById('toast-el');
+  if (!t) return;
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+
+// ─── Init ────────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePurchaseModal(null); });
+renderHomeHero();
+renderHomeGrid();
+renderCatalog();
+renderContactSelect();
 go('home');
 </script>
 </body>
