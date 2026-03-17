@@ -15,7 +15,7 @@
   --accent:#8c1a13;--accent-light:#fdf3f2;
 }
 html{scroll-behavior:smooth}
-body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6;max-width:1440px;margin:0 auto}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:60px}
@@ -266,6 +266,111 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .po-desc{font-size:12px;color:var(--ink-light)}
 .po-arrow{font-size:18px;color:var(--ink-light);flex-shrink:0}
 .purchase-divider{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);text-align:center;padding:.25rem 0}
+
+/* ── CONSULTA ── */
+.consulta-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 61px)}
+.consulta-left{border-right:1px solid var(--ink);padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:space-between;background:var(--cream)}
+.consulta-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;line-height:1.05;margin-bottom:2rem}
+.consulta-body{font-size:15px;line-height:1.9;color:var(--ink-mid);max-width:380px}
+.consulta-foot{font-size:12px;color:var(--ink-light);font-style:italic;line-height:1.8}
+.consulta-right{padding:5rem 3.5rem;display:flex;flex-direction:column;gap:1.75rem}
+
+/* ── NAV MOBILE TOGGLE ── */
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;font-family:'EB Garamond',serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);padding:0 0 0 1.25rem}
+.nav-toggle:hover{color:var(--ink)}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{font-size:15px}
+
+  /* Nav */
+  nav{padding:0 1.25rem;position:relative}
+  .nav-logo img{height:28px}
+  .nav-toggle{display:flex;align-items:center;height:100%;gap:.5rem}
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--page);border-bottom:1px solid var(--ink);flex-direction:column;height:auto;z-index:300}
+  .nav-links.open{display:flex}
+  .nav-links li{height:auto;width:100%}
+  .nav-links a{border-left:none;border-top:1px solid var(--ink-faint);padding:.9rem 1.25rem;font-size:12px;width:100%;justify-content:flex-start}
+  .nav-links a.active{border-bottom:none;border-left:2px solid var(--ink)}
+
+  /* Home hero */
+  .home-hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{border-right:none;border-bottom:1px solid var(--ink);padding:2.5rem 1.5rem}
+  .hero-title{font-size:42px}
+  .hero-right{min-height:340px}
+  .hero-book-area{padding:2rem 2rem 1.5rem}
+  .hero-caption{padding:1.25rem 1.5rem 1.5rem}
+
+  /* Home grid */
+  .home-grid{grid-template-columns:1fr 1fr}
+  .grid-book{padding:1.5rem 1rem 2rem}
+  .grid-cover-wrap{margin-bottom:1rem}
+  .grid-cover{width:88px;height:122px}
+  .section-bar{padding:.75rem 1.25rem}
+
+  /* Home band */
+  .home-band{grid-template-columns:1fr;gap:2rem;padding:2.5rem 1.5rem}
+  .band-quote{font-size:22px}
+
+  /* Catalog */
+  .cat-header{padding:2rem 1.25rem 1.5rem;flex-direction:column;align-items:flex-start;gap:.75rem}
+  .cat-h1{font-size:36px}
+  .cat-note{text-align:left}
+  .cat-section{padding:.75rem 1.25rem}
+  .cat-row{grid-template-columns:1fr;gap:1rem;padding:1.5rem 1.25rem}
+  .cat-cover{display:none}
+  .cat-title{font-size:22px}
+  .cat-right{text-align:left}
+  .copies-track{margin-left:0}
+
+  /* Detail */
+  .detail-layout{grid-template-columns:1fr}
+  .detail-left{position:static;height:auto;border-right:none;border-bottom:1px solid var(--ink);padding:2rem 1.25rem;flex-direction:row;flex-wrap:wrap;gap:1.5rem;align-items:flex-start}
+  .detail-cover{width:140px;height:196px;flex-shrink:0}
+  .detail-caption,.detail-copies,.btn-primary,.btn-ghost,.detail-specs{width:100%}
+  .detail-right{padding:2rem 1.25rem 3rem}
+  .detail-h1{font-size:36px}
+  .breadcrumb{padding:.75rem 1.25rem;font-size:11px}
+  .booknav{grid-template-columns:1fr}
+  .booknav-card:first-child{border-right:none;border-bottom:1px solid var(--ink-faint)}
+
+  /* Distribution */
+  .dist-header{padding:2.5rem 1.25rem 2rem}
+  .dist-h1{font-size:36px}
+  .dist-grid{grid-template-columns:1fr}
+  .dist-block{border-right:none}
+  .dist-statement{padding:2rem 1.25rem}
+
+  /* Contact & Consulta */
+  .contact-grid,.consulta-wrap{grid-template-columns:1fr}
+  .contact-left,.consulta-left{border-right:none;border-bottom:1px solid var(--ink);padding:2.5rem 1.25rem}
+  .contact-h1,.consulta-h1{font-size:36px}
+  .contact-right,.consulta-right{padding:2rem 1.25rem 3rem}
+
+  /* About */
+  .about-header{grid-template-columns:1fr;min-height:auto;padding:2.5rem 1.25rem 2rem}
+  .about-header-left{border-right:none;padding-right:0;border-bottom:1px solid var(--ink);padding-bottom:2rem;margin-bottom:0}
+  .about-header-right{padding-left:0;padding-top:2rem}
+  .about-name{font-size:clamp(52px,12vw,80px)}
+  .about-manifesto{grid-template-columns:1fr}
+  .manifesto-left{border-right:none;border-bottom:1px solid var(--ink-faint)}
+  .about-closing{flex-direction:column;padding:2.5rem 1.25rem;gap:2rem}
+
+  /* Footer */
+  footer{padding:1.25rem}
+  .section-bar-link{display:none}
+
+  /* Modal */
+  .modal-box{width:calc(100vw - 1.5rem)}
+
+  /* Detail left on mobile: make cover and info side by side */
+  .detail-specs{margin-top:.5rem}
+}
+
+@media(max-width:480px){
+  .home-grid{grid-template-columns:1fr}
+  .hero-title{font-size:36px}
+}
 </style>
 <script src="books.js"></script>
 </head>
@@ -280,6 +385,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     <li><a onclick="go('distrib')" id="nl-distrib">Distribución</a></li>
     <li><a onclick="go('contact')" id="nl-contact">Contacto</a></li>
   </ul>
+  <button class="nav-toggle" onclick="toggleNav()" id="nav-toggle-btn">☰ Menú</button>
 </nav>
 
 <!-- ═══ HOME ═══ -->
@@ -424,31 +530,62 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     </div>
     <div class="contact-right">
       <div class="contact-eyebrow">Formulario de solicitud</div>
-      <div class="cf"><label>Nombre</label><input type="text" placeholder="Su nombre completo"></div>
-      <div class="cf"><label>Correo electrónico</label><input type="email" placeholder="correo@dominio.com"></div>
-      <div class="cf">
-        <label>Título solicitado</label>
-        <select id="contact-title-select">
-          <option value="">Seleccionar título</option>
-        </select>
-      </div>
-      <div class="cf"><label>País de envío</label><input type="text" placeholder="España, México, Argentina…"></div>
-      <div class="cf"><label>Tipo de solicitud</label>
-        <select>
-          <option value="">Seleccionar tipo</option>
-          <option>Ejemplar personal</option>
-          <option>Librería o distribución</option>
-          <option>Reseña / prensa</option>
-          <option>Biblioteca</option>
-          <option>Consulta general</option>
-        </select>
-      </div>
-      <div class="cf"><label>Mensaje (opcional)</label><textarea placeholder="Cualquier indicación o pregunta…"></textarea></div>
-      <button class="cf-submit" onclick="showToast('Solicitud enviada — respondemos en 48 h.')">Enviar solicitud</button>
-      <p class="cf-note">Sin pasarela de pago. Confirmamos disponibilidad<br>y acordamos el envío por correo electrónico.</p>
+      <form id="form-solicitud" onsubmit="submitForm(event,'solicitud')">
+        <input type="hidden" name="_subject" value="Solicitud de ejemplar — Greta Krull Ediciones">
+        <div class="cf"><label>Nombre</label><input type="text" name="nombre" required placeholder="Su nombre completo"></div>
+        <div class="cf"><label>Correo electrónico</label><input type="email" name="email" required placeholder="correo@dominio.com"></div>
+        <div class="cf">
+          <label>Título solicitado</label>
+          <select id="contact-title-select" name="titulo">
+            <option value="">Seleccionar título</option>
+          </select>
+        </div>
+        <div class="cf"><label>País de envío</label><input type="text" name="pais" placeholder="España, México, Argentina…"></div>
+        <div class="cf"><label>Tipo de solicitud</label>
+          <select name="tipo">
+            <option value="">Seleccionar tipo</option>
+            <option>Ejemplar personal</option>
+            <option>Librería o distribución</option>
+            <option>Reseña / prensa</option>
+            <option>Biblioteca</option>
+            <option>Consulta general</option>
+          </select>
+        </div>
+        <div class="cf"><label>Mensaje (opcional)</label><textarea name="mensaje" placeholder="Cualquier indicación o pregunta…"></textarea></div>
+        <button type="submit" class="cf-submit">Enviar solicitud</button>
+        <p class="cf-note">Sin pasarela de pago. Confirmamos disponibilidad<br>y acordamos el envío por correo electrónico.</p>
+      </form>
     </div>
   </div>
 </div>
+
+<!-- ═══ CONSULTA ═══ -->
+<div id="page-consulta" class="page">
+  <div class="consulta-wrap">
+    <div class="consulta-left">
+      <div>
+        <h1 class="consulta-h1">Hacer<br>una consulta</h1>
+        <p class="consulta-body">Para cualquier pregunta sobre nuestros títulos, el proyecto editorial o cualquier otra cuestión, escríbenos directamente. Respondemos en 48 horas.</p>
+      </div>
+      <div class="consulta-foot">
+        Greta Krull Ediciones<br>
+        Madrid, España · Est. Marzo 2026
+      </div>
+    </div>
+    <div class="consulta-right">
+      <div class="contact-eyebrow">Formulario de consulta</div>
+      <form id="form-consulta" onsubmit="submitForm(event,'consulta')">
+        <input type="hidden" name="_subject" value="Consulta — Greta Krull Ediciones">
+        <div class="cf"><label>Nombre</label><input type="text" name="nombre" required placeholder="Su nombre completo"></div>
+        <div class="cf"><label>Correo electrónico</label><input type="email" name="email" required placeholder="correo@dominio.com"></div>
+        <div class="cf"><label>Mensaje</label><textarea name="mensaje" required placeholder="Su consulta…" style="height:140px"></textarea></div>
+        <button type="submit" class="cf-submit">Enviar consulta</button>
+        <p class="cf-note">Respondemos en 48 horas.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ GRETA KRULL ═══ -->
 <div id="page-about" class="page">
   <div class="breadcrumb">
@@ -521,8 +658,8 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
 <script>
 // ─── Page navigation ────────────────────────────────────────────────────────
-var PAGES = ['home','about','catalog','detail','distrib','contact'];
-var NAV_MAP = {home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact'};
+var PAGES = ['home','about','catalog','detail','distrib','contact','consulta'];
+var NAV_MAP = {home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact',consulta:'nl-contact'};
 var currentBookId = 1;
 
 function go(name, bookId) {
@@ -540,6 +677,11 @@ function go(name, bookId) {
   var nid = NAV_MAP[name];
   if (nid) { var nel = document.getElementById(nid); if (nel) nel.classList.add('active'); }
   window.scrollTo(0, 0);
+  // Close mobile nav on navigation
+  var links = document.querySelector('.nav-links');
+  var btn = document.getElementById('nav-toggle-btn');
+  if (links) links.classList.remove('open');
+  if (btn) btn.textContent = '☰ Menú';
 }
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -699,7 +841,7 @@ function renderDetail(bookId) {
   var leftButtons = '';
   if (book.status === 'available') {
     leftButtons = '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
-                  '<button class="btn-ghost" onclick="go(\'contact\')">Consulta &rarr;</button>';
+                  '<button class="btn-ghost" onclick="go(\'consulta\')">Consulta &rarr;</button>';
   }
 
   var copiesHtml = '';
@@ -808,6 +950,40 @@ function closePurchaseModal(e) {
   if (e && e.target !== m) return;
   m.classList.remove('open');
   document.body.style.overflow = '';
+}
+
+// ─── Form submission (Formspree) ─────────────────────────────────────────────
+var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvegamanrique@gmail.com';
+function submitForm(e, type) {
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('button[type="submit"]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+  fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(r) {
+    if (btn) { btn.disabled = false; btn.textContent = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud'; }
+    if (r.ok) {
+      showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
+      form.reset();
+    } else {
+      showToast('Error al enviar. Inténtelo de nuevo.');
+    }
+  }).catch(function() {
+    if (btn) { btn.disabled = false; btn.textContent = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud'; }
+    showToast('Error de conexión. Inténtelo de nuevo.');
+  });
+}
+
+// ─── Mobile nav toggle ────────────────────────────────────────────────────────
+function toggleNav() {
+  var links = document.querySelector('.nav-links');
+  var btn = document.getElementById('nav-toggle-btn');
+  if (!links) return;
+  var open = links.classList.toggle('open');
+  if (btn) btn.textContent = open ? '✕ Cerrar' : '☰ Menú';
 }
 
 // ─── Toast ───────────────────────────────────────────────────────────────────
