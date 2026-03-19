@@ -1214,17 +1214,23 @@ function flipbookInit() {
   var container = document.getElementById('flipbook-pf');
   container.innerHTML = '';
   var portrait = isPortraitMobile();
-  // Use available container height for page height (excluding top bar + controls)
-  var containerH = window.innerHeight - 110;
+  // Overhead: top-bar padding + controls + thumbs strip (hidden on mobile)
+  var overhead = portrait ? 80 : 210;
+  var containerH = window.innerHeight - overhead;
   var containerW = portrait ? window.innerWidth * 0.96 : window.innerWidth * 0.90;
   var pageW = portrait ? containerW : Math.min(containerW / 2, 700);
   var pageH = Math.min(containerH, pageW * (2126 / 1418));
+  var totalW = Math.round(portrait ? pageW : pageW * 2);
+  var totalH = Math.round(pageH);
+
+  // Give the container explicit pixel dimensions so PageFlip can measure it
+  container.style.width = totalW + 'px';
+  container.style.height = totalH + 'px';
 
   flipbookPF = new St.PageFlip(container, {
     width: Math.round(pageW),
-    height: Math.round(pageH),
-    size: 'stretch',
-    autoSize: true,
+    height: totalH,
+    size: 'fixed',
     usePortrait: portrait,
     showCover: true,
     maxShadowOpacity: 0.4,
