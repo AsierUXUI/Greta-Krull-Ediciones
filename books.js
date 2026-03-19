@@ -37,7 +37,7 @@ var BOOKS = [
     copiesRemaining: 66,
 
     descShort: "Primera edición en español de la poesía de Prevel, con ensayo crítico sobre la dramática de la adicción.",
-    descCatalog: "Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica cosida.",
+    descCatalog: "Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica.",
     quote: "«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»",
 
     synopsis: [
@@ -58,7 +58,7 @@ var BOOKS = [
       { k: "Número",         v: "N.º 1 · Marzo 2026" },
       { k: "Tipografía",     v: "<em>Garamond</em>" },
       { k: "Papel",          v: "<em>Verjurado ahuesado</em>" },
-      { k: "Encuadernación", v: "Rústica cosida" },
+      { k: "Encuadernación", v: "Rústica" },
       { k: "Edición",        v: "Bilingüe fr.–es." },
     ],
 
