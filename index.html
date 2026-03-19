@@ -322,9 +322,12 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   .hero-book-area{padding:2rem 2rem 1.5rem}
   .hero-caption{padding:1.25rem 1.5rem 1.5rem}
 
-  /* Home grid */
-  .home-grid{grid-template-columns:1fr 1fr}
-  .grid-book{padding:1.5rem 1rem 2rem}
+  /* Home grid → horizontal carousel */
+  .home-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--ink)}
+  .home-grid::-webkit-scrollbar{display:none}
+  .grid-book{flex:0 0 78vw;scroll-snap-align:start;border-right:1px solid var(--ink-faint);border-top:2px solid transparent;padding:1.5rem 1.25rem 2rem}
+  .grid-book:last-child{border-right:none}
+  .grid-book.dim:hover{border-top-color:transparent}
   .grid-cover-wrap{margin-bottom:1rem}
   .grid-cover{width:88px;height:122px}
   .section-bar{padding:.75rem 1.25rem}
@@ -346,9 +349,9 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
   /* Detail */
   .detail-layout{grid-template-columns:1fr}
-  .detail-left{position:static;height:auto;border-right:none;border-bottom:1px solid var(--ink);padding:2rem 1.25rem;flex-direction:row;flex-wrap:wrap;gap:1.5rem;align-items:flex-start}
+  .detail-left{position:static;height:auto;border-right:none;border-bottom:1px solid var(--ink);padding:2rem 1.25rem;flex-direction:column;align-items:center;gap:1.5rem}
   .detail-cover{width:140px;height:196px;flex-shrink:0}
-  .detail-caption,.detail-copies,.btn-primary,.btn-ghost,.detail-specs{width:100%}
+  .detail-caption,.detail-copies,.btn-primary,.btn-ghost,.detail-specs{width:100%;text-align:center}
   .detail-right{padding:2rem 1.25rem 3rem}
   .detail-h1{font-size:36px}
   .breadcrumb{padding:.75rem 1.25rem;font-size:11px}
@@ -389,9 +392,14 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 }
 
 @media(max-width:480px){
-  .home-grid{grid-template-columns:1fr}
+  .grid-book{flex:0 0 88vw}
   .hero-title{font-size:36px}
 }
+
+/* ── REAL COVER IMAGE ── */
+.has-real-img{padding:0!important;overflow:hidden}
+.has-real-img .dc-b1,.has-real-img .dc-b2,.has-real-img .book-obj-b1,.has-real-img .book-obj-b2,.has-real-img .grid-cover-b,.has-real-img .cat-cover-b{display:none}
+.has-real-img img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ── FLIPBOOK OVERLAY ── */
 #flipbook-overlay {
@@ -864,11 +872,13 @@ function renderHomeHero() {
   var el = document.getElementById('home-hero-book');
   if (!el) return;
   el.setAttribute('onclick', 'go(\'detail\',' + book.id + ')');
+  var heroBookInner = book.coverImage
+    ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+    : '<div class="book-obj-b1"></div><div class="book-obj-b2"></div><div class="book-obj-txt">' + book.coverHtml + '</div>';
   el.innerHTML =
     '<div class="hero-book-area">' +
-      '<div class="book-obj">' +
-        '<div class="book-obj-spine"></div><div class="book-obj-b1"></div><div class="book-obj-b2"></div>' +
-        '<div class="book-obj-txt">' + book.coverHtml + '</div>' +
+      '<div class="book-obj' + (book.coverImage ? ' has-real-img' : '') + '">' +
+        '<div class="book-obj-spine"></div>' + heroBookInner +
       '</div>' +
     '</div>' +
     '<div class="hero-caption">' +
@@ -888,12 +898,14 @@ function renderHomeGrid() {
     var dim = book.status !== 'available' ? ' dim' : '';
     var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
     var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
+    var gridCoverInner = book.coverImage
+      ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+      : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
     html +=
       '<div class="grid-book' + dim + '"' + click + '>' +
         '<div class="grid-cover-wrap">' +
-          '<div class="grid-cover"' + coverBg + '>' +
-            '<div class="grid-cover-b"></div>' +
-            '<div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>' +
+          '<div class="grid-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' +
+            gridCoverInner +
           '</div>' +
         '</div>' +
         '<div class="grid-num">' + book.num + ' · ' + book.date + '</div>' +
@@ -931,8 +943,11 @@ function renderCatalog() {
     } else {
       rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">' + book.copiesTotal + ' ejemplares · Sin reimpr.</div></div>';
     }
+    var catCoverInner = book.coverImage
+      ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+      : '<div class="cat-cover-b"></div><div class="cat-cover-txt">' + book.coverHtmlSmall + '</div>';
     return '<div class="cat-row' + dim + '"' + click + '>' +
-      '<div class="cat-cover"' + coverBg + '><div class="cat-cover-b"></div><div class="cat-cover-txt">' + book.coverHtmlSmall + '</div></div>' +
+      '<div class="cat-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' + catCoverInner + '</div>' +
       '<div>' +
         '<div class="cat-num">' + book.num + ' · ' + book.date + '</div>' +
         '<div class="cat-title">' + (book.titleCatalog || book.title) + '</div>' +
@@ -1031,9 +1046,11 @@ function renderDetail(bookId) {
     '</div>' +
     '<div class="detail-layout">' +
       '<div class="detail-left">' +
-        '<div class="detail-cover">' +
-          '<div class="dc-spine"></div><div class="dc-b1"></div><div class="dc-b2"></div>' +
-          '<div class="dc-txt">' + book.coverHtml + '</div>' +
+        '<div class="detail-cover' + (book.coverImage ? ' has-real-img' : '') + '">' +
+          '<div class="dc-spine"></div>' +
+          (book.coverImage
+            ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+            : '<div class="dc-b1"></div><div class="dc-b2"></div><div class="dc-txt">' + book.coverHtml + '</div>') +
         '</div>' +
         '<div class="detail-caption">' + book.collection + ' · ' + book.num + '</div>' +
         copiesHtml +
