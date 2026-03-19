@@ -138,12 +138,9 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .breadcrumb .sep{margin:0 .6rem;color:var(--ink-faint)}
 .detail-layout{display:grid;grid-template-columns:300px 1fr;border-bottom:1px solid var(--ink)}
 .detail-left{border-right:1px solid var(--ink);padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;gap:2rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
-.detail-cover{width:180px;height:252px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:8px 8px 0 #1a191810,16px 16px 0 #1a191808;transition:transform .25s,box-shadow .25s}
+.detail-cover{width:180px;height:252px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:8px 8px 0 #1a191810,16px 16px 0 #1a191808;transition:transform .3s cubic-bezier(.22,.68,0,1.2),box-shadow .3s}
 .detail-cover.previewable{cursor:pointer}
-.detail-cover.previewable:hover{transform:translateY(-4px);box-shadow:12px 12px 0 #1a191814,24px 24px 0 #1a19180a}
-.detail-cover.previewable .dc-preview-hint{display:flex}
-.dc-preview-hint{display:none;position:absolute;inset:0;background:rgba(20,18,15,.52);align-items:center;justify-content:center;z-index:10}
-.dc-preview-hint span{font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#f5f1e8;border:1px solid rgba(245,241,232,.5);padding:6px 14px}
+.detail-cover.previewable:hover{transform:translateY(-6px) rotate(.4deg);box-shadow:16px 22px 0 #1a191816,30px 38px 0 #1a19180a}
 .dc-b1{position:absolute;inset:7px;border:.5px solid #1a191820}
 .dc-b2{position:absolute;inset:11px;border:.5px solid #1a191810}
 .dc-spine{position:absolute;left:-6px;top:3px;bottom:3px;width:6px;background:#d4d0c4;border:.5px solid #2a2a2a18}
@@ -402,9 +399,9 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 }
 
 /* ── REAL COVER IMAGE ── */
-.has-real-img{padding:0!important;overflow:hidden}
+.has-real-img{padding:4px!important}
 .has-real-img .dc-b1,.has-real-img .dc-b2,.has-real-img .book-obj-b1,.has-real-img .book-obj-b2,.has-real-img .grid-cover-b,.has-real-img .cat-cover-b{display:none}
-.has-real-img img{width:100%;height:100%;object-fit:cover;display:block}
+.has-real-img img{width:100%;height:100%;object-fit:contain;display:block}
 
 /* ── FLIPBOOK OVERLAY ── */
 #flipbook-overlay {
@@ -453,11 +450,34 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 }
 #flipbook-close:hover { color: var(--cream); border-color: #6a5a40; }
 
+#flipbook-book-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  padding: 52px 16px 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 #flipbook-spread {
   position: relative;
-  max-width: min(1100px, 96vw);
-  width: 100%;
+  width: 92vw;
+  max-width: 1400px;
+  flex: 1 1 auto;
+  min-height: 0;
   box-shadow: 0 0 80px rgba(0,0,0,.96), 0 0 160px rgba(160,120,60,.06);
+}
+
+/* Portrait mobile: single page, taller */
+@media (max-width: 767px) and (orientation: portrait) {
+  #flipbook-book-area { padding: 48px 8px 4px; }
+  #flipbook-spread { width: 98vw; }
+  .flipbook-controls { margin-top: 10px; gap: 10px; }
+  .flipbook-ctrl { font-size: 12px; padding: 5px 12px; }
+  #flipbook-thumbs { display: none; }
 }
 
 .flipbook-controls {
@@ -1020,9 +1040,6 @@ function renderDetail(bookId) {
     leftButtons = '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
                   '<button class="btn-ghost" onclick="go(\'consulta\')">Consulta &rarr;</button>';
   }
-  if (book.previewPages && book.previewPages.length > 0) {
-    leftButtons += '<button class="btn-ghost" onclick="openBookFlipbook(' + book.id + ')">Hojear el libro &rarr;</button>';
-  }
 
   var copiesHtml = '';
   if (book.status === 'available' && book.copiesRemaining !== null) {
@@ -1055,10 +1072,8 @@ function renderDetail(bookId) {
           var hasPreview = book.previewPages && book.previewPages.length > 0;
           var cls = 'detail-cover' + (book.coverImage ? ' has-real-img' : '') + (hasPreview ? ' previewable' : '');
           var onclick = hasPreview ? ' onclick="openBookFlipbook(' + book.id + ')"' : '';
-          var hint = hasPreview ? '<div class="dc-preview-hint"><span>Hojear</span></div>' : '';
           return '<div class="' + cls + '"' + onclick + '>' +
             '<div class="dc-spine"></div>' +
-            hint +
             (book.coverImage
               ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
               : '<div class="dc-b1"></div><div class="dc-b2"></div><div class="dc-txt">' + book.coverHtml + '</div>') +
@@ -1188,10 +1203,55 @@ var flipbookPF = null;
 var flipbookSpread = 0;
 var flipbookPages = [];
 var flipbookTotal = 0;
+var flipbookCurrentBookId = null;
+
+function isPortraitMobile() {
+  return window.innerWidth < 768 && window.innerHeight > window.innerWidth;
+}
+
+function flipbookInit() {
+  var container = document.getElementById('flipbook-pf');
+  container.innerHTML = '';
+  var portrait = isPortraitMobile();
+  // Use available container height for page height (excluding top bar + controls)
+  var containerH = window.innerHeight - 110;
+  var containerW = portrait ? window.innerWidth * 0.96 : window.innerWidth * 0.90;
+  var pageW = portrait ? containerW : Math.min(containerW / 2, 700);
+  var pageH = Math.min(containerH, pageW * (2126 / 1418));
+
+  flipbookPF = new St.PageFlip(container, {
+    width: Math.round(pageW),
+    height: Math.round(pageH),
+    size: 'stretch',
+    autoSize: true,
+    usePortrait: portrait,
+    showCover: true,
+    maxShadowOpacity: 0.4,
+    mobileScrollSupport: false,
+    swipeDistance: 20
+  });
+  flipbookPF.loadFromImages(flipbookPages);
+  flipbookPF.on('flip', function(e) {
+    var perSpread = portrait ? 1 : 2;
+    flipbookSpread = portrait ? e.data : (e.data % 2 === 0 ? e.data : e.data - 1);
+    flipbookUpdateThumbs();
+    var li = flipbookSpread;
+    var ri = portrait ? li : li + 1;
+    var ll = li < flipbookTotal ? li + 1 : '';
+    var rl = (!portrait && ri < flipbookTotal) ? ri + 1 : '';
+    document.getElementById('flipbook-indicator').textContent =
+      ((ll && rl) ? (ll + ' \u2013 ' + rl) : (ll || rl)) + ' / ' + flipbookTotal;
+    document.getElementById('flipbook-btn-prev').disabled = flipbookSpread <= 0;
+    document.getElementById('flipbook-btn-next').disabled =
+      portrait ? flipbookSpread + 1 >= flipbookTotal : flipbookSpread + 2 >= flipbookTotal;
+  });
+  if (flipbookSpread > 0) flipbookPF.flip(flipbookSpread);
+}
 
 function openBookFlipbook(bookId) {
   var book = bookById(bookId);
   if (!book || !book.previewPages || !book.previewPages.length) return;
+  flipbookCurrentBookId = bookId;
   flipbookPages = book.previewPages;
   flipbookTotal = flipbookPages.length;
   flipbookSpread = 0;
@@ -1201,26 +1261,7 @@ function openBookFlipbook(bookId) {
   document.body.style.overflow = 'hidden';
 
   flipbookBuildThumbs();
-
-  var container = document.getElementById('flipbook-pf');
-  container.innerHTML = '';
-  flipbookPF = new St.PageFlip(container, {
-    width: 450, height: 620, size: 'stretch', autoSize: true,
-    usePortrait: false, showCover: true, maxShadowOpacity: 0.5,
-    mobileScrollSupport: false, swipeDistance: 30
-  });
-  flipbookPF.loadFromImages(flipbookPages);
-  flipbookPF.on('flip', function(e) {
-    flipbookSpread = e.data % 2 === 0 ? e.data : e.data - 1;
-    flipbookUpdateThumbs();
-    var li = flipbookSpread, ri = flipbookSpread + 1;
-    var ll = li < flipbookTotal ? li + 1 : '';
-    var rl = ri < flipbookTotal ? ri + 1 : '';
-    document.getElementById('flipbook-indicator').textContent =
-      ((ll && rl) ? (ll + ' \u2013 ' + rl) : (ll || rl)) + ' / ' + flipbookTotal;
-    document.getElementById('flipbook-btn-prev').disabled = flipbookSpread <= 0;
-    document.getElementById('flipbook-btn-next').disabled = flipbookSpread + 2 >= flipbookTotal;
-  });
+  flipbookInit();
 }
 
 function closeBookFlipbook() {
@@ -1266,6 +1307,18 @@ function flipbookUpdateThumbs() {
   var a = document.getElementById('fbkth' + flipbookSpread);
   if (a) a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
+
+// Reinit flipbook on orientation change so portrait/landscape mode switches
+window.addEventListener('resize', (function() {
+  var t;
+  return function() {
+    clearTimeout(t);
+    t = setTimeout(function() {
+      if (!flipbookPF || !flipbookCurrentBookId) return;
+      flipbookInit();
+    }, 250);
+  };
+})());
 
 // ─── Init ────────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', function(e) {
