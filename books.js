@@ -71,7 +71,14 @@ var BOOKS = [
 
     // Páginas para la previsualización en flipbook (añadir rutas de imagen aquí)
     // Ejemplo: previewPages: ["./images/artaud-p01.jpg", "./images/artaud-p02.jpg", ...]
-    previewPages: [],
+    previewPages: [
+      "./images/preview/artaud-preview-p03.jpg",
+      "./images/preview/artaud-preview-p05.jpg",
+      "./images/preview/artaud-preview-p27.jpg",
+      "./images/preview/artaud-preview-p29.jpg",
+      "./images/preview/artaud-teaser-01.jpg",
+      "./images/preview/artaud-teaser-02.jpg"
+    ],
 
     // Portada — versión grande (héroe y detalle)
     coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi">Un paseo por la<br>dramática de<br>la adicción</div><div class="bo" style="margin:8px 0">□</div><div class="bs">Miguel Vega Manrique</div><div class="bo" style="margin:7px 0">— □ —</div><div class="bi" style="font-size:6.5px">Seguido de Diez</div><div class="bt" style="font-size:7px;font-style:italic;margin:2px 0">Poemas Mortales</div><div class="bi" style="font-size:6.5px">de Jacques Prevel</div><div class="bs" style="font-size:5.5px;margin-top:2px">(edición bilingüe)</div><div class="bo" style="margin:9px 0 3px">— □□□ —</div><div class="bs" style="font-size:5.5px">Cuadernos Poesía y Traducción</div><div class="bs" style="font-size:5.5px">Madrid · Marzo 2026 · N.º 1</div>',
