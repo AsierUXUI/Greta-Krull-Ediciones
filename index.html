@@ -601,7 +601,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
   <footer>
     <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-    <div class="footer-r">Una edición. Sin reimpresión.</div>
   </footer>
 </div>
 
@@ -614,7 +613,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   <div id="catalog-rows"></div>
   <footer>
     <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-    <div class="footer-r">Una edición. Sin reimpresión.</div>
   </footer>
 </div>
 
@@ -677,7 +675,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   </div>
   <footer>
     <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-    <div class="footer-r">Una edición. Sin reimpresión.</div>
   </footer>
 </div>
 
@@ -813,7 +810,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
   <footer>
     <div class="footer-l">Greta Krull Ediciones<br>Madrid, Espa&ntilde;a &middot; Est. Marzo 2026</div>
-    <div class="footer-r">Una edici&oacute;n. Sin reimpresi&oacute;n.</div>
   </footer>
 </div>
 
@@ -994,7 +990,7 @@ function renderCatalog() {
     upcoming.forEach(function(b)  { html += catRow(b); });
     announced.forEach(function(b) { html += catRow(b); });
   }
-  html += '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div><div class="footer-r">Una edición. Sin reimpresión.</div></footer>';
+  html += '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div></footer>';
   el.innerHTML = html;
 }
 
@@ -1097,7 +1093,7 @@ function renderDetail(bookId) {
       '</div>' +
     '</div>' +
     '<div class="booknav">' + prevCard + nextCard + '</div>' +
-    '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div><div class="footer-r">Una edición. Sin reimpresión.</div></footer>';
+    '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div></footer>';
 }
 
 // ─── Purchase modal ──────────────────────────────────────────────────────────
