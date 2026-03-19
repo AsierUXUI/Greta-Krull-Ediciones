@@ -60,7 +60,6 @@ var BOOKS = [
       { k: "Papel",          v: "<em>Verjurado ahuesado</em>" },
       { k: "Encuadernación", v: "Rústica cosida" },
       { k: "Edición",        v: "Bilingüe fr.–es." },
-      { k: "Ejemplares",     v: "100 · sin reimpr." }
     ],
 
     colophon: "Impreso en Madrid. Primera edición, marzo de 2026.<br>100 ejemplares numerados a mano. No se prevé reimpresión.<br>Primera traducción al español de la poesía de Jacques Prevel.",
