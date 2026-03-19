@@ -138,12 +138,9 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .breadcrumb .sep{margin:0 .6rem;color:var(--ink-faint)}
 .detail-layout{display:grid;grid-template-columns:300px 1fr;border-bottom:1px solid var(--ink)}
 .detail-left{border-right:1px solid var(--ink);padding:3rem 2.5rem;display:flex;flex-direction:column;align-items:center;gap:2rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
-.detail-cover{width:180px;height:252px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:8px 8px 0 #1a191810,16px 16px 0 #1a191808;transition:transform .25s,box-shadow .25s}
+.detail-cover{width:180px;height:252px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:8px 8px 0 #1a191810,16px 16px 0 #1a191808;transition:transform .3s cubic-bezier(.22,.68,0,1.2),box-shadow .3s}
 .detail-cover.previewable{cursor:pointer}
-.detail-cover.previewable:hover{transform:translateY(-4px);box-shadow:12px 12px 0 #1a191814,24px 24px 0 #1a19180a}
-.detail-cover.previewable .dc-preview-hint{display:flex}
-.dc-preview-hint{display:none;position:absolute;inset:0;background:rgba(20,18,15,.52);align-items:center;justify-content:center;z-index:10}
-.dc-preview-hint span{font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#f5f1e8;border:1px solid rgba(245,241,232,.5);padding:6px 14px}
+.detail-cover.previewable:hover{transform:translateY(-6px) rotate(.4deg);box-shadow:16px 22px 0 #1a191816,30px 38px 0 #1a19180a}
 .dc-b1{position:absolute;inset:7px;border:.5px solid #1a191820}
 .dc-b2{position:absolute;inset:11px;border:.5px solid #1a191810}
 .dc-spine{position:absolute;left:-6px;top:3px;bottom:3px;width:6px;background:#d4d0c4;border:.5px solid #2a2a2a18}
@@ -402,9 +399,9 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 }
 
 /* ── REAL COVER IMAGE ── */
-.has-real-img{padding:0!important;overflow:hidden}
+.has-real-img{padding:4px!important}
 .has-real-img .dc-b1,.has-real-img .dc-b2,.has-real-img .book-obj-b1,.has-real-img .book-obj-b2,.has-real-img .grid-cover-b,.has-real-img .cat-cover-b{display:none}
-.has-real-img img{width:100%;height:100%;object-fit:cover;display:block}
+.has-real-img img{width:100%;height:100%;object-fit:contain;display:block}
 
 /* ── FLIPBOOK OVERLAY ── */
 #flipbook-overlay {
@@ -1043,9 +1040,6 @@ function renderDetail(bookId) {
     leftButtons = '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
                   '<button class="btn-ghost" onclick="go(\'consulta\')">Consulta &rarr;</button>';
   }
-  if (book.previewPages && book.previewPages.length > 0) {
-    leftButtons += '<button class="btn-ghost" onclick="openBookFlipbook(' + book.id + ')">Hojear el libro &rarr;</button>';
-  }
 
   var copiesHtml = '';
   if (book.status === 'available' && book.copiesRemaining !== null) {
@@ -1078,10 +1072,8 @@ function renderDetail(bookId) {
           var hasPreview = book.previewPages && book.previewPages.length > 0;
           var cls = 'detail-cover' + (book.coverImage ? ' has-real-img' : '') + (hasPreview ? ' previewable' : '');
           var onclick = hasPreview ? ' onclick="openBookFlipbook(' + book.id + ')"' : '';
-          var hint = hasPreview ? '<div class="dc-preview-hint"><span>Hojear</span></div>' : '';
           return '<div class="' + cls + '"' + onclick + '>' +
             '<div class="dc-spine"></div>' +
-            hint +
             (book.coverImage
               ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
               : '<div class="dc-b1"></div><div class="dc-b2"></div><div class="dc-txt">' + book.coverHtml + '</div>') +
