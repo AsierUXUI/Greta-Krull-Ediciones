@@ -69,6 +69,9 @@ var BOOKS = [
     purchaseLabel: "IberLibro",
     purchaseDesc:  "Compra directa. Envío internacional disponible.",
 
+    // Imagen de portada real (sustituye el render tipográfico en todas las miniaturas)
+    coverImage: "./images/artaud-cover.jpg",
+
     // Páginas para la previsualización en flipbook (añadir rutas de imagen aquí)
     // Ejemplo: previewPages: ["./images/artaud-p01.jpg", "./images/artaud-p02.jpg", ...]
     previewPages: [
@@ -233,6 +236,7 @@ var BOOKS = [
     purchaseLabel: null,                 // "IberLibro" etc. o null
     purchaseDesc: null,                  // descripción del enlace o null
 
+    coverImage: null,                    // ruta a imagen de portada real, o null
     previewPages: null,                  // array de rutas de imagen para el flipbook, o null
 
     // Portadas: reemplazar el texto entre comillas con el del nuevo libro
