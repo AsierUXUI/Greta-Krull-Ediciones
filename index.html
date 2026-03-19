@@ -473,10 +473,11 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
 /* Portrait mobile: single page, taller */
 @media (max-width: 767px) and (orientation: portrait) {
-  #flipbook-book-area { padding: 48px 8px 4px; }
+  #flipbook-book-area { padding: 44px 8px 6px; }
   #flipbook-spread { width: 98vw; }
-  .flipbook-controls { margin-top: 10px; gap: 10px; }
-  .flipbook-ctrl { font-size: 12px; padding: 5px 12px; }
+  .flipbook-controls { margin-top: 8px; gap: 6px; flex-wrap: nowrap; }
+  .flipbook-ctrl { font-size: 11px; padding: 5px 10px; letter-spacing: .08em; white-space: nowrap; }
+  .flipbook-indicator { font-size: 11px; min-width: 52px; }
   #flipbook-thumbs { display: none; }
 }
 
@@ -1261,7 +1262,8 @@ function openBookFlipbook(bookId) {
   document.body.style.overflow = 'hidden';
 
   flipbookBuildThumbs();
-  flipbookInit();
+  // Delay init so the overlay is fully painted before PageFlip measures the container
+  setTimeout(flipbookInit, 60);
 }
 
 function closeBookFlipbook() {
