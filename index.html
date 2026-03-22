@@ -567,7 +567,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   <div class="home-hero">
     <div class="hero-left">
       <div>
-        <div class="hero-label">Madrid · Est. Marzo 2026</div>
+        <div class="hero-label">Est. Marzo 2026</div>
         <h1 class="hero-title">Cuadernos<br>Poesía y<br><em>Traducción</em></h1>
       </div>
       <div>
@@ -1037,12 +1037,6 @@ function renderDetail(bookId) {
   }
 
   var copiesHtml = '';
-  if (book.status === 'available' && book.copiesRemaining !== null) {
-    copiesHtml =
-      '<div class="detail-copies">' +
-        '<div class="detail-copies-note">Edición única · Sin reimpresión</div>' +
-      '</div>';
-  }
 
   var prevCard = prev
     ? '<div class="booknav-card" onclick="go(\'detail\',' + prev.id + ')"><div class="booknav-label">Anterior</div><div class="booknav-title">' + prev.title + '</div><div class="booknav-author">' + prev.authorByline + ' · ' + prev.num + ' &larr;</div></div>'
@@ -1081,7 +1075,6 @@ function renderDetail(bookId) {
         '<div class="detail-eyebrow">' + book.collection + ' · ' + book.num + ' · ' + book.date + '</div>' +
         '<h1 class="detail-h1">' + book.title + '</h1>' +
         (book.subtitle ? '<div class="detail-subtitle">' + book.subtitle + '</div>' : '') +
-        (book.subtitleSub ? '<div style="font-family:\'Cormorant Garamond\',serif;font-size:19px;font-weight:300;font-style:italic;color:var(--ink-light);margin-bottom:2rem;letter-spacing:.01em">' + book.subtitleSub + '</div>' : '') +
         '<div class="detail-authors">' + authorsHtml + '</div>' +
         (synopsisHtml ? '<div class="detail-synopsis">' + synopsisHtml + '</div>' : '') +
         contentsHtml +

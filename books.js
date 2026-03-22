@@ -29,7 +29,6 @@ var BOOKS = [
     authors: [
       { name: "Miguel Vega Manrique", role: "Ensayo" },
       { name: "Jacques Prevel",        role: "Poemas · traducción del francés" },
-      { name: "Gustaf Bolin",          role: "Retrato del autor" }
     ],
     authorByline: "Miguel Vega Manrique · Jacques Prevel",
 
