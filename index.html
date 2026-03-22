@@ -608,7 +608,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 <div id="page-catalog" class="page">
   <div class="cat-header">
     <h1 class="cat-h1">Catálogo</h1>
-    <div class="cat-note">Cuadernos Poesía y Traducción<br>100 ejemplares · Sin reimpresión</div>
+    <div class="cat-note">Cuadernos Poesía y Traducción<br>Sin reimpresión</div>
   </div>
   <div id="catalog-rows"></div>
   <footer>
@@ -786,7 +786,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
         <p>Greta Krull Ediciones nace de la convicci&oacute;n de que hay textos que esperan en los m&aacute;rgenes de la lengua: obras decisivas, poetas que escribieron en los l&iacute;mites de su tiempo, voces que la historia literaria ha reducido a notas al pie. La colecci&oacute;n <em>Cuadernos Poes&iacute;a y Traducci&oacute;n</em> existe para devolverles su lugar.</p>
         <p>Cada n&uacute;mero es un gesto doble: editar y traducir como un mismo acto cr&iacute;tico. El ensayo no contextualiza de manera ornamental &mdash; formula una hip&oacute;tesis interpretativa. La traducci&oacute;n no acompa&ntilde;a: confronta el original y permite verificar la lectura. La edici&oacute;n biling&uuml;e no responde a un gesto est&eacute;tico, sino a una exigencia filol&oacute;gica.</p>
         <p>No se trata de ampliar cat&aacute;logo. Se trata de intervenir en la tradici&oacute;n disponible, de complejizar el mapa, de reconocer que junto a las figuras can&oacute;nicas hubo voces que escribieron desde la intemperie sin haber sido a&uacute;n plenamente le&iacute;das.</p>
-        <p>Cada volumen &mdash; compuesto en Garamond, impreso en papel verjurado ahuesado, encuadernado en r&uacute;stica cosida, numerado a mano &mdash; es una declaraci&oacute;n de permanencia. No habr&aacute; segunda edici&oacute;n. El libro es el acto.</p>
+        <p>Cada volumen &mdash; compuesto en Garamond, impreso en papel verjurado ahuesado, encuadernado en r&uacute;stica encolada, numerado a mano &mdash; es una declaraci&oacute;n de permanencia. No habr&aacute; segunda edici&oacute;n. El libro es el acto.</p>
       </div>
     </div>
     <div class="manifesto-right">
@@ -958,9 +958,7 @@ function renderCatalog() {
       rightCol =
         '<div class="cat-right">' +
           '<div class="cat-badge">Disponible</div>' +
-          '<div class="copies-track"><div class="copies-fill" style="width:' + copiesPct(book) + '%"></div></div>' +
-          '<div class="copies-note">' + book.copiesRemaining + ' / ' + book.copiesTotal + ' restantes</div>' +
-          '<div class="cat-avail">Sin reimpresión<br>Edición única</div>' +
+          '<div class="cat-avail">Edición única<br>Sin reimpresión</div>' +
         '</div>';
     } else {
       rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">' + book.copiesTotal + ' ejemplares · Sin reimpr.</div></div>';
@@ -1042,8 +1040,6 @@ function renderDetail(bookId) {
   if (book.status === 'available' && book.copiesRemaining !== null) {
     copiesHtml =
       '<div class="detail-copies">' +
-        '<div class="detail-copies-label"><span>Ejemplares restantes</span><span>' + book.copiesRemaining + ' / ' + book.copiesTotal + '</span></div>' +
-        '<div class="detail-copies-track"><div class="detail-copies-fill" style="width:' + copiesPct(book) + '%"></div></div>' +
         '<div class="detail-copies-note">Edición única · Sin reimpresión</div>' +
       '</div>';
   }
