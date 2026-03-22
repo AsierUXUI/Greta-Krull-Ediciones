@@ -28,7 +28,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
 .nav-links a:hover{color:var(--ink);background:var(--cream)}
 .nav-links a:hover::after{transform:scaleX(1)}
-.nav-links a.active{color:var(--ink);border-bottom:2px solid var(--ink)}
+.nav-links a.active{color:var(--accent);border-bottom:2px solid var(--accent)}
 
 /* PAGES */
 .page{display:none}
@@ -40,11 +40,10 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}
 .hero-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2.5rem}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;line-height:.97;font-style:italic;letter-spacing:-.015em}
-.hero-title em{font-style:normal;color:var(--ink-mid);transition:color .3s}
-.home-hero:hover .hero-title em{color:var(--accent)}
+.hero-title em{font-style:normal;color:var(--accent)}
 .hero-body{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:360px;margin-bottom:1.75rem}
-.hero-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;transition:color .2s,border-color .2s;position:relative}
-.hero-cta:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.hero-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);cursor:pointer;border-bottom:1px solid var(--accent);padding-bottom:1px;text-decoration:none;transition:opacity .2s;position:relative}
+.hero-cta:hover{opacity:.7}
 .hero-right{position:relative;overflow:hidden;cursor:pointer;background:var(--cream) url('./images/artaud-portrait.jpg') center 18% / cover no-repeat;display:flex;flex-direction:column;transition:background-position .6s ease}
 .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(245,241,232,.28) 0%,rgba(245,241,232,.18) 42%,rgba(245,241,232,.82) 78%,rgba(245,241,232,.97) 100%);z-index:0;transition:opacity .4s}
 .hero-right:hover::before{opacity:.78}
@@ -67,7 +66,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 
 /* Grid */
 .section-bar{padding:1rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
-.section-bar-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light)}
+.section-bar-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
 .section-bar-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;text-decoration:none;transition:color .15s}
 .section-bar-link:hover{color:var(--ink)}
 .home-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
@@ -89,7 +88,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .grid-title{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;font-style:italic;line-height:1.2;margin-bottom:.2rem}
 .grid-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.65rem}
 .grid-excerpt{font-size:14px;line-height:1.8;color:var(--ink-mid);flex:1}
-.grid-tag{margin-top:1rem;font-size:12px;color:var(--ink-light);font-style:italic}
+.grid-tag{margin-top:1rem;font-size:12px;color:var(--accent);font-style:italic}
 
 /* Tesis band */
 .home-band{padding:4rem 3.5rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start}
@@ -100,9 +99,9 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .band-list{}
 .band-item{display:flex;gap:1.5rem;align-items:baseline;padding:.9rem 0;border-top:.5px solid var(--ink-faint);transition:padding-left .2s}
 .band-item:hover{padding-left:.75rem;border-top-color:var(--ink)}
-.band-item:hover .band-n{color:var(--accent)}
+.band-item:hover .band-n{opacity:.6}
 .band-item:hover .band-t{color:var(--ink)}
-.band-n{font-size:12px;color:var(--ink-faint);min-width:1.75rem;font-style:italic;flex-shrink:0;transition:color .2s}
+.band-n{font-size:12px;color:var(--accent);min-width:1.75rem;font-style:italic;flex-shrink:0;transition:opacity .2s}
 .band-t{font-size:14px;line-height:1.75;color:var(--ink-mid);transition:color .2s}
 
 /* ── CATÁLOGO ── */
@@ -126,7 +125,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .cat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:500px}
 .cat-quote{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink-mid);line-height:1.7;max-width:500px;margin-top:.75rem}
 .cat-right{text-align:right;display:flex;flex-direction:column;gap:.75rem}
-.cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--ink-faint);color:var(--ink-mid);display:inline-block}
+.cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--accent);color:var(--accent);display:inline-block}
 .cat-avail{font-size:13px;color:var(--ink-light);font-style:italic;line-height:1.6}
 .copies-track{width:80px;height:1px;background:var(--ink-ghost);margin-left:auto}
 .copies-fill{height:100%;background:var(--ink)}
@@ -151,8 +150,8 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .detail-copies-track{height:1px;background:var(--ink-ghost)}
 .detail-copies-fill{height:100%;background:var(--ink);width:34%}
 .detail-copies-note{font-size:10px;color:var(--ink-light);margin-top:6px;text-align:center;font-style:italic}
-.btn-primary{width:100%;padding:11px;border:1px solid var(--ink);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:background .15s,color .15s}
-.btn-primary:hover{background:var(--accent);color:#fff}
+.btn-primary{width:100%;padding:11px;border:1px solid var(--accent);background:var(--accent);font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:#fff;transition:opacity .15s}
+.btn-primary:hover{opacity:.82}
 .btn-ghost{width:100%;padding:11px;border:1px solid var(--ink-faint);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink-mid);transition:background .15s;margin-top:.5rem}
 .btn-ghost:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
 .detail-specs{width:100%}
@@ -334,7 +333,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   .nav-links.open{display:flex}
   .nav-links li{height:auto;width:100%}
   .nav-links a{border-left:none;border-top:1px solid var(--ink-faint);padding:.9rem 1.25rem;font-size:12px;width:100%;justify-content:flex-start}
-  .nav-links a.active{border-bottom:none;border-left:2px solid var(--ink)}
+  .nav-links a.active{border-bottom:none;border-left:2px solid var(--accent);color:var(--accent)}
 
   /* Home hero */
   .home-hero{grid-template-columns:1fr;min-height:auto}
@@ -937,7 +936,7 @@ function copiesPct(book) {
   return Math.round((book.copiesRemaining / book.copiesTotal) * 100);
 }
 function statusLabel(book) {
-  if (book.status === 'available') return 'Disponible · ' + book.copiesRemaining + ' restantes';
+  if (book.status === 'available') return 'Disponible';
   if (book.status === 'upcoming')  return 'En preparación';
   return 'Anunciado';
 }
@@ -960,7 +959,7 @@ function renderHomeHero() {
       '</div>' +
     '</div>' +
     '<div class="hero-caption">' +
-      '<div class="hero-cap-num">' + book.num + ' · ' + (book.status === 'available' ? 'Disponible · ' + book.copiesRemaining + ' ejemplares restantes' : 'En preparación') + '</div>' +
+      '<div class="hero-cap-num">' + book.num + ' · ' + (book.status === 'available' ? 'Disponible' : 'En preparación') + '</div>' +
       '<div class="hero-cap-title">' + book.title + '</div>' +
       '<div class="hero-cap-author">' + book.authorByline + '</div>' +
     '</div>';
@@ -1158,7 +1157,7 @@ function renderPurchaseModal(bookId) {
       '<div class="purchase-divider">o bien</div>';
   }
   el.innerHTML =
-    '<div class="modal-intro">' + book.title + ' &middot; ' + book.num + (book.copiesRemaining ? ' &middot; ' + book.copiesRemaining + ' ejemplares disponibles' : '') + '</div>' +
+    '<div class="modal-intro">' + book.title + ' &middot; ' + book.num + '</div>' +
     onlineOption +
     '<div class="purchase-option" onclick="closePurchaseModal(null);go(\'contact\')" style="cursor:pointer">' +
       '<div class="po-left"><div class="po-badge">Solicitud directa</div><div class="po-name">Escribir a la editorial</div><div class="po-desc">Respondemos en 48 horas. Pago por transferencia.</div></div>' +
