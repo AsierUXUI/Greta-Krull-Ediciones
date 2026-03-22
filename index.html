@@ -19,7 +19,7 @@ html{scroll-behavior:smooth}
 body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6;max-width:1440px;margin:0 auto}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:60px}
+nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px solid var(--accent);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:60px}
 .nav-logo{display:flex;align-items:center;cursor:pointer;height:36px}
 .nav-logo img{height:32px;width:auto;display:block;filter:none}
 .nav-links{display:flex;gap:0;list-style:none;height:100%}
@@ -35,17 +35,18 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .page.active{display:block;animation:fadeUp .25s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
-/* ── EDITORIAL GRID PATTERN ──
-   .bg-grid     — 28 px square grid, standard weight
-   .bg-grid-sm  — 16 px square grid, fine weight (denser, tighter areas)
-   Apply to any container; the grid is always a background layer behind content.
+/* ── GEOMETRIC PATTERN (overlapping circles / cathedral windows)
+   4 quarter-arc arcs per 60×60 tile, each from a corner with radius = cell size.
+   When tiled they create interlocking circles — an organic, editorial motif.
+   Applied via background-image in accent colour at very low opacity.
 */
-.bg-grid{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M 28 0 L 0 0 0 28' fill='none' stroke='%23c8c0b0' stroke-width='.6'/%3E%3C/svg%3E");background-position:0 0}
-.bg-grid-sm{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M 16 0 L 0 0 0 16' fill='none' stroke='%23c8c0b0' stroke-width='.5'/%3E%3C/svg%3E");background-position:0 0}
+.pat-circles{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
 
 /* ── HOME ── */
 .home-hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink);min-height:500px}
-.hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M 28 0 L 0 0 0 28' fill='none' stroke='%23c8c0b0' stroke-width='.6'/%3E%3C/svg%3E");background-position:0 0}
+.hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
+.hero-left::after{content:'I';font-family:'Cormorant Garamond',serif;font-size:min(55vw,520px);font-weight:300;font-style:italic;color:var(--accent);opacity:.07;position:absolute;right:-.05em;bottom:-.3em;line-height:1;pointer-events:none;user-select:none;z-index:0}
+.hero-left>*{position:relative;z-index:1}
 .hero-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2.5rem}
 .hero-title{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;line-height:.97;font-style:italic;letter-spacing:-.015em}
 .hero-title em{font-style:normal;color:var(--accent)}
@@ -116,11 +117,13 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-bottom:1px s
 .cat-header{padding:3.5rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end}
 .cat-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic}
 .cat-note{font-size:13px;color:var(--ink-light);font-style:italic;text-align:right;line-height:1.8}
-.cat-section{padding:.9rem 2.5rem;border-bottom:1px solid var(--ink);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-light);display:flex;justify-content:space-between;background:var(--cream)}
+.cat-section{padding:.9rem 2.5rem;border-bottom:1px solid var(--ink);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);display:flex;justify-content:space-between;background:var(--cream-dark);border-left:4px solid var(--accent)}
 .cat-row{display:grid;grid-template-columns:100px 1fr auto;gap:2.5rem;padding:2.25rem 2.5rem;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .18s,border-left .18s;border-left:3px solid transparent;align-items:start}
 .cat-row:hover{background:var(--cream);border-left-color:var(--accent)}
 .cat-row:hover .cat-title{color:var(--accent)}
 .cat-title{transition:color .18s}
+.cat-row.av{border-left-color:var(--accent);background:var(--cream)}
+.cat-row.av:hover{background:var(--cream-dark)}
 .cat-row.dim{opacity:.45;cursor:default}.cat-row.dim:hover{background:transparent}
 .cat-row.dimmer{opacity:.22;cursor:default}.cat-row.dimmer:hover{background:transparent}
 .cat-cover{width:100px;height:140px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:box-shadow .2s,transform .2s}
@@ -239,23 +242,35 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink-light);font-style:italic}
 
 /* ARCHIVO */
-.archivo-header{padding:4rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink-faint);max-width:100%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cpath d='M 16 0 L 0 0 0 16' fill='none' stroke='%23c8c0b0' stroke-width='.5'/%3E%3C/svg%3E");background-position:0 0}
-.archivo-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1.5rem}
-.archivo-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:300;line-height:1;color:var(--ink);margin:0 0 1.5rem}
-.archivo-desc{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--ink-mid);line-height:1.8;max-width:580px}
-.archivo-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
-.archivo-section{padding:2.5rem;border-right:1px solid var(--ink-faint)}
-.archivo-section:last-child{border-right:none}
-.archivo-s-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:.5px solid var(--ink-faint)}
-.archivo-s-body{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink-mid);line-height:1.75;margin-bottom:2rem}
-.archivo-s-placeholder{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-ghost);letter-spacing:.08em}
-/* Responsive video embed for future use */
-.archivo-video{position:relative;width:100%;padding-top:56.25%;background:var(--ink-faint);margin-bottom:1rem}
-.archivo-video iframe,.archivo-video video{position:absolute;inset:0;width:100%;height:100%;border:none}
+.archivo-header{padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;gap:.75rem;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
+.archivo-header::after{content:'Archivo';font-family:'Cormorant Garamond',serif;font-size:min(40vw,360px);font-weight:300;font-style:italic;color:var(--ink);opacity:.05;position:absolute;right:-.02em;bottom:-.2em;line-height:.85;pointer-events:none;user-select:none;z-index:0;white-space:nowrap}
+.archivo-header>*{position:relative;z-index:1}
+.archivo-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.archivo-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;font-style:italic;line-height:1;color:var(--ink);margin:0}
+.archivo-desc{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--ink-mid);line-height:1.8;max-width:560px}
+/* Blog feed */
+.archivo-feed{padding:0}
+.archivo-entry{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .18s}
+.archivo-entry:hover{background:var(--cream)}
+.archivo-entry.entry-full{grid-template-columns:1fr}
+.archivo-entry-img{overflow:hidden;max-height:420px;background:var(--cream-dark)}
+.archivo-entry-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.archivo-entry:hover .archivo-entry-img img{transform:scale(1.025)}
+.archivo-entry-video{position:relative;width:100%;padding-top:56.25%;background:#1a1713}
+.archivo-entry-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.archivo-entry-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--ink-faint)}
+.archivo-entry.entry-full .archivo-entry-body{border-left:none;border-top:1px solid var(--ink-faint);padding:2rem 2.5rem}
+.archivo-entry-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.archivo-entry-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;font-style:italic;line-height:1.15;color:var(--ink);margin:0 0 1rem}
+.archivo-entry-date{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:1rem}
+.archivo-entry-excerpt{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink-mid);line-height:1.75;flex:1}
+.archivo-entry-more{display:inline-block;margin-top:1.5rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px}
 @media(max-width:767px){
-  .archivo-header{padding:2.5rem 1.25rem 1.5rem}
-  .archivo-grid{grid-template-columns:1fr}
-  .archivo-section{border-right:none;border-bottom:1px solid var(--ink-faint);padding:1.75rem 1.25rem}
+  .archivo-header{padding:2.5rem 1.25rem 2rem}
+  .archivo-entry,.archivo-entry.entry-full{grid-template-columns:1fr}
+  .archivo-entry-img{max-height:240px}
+  .archivo-entry-body{padding:1.5rem 1.25rem;border-left:none;border-top:1px solid var(--ink-faint)}
+  .archivo-entry-title{font-size:1.4rem}
 }
 
 /* TOAST */
@@ -263,7 +278,9 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ── GRETA KRULL / ABOUT ── */
-.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Cpath d='M 28 0 L 0 0 0 28' fill='none' stroke='%23c8c0b0' stroke-width='.6'/%3E%3C/svg%3E");background-position:0 0}
+.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
+.about-header::before{content:'GK';font-family:'Cormorant Garamond',serif;font-size:min(60vw,600px);font-weight:300;font-style:italic;color:var(--ink);opacity:.04;position:absolute;right:-.05em;bottom:-.25em;line-height:.85;pointer-events:none;user-select:none;z-index:0}
+.about-header>*{position:relative;z-index:1}
 .about-header-left{border-right:1px solid var(--ink);padding-right:3.5rem;display:flex;flex-direction:column;justify-content:space-between}
 .about-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:3rem}
 .about-name{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,7vw,96px);font-weight:300;font-style:italic;line-height:.92;letter-spacing:-.025em;color:var(--ink)}
@@ -832,32 +849,62 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 <!-- ═══ ARCHIVO ═══ -->
 <div id="page-archivo" class="page">
   <div class="archivo-header">
-    <div class="archivo-overline">Greta Krull Ediciones</div>
+    <div class="archivo-overline">Documentación · Proceso editorial</div>
     <h1 class="archivo-title">Archivo</h1>
-    <p class="archivo-desc">Documentación del proceso de investigación, recuperación y edición literaria. Materiales de trabajo, fuentes primarias, correspondencia e imágenes del proceso editorial.</p>
+    <p class="archivo-desc">Fotografías, vídeos, comentarios de autor y materiales del proceso de investigación, recuperación y edición de cada cuaderno.</p>
   </div>
-  <div class="archivo-grid">
-    <div class="archivo-section">
-      <div class="archivo-s-label">Investigación</div>
-      <div class="archivo-s-body">
-        <p>Fuentes primarias, bibliografía de trabajo, notas críticas y materiales de investigación que fundamentan cada edición.</p>
+  <div class="archivo-feed">
+
+    <!-- Entrada 1: imagen grande + texto (layout 50/50) -->
+    <div class="archivo-entry">
+      <div class="archivo-entry-img">
+        <img src="./images/artaud-portrait.jpg" alt="Retrato · Jacques Prevel">
       </div>
-      <div class="archivo-s-placeholder">— En preparación —</div>
-    </div>
-    <div class="archivo-section">
-      <div class="archivo-s-label">Recuperación</div>
-      <div class="archivo-s-body">
-        <p>Documentos relativos al proceso de recuperación de textos: versiones, variantes, fuentes consultadas y materiales inéditos.</p>
+      <div class="archivo-entry-body">
+        <div>
+          <div class="archivo-entry-tag">Fotografía · N.º 1</div>
+          <div class="archivo-entry-date">Marzo 2026</div>
+          <h2 class="archivo-entry-title">El retrato de Prevel: historia de una imagen</h2>
+          <p class="archivo-entry-excerpt">La imagen de Jacques Prevel que abre el cuaderno fue localizada en los fondos del archivo de la Bibliothèque nationale de France. Un retrato tardío, de finales de los cuarenta, cuando Prevel ya llevaba años en la órbita de Artaud. La decisión de incluirlo no fue ornamental.</p>
+        </div>
+        <span class="archivo-entry-more">Leer más →</span>
       </div>
-      <div class="archivo-s-placeholder">— En preparación —</div>
     </div>
-    <div class="archivo-section">
-      <div class="archivo-s-label">Edición literaria</div>
-      <div class="archivo-s-body">
-        <p>Criterios de edición, decisiones tipográficas y materiales del proceso de composición de cada volumen.</p>
+
+    <!-- Entrada 2: ancho completo con vídeo -->
+    <div class="archivo-entry entry-full">
+      <div class="archivo-entry-video">
+        <!-- Insertar iframe de YouTube/Vimeo aquí cuando esté disponible -->
+        <!-- Ejemplo: <iframe src="https://www.youtube.com/embed/ID" allowfullscreen></iframe> -->
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
+          <span style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6a5a40">Vídeo · En preparación</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:#8a7a60">Conversación con el editor</span>
+        </div>
       </div>
-      <div class="archivo-s-placeholder">— En preparación —</div>
+      <div class="archivo-entry-body">
+        <div>
+          <div class="archivo-entry-tag">Vídeo · N.º 1</div>
+          <div class="archivo-entry-date">Próximamente</div>
+          <h2 class="archivo-entry-title">«Artaud y Prevel no son una anécdota» — Conversación con Miguel Vega Manrique</h2>
+          <p class="archivo-entry-excerpt">El editor del primer cuaderno explica las razones que llevaron a elegir a Prevel como punto de partida de la colección, y el proceso de traducción de los <em>Dix Poèmes Mortels</em>.</p>
+        </div>
+        <span class="archivo-entry-more">Ver cuando esté disponible →</span>
+      </div>
     </div>
+
+    <!-- Entrada 3: texto largo, sin imagen (entrada de blog / nota de autor) -->
+    <div class="archivo-entry entry-full">
+      <div class="archivo-entry-body" style="border-top:4px solid var(--accent)">
+        <div>
+          <div class="archivo-entry-tag">Nota del autor · N.º 1</div>
+          <div class="archivo-entry-date">Febrero 2026</div>
+          <h2 class="archivo-entry-title">Por qué Prevel y no otro</h2>
+          <p class="archivo-entry-excerpt">Todo archivo editorial comienza con una pregunta que no tiene respuesta cómoda. Prevel no era el más conocido, ni el más traducido, ni el más celebrado. Era, sin embargo, el que mejor permitía formular la hipótesis que queríamos poner a prueba: que la adicción como experiencia puede ser también un modo de conocimiento, y que la traducción de ese conocimiento exige una fidelidad que va más allá del texto.</p>
+        </div>
+        <span class="archivo-entry-more">Leer más →</span>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1013,7 +1060,7 @@ function renderCatalog() {
   var html = '';
 
   function catRow(book) {
-    var dim = book.status === 'upcoming' ? ' dim' : book.status === 'announced' ? ' dimmer' : '';
+    var dim = book.status === 'upcoming' ? ' dim' : book.status === 'announced' ? ' dimmer' : book.status === 'available' ? ' av' : '';
     var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
     var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
     var rightCol = '';
