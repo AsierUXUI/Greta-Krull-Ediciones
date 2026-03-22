@@ -35,9 +35,16 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px soli
 .page.active{display:block;animation:fadeUp .25s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
+/* ── GEOMETRIC PATTERN (overlapping circles / cathedral windows)
+   4 quarter-arc arcs per 60×60 tile, each from a corner with radius = cell size.
+   When tiled they create interlocking circles — an organic, editorial motif.
+   Applied via background-image in accent colour at very low opacity.
+*/
+.pat-circles{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
+
 /* ── HOME ── */
 .home-hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink);min-height:500px}
-.hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;background:var(--cream);position:relative;overflow:hidden}
+.hero-left{padding:4.5rem 3.5rem;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
 .hero-left::after{content:'I';font-family:'Cormorant Garamond',serif;font-size:min(55vw,520px);font-weight:300;font-style:italic;color:var(--accent);opacity:.07;position:absolute;right:-.05em;bottom:-.3em;line-height:1;pointer-events:none;user-select:none;z-index:0}
 .hero-left>*{position:relative;z-index:1}
 .hero-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2.5rem}
@@ -235,7 +242,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink-light);font-style:italic}
 
 /* ARCHIVO */
-.archivo-header{padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;gap:.75rem;background:var(--cream);position:relative;overflow:hidden}
+.archivo-header{padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;gap:.75rem;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
 .archivo-header::after{content:'Archivo';font-family:'Cormorant Garamond',serif;font-size:min(40vw,360px);font-weight:300;font-style:italic;color:var(--ink);opacity:.05;position:absolute;right:-.02em;bottom:-.2em;line-height:.85;pointer-events:none;user-select:none;z-index:0;white-space:nowrap}
 .archivo-header>*{position:relative;z-index:1}
 .archivo-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
@@ -271,7 +278,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ── GRETA KRULL / ABOUT ── */
-.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh;background:var(--cream);position:relative;overflow:hidden}
+.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
 .about-header::before{content:'GK';font-family:'Cormorant Garamond',serif;font-size:min(60vw,600px);font-weight:300;font-style:italic;color:var(--ink);opacity:.04;position:absolute;right:-.05em;bottom:-.25em;line-height:.85;pointer-events:none;user-select:none;z-index:0}
 .about-header>*{position:relative;z-index:1}
 .about-header-left{border-right:1px solid var(--ink);padding-right:3.5rem;display:flex;flex-direction:column;justify-content:space-between}
