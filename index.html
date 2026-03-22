@@ -231,6 +231,26 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 .footer-l{font-size:11px;color:var(--ink-light);letter-spacing:.1em;text-transform:uppercase;line-height:1.9}
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink-light);font-style:italic}
 
+/* ARCHIVO */
+.archivo-header{padding:4rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink-faint);max-width:820px}
+.archivo-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1.5rem}
+.archivo-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.2rem);font-weight:300;line-height:1;color:var(--ink);margin:0 0 1.5rem}
+.archivo-desc{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--ink-mid);line-height:1.8;max-width:580px}
+.archivo-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.archivo-section{padding:2.5rem;border-right:1px solid var(--ink-faint)}
+.archivo-section:last-child{border-right:none}
+.archivo-s-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:.5px solid var(--ink-faint)}
+.archivo-s-body{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink-mid);line-height:1.75;margin-bottom:2rem}
+.archivo-s-placeholder{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-ghost);letter-spacing:.08em}
+/* Responsive video embed for future use */
+.archivo-video{position:relative;width:100%;padding-top:56.25%;background:var(--ink-faint);margin-bottom:1rem}
+.archivo-video iframe,.archivo-video video{position:absolute;inset:0;width:100%;height:100%;border:none}
+@media(max-width:767px){
+  .archivo-header{padding:2.5rem 1.25rem 1.5rem}
+  .archivo-grid{grid-template-columns:1fr}
+  .archivo-section{border-right:none;border-bottom:1px solid var(--ink-faint);padding:1.75rem 1.25rem}
+}
+
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;font-size:13px;letter-spacing:.05em;padding:12px 28px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -556,6 +576,7 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
   </div>
   <ul class="nav-links">
     <li><a onclick="go('catalog')" id="nl-catalog">Catálogo</a></li>
+    <li><a onclick="go('archivo')" id="nl-archivo">Archivo</a></li>
     <li><a onclick="go('distrib')" id="nl-distrib">Distribución</a></li>
     <li><a onclick="go('contact')" id="nl-contact">Contacto</a></li>
   </ul>
@@ -599,9 +620,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     </div>
   </div>
 
-  <footer>
-    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-  </footer>
 </div>
 
 <!-- ═══ CATÁLOGO ═══ -->
@@ -611,9 +629,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     <div class="cat-note">Cuadernos Poesía y Traducción<br>Sin reimpresión</div>
   </div>
   <div id="catalog-rows"></div>
-  <footer>
-    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-  </footer>
 </div>
 
 <!-- ═══ DETAIL ═══ -->
@@ -673,9 +688,6 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
       <p class="dist-statement-text">Cada cuaderno está pensado para durar. La distribución directa no es una limitación operativa, sino una decisión editorial: queremos saber a quién llegan nuestros libros.</p>
     </div>
   </div>
-  <footer>
-    <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
-  </footer>
 </div>
 
 <!-- ═══ CONTACTO ═══ -->
@@ -808,10 +820,43 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
     <a class="about-closing-cta" onclick="go('catalog')">Ver el cat&aacute;logo &rarr;</a>
   </div>
 
-  <footer>
-    <div class="footer-l">Greta Krull Ediciones<br>Madrid, Espa&ntilde;a &middot; Est. Marzo 2026</div>
-  </footer>
 </div>
+
+<!-- ═══ ARCHIVO ═══ -->
+<div id="page-archivo" class="page">
+  <div class="archivo-header">
+    <div class="archivo-overline">Greta Krull Ediciones</div>
+    <h1 class="archivo-title">Archivo</h1>
+    <p class="archivo-desc">Documentación del proceso de investigación, recuperación y edición literaria. Materiales de trabajo, fuentes primarias, correspondencia e imágenes del proceso editorial.</p>
+  </div>
+  <div class="archivo-grid">
+    <div class="archivo-section">
+      <div class="archivo-s-label">Investigación</div>
+      <div class="archivo-s-body">
+        <p>Fuentes primarias, bibliografía de trabajo, notas críticas y materiales de investigación que fundamentan cada edición.</p>
+      </div>
+      <div class="archivo-s-placeholder">— En preparación —</div>
+    </div>
+    <div class="archivo-section">
+      <div class="archivo-s-label">Recuperación</div>
+      <div class="archivo-s-body">
+        <p>Documentos relativos al proceso de recuperación de textos: versiones, variantes, fuentes consultadas y materiales inéditos.</p>
+      </div>
+      <div class="archivo-s-placeholder">— En preparación —</div>
+    </div>
+    <div class="archivo-section">
+      <div class="archivo-s-label">Edición literaria</div>
+      <div class="archivo-s-body">
+        <p>Criterios de edición, decisiones tipográficas y materiales del proceso de composición de cada volumen.</p>
+      </div>
+      <div class="archivo-s-placeholder">— En preparación —</div>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer">
+  <div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div>
+</footer>
 
 <!-- ── PURCHASE MODAL ── -->
 <div class="modal-overlay" id="purchase-modal" onclick="closePurchaseModal(event)">
@@ -845,11 +890,11 @@ footer{border-top:1px solid var(--ink);padding:1.75rem 2.5rem;display:flex;justi
 
 <script>
 // ─── Page navigation ────────────────────────────────────────────────────────
-var PAGES = ['home','about','catalog','detail','distrib','contact','consulta'];
-var NAV_MAP = {home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact',consulta:'nl-contact'};
+var PAGES = ['home','about','catalog','detail','distrib','contact','consulta','archivo'];
+var NAV_MAP = {home:null,about:'nl-about',catalog:'nl-catalog',detail:'nl-catalog',distrib:'nl-distrib',contact:'nl-contact',consulta:'nl-contact',archivo:'nl-archivo'};
 var currentBookId = 1;
 
-function go(name, bookId) {
+function go(name, bookId, _noHistory) {
   PAGES.forEach(function(p) {
     var el = document.getElementById('page-' + p);
     if (el) el.classList.remove('active');
@@ -869,7 +914,18 @@ function go(name, bookId) {
   var btn = document.getElementById('nav-toggle-btn');
   if (links) links.classList.remove('open');
   if (btn) btn.textContent = '☰ Menú';
+  if (!_noHistory) {
+    var bid = (name === 'detail') ? (bookId || currentBookId) : null;
+    var hash = '#' + name + (bid ? '/' + bid : '');
+    history.pushState({ page: name, bookId: bid }, '', hash);
+  }
 }
+
+window.addEventListener('popstate', function(e) {
+  var s = e.state;
+  if (s && s.page) { go(s.page, s.bookId || null, true); }
+  else { go('home', null, true); }
+});
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 function bookById(id) {
@@ -988,7 +1044,6 @@ function renderCatalog() {
     upcoming.forEach(function(b)  { html += catRow(b); });
     announced.forEach(function(b) { html += catRow(b); });
   }
-  html += '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div></footer>';
   el.innerHTML = html;
 }
 
@@ -1081,8 +1136,7 @@ function renderDetail(bookId) {
         (book.colophon ? '<div class="colophon">' + book.colophon + '</div>' : '') +
       '</div>' +
     '</div>' +
-    '<div class="booknav">' + prevCard + nextCard + '</div>' +
-    '<footer><div class="footer-l">Greta Krull Ediciones<br>Madrid, España · Est. Marzo 2026</div></footer>';
+    '<div class="booknav">' + prevCard + nextCard + '</div>';
 }
 
 // ─── Purchase modal ──────────────────────────────────────────────────────────
@@ -1327,7 +1381,19 @@ renderHomeHero();
 renderHomeGrid();
 renderCatalog();
 renderContactSelect();
-go('home');
+(function() {
+  var hash = location.hash.slice(1);
+  var name = 'home', bookId = null;
+  if (hash) {
+    var parts = hash.split('/');
+    if (PAGES.indexOf(parts[0]) !== -1) {
+      name = parts[0];
+      bookId = parts[1] ? parseInt(parts[1]) : null;
+    }
+  }
+  history.replaceState({ page: name, bookId: bookId }, '', '#' + name + (bookId ? '/' + bookId : ''));
+  go(name, bookId, true);
+})();
 </script>
 </body>
 </html>
