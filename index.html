@@ -591,7 +591,9 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
   letter-spacing: .05em;
 }
 </style>
-<script src="books.js"></script>
+<!-- ✏️ CONTENIDO EDITABLE: ver carpeta /contenido/ -->
+<script src="contenido/libros.js"></script>
+<script src="contenido/archivo.js"></script>
 </head>
 <body>
 
@@ -854,59 +856,8 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
     <h1 class="archivo-title">Archivo</h1>
     <p class="archivo-desc">Fotografías, vídeos, comentarios de autor y materiales del proceso de investigación, recuperación y edición de cada cuaderno.</p>
   </div>
-  <div class="archivo-feed">
-
-    <!-- Entrada 1: imagen grande + texto (layout 50/50) -->
-    <div class="archivo-entry">
-      <div class="archivo-entry-img">
-        <img src="./images/artaud-portrait.jpg" alt="Retrato · Jacques Prevel">
-      </div>
-      <div class="archivo-entry-body">
-        <div>
-          <div class="archivo-entry-tag">Fotografía · N.º 1</div>
-          <div class="archivo-entry-date">Marzo 2026</div>
-          <h2 class="archivo-entry-title">El retrato de Prevel: historia de una imagen</h2>
-          <p class="archivo-entry-excerpt">La imagen de Jacques Prevel que abre el cuaderno fue localizada en los fondos del archivo de la Bibliothèque nationale de France. Un retrato tardío, de finales de los cuarenta, cuando Prevel ya llevaba años en la órbita de Artaud. La decisión de incluirlo no fue ornamental.</p>
-        </div>
-        <span class="archivo-entry-more">Leer más →</span>
-      </div>
-    </div>
-
-    <!-- Entrada 2: ancho completo con vídeo -->
-    <div class="archivo-entry entry-full">
-      <div class="archivo-entry-video">
-        <!-- Insertar iframe de YouTube/Vimeo aquí cuando esté disponible -->
-        <!-- Ejemplo: <iframe src="https://www.youtube.com/embed/ID" allowfullscreen></iframe> -->
-        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
-          <span style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6a5a40">Vídeo · En preparación</span>
-          <span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:#8a7a60">Conversación con el editor</span>
-        </div>
-      </div>
-      <div class="archivo-entry-body">
-        <div>
-          <div class="archivo-entry-tag">Vídeo · N.º 1</div>
-          <div class="archivo-entry-date">Próximamente</div>
-          <h2 class="archivo-entry-title">«Artaud y Prevel no son una anécdota» — Conversación con Miguel Vega Manrique</h2>
-          <p class="archivo-entry-excerpt">El editor del primer cuaderno explica las razones que llevaron a elegir a Prevel como punto de partida de la colección, y el proceso de traducción de los <em>Dix Poèmes Mortels</em>.</p>
-        </div>
-        <span class="archivo-entry-more">Ver cuando esté disponible →</span>
-      </div>
-    </div>
-
-    <!-- Entrada 3: texto largo, sin imagen (entrada de blog / nota de autor) -->
-    <div class="archivo-entry entry-full">
-      <div class="archivo-entry-body" style="border-top:4px solid var(--accent)">
-        <div>
-          <div class="archivo-entry-tag">Nota del autor · N.º 1</div>
-          <div class="archivo-entry-date">Febrero 2026</div>
-          <h2 class="archivo-entry-title">Por qué Prevel y no otro</h2>
-          <p class="archivo-entry-excerpt">Todo archivo editorial comienza con una pregunta que no tiene respuesta cómoda. Prevel no era el más conocido, ni el más traducido, ni el más celebrado. Era, sin embargo, el que mejor permitía formular la hipótesis que queríamos poner a prueba: que la adicción como experiencia puede ser también un modo de conocimiento, y que la traducción de ese conocimiento exige una fidelidad que va más allá del texto.</p>
-        </div>
-        <span class="archivo-entry-more">Leer más →</span>
-      </div>
-    </div>
-
-  </div>
+  <!-- Las entradas del archivo se generan desde contenido/archivo.js -->
+  <div id="archivo-feed" class="archivo-feed"></div>
 </div>
 
 <footer id="site-footer">
@@ -1422,6 +1373,59 @@ window.addEventListener('resize', (function() {
   };
 })());
 
+// ─── Archivo (generado desde contenido/archivo.js) ───────────────────────────
+function renderArchivo() {
+  var feed = document.getElementById('archivo-feed');
+  if (!feed || typeof ARCHIVO === 'undefined') return;
+  var html = '';
+  for (var i = 0; i < ARCHIVO.length; i++) {
+    var e = ARCHIVO[i];
+    if (e.tipo === 'foto') {
+      html += '<div class="archivo-entry">';
+      html += '<div class="archivo-entry-img"><img src="' + e.imagen + '" alt="' + (e.imageAlt || '') + '"></div>';
+      html += '<div class="archivo-entry-body"><div>';
+      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
+      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
+      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
+      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
+      html += '</div>';
+      html += '<span class="archivo-entry-more">Leer más \u2192</span>';
+      html += '</div></div>';
+    } else if (e.tipo === 'video') {
+      html += '<div class="archivo-entry entry-full">';
+      html += '<div class="archivo-entry-video">';
+      if (e.videoUrl) {
+        html += '<iframe src="' + e.videoUrl + '" allowfullscreen></iframe>';
+      } else {
+        html += '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">';
+        html += '<span style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6a5a40">V\u00eddeo \u00b7 En preparaci\u00f3n</span>';
+        html += '<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.4rem;font-style:italic;color:#8a7a60">Conversaci\u00f3n con el editor</span>';
+        html += '</div>';
+      }
+      html += '</div>';
+      html += '<div class="archivo-entry-body"><div>';
+      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
+      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
+      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
+      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
+      html += '</div>';
+      html += '<span class="archivo-entry-more">' + (e.videoUrl ? 'Ver v\u00eddeo \u2192' : 'Ver cuando est\u00e9 disponible \u2192') + '</span>';
+      html += '</div></div>';
+    } else if (e.tipo === 'nota') {
+      html += '<div class="archivo-entry entry-full">';
+      html += '<div class="archivo-entry-body" style="border-top:4px solid var(--accent)"><div>';
+      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
+      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
+      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
+      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
+      html += '</div>';
+      html += '<span class="archivo-entry-more">Leer m\u00e1s \u2192</span>';
+      html += '</div></div>';
+    }
+  }
+  feed.innerHTML = html;
+}
+
 // ─── Init ────────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', function(e) {
   if (document.getElementById('flipbook-overlay').classList.contains('open')) {
@@ -1436,6 +1440,7 @@ renderHomeHero();
 renderHomeGrid();
 renderCatalog();
 renderContactSelect();
+renderArchivo();
 (function() {
   var hash = location.hash.slice(1);
   var name = 'home', bookId = null;
