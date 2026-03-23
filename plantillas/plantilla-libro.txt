@@ -1,0 +1,114 @@
+════════════════════════════════════════════════════════════
+  GRETA KRULL EDICIONES — Ficha de nuevo libro
+  Rellenar todos los campos marcados con *.
+  Los campos opcionales se pueden dejar en blanco.
+════════════════════════════════════════════════════════════
+
+
+──── DATOS BÁSICOS ─────────────────────────────────────────
+
+* Número de la colección (ej: N.º 5):
+
+* Título completo del libro:
+
+  Subtítulo (si lo hay):
+
+  Subtítulo secundario (si lo hay):
+
+* Autor/es
+  (si hay más de uno, indicar también su rol: Ensayo / Traducción / etc.)
+
+  Autor 1 — Nombre completo:
+             Rol:
+
+  Autor 2 — Nombre completo:   [dejar en blanco si no hay]
+             Rol:
+
+* Fecha de publicación (ej: Octubre 2026 / Próximamente / 2026):
+
+* Estado del libro:
+  [ ] Disponible para compra
+  [ ] Próximamente (en preparación)
+  [ ] Anunciado (sin fecha confirmada)
+
+
+──── EJEMPLARES ────────────────────────────────────────────
+
+* Ejemplares totales de la edición:
+
+  Ejemplares disponibles actualmente:
+  (dejar en blanco si aún no está publicado)
+
+
+──── DESCRIPCIONES ─────────────────────────────────────────
+
+* Descripción breve (1–2 frases, para la cuadrícula de inicio):
+
+
+
+* Descripción para el catálogo (puede ser más larga):
+
+
+
+
+  Cita destacada del libro (si la hay):
+
+
+
+──── SINOPSIS ──────────────────────────────────────────────
+  (texto completo para la ficha del libro; puede ser varios párrafos)
+  (dejar en blanco si aún no está listo)
+
+
+
+
+──── ÍNDICE DE CONTENIDOS ──────────────────────────────────
+  (partes o secciones del libro; dejar en blanco si no procede)
+
+  Sección 1 — Título:
+               Descripción (ej: Ensayo · Nombre Autor):
+
+  Sección 2 — Título:
+               Descripción:
+
+
+──── FICHA TÉCNICA ─────────────────────────────────────────
+  (datos de producción del libro)
+
+  Colección:
+  Tipografía:
+  Papel:
+  Encuadernación:
+  Tipo de edición (ej: Bilingüe fr.–es.):
+  Otros datos:
+
+
+──── COLOFÓN ───────────────────────────────────────────────
+  (texto breve de pie de edición)
+  (dejar en blanco si aún no está listo)
+
+
+
+
+──── COMPRA ────────────────────────────────────────────────
+
+  Enlace de compra (URL completa):
+  (dejar en blanco si aún no está disponible)
+
+  Plataforma (ej: IberLibro, Amazon, web propia…):
+
+  Descripción del enlace (ej: Compra directa. Envío internacional disponible.):
+
+
+──── IMÁGENES ──────────────────────────────────────────────
+  (nombres de archivo de las imágenes subidas a la carpeta images/)
+
+  Imagen de portada (nombre del archivo, ej: titulo-cover.jpg):
+
+  Páginas interiores para previsualización
+  (nombres de archivo separados por comas, ej: titulo-p01.jpg, titulo-p02.jpg):
+
+
+════════════════════════════════════════════════════════════
+  FIN DE LA FICHA
+════════════════════════════════════════════════════════════

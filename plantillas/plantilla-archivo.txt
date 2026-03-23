@@ -1,0 +1,52 @@
+════════════════════════════════════════════════════════════
+  GRETA KRULL EDICIONES — Ficha de entrada para el Archivo
+  Rellenar todos los campos marcados con *.
+════════════════════════════════════════════════════════════
+
+
+──── TIPO DE ENTRADA ───────────────────────────────────────
+
+* ¿Qué tipo de entrada es?
+  [ ] Fotografía  (imagen + texto)
+  [ ] Vídeo       (YouTube o Vimeo + texto)
+  [ ] Nota        (solo texto, sin imagen)
+
+
+──── DATOS DE LA ENTRADA ───────────────────────────────────
+
+* Título de la entrada:
+
+
+
+* Texto / descripción:
+  (puede ser tan largo como se necesite)
+
+
+
+
+* Fecha (ej: Abril 2026 / Próximamente):
+
+* A qué cuaderno corresponde (ej: N.º 1):
+
+* Etiqueta corta (ej: Fotografía · N.º 1 / Nota del autor · N.º 2):
+
+
+──── IMAGEN (solo si es tipo Fotografía) ───────────────────
+
+  Nombre del archivo de imagen (ej: prevel-boceto.jpg):
+
+  Descripción breve de la imagen (para accesibilidad):
+
+
+──── VÍDEO (solo si es tipo Vídeo) ─────────────────────────
+
+  Enlace del vídeo:
+  (YouTube: abrir vídeo → Compartir → Insertar → copiar la URL del src="...")
+  (Vimeo: abrir vídeo → Compartir → Insertar → copiar la URL del src="...")
+
+  Si el vídeo aún no está disponible, dejar en blanco.
+
+
+════════════════════════════════════════════════════════════
+  FIN DE LA FICHA
+════════════════════════════════════════════════════════════
