@@ -30,6 +30,9 @@
 
 * Etiqueta corta (ej: Fotografía · N.º 1 / Nota del autor · N.º 2):
 
+* Tema o grupo interno (1–3 palabras, ej: prevel / teatro-crueldad / proceso-editorial):
+  (usado para agrupar entradas relacionadas en el mapa — no visible al lector)
+
 
 ──── IMAGEN (solo si es tipo Fotografía) ───────────────────
 

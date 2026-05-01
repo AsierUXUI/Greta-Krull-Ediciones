@@ -242,37 +242,49 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
 .footer-l{font-size:11px;color:var(--on-accent-muted);letter-spacing:.1em;text-transform:uppercase;line-height:1.9}
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--on-accent);font-style:italic}
 
-/* ARCHIVO */
-.archivo-header{padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--ink);display:flex;flex-direction:column;gap:.75rem;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
-.archivo-header::after{content:'Archivo';font-family:'Cormorant Garamond',serif;font-size:min(40vw,360px);font-weight:300;font-style:italic;color:var(--ink);opacity:.05;position:absolute;right:-.02em;bottom:-.2em;line-height:.85;pointer-events:none;user-select:none;z-index:0;white-space:nowrap}
-.archivo-header>*{position:relative;z-index:1}
-.archivo-overline{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-.archivo-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;font-style:italic;line-height:1;color:var(--ink);margin:0}
-.archivo-desc{font-family:'EB Garamond',serif;font-size:1.05rem;color:var(--ink-mid);line-height:1.8;max-width:560px}
-/* Blog feed */
-.archivo-feed{padding:0}
-.archivo-entry{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .18s}
-.archivo-entry:hover{background:var(--cream)}
-.archivo-entry.entry-full{grid-template-columns:1fr}
-.archivo-entry-img{overflow:hidden;max-height:420px;background:var(--cream-dark)}
-.archivo-entry-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
-.archivo-entry:hover .archivo-entry-img img{transform:scale(1.025)}
-.archivo-entry-video{position:relative;width:100%;padding-top:56.25%;background:#1a1713}
-.archivo-entry-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.archivo-entry-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid var(--ink-faint)}
-.archivo-entry.entry-full .archivo-entry-body{border-left:none;border-top:1px solid var(--ink-faint);padding:2rem 2.5rem}
-.archivo-entry-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
-.archivo-entry-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:300;font-style:italic;line-height:1.15;color:var(--ink);margin:0 0 1rem}
-.archivo-entry-date{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:1rem}
-.archivo-entry-excerpt{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink-mid);line-height:1.75;flex:1}
-.archivo-entry-more{display:inline-block;margin-top:1.5rem;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:1px}
-@media(max-width:767px){
-  .archivo-header{padding:2.5rem 1.25rem 2rem}
-  .archivo-entry,.archivo-entry.entry-full{grid-template-columns:1fr}
-  .archivo-entry-img{max-height:240px}
-  .archivo-entry-body{padding:1.5rem 1.25rem;border-left:none;border-top:1px solid var(--ink-faint)}
-  .archivo-entry-title{font-size:1.4rem}
-}
+/* ARCHIVO CANVAS */
+#page-archivo{height:calc(100vh - 60px);overflow:hidden;position:relative;cursor:grab;background-color:#EAE4D6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='3'%3E%3Cline x1='0' y1='0' x2='24' y2='0' stroke='%237a6a50' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cline x1='0' y1='0' x2='0' y2='3' stroke='%237a6a50' stroke-width='0.8' stroke-opacity='0.2'/%3E%3C/svg%3E");background-repeat:repeat}
+#page-archivo.active{animation:none}
+#page-archivo:active{cursor:grabbing}
+#arc-canvas{position:absolute;top:0;left:0;width:0;height:0;will-change:transform}
+.arc-card{position:absolute;cursor:pointer;transition:box-shadow .2s ease}
+.arc-card:hover{z-index:10}
+.arc-card-foto{width:210px;background:#fff;border:1px solid rgba(17,16,16,.1);box-shadow:2px 4px 14px rgba(17,16,16,.12)}
+.arc-card-foto:hover{box-shadow:4px 8px 22px rgba(17,16,16,.22)}
+.arc-card-foto img{display:block;width:100%;height:auto}
+.arc-card-nota{width:195px;min-height:120px;background:#F0EAD9;border:1px solid rgba(17,16,16,.08);padding:1.1rem 1rem 1rem;box-shadow:2px 4px 10px rgba(17,16,16,.1)}
+.arc-card-nota:hover{box-shadow:4px 8px 18px rgba(17,16,16,.18)}
+.arc-card-nota-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.arc-card-nota-title{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;line-height:1.35;color:var(--ink)}
+.arc-card-video{width:230px;background:#1a1713;box-shadow:2px 4px 14px rgba(17,16,16,.25)}
+.arc-card-video:hover{box-shadow:4px 8px 22px rgba(17,16,16,.4)}
+.arc-card-video-inner{position:relative;padding-top:62.5%}
+.arc-card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.6rem;color:rgba(255,255,255,.55)}
+.arc-card-vlabel{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.arc-tooltip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);max-width:180px;white-space:normal;text-align:center;font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--ink);background:rgba(234,228,214,.96);padding:4px 9px;pointer-events:none;opacity:0;transition:opacity .15s;z-index:20;border:1px solid rgba(17,16,16,.08)}
+.arc-card:hover .arc-tooltip{opacity:1}
+.arc-sidebar{position:fixed;top:60px;right:0;width:33.333vw;height:calc(100vh - 60px);background:var(--cream);border-left:1px solid var(--ink);transform:translateX(100%);transition:transform .38s cubic-bezier(.25,.46,.45,.94);overflow-y:auto;z-index:150;display:flex;flex-direction:column}
+.arc-sidebar.open{transform:translateX(0)}
+.arc-sidebar-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;cursor:pointer;font-size:20px;color:var(--ink-light);line-height:1;padding:.25rem}
+.arc-sidebar-close:hover{color:var(--ink)}
+.arc-sidebar-inner{padding:2.25rem 2rem 2rem;flex:1}
+.arc-sidebar-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+.arc-sidebar-date{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:1.5rem}
+.arc-sidebar-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;font-style:italic;line-height:1.2;color:var(--ink);margin-bottom:1.5rem}
+.arc-sidebar-img{display:block;width:100%;margin-bottom:1.25rem}
+.arc-sidebar-video{position:relative;width:100%;padding-top:56.25%;margin-bottom:1.25rem}
+.arc-sidebar-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.arc-sidebar-text{font-family:'EB Garamond',serif;font-size:15px;color:var(--ink-mid);line-height:1.8}
+.arc-sidebar-footer{padding:1.5rem 2rem;border-top:1px solid var(--ink-faint)}
+.arc-cuaderno-btn{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--ink);color:#fff;cursor:pointer;border:none;width:100%;text-align:left;transition:background .15s}
+.arc-cuaderno-btn:hover{background:var(--accent)}
+.arc-cuaderno-btn-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.25rem}
+.arc-cuaderno-btn-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#fff}
+.arc-cuaderno-btn-arrow{font-size:1rem;color:rgba(255,255,255,.45);flex-shrink:0;margin-left:.75rem}
+.arc-overlay{position:fixed;inset:0;background:rgba(17,16,16,.25);z-index:140;opacity:0;pointer-events:none;transition:opacity .3s}
+.arc-overlay.show{opacity:1;pointer-events:all}
+@media(max-width:1024px){.arc-sidebar{width:50vw}}
+@media(max-width:767px){.arc-sidebar{width:100vw}}
 
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(12px);background:var(--ink);color:#fff;font-size:13px;letter-spacing:.05em;padding:12px 28px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
@@ -851,13 +863,13 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
 
 <!-- ═══ ARCHIVO ═══ -->
 <div id="page-archivo" class="page">
-  <div class="archivo-header">
-    <div class="archivo-overline">Documentación · Proceso editorial</div>
-    <h1 class="archivo-title">Archivo</h1>
-    <p class="archivo-desc">Fotografías, vídeos, comentarios de autor y materiales del proceso de investigación, recuperación y edición de cada cuaderno.</p>
+  <div id="arc-canvas"></div>
+  <div class="arc-overlay" id="arc-overlay" onclick="arcCloseSidebar()"></div>
+  <div class="arc-sidebar" id="arc-sidebar">
+    <button class="arc-sidebar-close" onclick="arcCloseSidebar()">×</button>
+    <div class="arc-sidebar-inner" id="arc-sidebar-inner"></div>
+    <div class="arc-sidebar-footer" id="arc-sidebar-footer"></div>
   </div>
-  <!-- Las entradas del archivo se generan desde contenido/archivo.js -->
-  <div id="archivo-feed" class="archivo-feed"></div>
 </div>
 
 <footer id="site-footer">
@@ -909,6 +921,7 @@ function go(name, bookId, _noHistory) {
     if (bookId) currentBookId = bookId;
     renderDetail(currentBookId);
   }
+  if (name === 'archivo') { setTimeout(arcCenterCanvas, 16); }
   var pg = document.getElementById('page-' + name);
   if (pg) pg.classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
@@ -1373,57 +1386,157 @@ window.addEventListener('resize', (function() {
   };
 })());
 
-// ─── Archivo (generado desde contenido/archivo.js) ───────────────────────────
+// ─── Archivo Canvas ───────────────────────────────────────────────────────────
+var arcInited = false;
+var arcState = { panX:0, panY:0, startX:0, startY:0, dragging:false, moved:false };
+
+var ARC_OFFSETS = [
+  [0,0],[-265,-35],[275,25],[-95,245],[125,-225],
+  [-285,185],[315,-155],[15,295],[-55,-265],[235,195],
+  [-195,-175],[205,165],[-320,10],[330,-10],[0,-320]
+];
+
+function arcComputePositions(items) {
+  var groups = {}, tagOrder = [];
+  items.forEach(function(e) {
+    var t = (e.tags && e.tags.length) ? e.tags[0] : '__';
+    if (!groups[t]) { groups[t] = []; tagOrder.push(t); }
+    groups[t].push(e);
+  });
+  var n = tagOrder.length, r = n < 2 ? 0 : 500;
+  tagOrder.forEach(function(tag, ti) {
+    var ang = (ti / n) * Math.PI * 2 - Math.PI / 2;
+    var cx = Math.round(Math.cos(ang) * r);
+    var cy = Math.round(Math.sin(ang) * r);
+    groups[tag].forEach(function(e, ii) {
+      var off = ARC_OFFSETS[ii % ARC_OFFSETS.length];
+      e._x = cx + off[0];
+      e._y = cy + off[1];
+      e._rot = ((ii * 7 + ti * 13) % 9) - 4;
+    });
+  });
+}
+
 function renderArchivo() {
-  var feed = document.getElementById('archivo-feed');
-  if (!feed || typeof ARCHIVO === 'undefined') return;
+  var canvas = document.getElementById('arc-canvas');
+  if (!canvas || typeof ARCHIVO === 'undefined') return;
+  arcComputePositions(ARCHIVO);
   var html = '';
-  for (var i = 0; i < ARCHIVO.length; i++) {
-    var e = ARCHIVO[i];
+  ARCHIVO.forEach(function(e, i) {
+    var x = e._x || 0, y = e._y || 0, rot = e._rot || 0;
+    var style = 'left:' + x + 'px;top:' + y + 'px;transform:rotate(' + rot + 'deg)';
+    var oc = 'arcOpen(' + i + ')';
     if (e.tipo === 'foto') {
-      html += '<div class="archivo-entry">';
-      html += '<div class="archivo-entry-img"><img src="' + e.imagen + '" alt="' + (e.imageAlt || '') + '"></div>';
-      html += '<div class="archivo-entry-body"><div>';
-      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
-      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
-      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
-      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
+      html += '<div class="arc-card arc-card-foto" style="' + style + '" onclick="' + oc + '">';
+      html += '<div class="arc-tooltip">' + e.titulo + '</div>';
+      if (e.imagen) html += '<img src="' + e.imagen + '" alt="' + (e.imageAlt||'') + '" loading="lazy">';
       html += '</div>';
-      html += '<span class="archivo-entry-more">Leer más \u2192</span>';
-      html += '</div></div>';
-    } else if (e.tipo === 'video') {
-      html += '<div class="archivo-entry entry-full">';
-      html += '<div class="archivo-entry-video">';
-      if (e.videoUrl) {
-        html += '<iframe src="' + e.videoUrl + '" allowfullscreen></iframe>';
-      } else {
-        html += '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">';
-        html += '<span style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#6a5a40">V\u00eddeo \u00b7 En preparaci\u00f3n</span>';
-        html += '<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.4rem;font-style:italic;color:#8a7a60">Conversaci\u00f3n con el editor</span>';
-        html += '</div>';
-      }
-      html += '</div>';
-      html += '<div class="archivo-entry-body"><div>';
-      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
-      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
-      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
-      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
-      html += '</div>';
-      html += '<span class="archivo-entry-more">' + (e.videoUrl ? 'Ver v\u00eddeo \u2192' : 'Ver cuando est\u00e9 disponible \u2192') + '</span>';
-      html += '</div></div>';
     } else if (e.tipo === 'nota') {
-      html += '<div class="archivo-entry entry-full">';
-      html += '<div class="archivo-entry-body" style="border-top:4px solid var(--accent)"><div>';
-      html += '<div class="archivo-entry-tag">' + e.etiqueta + '</div>';
-      html += '<div class="archivo-entry-date">' + e.fecha + '</div>';
-      html += '<h2 class="archivo-entry-title">' + e.titulo + '</h2>';
-      html += '<p class="archivo-entry-excerpt">' + e.texto + '</p>';
+      html += '<div class="arc-card arc-card-nota" style="' + style + '" onclick="' + oc + '">';
+      html += '<div class="arc-tooltip">' + e.titulo + '</div>';
+      html += '<div class="arc-card-nota-tag">' + e.etiqueta + '</div>';
+      html += '<div class="arc-card-nota-title">' + e.titulo + '</div>';
       html += '</div>';
-      html += '<span class="archivo-entry-more">Leer m\u00e1s \u2192</span>';
+    } else if (e.tipo === 'video') {
+      html += '<div class="arc-card arc-card-video" style="' + style + '" onclick="' + oc + '">';
+      html += '<div class="arc-tooltip">' + e.titulo + '</div>';
+      html += '<div class="arc-card-video-inner">';
+      html += '<span class="arc-card-play">&#9654;</span>';
+      html += '<span class="arc-card-vlabel">' + e.etiqueta + '</span>';
       html += '</div></div>';
     }
+  });
+  canvas.innerHTML = html;
+  arcBindPan();
+}
+
+function arcBindPan() {
+  if (arcInited) return;
+  arcInited = true;
+  var page = document.getElementById('page-archivo');
+  if (!page) return;
+  page.addEventListener('mousedown', function(e) {
+    if (e.target.closest('.arc-sidebar,.arc-overlay')) return;
+    arcState.dragging = true;
+    arcState.moved = false;
+    arcState.startX = e.clientX - arcState.panX;
+    arcState.startY = e.clientY - arcState.panY;
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!arcState.dragging) return;
+    var nx = e.clientX - arcState.startX;
+    var ny = e.clientY - arcState.startY;
+    if (Math.abs(nx - arcState.panX) > 4 || Math.abs(ny - arcState.panY) > 4) arcState.moved = true;
+    arcState.panX = nx; arcState.panY = ny;
+    arcApply();
+  });
+  window.addEventListener('mouseup', function() { arcState.dragging = false; });
+  var t0 = null;
+  page.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) return;
+    t0 = e.touches[0]; arcState.moved = false;
+  }, {passive:true});
+  page.addEventListener('touchmove', function(e) {
+    if (!t0 || e.touches.length !== 1) return;
+    var t = e.touches[0];
+    var dx = t.clientX - t0.clientX, dy = t.clientY - t0.clientY;
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) arcState.moved = true;
+    arcState.panX += dx; arcState.panY += dy;
+    arcApply(); t0 = t;
+    e.preventDefault();
+  }, {passive:false});
+  page.addEventListener('touchend', function() { t0 = null; });
+}
+
+function arcCenterCanvas() {
+  var page = document.getElementById('page-archivo');
+  if (!page) return;
+  arcState.panX = page.offsetWidth / 2;
+  arcState.panY = page.offsetHeight / 2;
+  arcApply();
+}
+
+function arcApply() {
+  var c = document.getElementById('arc-canvas');
+  if (c) c.style.transform = 'translate(' + arcState.panX + 'px,' + arcState.panY + 'px)';
+}
+
+function arcOpen(idx) {
+  if (arcState.moved) return;
+  var e = ARCHIVO[idx];
+  if (!e) return;
+  var c = '';
+  c += '<div class="arc-sidebar-tag">' + e.etiqueta + '</div>';
+  c += '<div class="arc-sidebar-date">' + e.fecha + '</div>';
+  c += '<h2 class="arc-sidebar-title">' + e.titulo + '</h2>';
+  if (e.tipo === 'foto' && e.imagen) {
+    c += '<img class="arc-sidebar-img" src="' + e.imagen + '" alt="' + (e.imageAlt||'') + '">';
   }
-  feed.innerHTML = html;
+  if (e.tipo === 'video' && e.videoUrl) {
+    c += '<div class="arc-sidebar-video"><iframe src="' + e.videoUrl + '" allowfullscreen></iframe></div>';
+  }
+  c += '<p class="arc-sidebar-text">' + e.texto + '</p>';
+  document.getElementById('arc-sidebar-inner').innerHTML = c;
+  var f = '';
+  if (typeof BOOKS !== 'undefined' && e.cuadernoId) {
+    var book = bookById(e.cuadernoId);
+    if (book) {
+      f += '<div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.75rem">Cuaderno relacionado</div>';
+      f += '<button class="arc-cuaderno-btn" onclick="arcCloseSidebar();go(\'detail\',' + book.id + ')">';
+      f += '<div><div class="arc-cuaderno-btn-label">' + book.num + '</div>';
+      f += '<div class="arc-cuaderno-btn-title">' + book.title + '</div></div>';
+      f += '<span class="arc-cuaderno-btn-arrow">\u2192</span>';
+      f += '</button>';
+    }
+  }
+  document.getElementById('arc-sidebar-footer').innerHTML = f;
+  document.getElementById('arc-sidebar').classList.add('open');
+  document.getElementById('arc-overlay').classList.add('show');
+}
+
+function arcCloseSidebar() {
+  document.getElementById('arc-sidebar').classList.remove('open');
+  document.getElementById('arc-overlay').classList.remove('show');
 }
 
 // ─── Init ────────────────────────────────────────────────────────────────────

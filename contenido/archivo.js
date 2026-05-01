@@ -34,7 +34,9 @@ var ARCHIVO = [
     texto:   "La imagen de Jacques Prevel que abre el cuaderno fue localizada en los fondos del archivo de la Bibliothèque nationale de France. Un retrato tardío, de finales de los cuarenta, cuando Prevel ya llevaba años en la órbita de Artaud. La decisión de incluirlo no fue ornamental.",
     imagen:  "./images/artaud-portrait.jpg",
     imageAlt: "Retrato · Jacques Prevel",
-    enlace:  null                // URL completa si hay página propia, o null
+    enlace:  null,               // URL completa si hay página propia, o null
+    tags:    ["prevel"],         // agrupación interna — invisible al usuario
+    cuadernoId: 1                // id del libro relacionado (para el botón del sidebar)
   },
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -51,7 +53,9 @@ var ARCHIVO = [
     // Ejemplo YouTube: "https://www.youtube.com/embed/ID_DEL_VIDEO"
     // Ejemplo Vimeo:   "https://player.vimeo.com/video/ID_DEL_VIDEO"
     videoUrl: null,
-    enlace:  null
+    enlace:  null,
+    tags:    ["proceso-editorial"],
+    cuadernoId: 1
   },
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -64,7 +68,9 @@ var ARCHIVO = [
     etiqueta: "Nota del autor · N.º 1",
     titulo:  "Por qué Prevel y no otro",
     texto:   "Todo archivo editorial comienza con una pregunta que no tiene respuesta cómoda. Prevel no era el más conocido, ni el más traducido, ni el más celebrado. Era, sin embargo, el que mejor permitía formular la hipótesis que queríamos poner a prueba: que la adicción como experiencia puede ser también un modo de conocimiento, y que la traducción de ese conocimiento exige una fidelidad que va más allá del texto.",
-    enlace:  null
+    enlace:  null,
+    tags:    ["proceso-editorial"],
+    cuadernoId: 1
   }
 
   /*
@@ -82,7 +88,9 @@ var ARCHIVO = [
     texto:    "Descripción de la fotografía o noticia.",
     imagen:   "./images/nombre-del-archivo.jpg",
     imageAlt: "Descripción breve de la imagen",
-    enlace:   null
+    enlace:   null,
+    tags:     ["nombre-del-tema"], // agrupación interna — invisible al usuario
+    cuadernoId: 1                  // id del libro relacionado (1, 2, 3…)
   }
 
   // ── Entrada de tipo VÍDEO ──
@@ -94,7 +102,9 @@ var ARCHIVO = [
     titulo:   "Título del vídeo",
     texto:    "Descripción del vídeo.",
     videoUrl: "https://www.youtube.com/embed/ID_DEL_VIDEO",
-    enlace:   null
+    enlace:   null,
+    tags:     ["nombre-del-tema"],
+    cuadernoId: 2
   }
 
   // ── Entrada de tipo NOTA (solo texto) ──
@@ -105,7 +115,9 @@ var ARCHIVO = [
     etiqueta: "Nota editorial",
     titulo:   "Título de la nota",
     texto:    "Texto completo de la nota. Puede ser tan largo como se necesite.",
-    enlace:   null
+    enlace:   null,
+    tags:     ["nombre-del-tema"],
+    cuadernoId: 1
   }
   */
 
