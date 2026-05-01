@@ -1285,13 +1285,17 @@ function submitForm(e, type) {
     body: new FormData(form),
     headers: { 'Accept': 'application/json' }
   }).then(function(r) {
-    if (btn) { btn.disabled = false; btn.textContent = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud'; }
-    if (r.ok) {
-      showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
-      form.reset();
-    } else {
-      showToast('Error al enviar. Inténtelo de nuevo.');
-    }
+    var label = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud';
+    if (btn) { btn.disabled = false; btn.textContent = label; }
+    return r.json().then(function(data) {
+      if (r.ok) {
+        showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
+        form.reset();
+      } else {
+        var msg = (data.errors && data.errors.map(function(e){return e.message;}).join(', ')) || data.error || 'Error al enviar.';
+        showToast(msg);
+      }
+    });
   }).catch(function() {
     if (btn) { btn.disabled = false; btn.textContent = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud'; }
     showToast('Error de conexión. Inténtelo de nuevo.');
