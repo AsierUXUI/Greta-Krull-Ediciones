@@ -1557,7 +1557,7 @@ function arcBuildPanelHTML(e) {
 
 function arcBuildPanelFooter(e) {
   var f = '';
-  if (typeof BOOKS !== 'undefined' && e.cuadernoId) {
+  if (false && typeof BOOKS !== 'undefined' && e.cuadernoId) {
     var book = bookById(e.cuadernoId);
     if (book) {
       f += '<div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.75rem">Cuaderno relacionado</div>';
