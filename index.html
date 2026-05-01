@@ -80,7 +80,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px soli
 .section-bar-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
 .section-bar-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;text-decoration:none;transition:color .15s}
 .section-bar-link:hover{color:var(--ink)}
-.home-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
+.home-grid,.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
 .grid-book{padding:2rem 1.75rem 2.5rem;border-right:1px solid var(--ink-faint);border-top:2px solid transparent;cursor:pointer;transition:background .18s,border-top-color .18s;display:flex;flex-direction:column}
 .grid-book:last-child{border-right:none}
 .grid-book:hover{background:var(--cream);border-top-color:var(--accent)}
@@ -424,8 +424,8 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
   .hero-caption{padding:1.25rem 1.5rem 1.5rem}
 
   /* Home grid → horizontal carousel */
-  .home-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--ink)}
-  .home-grid::-webkit-scrollbar{display:none}
+  .home-grid,.cat-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--ink)}
+  .home-grid::-webkit-scrollbar,.cat-grid::-webkit-scrollbar{display:none}
   .grid-book{flex:0 0 78vw;scroll-snap-align:start;border-right:1px solid var(--ink-faint);border-top:2px solid transparent;padding:1.5rem 1.25rem 2rem}
   .grid-book:last-child{border-right:none}
   .grid-book.dim:hover{border-top-color:transparent}
@@ -1042,32 +1042,32 @@ function renderHomeHero() {
 }
 
 // ─── Home grid ──────────────────────────────────────────────────────────────
+function renderGridBook(book) {
+  var dim = book.status !== 'available' ? ' dim' : '';
+  var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
+  var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
+  var coverInner = book.coverImage
+    ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+    : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
+  return '<div class="grid-book' + dim + '"' + click + '>' +
+    '<div class="grid-cover-wrap">' +
+      '<div class="grid-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' +
+        coverInner +
+      '</div>' +
+    '</div>' +
+    '<div class="grid-num">' + book.num + ' · ' + book.date + '</div>' +
+    '<div class="grid-title">' + book.title + '</div>' +
+    '<div class="grid-author">' + book.authorByline + '</div>' +
+    '<div class="grid-excerpt">' + book.descShort + '</div>' +
+    '<div class="grid-tag">' + statusLabel(book) + '</div>' +
+  '</div>';
+}
+
 function renderHomeGrid() {
   var el = document.getElementById('home-grid');
   if (!el) return;
   var html = '';
-  var shown = BOOKS.slice(0, 4);
-  shown.forEach(function(book) {
-    var dim = book.status !== 'available' ? ' dim' : '';
-    var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
-    var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
-    var gridCoverInner = book.coverImage
-      ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
-      : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
-    html +=
-      '<div class="grid-book' + dim + '"' + click + '>' +
-        '<div class="grid-cover-wrap">' +
-          '<div class="grid-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' +
-            gridCoverInner +
-          '</div>' +
-        '</div>' +
-        '<div class="grid-num">' + book.num + ' · ' + book.date + '</div>' +
-        '<div class="grid-title">' + book.title + '</div>' +
-        '<div class="grid-author">' + book.authorByline + '</div>' +
-        '<div class="grid-excerpt">' + book.descShort + '</div>' +
-        '<div class="grid-tag">' + statusLabel(book) + '</div>' +
-      '</div>';
-  });
+  BOOKS.slice(0, 4).forEach(function(book) { html += renderGridBook(book); });
   el.innerHTML = html;
 }
 
@@ -1112,7 +1112,9 @@ function renderCatalog() {
 
   if (published.length) {
     html += '<div class="cat-section"><span>Publicados</span><span>' + published.length + ' título' + (published.length > 1 ? 's' : '') + '</span></div>';
-    published.forEach(function(b) { html += catRow(b); });
+    html += '<div class="cat-grid">';
+    published.forEach(function(b) { html += renderGridBook(b); });
+    html += '</div>';
   }
   if (upcoming.length || announced.length) {
     html += '<div class="cat-section" style="margin-top:.5rem"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>';
