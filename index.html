@@ -20,10 +20,10 @@ html{scroll-behavior:smooth}
 body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px solid var(--accent);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;height:60px}
+nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px solid var(--accent);border-bottom:1px solid var(--ink);display:flex;justify-content:flex-start;align-items:center;padding:0 2.5rem;height:60px}
 .nav-logo{display:flex;align-items:center;cursor:pointer;height:44px}
 .nav-logo img{height:44px;width:auto;display:block;filter:none}
-.nav-links{display:flex;gap:0;list-style:none;height:100%}
+.nav-links{display:flex;gap:0;list-style:none;height:100%;margin-left:1.5rem}
 .nav-links li{height:100%;display:flex;align-items:center}
 .nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;padding:0 1.25rem;height:100%;display:flex;align-items:center;border-left:1px solid var(--ink-faint);transition:color .15s,background .15s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
@@ -652,7 +652,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
 
 <nav>
   <div class="nav-logo" onclick="go('home')">
-    <img src="./images/logo-gretakrull.png.png" alt="Greta Krull Ediciones">
+    <img src="./images/logo-gretakrull.png" alt="Greta Krull Ediciones">
   </div>
   <ul class="nav-links">
     <li><a onclick="go('catalog')" id="nl-catalog">Catálogo</a></li>
