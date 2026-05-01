@@ -1280,21 +1280,29 @@ function submitForm(e, type) {
   var form = e.target;
   var btn = form.querySelector('button[type="submit"]');
   if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+  var data = {};
+  new FormData(form).forEach(function(val, key) { if (key !== '_subject') data[key] = val; });
   fetch(FORMSPREE_ENDPOINT, {
     method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
+    body: JSON.stringify(data),
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
   }).then(function(r) {
     var label = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud';
     if (btn) { btn.disabled = false; btn.textContent = label; }
-    return r.json().then(function(data) {
-      console.log('Formspree response:', r.status, JSON.stringify(data));
+    return r.json().then(function(d) {
+      if (r.ok && d.ok !== false) {
+        showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
+        form.reset();
+      } else {
+        var msg = (d.errors && d.errors.map(function(x){return x.message;}).join(', ')) || d.error || 'Error al enviar.';
+        showToast(msg);
+      }
+    }).catch(function() {
       if (r.ok) {
         showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
         form.reset();
       } else {
-        var msg = (data.errors && data.errors.map(function(e){return e.message;}).join(', ')) || data.error || 'Error al enviar.';
-        showToast(msg);
+        showToast('Error al enviar.');
       }
     });
   }).catch(function() {
