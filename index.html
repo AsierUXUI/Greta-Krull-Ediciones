@@ -1473,6 +1473,18 @@ window.addEventListener('resize', (function() {
 var arcInited = false;
 var arcState = { panX:0, panY:0, startX:0, startY:0, dragging:false, moved:false };
 
+// Mobile: absolute positions relative to canvas origin — designed to fit all cards
+// in the initial 375×547 viewport without panning (right edge ≤ 52px for 136px card)
+var ARC_MOBILE_OFFSETS = [
+  [-55, -140],
+  [-60,  -50],
+  [ 40, -120],
+  [ 40,   40],
+  [-50,   60],
+  [ 45,  -20],
+  [-30,  150],
+];
+
 // Offsets within a cluster: hero at [0,0], std entries spread around it
 // Values sized so that after innerScale (~0.62) cards touch/barely overlap (~30px)
 var ARC_CLUSTER_OFFSETS = [
@@ -1513,7 +1525,7 @@ function arcComputePositions(items) {
   });
 
   var heroSeen = {}, tagCount = {}, stdCount = {}, refCount = {};
-  items.forEach(function(e) {
+  items.forEach(function(e, i) {
     var p = (e.tags && e.tags.length) ? e.tags[0] : '__';
     var isRef = e.tags && e.tags.length > 1;
 
@@ -1529,8 +1541,11 @@ function arcComputePositions(items) {
       stdCount[p]++;
     }
 
-    // Position
-    if (isRef) {
+    // Position — mobile uses fixed positions designed to fit the viewport
+    if (mobile) {
+      var mo = ARC_MOBILE_OFFSETS[i % ARC_MOBILE_OFFSETS.length];
+      e._x = mo[0]; e._y = mo[1];
+    } else if (isRef) {
       var c1 = centers[e.tags[0]] || { x: 0, y: 0 };
       var c2 = centers[e.tags[1]] || c1;
       var key = e.tags[0] + '|' + e.tags[1];
@@ -1617,6 +1632,7 @@ function arcBindPan() {
   if (!page) return;
   page.addEventListener('mousedown', function(e) {
     if (e.target.closest('.arc-sidebar,.arc-overlay')) return;
+    if (document.getElementById('arc-sidebar').classList.contains('open')) return;
     arcState.dragging = true;
     arcState.moved = false;
     arcState.startX = e.clientX - arcState.panX;
@@ -1632,7 +1648,7 @@ function arcBindPan() {
   });
   window.addEventListener('mouseup', function() { arcState.dragging = false; });
   page.addEventListener('wheel', function(e) {
-    if (e.target.closest('.arc-sidebar')) return;
+    if (document.getElementById('arc-sidebar').classList.contains('open')) return;
     e.preventDefault();
     arcState.panX -= e.deltaX;
     arcState.panY -= e.deltaY;
@@ -1641,11 +1657,13 @@ function arcBindPan() {
   var t0 = null;
   page.addEventListener('touchstart', function(e) {
     if (e.target.closest('.arc-modal')) return;
+    if (document.getElementById('arc-modal').classList.contains('open')) return;
     if (e.touches.length !== 1) return;
     t0 = e.touches[0]; arcState.moved = false;
   }, {passive:true});
   page.addEventListener('touchmove', function(e) {
     if (e.target.closest('.arc-modal')) return;
+    if (document.getElementById('arc-modal').classList.contains('open')) return;
     if (!t0 || e.touches.length !== 1) return;
     var t = e.touches[0];
     var dx = t.clientX - t0.clientX, dy = t.clientY - t0.clientY;
