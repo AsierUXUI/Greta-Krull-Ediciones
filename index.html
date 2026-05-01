@@ -796,26 +796,26 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
     <div class="contact-right">
       <div class="contact-eyebrow">Formulario de solicitud</div>
       <form id="form-solicitud" onsubmit="submitForm(event,'solicitud')">
-        <input type="hidden" name="_subject" value="Solicitud de ejemplar — Greta Krull Ediciones">
+        <input type="hidden" name="_subject" value="Solicitud — Greta Krull Ediciones">
         <div class="cf"><label>Nombre</label><input type="text" name="nombre" required placeholder="Su nombre completo"></div>
         <div class="cf"><label>Correo electrónico</label><input type="email" name="email" required placeholder="correo@dominio.com"></div>
-        <div class="cf">
-          <label>Título solicitado</label>
+        <div class="cf"><label>Motivo de contacto</label>
+          <select id="contact-motivo-select" name="motivo" onchange="onMotivoChange(this.value)">
+            <option value="">Seleccionar motivo</option>
+            <option value="Comprar un ejemplar">Comprar un ejemplar</option>
+            <option value="Prensa y reseñas">Prensa y reseñas</option>
+            <option value="Traducción y derechos">Traducción y derechos</option>
+            <option value="Librería o distribución">Librería o distribución</option>
+            <option value="Colaboración editorial">Colaboración editorial</option>
+          </select>
+        </div>
+        <div class="cf" id="cf-titulo" style="display:none">
+          <label>Título</label>
           <select id="contact-title-select" name="titulo">
             <option value="">Seleccionar título</option>
           </select>
         </div>
-        <div class="cf"><label>País de envío</label><input type="text" name="pais" placeholder="España, México, Argentina…"></div>
-        <div class="cf"><label>Motivo de contacto</label>
-          <select name="motivo">
-            <option value="">Seleccionar motivo</option>
-            <option>Comprar un ejemplar</option>
-            <option>Prensa y reseñas</option>
-            <option>Traducción y derechos</option>
-            <option>Librería o distribución</option>
-            <option>Colaboración editorial</option>
-          </select>
-        </div>
+        <div class="cf" id="cf-pais" style="display:none"><label>País de envío</label><input type="text" name="pais" placeholder="España, México, Argentina…"></div>
         <div class="cf"><label>Mensaje (opcional)</label><textarea name="mensaje" placeholder="Cualquier indicación o pregunta…"></textarea></div>
         <button type="submit" class="cf-submit">Enviar solicitud</button>
         <p class="cf-note">Sin pasarela de pago. Confirmamos disponibilidad<br>y acordamos el envío por correo electrónico.</p>
@@ -972,6 +972,11 @@ function go(name, bookId, _noHistory) {
   if (name === 'detail') {
     if (bookId) currentBookId = bookId;
     renderDetail(currentBookId);
+  }
+  if (name === 'contact') {
+    var motivo = document.getElementById('contact-motivo-select');
+    if (motivo) { motivo.value = ''; onMotivoChange(''); }
+    if (bookId) { setTimeout(function() { preSelectContactBook(bookId); }, 0); }
   }
   document.documentElement.classList.toggle('archivo-active', name === 'archivo');
   document.body.classList.toggle('archivo-active', name === 'archivo');
@@ -1237,7 +1242,7 @@ function renderPurchaseModal(bookId) {
   el.innerHTML =
     '<div class="modal-intro">' + book.title + ' &middot; ' + book.num + '</div>' +
     onlineOption +
-    '<div class="purchase-option" onclick="closePurchaseModal(null);go(\'contact\')" style="cursor:pointer">' +
+    '<div class="purchase-option" onclick="closePurchaseModal(null);go(\'contact\',' + bookId + ')" style="cursor:pointer">' +
       '<div class="po-left"><div class="po-badge">Solicitud directa</div><div class="po-name">Escribir a la editorial</div><div class="po-desc">Respondemos en 48 horas. Pago por transferencia.</div></div>' +
       '<div class="po-arrow">&rarr;</div>' +
     '</div>' +
@@ -1248,15 +1253,32 @@ function renderPurchaseModal(bookId) {
 }
 
 // ─── Contact select ──────────────────────────────────────────────────────────
+function onMotivoChange(val) {
+  var isCompra = val === 'Comprar un ejemplar';
+  document.getElementById('cf-titulo').style.display = isCompra ? '' : 'none';
+  document.getElementById('cf-pais').style.display = isCompra ? '' : 'none';
+}
+
 function renderContactSelect() {
   var sel = document.getElementById('contact-title-select');
   if (!sel) return;
   var html = '<option value="">Seleccionar título</option>';
   BOOKS.forEach(function(book) {
     var label = book.num + ' · ' + book.title + ' — ' + book.authors[0].name + (book.status !== 'available' ? ' (en prep.)' : '');
-    html += '<option>' + label + '</option>';
+    html += '<option value="' + label + '">' + label + '</option>';
   });
   sel.innerHTML = html;
+}
+
+function preSelectContactBook(bookId) {
+  var book = BOOKS.find(function(b) { return b.id === bookId; });
+  if (!book) return;
+  var motivo = document.getElementById('contact-motivo-select');
+  if (motivo) { motivo.value = 'Comprar un ejemplar'; onMotivoChange('Comprar un ejemplar'); }
+  var sel = document.getElementById('contact-title-select');
+  if (!sel) return;
+  var label = book.num + ' · ' + book.title + ' — ' + book.authors[0].name + (book.status !== 'available' ? ' (en prep.)' : '');
+  sel.value = label;
 }
 
 // ─── Modal ───────────────────────────────────────────────────────────────────
