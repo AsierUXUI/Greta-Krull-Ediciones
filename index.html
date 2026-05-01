@@ -244,6 +244,7 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px soli
 .contact-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;line-height:1.05;margin-bottom:2rem}
 .contact-body{font-size:15px;line-height:1.9;color:var(--ink-mid);max-width:380px}
 .contact-info{display:flex;flex-direction:column;gap:1.75rem;margin-top:3rem}
+.contact-info-inline{display:flex;gap:2.5rem}
 .contact-info-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.25rem}
 .contact-info-val{font-size:15px;color:var(--ink)}
 .contact-foot{font-size:13px;color:var(--ink-mid);font-style:italic;line-height:1.8}
@@ -490,6 +491,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
   .contact-grid,.consulta-wrap{grid-template-columns:1fr}
   .contact-left,.consulta-left{border-right:none;border-bottom:1px solid var(--ink);padding:2.5rem 1.25rem}
   .contact-h1,.consulta-h1{font-size:36px}
+  .contact-info{margin-top:1.5rem;gap:1.25rem}
   .contact-right,.consulta-right{padding:2rem 1.25rem 3rem}
 
   /* About */
@@ -804,8 +806,10 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
         <h1 class="contact-h1">Contacto</h1>
         <p class="contact-body">Para adquirir un ejemplar, escríbenos directamente. Respondemos en 48 horas por correo.</p>
         <div class="contact-info">
-          <div><div class="contact-info-label">Editorial</div><div class="contact-info-val">Greta Krull Ediciones</div></div>
-          <div><div class="contact-info-label">Sede</div><div class="contact-info-val">Madrid, España</div></div>
+          <div class="contact-info-inline">
+            <div><div class="contact-info-label">Editorial</div><div class="contact-info-val">Greta Krull Ediciones</div></div>
+            <div><div class="contact-info-label">Sede</div><div class="contact-info-val">Madrid, España</div></div>
+          </div>
           <div><div class="contact-info-label">Correo</div><div class="contact-info-val"><a href="mailto:gretakrullediciones@gmail.com">gretakrullediciones@gmail.com</a></div></div>
         </div>
       </div>
