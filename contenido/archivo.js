@@ -71,6 +71,86 @@ var ARCHIVO = [
     enlace:  null,
     tags:    ["proceso-editorial"],
     cuadernoId: 1
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Entrada 4 · Teatro de la crueldad — HÉROE (primera entrada con este tag)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    tipo:    "foto",
+    numero:  "N.º 1",
+    fecha:   "Marzo 2026",
+    etiqueta: "Documento · N.º 1",
+    titulo:  "[PLACEHOLDER] Artaud en el hospital de Rodez: los últimos manuscritos",
+    texto:   "Texto de ejemplo. Este campo aparece en el sidebar al hacer clic sobre la entrada. Puede contener varios párrafos y texto enriquecido con etiquetas HTML básicas como <em>cursiva</em> o <strong>negrita</strong>.",
+    imagen:  "./images/artaud-cover.jpg",
+    imageAlt: "Ejemplo de imagen",
+    enlace:  null,
+    tags:    ["teatro-crueldad"],
+    cuadernoId: 1
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Entrada 5 · Prevel — ESTÁNDAR (segunda entrada con el tag prevel)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    tipo:    "nota",
+    numero:  "N.º 1",
+    fecha:   "Febrero 2026",
+    etiqueta: "Nota de edición · N.º 1",
+    titulo:  "[PLACEHOLDER] Las elecciones tipográficas del cuaderno",
+    texto:   "Texto de ejemplo para una nota estándar dentro del clúster Prevel. Esta entrada tiene tamaño medio porque no es la primera con este tag.",
+    enlace:  null,
+    tags:    ["prevel"],
+    cuadernoId: 1
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Entrada 6 · Teatro de la crueldad — ESTÁNDAR
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    tipo:    "video",
+    numero:  "N.º 1",
+    fecha:   "Próximamente",
+    etiqueta: "Vídeo · N.º 1",
+    titulo:  "[PLACEHOLDER] La crueldad como sistema: lectura del primer manifiesto",
+    texto:   "Texto de ejemplo para una entrada de vídeo dentro del clúster teatro-crueldad.",
+    videoUrl: null,
+    enlace:  null,
+    tags:    ["teatro-crueldad"],
+    cuadernoId: 1
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Entrada 7 · Referencia cruzada prevel + proceso-editorial (TAMAÑO REF)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    tipo:    "foto",
+    numero:  "N.º 1",
+    fecha:   "Marzo 2026",
+    etiqueta: "Fotografía · N.º 1",
+    titulo:  "[PLACEHOLDER] Las primeras galeradas: proceso y corrección",
+    texto:   "Texto de ejemplo para una entrada de referencia cruzada. Aparece más pequeña porque tiene dos tags: es una entrada que conecta dos clústeres.",
+    imagen:  "./images/artaud-portrait.jpg",
+    imageAlt: "Ejemplo de referencia cruzada",
+    enlace:  null,
+    tags:    ["prevel", "proceso-editorial"],
+    cuadernoId: 1
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Entrada 8 · Referencia cruzada teatro-crueldad + prevel (TAMAÑO REF)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    tipo:    "nota",
+    numero:  "N.º 1",
+    fecha:   "Enero 2026",
+    etiqueta: "Nota del editor · N.º 1",
+    titulo:  "[PLACEHOLDER] El lenguaje de Artaud en los márgenes de Prevel",
+    texto:   "Texto de ejemplo para una nota de referencia cruzada entre el clúster teatro-crueldad y el clúster prevel.",
+    enlace:  null,
+    tags:    ["teatro-crueldad", "prevel"],
+    cuadernoId: 1
   }
 
   /*
