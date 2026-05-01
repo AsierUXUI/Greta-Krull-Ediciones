@@ -257,11 +257,6 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
 .arc-card-foto{background:#fff;border:1px solid rgba(17,16,16,.1);box-shadow:2px 4px 14px rgba(17,16,16,.12)}
 .arc-card-foto:hover{box-shadow:4px 8px 22px rgba(17,16,16,.22)}
 .arc-card-foto img{display:block;width:100%;height:auto;object-fit:cover}
-/* Nota */
-.arc-card-nota{background:#F0EAD9;border:1px solid rgba(17,16,16,.08);padding:1.1rem 1rem 1rem;box-shadow:2px 4px 10px rgba(17,16,16,.1)}
-.arc-card-nota:hover{box-shadow:4px 8px 18px rgba(17,16,16,.18)}
-.arc-card-nota-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-.arc-card-nota-title{font-family:'Cormorant Garamond',serif;font-style:italic;line-height:1.35;color:var(--ink)}
 /* Video */
 .arc-card-video{background:#1a1713;box-shadow:2px 4px 14px rgba(17,16,16,.25)}
 .arc-card-video:hover{box-shadow:4px 8px 22px rgba(17,16,16,.4)}
@@ -270,23 +265,30 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
 .arc-card-vlabel{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
 /* Sizes — hero */
 .arc-card-foto.sz-hero{width:270px}
-.arc-card-nota.sz-hero{width:250px;min-height:160px}
-.arc-card-nota.sz-hero .arc-card-nota-title{font-size:1.05rem}
 .arc-card-video.sz-hero{width:310px}
-/* Sizes — standard (base is std, orientation split) */
+/* Sizes — standard */
 .arc-card-foto.sz-std.arc-landscape{width:240px}
 .arc-card-foto.sz-std.arc-landscape img{height:150px}
 .arc-card-foto.sz-std.arc-portrait{width:165px}
-.arc-card-nota.sz-std{width:190px;min-height:120px}
-.arc-card-nota.sz-std .arc-card-nota-title{font-size:.95rem}
 .arc-card-video.sz-std.arc-landscape{width:250px}
 .arc-card-video.sz-std.arc-portrait{width:175px}
 /* Sizes — reference (small) */
 .arc-card-foto.sz-ref{width:145px}
 .arc-card-foto.sz-ref img{height:110px}
-.arc-card-nota.sz-ref{width:148px;min-height:88px;padding:.8rem .75rem}
-.arc-card-nota.sz-ref .arc-card-nota-title{font-size:.82rem}
 .arc-card-video.sz-ref{width:168px}
+/* Mobile — smaller cards */
+@media(max-width:767px){
+  .arc-card-foto.sz-hero{width:180px}
+  .arc-card-foto.sz-std.arc-landscape{width:160px}
+  .arc-card-foto.sz-std.arc-landscape img{height:105px}
+  .arc-card-foto.sz-std.arc-portrait{width:115px}
+  .arc-card-foto.sz-ref{width:100px}
+  .arc-card-foto.sz-ref img{height:80px}
+  .arc-card-video.sz-hero{width:200px}
+  .arc-card-video.sz-std.arc-landscape{width:170px}
+  .arc-card-video.sz-std.arc-portrait{width:120px}
+  .arc-card-video.sz-ref{width:112px}
+}
 /* Panel shared styles */
 .arc-panel-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
 .arc-panel-date{font-size:11px;letter-spacing:.12em;color:var(--ink-light);margin-bottom:1.5rem}
@@ -1442,20 +1444,14 @@ var arcInited = false;
 var arcState = { panX:0, panY:0, startX:0, startY:0, dragging:false, moved:false };
 
 var ARC_OFFSETS = [
-  [0,0],[-265,-35],[275,25],[-95,245],[125,-225],
-  [-285,185],[315,-155],[15,295],[-55,-265],[235,195],
-  [-195,-175],[205,165],[-320,10],[330,-10],[0,-320]
+  [0, -20], [-290, -50], [310, 15], [-110, 240], [160, -240],
+  [-300, 170], [320, -170], [20, 290], [-60, -280], [250, 200],
+  [-210, -185], [215, 160], [-340, 0], [350, -10], [0, -330]
 ];
 
 function arcComputePositions(items) {
-  var groups = {}, tagOrder = [], tagHeroSeen = {};
-  items.forEach(function(e) {
-    var t = (e.tags && e.tags.length) ? e.tags[0] : '__';
-    if (!groups[t]) { groups[t] = []; tagOrder.push(t); }
-    groups[t].push(e);
-  });
-  // Assign sizes
-  items.forEach(function(e) {
+  var tagHeroSeen = {}, stdCount = 0;
+  items.forEach(function(e, i) {
     var primary = (e.tags && e.tags.length) ? e.tags[0] : '__';
     var isRef = e.tags && e.tags.length > 1;
     if (isRef) {
@@ -1464,29 +1460,12 @@ function arcComputePositions(items) {
       e._size = 'sz-hero'; e._orient = 'arc-landscape'; tagHeroSeen[primary] = true;
     } else {
       e._size = 'sz-std';
+      e._orient = (stdCount % 2 === 0) ? 'arc-landscape' : 'arc-portrait';
+      stdCount++;
     }
-  });
-  // Assign orientations for std
-  tagOrder.forEach(function(tag, ti) {
-    var stdCount = 0;
-    groups[tag].forEach(function(e) {
-      if (e._size === 'sz-std') {
-        e._orient = (stdCount % 2 === 0) ? 'arc-landscape' : 'arc-portrait';
-        stdCount++;
-      }
-    });
-  });
-  // Assign positions
-  var n = tagOrder.length, r = n < 2 ? 0 : 520;
-  tagOrder.forEach(function(tag, ti) {
-    var ang = (ti / n) * Math.PI * 2 - Math.PI / 2;
-    var cx = Math.round(Math.cos(ang) * r);
-    var cy = Math.round(Math.sin(ang) * r);
-    groups[tag].forEach(function(e, ii) {
-      var off = ARC_OFFSETS[ii % ARC_OFFSETS.length];
-      e._x = cx + off[0];
-      e._y = cy + off[1];
-    });
+    var off = ARC_OFFSETS[i % ARC_OFFSETS.length];
+    e._x = off[0];
+    e._y = off[1];
   });
 }
 
@@ -1514,7 +1493,7 @@ function arcBuildPanelFooter(e) {
       f += '<button class="arc-cuaderno-btn" onclick="arcCloseAll();go(\'detail\',' + book.id + ')">';
       f += '<div><div class="arc-cuaderno-btn-label">' + book.num + '</div>';
       f += '<div class="arc-cuaderno-btn-title">' + book.title + '</div></div>';
-      f += '<span class="arc-cuaderno-btn-arrow">→</span>';
+      f += '<span class="arc-cuaderno-btn-arrow">&#8594;</span>';
       f += '</button>';
     }
   }
@@ -1535,13 +1514,7 @@ function renderArchivo() {
       html += '<div class="arc-card arc-card-foto ' + sz + ' ' + or + '" style="' + style + '" onclick="' + oc + '">';
       html += '<div class="arc-hover-overlay"></div>';
       if (e.imagen) html += '<img src="' + e.imagen + '" alt="' + (e.imageAlt||'') + '" loading="lazy">';
-      if (e.tipo === 'mixto') html += '<div style="position:absolute;bottom:8px;right:8px;background:rgba(17,16,16,.6);color:#fff;font-size:9px;letter-spacing:.12em;padding:3px 6px;text-transform:uppercase">▶ Vídeo</div>';
-      html += '</div>';
-    } else if (e.tipo === 'nota') {
-      html += '<div class="arc-card arc-card-nota ' + sz + '" style="' + style + '" onclick="' + oc + '">';
-      html += '<div class="arc-hover-overlay"></div>';
-      html += '<div class="arc-card-nota-tag">' + e.etiqueta + '</div>';
-      html += '<div class="arc-card-nota-title">' + e.titulo + '</div>';
+      if (e.tipo === 'mixto') html += '<div style="position:absolute;bottom:8px;right:8px;background:rgba(17,16,16,.6);color:#fff;font-size:9px;letter-spacing:.12em;padding:3px 6px;text-transform:uppercase">&#9654; Video</div>';
       html += '</div>';
     } else if (e.tipo === 'video') {
       html += '<div class="arc-card arc-card-video ' + sz + ' ' + or + '" style="' + style + '" onclick="' + oc + '">';
@@ -1585,10 +1558,12 @@ function arcBindPan() {
   }, {passive:false});
   var t0 = null;
   page.addEventListener('touchstart', function(e) {
+    if (e.target.closest('.arc-modal')) return;
     if (e.touches.length !== 1) return;
     t0 = e.touches[0]; arcState.moved = false;
   }, {passive:true});
   page.addEventListener('touchmove', function(e) {
+    if (e.target.closest('.arc-modal')) return;
     if (!t0 || e.touches.length !== 1) return;
     var t = e.touches[0];
     var dx = t.clientX - t0.clientX, dy = t.clientY - t0.clientY;
@@ -1630,9 +1605,7 @@ function arcOpen(idx) {
   }
 }
 
-function arcCloseAll() {
-  arcCloseSidebar(); arcCloseModal();
-}
+function arcCloseAll() { arcCloseSidebar(); arcCloseModal(); }
 
 function arcCloseSidebar() {
   document.getElementById('arc-sidebar').classList.remove('open');
