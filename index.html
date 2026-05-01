@@ -1288,6 +1288,7 @@ function submitForm(e, type) {
     var label = type === 'consulta' ? 'Enviar consulta' : 'Enviar solicitud';
     if (btn) { btn.disabled = false; btn.textContent = label; }
     return r.json().then(function(data) {
+      console.log('Formspree response:', r.status, JSON.stringify(data));
       if (r.ok) {
         showToast(type === 'consulta' ? 'Consulta enviada — respondemos en 48 h.' : 'Solicitud enviada — respondemos en 48 h.');
         form.reset();
