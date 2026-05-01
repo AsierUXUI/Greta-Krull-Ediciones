@@ -243,6 +243,7 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--on-accent);font-style:italic}
 
 /* ARCHIVO CANVAS */
+html.archivo-active,body.archivo-active{background:#EAE4D6}
 #page-archivo{height:calc(100vh - 60px);overflow:hidden;position:relative;cursor:grab;background-color:#EAE4D6;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='3'%3E%3Cline x1='0' y1='0' x2='24' y2='0' stroke='%237a6a50' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cline x1='0' y1='0' x2='0' y2='3' stroke='%237a6a50' stroke-width='0.8' stroke-opacity='0.2'/%3E%3C/svg%3E");background-repeat:repeat}
 #page-archivo.active{animation:none}
 #page-archivo:active{cursor:grabbing}
@@ -921,6 +922,8 @@ function go(name, bookId, _noHistory) {
     if (bookId) currentBookId = bookId;
     renderDetail(currentBookId);
   }
+  document.documentElement.classList.toggle('archivo-active', name === 'archivo');
+  document.body.classList.toggle('archivo-active', name === 'archivo');
   if (name === 'archivo') { setTimeout(arcCenterCanvas, 16); }
   var pg = document.getElementById('page-' + name);
   if (pg) pg.classList.add('active');
@@ -1423,8 +1426,8 @@ function renderArchivo() {
   arcComputePositions(ARCHIVO);
   var html = '';
   ARCHIVO.forEach(function(e, i) {
-    var x = e._x || 0, y = e._y || 0, rot = e._rot || 0;
-    var style = 'left:' + x + 'px;top:' + y + 'px;transform:rotate(' + rot + 'deg)';
+    var x = e._x || 0, y = e._y || 0;
+    var style = 'left:' + x + 'px;top:' + y + 'px';
     var oc = 'arcOpen(' + i + ')';
     if (e.tipo === 'foto') {
       html += '<div class="arc-card arc-card-foto" style="' + style + '" onclick="' + oc + '">';
