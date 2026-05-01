@@ -1556,6 +1556,7 @@ function arcBindPan() {
   });
   window.addEventListener('mouseup', function() { arcState.dragging = false; });
   page.addEventListener('wheel', function(e) {
+    if (e.target.closest('.arc-sidebar')) return;
     e.preventDefault();
     arcState.panX -= e.deltaX;
     arcState.panY -= e.deltaY;
