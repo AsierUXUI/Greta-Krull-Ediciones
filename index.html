@@ -1445,16 +1445,17 @@ var arcInited = false;
 var arcState = { panX:0, panY:0, startX:0, startY:0, dragging:false, moved:false };
 
 // Offsets within a cluster: hero at [0,0], std entries spread around it
+// Values sized so that after innerScale (~0.62) cards touch/barely overlap (~30px)
 var ARC_CLUSTER_OFFSETS = [
   [   0,   0],
-  [ 250, -30],
-  [-230,  55],
-  [  70, 260],
-  [ -80,-245],
-  [ 275, 210],
-  [-260,-190],
-  [  30, 290],
-  [-290,  20],
+  [ 370, -40],
+  [-350,  65],
+  [  90, 355],
+  [-100,-340],
+  [ 375, 295],
+  [-360,-270],
+  [  45, 385],
+  [-380,  35],
 ];
 
 // Small jitter so multiple ref-cards sharing a midpoint don't stack
@@ -1474,8 +1475,8 @@ function arcComputePositions(items) {
 
   // Cluster centres on a circle — radius scales with number of clusters
   var n = tagList.length || 1;
-  var clusterR  = mobile ? 150 : Math.max(280, n * 70);
-  var innerScale = mobile ? 0.38 : Math.min(0.85, 1.9 / n);
+  var clusterR  = mobile ? 150 : Math.max(360, n * 90);
+  var innerScale = mobile ? 0.42 : 0.62;
   var centers = {};
   tagList.forEach(function(tag, i) {
     var a = (2 * Math.PI * i / n) - Math.PI / 2; // top-first
