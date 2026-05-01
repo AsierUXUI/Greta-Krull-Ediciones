@@ -21,8 +21,9 @@ body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--
 
 /* NAV */
 nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px solid var(--accent);border-bottom:1px solid var(--ink);display:flex;justify-content:flex-start;align-items:center;padding:0 2.5rem;height:60px}
-.nav-logo{display:flex;align-items:center;cursor:pointer;height:44px}
+.nav-logo{display:flex;align-items:center;cursor:pointer;height:44px;gap:.65rem}
 .nav-logo img{height:44px;width:auto;display:block;filter:none}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;font-weight:400;color:var(--accent);letter-spacing:.02em;line-height:1}
 .nav-links{display:flex;gap:0;list-style:none;height:100%;margin-left:1.5rem}
 .nav-links li{height:100%;display:flex;align-items:center}
 .nav-links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);text-decoration:none;cursor:pointer;padding:0 1.25rem;height:100%;display:flex;align-items:center;border-left:1px solid var(--ink-faint);transition:color .15s,background .15s;position:relative}
@@ -653,6 +654,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
 <nav>
   <div class="nav-logo" onclick="go('home')">
     <img src="./images/logo-gretakrull.png" alt="Greta Krull Ediciones">
+    <span class="nav-logo-text">Greta Krull</span>
   </div>
   <ul class="nav-links">
     <li><a onclick="go('catalog')" id="nl-catalog">Catálogo</a></li>
