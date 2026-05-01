@@ -1444,33 +1444,79 @@ window.addEventListener('resize', (function() {
 var arcInited = false;
 var arcState = { panX:0, panY:0, startX:0, startY:0, dragging:false, moved:false };
 
-var ARC_OFFSETS = [
-  [0, -20], [-290, -50], [310, 15], [-110, 240], [160, -240],
-  [-300, 170], [320, -170], [20, 290], [-60, -280], [250, 200],
-  [-210, -185], [215, 160], [-340, 0], [350, -10], [0, -330]
+// Offsets within a cluster: hero at [0,0], std entries spread around it
+var ARC_CLUSTER_OFFSETS = [
+  [   0,   0],
+  [ 250, -30],
+  [-230,  55],
+  [  70, 260],
+  [ -80,-245],
+  [ 275, 210],
+  [-260,-190],
+  [  30, 290],
+  [-290,  20],
+];
+
+// Small jitter so multiple ref-cards sharing a midpoint don't stack
+var ARC_REF_JITTER = [
+  [  0,  0], [ 38,-28], [-32, 36], [ 28, 32], [-38,-22], [ 45, 10], [-18, 44]
 ];
 
 function arcComputePositions(items) {
   var mobile = window.innerWidth < 768;
-  var scale = mobile ? 0.38 : 1;
-  var tagHeroSeen = {}, stdCount = 0;
-  items.forEach(function(e, i) {
-    var primary = (e.tags && e.tags.length) ? e.tags[0] : '__';
+
+  // Collect unique primary tags in order of first appearance
+  var tagList = [], tagIndex = {};
+  items.forEach(function(e) {
+    var p = (e.tags && e.tags.length) ? e.tags[0] : '__';
+    if (!(p in tagIndex)) { tagIndex[p] = tagList.length; tagList.push(p); }
+  });
+
+  // Cluster centres on a circle — radius scales with number of clusters
+  var n = tagList.length || 1;
+  var clusterR  = mobile ? 150 : Math.max(280, n * 70);
+  var innerScale = mobile ? 0.38 : Math.min(0.85, 1.9 / n);
+  var centers = {};
+  tagList.forEach(function(tag, i) {
+    var a = (2 * Math.PI * i / n) - Math.PI / 2; // top-first
+    centers[tag] = { x: Math.round(clusterR * Math.cos(a)), y: Math.round(clusterR * Math.sin(a)) };
+  });
+
+  var heroSeen = {}, tagCount = {}, stdCount = {}, refCount = {};
+  items.forEach(function(e) {
+    var p = (e.tags && e.tags.length) ? e.tags[0] : '__';
     var isRef = e.tags && e.tags.length > 1;
+
+    // Size + orientation
     if (isRef) {
-      e._size = 'sz-ref'; e._orient = 'arc-portrait';
-    } else if (!tagHeroSeen[primary]) {
-      e._size = 'sz-hero';
-      e._orient = e.orient || 'arc-landscape';
-      tagHeroSeen[primary] = true;
+      e._size = 'sz-ref'; e._orient = e.orient || 'arc-portrait';
+    } else if (!heroSeen[p]) {
+      e._size = 'sz-hero'; e._orient = e.orient || 'arc-landscape'; heroSeen[p] = true;
     } else {
       e._size = 'sz-std';
-      e._orient = e.orient || ((stdCount % 2 === 0) ? 'arc-landscape' : 'arc-portrait');
-      stdCount++;
+      if (!stdCount[p]) stdCount[p] = 0;
+      e._orient = e.orient || ((stdCount[p] % 2 === 0) ? 'arc-landscape' : 'arc-portrait');
+      stdCount[p]++;
     }
-    var off = ARC_OFFSETS[i % ARC_OFFSETS.length];
-    e._x = Math.round(off[0] * scale);
-    e._y = Math.round(off[1] * scale);
+
+    // Position
+    if (isRef) {
+      var c1 = centers[e.tags[0]] || { x: 0, y: 0 };
+      var c2 = centers[e.tags[1]] || c1;
+      var key = e.tags[0] + '|' + e.tags[1];
+      if (!refCount[key]) refCount[key] = 0;
+      var j = ARC_REF_JITTER[refCount[key] % ARC_REF_JITTER.length];
+      refCount[key]++;
+      e._x = Math.round((c1.x + c2.x) / 2 + j[0]);
+      e._y = Math.round((c1.y + c2.y) / 2 + j[1]);
+    } else {
+      var c = centers[p] || { x: 0, y: 0 };
+      if (!tagCount[p]) tagCount[p] = 0;
+      var off = ARC_CLUSTER_OFFSETS[tagCount[p] % ARC_CLUSTER_OFFSETS.length];
+      tagCount[p]++;
+      e._x = c.x + Math.round(off[0] * innerScale);
+      e._y = c.y + Math.round(off[1] * innerScale);
+    }
   });
 }
 
