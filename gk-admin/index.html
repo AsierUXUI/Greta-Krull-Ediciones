@@ -91,7 +91,9 @@ input[type="file"].img-file-input{width:.1px;height:.1px;opacity:0;position:abso
 .img-file-btn:hover{border-color:var(--ink);color:var(--ink)}
 .img-preview-row{display:none;align-items:center;gap:1rem;margin-top:.25rem}
 .img-preview{width:72px;height:72px;object-fit:cover;border:1px solid var(--ink-faint);flex-shrink:0}
-.img-preview-name{font-size:12px;color:var(--ink-mid);font-style:italic;word-break:break-all}
+.img-preview-name{font-size:12px;color:var(--ink-mid);font-style:italic;word-break:break-all;flex:1}
+.img-remove-btn{font-family:Georgia,serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--ink-faint);color:var(--ink-mid);padding:.25rem .6rem;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:border-color .15s,color .15s}
+.img-remove-btn:hover{border-color:var(--accent);color:var(--accent)}
 .img-warning{display:none;font-size:12px;color:var(--accent);background:#fdf5f5;border:1px solid #f0cccc;padding:.5rem .75rem;line-height:1.6}
 .img-warning a{color:var(--accent);text-decoration:underline}
 .img-name-hint{font-size:12px;color:var(--ink-mid);background:#f8f6f2;border-left:2px solid var(--ink-faint);padding:.45rem .7rem;line-height:1.65}
@@ -241,6 +243,7 @@ button.publish:disabled{opacity:.4;cursor:default}
       <div id="l-cover-preview-row" class="img-preview-row">
         <img id="l-cover-preview" class="img-preview" src="" alt="">
         <span id="l-cover-preview-name" class="img-preview-name"></span>
+        <button type="button" class="img-remove-btn" onclick="removeImage('l')">× Quitar</button>
       </div>
       <div id="l-cover-warning" class="img-warning">
         El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
@@ -369,6 +372,7 @@ button.publish:disabled{opacity:.4;cursor:default}
         <div id="a-imagen-preview-row" class="img-preview-row">
           <img id="a-imagen-preview" class="img-preview" src="" alt="">
           <span id="a-imagen-preview-name" class="img-preview-name"></span>
+          <button type="button" class="img-remove-btn" onclick="removeImage('a')">× Quitar</button>
         </div>
         <div id="a-imagen-warning" class="img-warning">
           El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
@@ -576,6 +580,14 @@ function clearFileSelect(prefix) {
   document.getElementById(warningId).style.display     = 'none';
   document.getElementById(currentDivId).style.display  = 'none';
   document.getElementById(currentDivId).textContent    = '';
+}
+
+function removeImage(prefix) {
+  var fileInputId = prefix === 'l' ? 'l-cover-file' : 'a-imagen-file';
+  var nameFieldId = prefix === 'l' ? 'l-cover'      : 'a-imagen';
+  document.getElementById(fileInputId).value = '';
+  document.getElementById(nameFieldId).value = '';
+  clearFileSelect(prefix);
 }
 
 // ── Load data ─────────────────────────────────────────────────────────────────
