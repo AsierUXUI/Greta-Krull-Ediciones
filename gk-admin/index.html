@@ -368,8 +368,8 @@ function loadData() {
     fileShaBooksjs  = librosFile.sha;
     fileShaArchivjs = archivoFile.sha;
 
-    var librosSrc  = atob(librosFile.content.replace(/\n/g,''));
-    var archivoSrc = atob(archivoFile.content.replace(/\n/g,''));
+    var librosSrc  = decodeURIComponent(escape(atob(librosFile.content.replace(/\n/g,''))));
+    var archivoSrc = decodeURIComponent(escape(atob(archivoFile.content.replace(/\n/g,''))));
 
     currentBooks   = parseJsArray(librosSrc,  'BOOKS')   || [];
     currentArchivo = parseJsArray(archivoSrc, 'ARCHIVO') || [];
@@ -556,7 +556,7 @@ function publishBook() {
   st.className = 'publish-status';
 
   ghGet('contenido/libros.js').then(function(file) {
-    var src = atob(file.content.replace(/\n/g,''));
+    var src = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
     return ghCommit('contenido/libros.js', src, entry, file.sha, 'Añadir libro N.º ' + id + ': ' + title);
   }).then(function(res) {
     if (res.ok) {
@@ -649,7 +649,7 @@ function publishArchivo() {
   st.className = 'publish-status';
 
   ghGet('contenido/archivo.js').then(function(file) {
-    var src = atob(file.content.replace(/\n/g,''));
+    var src = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
     return ghCommit('contenido/archivo.js', src, entry, file.sha, 'Añadir entrada de archivo: ' + titulo);
   }).then(function(res) {
     if (res.ok) {
