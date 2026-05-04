@@ -212,51 +212,64 @@ var BOOKS = [
 
   /*
   ╔══════════════════════════════════════════════════════════════════════════╗
-  ║  PLANTILLA PARA NUEVO LIBRO — copiar desde la coma de abajo             ║
+  ║  PLANTILLA — NUEVO LIBRO                                                ║
+  ║                                                                          ║
+  ║  1. Copia todo el bloque de abajo (desde la coma hasta el corchete)     ║
+  ║  2. Pégalo justo antes del   ];   del final                             ║
+  ║  3. Rellena solo los campos marcados como OBLIGATORIO                   ║
+  ║  4. Sube la imagen de portada a la carpeta images/                      ║
+  ║  5. Guarda, commitea y pushea — aparece automáticamente                 ║
   ╚══════════════════════════════════════════════════════════════════════════╝
 
   ,{
-    id: 5,                               // número correlativo (5, 6, 7…)
-    num: "N.º 5",
-    date: "2026",                        // año o "Próximamente"
-    collection: "Cuadernos Poesía y Traducción",
-    status: "upcoming",                  // "available" | "upcoming" | "announced"
+    // ── OBLIGATORIO ──────────────────────────────────────────────────────
 
-    title: "Título del libro",
-    titleCatalog: "Título del libro",    // puede incluir <br> para salto de línea
-    subtitle: null,                      // subtítulo corto o null
-    subtitleSub: null,                   // subtítulo secundario o null
+    id:   5,                          // número correlativo: 5, 6, 7…
+    num:  "N.º 5",                    // igual que id pero con formato
+    date: "2026",                     // año de publicación o "Próximamente"
 
+    status: "upcoming",
+    // "available"  → publicado, se puede solicitar
+    // "upcoming"   → en preparación, visible pero no disponible
+    // "announced"  → solo anunciado, sin fecha
+
+    title:  "Título del libro",
     authors: [
       { name: "Nombre Apellido", role: "Ensayo" },
-      // añadir más autores si es necesario
+      // si hay más autores, añadir más líneas iguales
     ],
-    authorByline: "Nombre Apellido",     // texto corto para listados
+    authorByline: "Nombre Apellido",  // nombres separados por · para listados
 
-    copiesTotal:     100,
-    copiesRemaining: null,               // número cuando esté disponible, ej: 87
+    descShort:   "Una frase breve que aparece en la cuadrícula de inicio.",
+    descCatalog: "Descripción más completa para la página de catálogo.",
 
-    descShort:   "Descripción breve para la cuadrícula de inicio.",
-    descCatalog: "Descripción más larga para el catálogo.",
-    quote:       null,                   // cita destacada o null
+    coverImage: "./images/nombre-portada.jpg",
+    // Sube la imagen a images/ con este mismo nombre exacto
 
-    synopsis:  null,                     // array de párrafos (strings) o null
-    contents:  null,                     // array de { n, title, sub } o null
-    specs:     null,                     // array de { k, v } o null
-    colophon:  null,                     // texto de colofón o null
+    // ── OPCIONAL — rellenar cuando esté disponible ────────────────────────
 
-    purchaseUrl:   null,                 // enlace de compra o null
-    purchaseLabel: null,                 // "IberLibro" etc. o null
-    purchaseDesc:  null,                 // descripción del enlace o null
+    collection: "Cuadernos Poesía y Traducción",  // nombre de la colección
+    subtitle:    null,                // subtítulo corto o null
+    subtitleSub: null,                // subtítulo secundario o null
 
-    coverImage:   null,                  // ruta a imagen de portada, ej: "./images/titulo-cover.jpg"
-    previewPages: null,                  // array de rutas para el flipbook o null
+    copiesTotal:     100,             // tirada total
+    copiesRemaining: null,            // ejemplares que quedan (actualizar al vender)
 
-    // Portada grande — reemplazar título y apellido autor
-    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Título<br>del libro</div><div class="bo">—</div><div class="bi">Apellido Autor</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    quote:    null,                   // cita destacada (texto entrecomillado) o null
+    synopsis: null,                   // array de párrafos: ["párrafo 1", "párrafo 2"]
+    contents: null,                   // índice: [{ n: "I", title: "Capítulo", sub: "subtítulo" }]
+    specs:    null,                   // ficha técnica: [{ k: "Páginas", v: "96" }]
+    colophon: null,                   // nota de pie de edición o null
 
-    // Portada pequeña — reemplazar título y apellido autor
-    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Título<br>del libro</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Apellido Autor</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+    purchaseUrl:   null,              // enlace externo de compra o null
+    purchaseLabel: null,              // nombre del enlace, ej: "IberLibro"
+    purchaseDesc:  null,              // descripción breve del enlace o null
+
+    previewPages:  null,              // páginas para el visor: ["./images/p1.jpg", ...]
+
+    titleCatalog:   "Título del libro",  // igual que title (puede incluir <br>)
+    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Título<br>del libro</div><div class="bo">—</div><div class="bi">Apellido</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Título<br>del libro</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Apellido</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   }
   */
 

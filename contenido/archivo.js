@@ -146,42 +146,55 @@ var ARCHIVO = [
 
   /*
   ╔══════════════════════════════════════════════════════════════════════════╗
-  ║  PLANTILLA PARA NUEVA ENTRADA — copiar desde la coma de abajo           ║
+  ║  PLANTILLA — NUEVA ENTRADA DE ARCHIVO                                   ║
+  ║                                                                          ║
+  ║  Hay tres tipos de entrada: FOTO, VÍDEO y MIXTO (foto + vídeo).        ║
+  ║                                                                          ║
+  ║  1. Copia el bloque del tipo que necesites                              ║
+  ║  2. Pégalo justo antes del   ];   del final (con la coma delante)      ║
+  ║  3. Rellena los campos                                                  ║
+  ║  4. Sube la imagen a images/ si la entrada tiene foto                  ║
+  ║  5. Guarda, commitea y pushea — aparece automáticamente en el archivo  ║
+  ║                                                                          ║
+  ║  NOTA SOBRE TAGS: el tag agrupa las entradas en el mapa del archivo.   ║
+  ║  Usa el mismo tag para entradas del mismo tema. Ejemplos:              ║
+  ║    ["artaud"]   ["prevel"]   ["traduccion"]   ["proceso-editorial"]    ║
+  ║  Una entrada con dos tags aparece entre los dos grupos:                ║
+  ║    ["artaud", "prevel"]                                                 ║
   ╚══════════════════════════════════════════════════════════════════════════╝
 
-  // ── Fotografía ──
+  // ── TIPO: FOTO ───────────────────────────────────────────────────────────
   ,{
     tipo:     "foto",
-    numero:   "N.º 1",           // número del cuaderno relacionado
-    fecha:    "Abril 2026",
-    etiqueta: "Fotografía · N.º 1",
+    fecha:    "Junio 2026",           // mes y año visible al usuario
+    etiqueta: "Fotografía · N.º 1",  // etiqueta pequeña sobre el título
     titulo:   "Título de la entrada",
-    texto:    "Descripción de la fotografía.",
+    texto:    "Texto descriptivo que aparece al abrir la entrada.",
     imagen:   "./images/nombre-del-archivo.jpg",
-    imageAlt: "Descripción breve de la imagen",
-    enlace:   null,
-    tags:     ["nombre-del-tema"], // agrupación interna — invisible al usuario
-    cuadernoId: 1                  // id del libro relacionado (1, 2, 3…)
+    // Sube la imagen a images/ con este nombre exacto
+    imageAlt: "Descripción breve de la imagen para accesibilidad",
+    enlace:   null,                   // URL externa opcional o null
+    tags:     ["nombre-del-tema"],    // agrupa en el mapa — ver nota arriba
+    cuadernoId: 1                     // id del libro relacionado (1, 2, 3…)
   }
 
-  // ── Vídeo ──
+  // ── TIPO: VÍDEO ──────────────────────────────────────────────────────────
   ,{
     tipo:     "video",
-    numero:   "N.º 2",
-    fecha:    "Mayo 2026",
-    etiqueta: "Vídeo · N.º 2",
+    fecha:    "Junio 2026",
+    etiqueta: "Vídeo · N.º 1",
     titulo:   "Título del vídeo",
     texto:    "Descripción del vídeo.",
     videoUrl: "https://www.youtube.com/embed/ID_DEL_VIDEO",
+    // Copia el ID del vídeo de YouTube y sustitúyelo aquí
     enlace:   null,
     tags:     ["nombre-del-tema"],
-    cuadernoId: 2
+    cuadernoId: 1
   }
 
-  // ── Mixto (imagen + vídeo) ──
+  // ── TIPO: MIXTO (foto + vídeo) ───────────────────────────────────────────
   ,{
     tipo:     "mixto",
-    numero:   "N.º 1",
     fecha:    "Junio 2026",
     etiqueta: "Documento · N.º 1",
     titulo:   "Título de la entrada",
