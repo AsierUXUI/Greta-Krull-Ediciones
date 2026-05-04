@@ -230,9 +230,13 @@ nav{position:sticky;top:0;z-index:200;background:var(--page);border-top:3px soli
 .dist-detail-row{display:flex;align-items:baseline;gap:.75rem;font-size:13px}
 .dist-detail-label{color:var(--ink-mid);min-width:80px;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
 .dist-detail-val{color:var(--ink)}
-.dist-subject{cursor:pointer;border-bottom:1px dashed var(--ink-faint);transition:border-color .15s,color .15s}
+.dist-subject{cursor:pointer;border-bottom:1px dashed var(--ink-faint);transition:border-color .15s,color .15s;display:inline-flex;align-items:center;gap:.4rem}
 .dist-subject:hover{color:var(--accent);border-color:var(--accent)}
 .dist-subject.copied{color:var(--accent)}
+.dist-subject-icon{opacity:.45;flex-shrink:0;transition:opacity .15s}
+.dist-subject:hover .dist-subject-icon{opacity:1}
+a[href^="mailto:"]{color:var(--accent);text-decoration:none}
+a[href^="mailto:"]:hover{opacity:.75}
 .dist-statement{padding:3.5rem;border-top:none;background:var(--accent)}
 .dist-statement-inner{max-width:640px;margin:0 auto;text-align:center}
 .dist-statement-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;font-style:italic;color:var(--on-accent);margin-bottom:1rem}
@@ -753,7 +757,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
         <div class="dist-detail-row"><span class="dist-detail-label">Respuesta</span><span class="dist-detail-val">En 48 horas</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Pago</span><span class="dist-detail-val">Transferencia bancaria</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Contacto</span><span class="dist-detail-val"><a href="mailto:gretakrullediciones@gmail.com">gretakrullediciones@gmail.com</a></span></div>
-        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto">Solicitud de ejemplar — Greta Krull Ediciones</span></span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto"><span class="dist-subject-text">Solicitud de ejemplar — Greta Krull Ediciones</span><svg class="dist-subject-icon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg></span></span></div>
       </div>
     </div>
     <div class="dist-block">
@@ -764,7 +768,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
         <div class="dist-detail-row"><span class="dist-detail-label">España</span><span class="dist-detail-val">Correos certificado</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Internacional</span><span class="dist-detail-val">Según destino</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Plazo</span><span class="dist-detail-val">3–7 días hábiles</span></div>
-        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto">Consulta de envío — Greta Krull Ediciones</span></span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto"><span class="dist-subject-text">Consulta de envío — Greta Krull Ediciones</span><svg class="dist-subject-icon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg></span></span></div>
       </div>
     </div>
     <div class="dist-block">
@@ -775,7 +779,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
         <div class="dist-detail-row"><span class="dist-detail-label">Descuento</span><span class="dist-detail-val">A convenir</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Mínimo</span><span class="dist-detail-val">5 ejemplares</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Consulta</span><span class="dist-detail-val"><a href="mailto:gretakrullediciones@gmail.com">gretakrullediciones@gmail.com</a></span></div>
-        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto">Distribución — Greta Krull Ediciones</span></span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto"><span class="dist-subject-text">Distribución — Greta Krull Ediciones</span><svg class="dist-subject-icon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg></span></span></div>
       </div>
     </div>
     <div class="dist-block">
@@ -786,7 +790,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
         <div class="dist-detail-row"><span class="dist-detail-label">Ejemplares</span><span class="dist-detail-val">Limitados por título</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Formato</span><span class="dist-detail-val">Impreso únicamente</span></div>
         <div class="dist-detail-row"><span class="dist-detail-label">Solicitud</span><span class="dist-detail-val"><a href="mailto:gretakrullediciones@gmail.com">gretakrullediciones@gmail.com</a></span></div>
-        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto">Solicitud de reseña — Greta Krull Ediciones</span></span></div>
+        <div class="dist-detail-row"><span class="dist-detail-label">Asunto</span><span class="dist-detail-val"><span class="dist-subject" onclick="copySubject(this)" title="Copiar asunto"><span class="dist-subject-text">Solicitud de reseña — Greta Krull Ediciones</span><svg class="dist-subject-icon" width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/></svg></span></span></div>
       </div>
     </div>
   </div>
@@ -1361,11 +1365,11 @@ function submitForm(e, type) {
 
 // ─── Copy subject ────────────────────────────────────────────────────────────
 function copySubject(el) {
-  navigator.clipboard.writeText(el.textContent).then(function() {
+  var textEl = el.querySelector('.dist-subject-text');
+  var text = textEl ? textEl.textContent : el.textContent;
+  navigator.clipboard.writeText(text).then(function() {
     el.classList.add('copied');
-    var orig = el.textContent;
-    el.textContent = '¡Copiado!';
-    setTimeout(function() { el.textContent = orig; el.classList.remove('copied'); }, 1500);
+    if (textEl) { var orig = textEl.textContent; textEl.textContent = '¡Copiado!'; setTimeout(function() { textEl.textContent = orig; el.classList.remove('copied'); }, 1500); }
   });
 }
 
