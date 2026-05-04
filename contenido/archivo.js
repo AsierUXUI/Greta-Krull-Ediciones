@@ -150,8 +150,9 @@ var ARCHIVO = [
   ║                                                                          ║
   ║  Hay tres tipos de entrada: FOTO, VÍDEO y MIXTO (foto + vídeo).        ║
   ║                                                                          ║
-  ║  1. Copia el bloque del tipo que necesites                              ║
-  ║  2. Pégalo justo antes del   ];   del final (con la coma delante)      ║
+  ║  1. Selecciona el bloque del tipo que necesites                         ║
+  ║     desde ▼ INICIO COPIA hasta FIN COPIA ▲ (inclusive)                ║
+  ║  2. Pégalo justo encima de la línea   ];   del final                   ║
   ║  3. Rellena los campos                                                  ║
   ║  4. Sube la imagen a images/ si la entrada tiene foto                  ║
   ║  5. Guarda, commitea y pushea — aparece automáticamente en el archivo  ║
@@ -164,6 +165,7 @@ var ARCHIVO = [
   ╚══════════════════════════════════════════════════════════════════════════╝
 
   // ── TIPO: FOTO ───────────────────────────────────────────────────────────
+  ▼ INICIO COPIA ─────────────────────────────────────────────────────────────
   ,{
     tipo:     "foto",
     fecha:    "Junio 2026",           // mes y año visible al usuario
@@ -171,14 +173,16 @@ var ARCHIVO = [
     titulo:   "Título de la entrada",
     texto:    "Texto descriptivo que aparece al abrir la entrada.",
     imagen:   "./images/nombre-del-archivo.jpg",
-    // Sube la imagen a images/ con este nombre exacto
-    imageAlt: "Descripción breve de la imagen para accesibilidad",
+    // Sube la imagen a images/ con este mismo nombre exacto
+    imageAlt: "Descripción breve de la imagen",
     enlace:   null,                   // URL externa opcional o null
     tags:     ["nombre-del-tema"],    // agrupa en el mapa — ver nota arriba
     cuadernoId: 1                     // id del libro relacionado (1, 2, 3…)
   }
+  ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
 
   // ── TIPO: VÍDEO ──────────────────────────────────────────────────────────
+  ▼ INICIO COPIA ─────────────────────────────────────────────────────────────
   ,{
     tipo:     "video",
     fecha:    "Junio 2026",
@@ -191,8 +195,10 @@ var ARCHIVO = [
     tags:     ["nombre-del-tema"],
     cuadernoId: 1
   }
+  ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
 
   // ── TIPO: MIXTO (foto + vídeo) ───────────────────────────────────────────
+  ▼ INICIO COPIA ─────────────────────────────────────────────────────────────
   ,{
     tipo:     "mixto",
     fecha:    "Junio 2026",
@@ -206,6 +212,7 @@ var ARCHIVO = [
     tags:     ["nombre-del-tema"],
     cuadernoId: 1
   }
+  ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
   */
 
 ];

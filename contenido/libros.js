@@ -214,13 +214,14 @@ var BOOKS = [
   ╔══════════════════════════════════════════════════════════════════════════╗
   ║  PLANTILLA — NUEVO LIBRO                                                ║
   ║                                                                          ║
-  ║  1. Copia todo el bloque de abajo (desde la coma hasta el corchete)     ║
-  ║  2. Pégalo justo antes del   ];   del final                             ║
+  ║  1. Selecciona desde ▼ INICIO COPIA hasta FIN COPIA ▲ (inclusive)      ║
+  ║  2. Copia y pega justo encima de la línea   ];   del final              ║
   ║  3. Rellena solo los campos marcados como OBLIGATORIO                   ║
   ║  4. Sube la imagen de portada a la carpeta images/                      ║
   ║  5. Guarda, commitea y pushea — aparece automáticamente                 ║
   ╚══════════════════════════════════════════════════════════════════════════╝
 
+  ▼ INICIO COPIA ─────────────────────────────────────────────────────────────
   ,{
     // ── OBLIGATORIO ──────────────────────────────────────────────────────
 
@@ -271,6 +272,7 @@ var BOOKS = [
     coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Título<br>del libro</div><div class="bo">—</div><div class="bi">Apellido</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
     coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Título<br>del libro</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Apellido</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   }
+  ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
   */
 
 ];
