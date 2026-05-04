@@ -4,22 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Greta Krull Ediciones — Editorial literaria independiente</title>
-<meta name="description" content="Greta Krull Ediciones es una editorial literaria independiente con sede en Madrid. Publicamos títulos de poesía, ensayo y narrativa de vanguardia en ediciones cuidadas y de tirada limitada.">
-<meta name="keywords" content="Greta Krull, editorial independiente, poesía, literatura, Madrid, edición limitada, Artaud, Prevel">
+<meta name="description" content="Greta Krull Ediciones es una editorial literaria independiente con sede en Madrid. Publicamos títulos de poesía, ensayo y narrativa de vanguardia en ediciones cuidadas y de tirada limitada. Primer título: Artaud y Prevel — 100 ejemplares numerados.">
+<meta name="keywords" content="Greta Krull Ediciones, editorial independiente, poesía, literatura, Madrid, edición limitada, Artaud, Prevel, Jacques Prevel, Antonin Artaud, libro poesía español">
 <meta name="author" content="Greta Krull Ediciones">
 <link rel="canonical" href="https://gretakrullediciones.com/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://gretakrullediciones.com/">
 <meta property="og:title" content="Greta Krull Ediciones — Editorial literaria independiente">
-<meta property="og:description" content="Editorial literaria independiente con sede en Madrid. Ediciones cuidadas y de tirada limitada.">
-<meta property="og:image" content="https://gretakrullediciones.com/images/favicon.png">
+<meta property="og:description" content="Editorial literaria independiente con sede en Madrid. Ediciones cuidadas y de tirada limitada. Primer título: Artaud y Prevel.">
+<meta property="og:image" content="https://gretakrullediciones.com/images/artaud-cover.jpg">
 <meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Greta Krull Ediciones">
 <!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Greta Krull Ediciones">
-<meta name="twitter:description" content="Editorial literaria independiente con sede en Madrid.">
-<meta name="twitter:image" content="https://gretakrullediciones.com/images/favicon.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Greta Krull Ediciones — Editorial literaria independiente">
+<meta name="twitter:description" content="Editorial literaria independiente con sede en Madrid. Ediciones cuidadas y de tirada limitada.">
+<meta name="twitter:image" content="https://gretakrullediciones.com/images/artaud-cover.jpg">
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://gretakrullediciones.com/#organization",
+      "name": "Greta Krull Ediciones",
+      "url": "https://gretakrullediciones.com",
+      "logo": "https://gretakrullediciones.com/images/logo-gretakrull.png",
+      "foundingDate": "2026",
+      "foundingLocation": "Madrid, España",
+      "description": "Editorial literaria independiente con sede en Madrid. Publicamos títulos de poesía, ensayo y narrativa de vanguardia en ediciones cuidadas y de tirada limitada.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "gretakrullediciones@gmail.com",
+        "contactType": "customer service"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://gretakrullediciones.com/#website",
+      "url": "https://gretakrullediciones.com",
+      "name": "Greta Krull Ediciones",
+      "publisher": { "@id": "https://gretakrullediciones.com/#organization" }
+    },
+    {
+      "@type": "Book",
+      "@id": "https://gretakrullediciones.com/#book-1",
+      "name": "Artaud y Prevel",
+      "headline": "Un paseo por la dramática de la adicción",
+      "url": "https://gretakrullediciones.com/#detail/1",
+      "author": [
+        { "@type": "Person", "name": "Miguel Vega Manrique" },
+        { "@type": "Person", "name": "Jacques Prevel" }
+      ],
+      "publisher": { "@id": "https://gretakrullediciones.com/#organization" },
+      "inLanguage": "es",
+      "bookFormat": "Hardcover",
+      "numberOfPages": "100",
+      "datePublished": "2026-03",
+      "description": "Primera traducción al español de la poesía de Jacques Prevel, junto a un ensayo sobre la relación entre Artaud y Prevel. 100 ejemplares numerados a mano.",
+      "image": "https://gretakrullediciones.com/images/artaud-cover.jpg"
+    }
+  ]
+}
+</script>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
@@ -1061,7 +1110,7 @@ function renderHomeHero() {
   if (!el) return;
   el.setAttribute('onclick', 'go(\'detail\',' + book.id + ')');
   var heroBookInner = book.coverImage
-    ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+    ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
     : '<div class="book-obj-b1"></div><div class="book-obj-b2"></div><div class="book-obj-txt">' + book.coverHtml + '</div>';
   el.innerHTML =
     '<div class="hero-book-area">' +
@@ -1082,7 +1131,7 @@ function renderGridBook(book) {
   var click = book.status === 'available' ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
   var coverBg = book.status !== 'available' ? ' style="background:#eeeae0"' : '';
   var coverInner = book.coverImage
-    ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+    ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
     : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
   return '<div class="grid-book' + dim + '"' + click + '>' +
     '<div class="grid-cover-wrap">' +
@@ -1130,7 +1179,7 @@ function renderCatalog() {
       rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">' + book.copiesTotal + ' ejemplares · Sin reimpr.</div></div>';
     }
     var catCoverInner = book.coverImage
-      ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+      ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
       : '<div class="cat-cover-b"></div><div class="cat-cover-txt">' + book.coverHtmlSmall + '</div>';
     return '<div class="cat-row' + dim + '"' + click + '>' +
       '<div class="cat-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' + catCoverInner + '</div>' +
@@ -1229,7 +1278,7 @@ function renderDetail(bookId) {
           return '<div class="' + cls + '"' + onclick + '>' +
             '<div class="dc-spine"></div>' +
             (book.coverImage
-              ? '<img src="' + book.coverImage + '" alt="' + book.title + '">'
+              ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
               : '<div class="dc-b1"></div><div class="dc-b2"></div><div class="dc-txt">' + book.coverHtml + '</div>') +
           '</div>';
         })() +
@@ -1621,7 +1670,7 @@ function arcBuildPanelHTML(e) {
   c += '<div class="arc-panel-date">' + e.fecha + '</div>';
   c += '<h2 class="arc-panel-title">' + e.titulo + '</h2>';
   if ((e.tipo === 'foto' || e.tipo === 'mixto') && e.imagen) {
-    c += '<img class="arc-panel-img" src="' + e.imagen + '" alt="' + (e.imageAlt||'') + '">';
+    c += '<img class="arc-panel-img" src="' + e.imagen + '" alt="' + (e.imageAlt||e.titulo||'') + '" loading="lazy">';
   }
   if ((e.tipo === 'video' || e.tipo === 'mixto') && e.videoUrl) {
     c += '<div class="arc-panel-video"><iframe src="' + e.videoUrl + '" allowfullscreen></iframe></div>';
