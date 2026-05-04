@@ -107,7 +107,9 @@ button.publish:disabled{opacity:.4;cursor:default}
 <div id="login">
   <h1>Greta Krull · Acceso</h1>
   <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
-  <input type="password" id="gh-token" placeholder="Token de GitHub" onkeydown="if(event.key==='Enter')checkPwd()">
+  <div id="token-row">
+    <input type="password" id="gh-token" placeholder="Token de GitHub" onkeydown="if(event.key==='Enter')checkPwd()">
+  </div>
   <button onclick="checkPwd()">Entrar</button>
   <div class="login-error" id="login-error"></div>
 </div>
@@ -115,7 +117,7 @@ button.publish:disabled{opacity:.4;cursor:default}
 <div id="app">
   <div class="header-top">
     <h1>Greta Krull Ediciones — Panel de contenido</h1>
-    <span class="header-meta">Uso interno</span>
+    <button onclick="cerrarSesion()" style="font-family:Georgia,serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:none;border:none;color:var(--ink-faint);cursor:pointer;padding:0">Cerrar sesión</button>
   </div>
 
   <div id="status-bar"></div>
@@ -391,14 +393,31 @@ var libroEditId     = null;
 var archivoEditIdx  = null;
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
+function iniciarSesion(pwd, token) {
+  GH_TOKEN = token;
+  localStorage.setItem('gk_token', token);
+  localStorage.setItem('gk_pwd',   pwd);
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('app').style.display   = 'block';
+  loadData();
+}
+
+function cerrarSesion() {
+  localStorage.removeItem('gk_token');
+  localStorage.removeItem('gk_pwd');
+  GH_TOKEN = '';
+  document.getElementById('app').style.display   = 'none';
+  document.getElementById('login').style.display = 'flex';
+  document.getElementById('pwd').value = '';
+  document.getElementById('gh-token').value = '';
+  document.getElementById('token-row').style.display = 'block';
+}
+
 function checkPwd() {
   var token = document.getElementById('gh-token').value.trim();
   var pwd   = document.getElementById('pwd').value;
   if (pwd === PASSWORD && token) {
-    GH_TOKEN = token;
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('app').style.display   = 'block';
-    loadData();
+    iniciarSesion(pwd, token);
   } else if (pwd !== PASSWORD) {
     document.getElementById('login-error').textContent = 'Contraseña incorrecta';
     document.getElementById('pwd').value = '';
@@ -408,6 +427,17 @@ function checkPwd() {
     document.getElementById('gh-token').focus();
   }
 }
+
+// Auto-login si hay sesión guardada
+(function() {
+  var savedPwd   = localStorage.getItem('gk_pwd');
+  var savedToken = localStorage.getItem('gk_token');
+  if (savedPwd === PASSWORD && savedToken) {
+    document.getElementById('token-row').style.display = 'none';
+    document.getElementById('pwd').value = savedPwd;
+    iniciarSesion(savedPwd, savedToken);
+  }
+})();
 
 // ── GitHub API ────────────────────────────────────────────────────────────────
 function ghGet(path) {
