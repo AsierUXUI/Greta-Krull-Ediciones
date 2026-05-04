@@ -96,6 +96,7 @@ input[type="file"].img-file-input{width:.1px;height:.1px;opacity:0;position:abso
 .img-warning a{color:var(--accent);text-decoration:underline}
 .img-name-hint{font-size:12px;color:var(--ink-mid);background:#f8f6f2;border-left:2px solid var(--ink-faint);padding:.45rem .7rem;line-height:1.65}
 .img-name-hint code{font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.05rem .3rem}
+.img-current-name{display:none;font-size:12px;color:var(--ink-mid);font-style:italic;padding:.35rem .6rem;background:var(--cream);border:1px solid var(--ink-faint)}
 
 /* ── TAGS ── */
 .tag-box{background:#f8f6f2;border:1px solid var(--ink-faint);padding:1rem 1.1rem;margin-bottom:1.25rem}
@@ -245,9 +246,10 @@ button.publish:disabled{opacity:.4;cursor:default}
         El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
         <a href="https://www.iloveimg.com/es/comprimir-imagen" target="_blank">iloveimg.com →</a>
       </div>
-      <input type="text" id="l-cover" placeholder="portada-titulo.jpg" oninput="clearFileSelect('l')">
+      <input type="hidden" id="l-cover">
+      <div id="l-cover-current" class="img-current-name"></div>
       <div class="img-name-hint">
-        <strong>Nombre sugerido:</strong> <code>cuaderno-[N]-titulo.jpg</code> — todo en minúsculas, sin espacios ni acentos, con guiones.<br>
+        Nómbrala en minúsculas, sin espacios ni acentos, con guiones.<br>
         Ejemplo: <code>cuaderno-2-carta-cabala.jpg</code><br>
         Este nombre es como quedará guardado en GitHub y como deberás referirlo si lo necesitas en otro sitio.
       </div>
@@ -372,9 +374,10 @@ button.publish:disabled{opacity:.4;cursor:default}
           El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
           <a href="https://www.iloveimg.com/es/comprimir-imagen" target="_blank">iloveimg.com →</a>
         </div>
-        <input type="text" id="a-imagen" placeholder="nombre-archivo.jpg" oninput="clearFileSelect('a')">
+        <input type="hidden" id="a-imagen">
+        <div id="a-imagen-current" class="img-current-name"></div>
         <div class="img-name-hint">
-          <strong>Nombre sugerido:</strong> <code>archivo-[tag]-[descripcion].jpg</code> — minúsculas, sin espacios ni acentos, con guiones.<br>
+          Nómbrala en minúsculas, sin espacios ni acentos, con guiones.<br>
           Ejemplo: <code>archivo-prevel-retrato-1948.jpg</code><br>
           Este nombre es como quedará en GitHub. Úsalo si necesitas referenciar la imagen en otro lugar.
         </div>
@@ -550,6 +553,9 @@ function handleImageSelect(prefix) {
 
   imageFiles[prefix] = file;
   document.getElementById(nameFieldId).value = file.name;
+  var currentDiv = document.getElementById(prefix === 'l' ? 'l-cover-current' : 'a-imagen-current');
+  currentDiv.textContent = 'Archivo seleccionado: ' + file.name;
+  currentDiv.style.display = 'block';
   document.getElementById(warningId).style.display = file.size > 2 * 1024 * 1024 ? 'block' : 'none';
 
   var reader = new FileReader();
@@ -565,8 +571,11 @@ function clearFileSelect(prefix) {
   imageFiles[prefix] = null;
   var previewRowId = prefix === 'l' ? 'l-cover-preview-row' : 'a-imagen-preview-row';
   var warningId    = prefix === 'l' ? 'l-cover-warning'     : 'a-imagen-warning';
-  document.getElementById(previewRowId).style.display = 'none';
-  document.getElementById(warningId).style.display    = 'none';
+  var currentDivId = prefix === 'l' ? 'l-cover-current'     : 'a-imagen-current';
+  document.getElementById(previewRowId).style.display  = 'none';
+  document.getElementById(warningId).style.display     = 'none';
+  document.getElementById(currentDivId).style.display  = 'none';
+  document.getElementById(currentDivId).textContent    = '';
 }
 
 // ── Load data ─────────────────────────────────────────────────────────────────
@@ -695,6 +704,7 @@ function clearForm(tab) {
     document.getElementById('l-status').value = '';
     document.getElementById('status-libro').textContent = '';
     document.getElementById('status-libro').className = 'publish-status';
+    document.getElementById('l-cover').value = '';
     clearFileSelect('l');
     document.getElementById('l-cover-file').value = '';
   } else {
@@ -705,6 +715,7 @@ function clearForm(tab) {
     document.getElementById('status-archivo').textContent = '';
     document.getElementById('status-archivo').className = 'publish-status';
     document.getElementById('a-tags-new-warn').style.display = 'none';
+    document.getElementById('a-imagen').value = '';
     clearFileSelect('a');
     document.getElementById('a-imagen-file').value = '';
   }
@@ -734,7 +745,11 @@ function loadBookForEdit(id) {
   document.getElementById('l-subtitle').value         = b.subtitle       || '';
   document.getElementById('l-desc-short').value       = b.descShort      || '';
   document.getElementById('l-desc-catalog').value     = b.descCatalog    || '';
-  document.getElementById('l-cover').value            = b.coverImage ? b.coverImage.replace('./images/', '') : '';
+  var lCover = b.coverImage ? b.coverImage.replace('./images/', '') : '';
+  document.getElementById('l-cover').value = lCover;
+  var lCoverDiv = document.getElementById('l-cover-current');
+  if (lCover) { lCoverDiv.textContent = 'Imagen actual: ' + lCover; lCoverDiv.style.display = 'block'; }
+  else { lCoverDiv.textContent = ''; lCoverDiv.style.display = 'none'; }
   document.getElementById('l-copies-total').value     = b.copiesTotal     != null ? b.copiesTotal     : '';
   document.getElementById('l-copies-remaining').value = b.copiesRemaining != null ? b.copiesRemaining : '';
   document.getElementById('l-quote').value            = b.quote          || '';
@@ -754,7 +769,11 @@ function loadArchivoForEdit(idx) {
   document.getElementById('a-etiqueta').value = e.etiqueta || '';
   document.getElementById('a-titulo').value   = e.titulo   || '';
   document.getElementById('a-texto').value    = e.texto    || '';
-  document.getElementById('a-imagen').value   = e.imagen   ? e.imagen.replace('./images/', '') : '';
+  var aImagen = e.imagen ? e.imagen.replace('./images/', '') : '';
+  document.getElementById('a-imagen').value = aImagen;
+  var aImagenDiv = document.getElementById('a-imagen-current');
+  if (aImagen) { aImagenDiv.textContent = 'Imagen actual: ' + aImagen; aImagenDiv.style.display = 'block'; }
+  else { aImagenDiv.textContent = ''; aImagenDiv.style.display = 'none'; }
   document.getElementById('a-imagealt').value = e.imageAlt || '';
   var vm = e.videoUrl ? e.videoUrl.match(/embed\/(.+)$/) : null;
   document.getElementById('a-videoid').value  = vm ? vm[1] : '';
