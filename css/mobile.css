@@ -1,0 +1,102 @@
+/* ── DESKTOP HOVER ONLY ── */
+@media(hover:none){
+  .band-item:hover{padding-left:0}
+  .nav-links a::after{display:none}
+}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{font-size:15px}
+
+  /* Nav */
+  nav{padding:0 1.25rem;position:relative}
+  .nav-logo img{height:38px}
+  .nav-toggle{display:flex;align-items:center;height:100%;gap:.5rem}
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--page);border-bottom:1px solid var(--ink);flex-direction:column;height:auto;z-index:300}
+  .nav-links.open{display:flex}
+  .nav-links li{height:auto;width:100%}
+  .nav-links a{border-left:none;border-top:1px solid var(--ink-faint);padding:.9rem 1.25rem;font-size:12px;width:100%;justify-content:flex-start}
+  .nav-links a.active{border-bottom:none;border-left:2px solid var(--accent);color:var(--accent)}
+
+  /* Home hero */
+  .home-hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{border-right:none;border-bottom:1px solid var(--ink);padding:2.5rem 1.5rem}
+  .hero-title{font-size:42px}
+  .hero-right{min-height:340px}
+  .hero-book-area{padding:2rem 2rem 1.5rem}
+  .hero-caption{padding:1.25rem 1.5rem 1.5rem}
+
+  /* Home grid → horizontal carousel */
+  .home-grid,.cat-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid var(--ink)}
+  .home-grid::-webkit-scrollbar,.cat-grid::-webkit-scrollbar{display:none}
+  .grid-book{flex:0 0 78vw;scroll-snap-align:start;border-right:1px solid var(--ink-faint);border-top:2px solid transparent;padding:1.5rem 1.25rem 2rem}
+  .grid-book:last-child{border-right:none}
+  .grid-book.dim:hover{border-top-color:transparent}
+  .grid-cover-wrap{margin-bottom:1rem}
+  .grid-cover{width:88px;height:122px}
+  .section-bar{padding:.75rem 1.25rem}
+
+  /* Home band */
+  .home-band{grid-template-columns:1fr;gap:2rem;padding:2.5rem 1.5rem}
+  .band-quote{font-size:22px}
+
+  /* Catalog */
+  .cat-header{padding:2rem 1.25rem 1.5rem;flex-direction:column;align-items:flex-start;gap:.75rem}
+  .cat-h1{font-size:36px}
+  .cat-note{text-align:left}
+  .cat-section{padding:.75rem 1.25rem}
+  .cat-row{grid-template-columns:76px 1fr;gap:.75rem 1rem;padding:1.5rem 1.25rem;align-items:start}
+  .cat-cover{width:76px;height:107px}
+  .cat-title{font-size:22px}
+  .cat-right{grid-column:2;text-align:left;margin-top:.25rem}
+  .copies-track{margin-left:0}
+
+  /* Detail */
+  .detail-layout{grid-template-columns:1fr}
+  .detail-left{position:static;height:auto;border-right:none;border-bottom:1px solid var(--ink);padding:2rem 1.25rem;flex-direction:column;align-items:center;gap:1.5rem}
+  .detail-cover{width:140px;height:196px;flex-shrink:0}
+  .detail-caption,.detail-copies,.btn-primary,.btn-ghost,.detail-specs{width:100%;text-align:center}
+  .detail-right{padding:2rem 1.25rem 3rem}
+  .detail-h1{font-size:36px}
+  .breadcrumb{padding:.75rem 1.25rem;font-size:11px}
+  .booknav{grid-template-columns:1fr}
+  .booknav-card:first-child{border-right:none;border-bottom:1px solid var(--ink-faint)}
+
+  /* Distribution */
+  .dist-header{padding:2.5rem 1.25rem 2rem}
+  .dist-h1{font-size:36px}
+  .dist-grid{grid-template-columns:1fr}
+  .dist-block{border-right:none}
+  .dist-statement{padding:2rem 1.25rem}
+
+  /* Contact & Consulta */
+  .contact-grid,.consulta-wrap{grid-template-columns:1fr}
+  .contact-left,.consulta-left{border-right:none;border-bottom:1px solid var(--ink);padding:2.5rem 1.25rem}
+  .contact-h1,.consulta-h1{font-size:36px}
+  .contact-info{margin-top:1.5rem;gap:1.25rem}
+  .contact-right,.consulta-right{padding:2rem 1.25rem 3rem}
+
+  /* About */
+  .about-header{grid-template-columns:1fr;min-height:auto;padding:2.5rem 1.25rem 2rem}
+  .about-header-left{border-right:none;padding-right:0;border-bottom:1px solid var(--ink);padding-bottom:2rem;margin-bottom:0}
+  .about-header-right{padding-left:0;padding-top:2rem}
+  .about-name{font-size:clamp(52px,12vw,80px)}
+  .about-manifesto{grid-template-columns:1fr}
+  .manifesto-left{border-right:none;border-bottom:1px solid var(--ink-faint)}
+  .about-closing{flex-direction:column;padding:2.5rem 1.25rem;gap:2rem}
+
+  /* Footer */
+  footer{padding:1.25rem}
+  .section-bar-link{display:none}
+
+  /* Modal */
+  .modal-box{width:calc(100vw - 1.5rem)}
+
+  /* Detail left on mobile: make cover and info side by side */
+  .detail-specs{margin-top:.5rem}
+}
+
+@media(max-width:480px){
+  .grid-book{flex:0 0 88vw}
+  .hero-title{font-size:36px}
+}

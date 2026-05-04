@@ -1,0 +1,28 @@
+/* ── GRETA KRULL / ABOUT ── */
+.about-header{padding:5rem 3rem 4rem;border-bottom:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:55vh;background:var(--cream);position:relative;overflow:hidden;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%238c1a13' stroke-width='0.7' stroke-opacity='0.17'%3E%3Cpath d='M 60 0 A 60 60 0 0 1 0 60'/%3E%3Cpath d='M 0 0 A 60 60 0 0 0 60 60'/%3E%3Cpath d='M 0 60 A 60 60 0 0 1 60 0'/%3E%3Cpath d='M 60 60 A 60 60 0 0 0 0 0'/%3E%3C/g%3E%3C/svg%3E")}
+.about-header::before{content:'GK';font-family:'Cormorant Garamond',serif;font-size:min(60vw,600px);font-weight:300;font-style:italic;color:var(--ink);opacity:.04;position:absolute;right:-.05em;bottom:-.25em;line-height:.85;pointer-events:none;user-select:none;z-index:0}
+.about-header>*{position:relative;z-index:1}
+.about-header-left{border-right:1px solid var(--ink);padding-right:3.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.about-overline{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:3rem}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,7vw,96px);font-weight:300;font-style:italic;line-height:.92;letter-spacing:-.025em;color:var(--ink)}
+.about-name-sub{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--ink-light);margin-top:.75rem;letter-spacing:.02em}
+.about-header-intro{font-size:15px;line-height:1.9;color:var(--ink-mid);max-width:420px;margin-top:auto;padding-top:2.5rem}
+.about-header-right{padding-left:3.5rem;display:flex;flex-direction:column;justify-content:flex-end}
+.about-pull{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.2vw,28px);font-weight:300;font-style:italic;line-height:1.4;color:var(--ink);max-width:480px;border-left:2px solid var(--ink);padding-left:2rem;margin-bottom:2rem}
+.about-pull-attr{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);padding-left:2rem}
+.about-manifesto{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink)}
+.manifesto-left{padding:4rem 3.5rem;border-right:1px solid var(--ink)}
+.manifesto-section-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2rem}
+.manifesto-prose{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;line-height:1.9;color:var(--ink-mid)}
+.manifesto-prose p{margin-bottom:1.5rem}
+.manifesto-prose p:last-child{margin-bottom:0}
+.manifesto-right{padding:4rem 3.5rem;background:var(--cream)}
+.tesis-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-light);margin-bottom:2rem}
+.tesis-list{display:flex;flex-direction:column}
+.tesis-item{display:flex;gap:1.5rem;align-items:baseline;padding:1.1rem 0;border-top:.5px solid var(--ink-faint)}
+.tesis-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--ink-faint);min-width:2rem;flex-shrink:0}
+.tesis-text{font-size:15px;line-height:1.8;color:var(--ink-mid)}
+.about-closing{padding:4rem 3rem;background:var(--cream);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.about-closing-text{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;line-height:1.35;color:var(--ink-mid);max-width:520px}
+.about-closing-cta{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid var(--ink);padding-bottom:1px;text-decoration:none;white-space:nowrap;transition:opacity .15s;flex-shrink:0}
+.about-closing-cta:hover{opacity:1;color:var(--accent);border-bottom-color:var(--accent)}

@@ -1,0 +1,28 @@
+/* ── CATÁLOGO ── */
+.cat-header{padding:3.5rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end}
+.cat-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic}
+.cat-note{font-size:13px;color:var(--ink-mid);font-style:italic;text-align:right;line-height:1.8}
+.cat-section{padding:.9rem 2.5rem;border-bottom:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-accent);display:flex;justify-content:space-between;background:var(--accent)}
+.cat-row{display:grid;grid-template-columns:100px 1fr auto;gap:2.5rem;padding:2.25rem 2.5rem;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .18s,border-left .18s;border-left:3px solid transparent;align-items:start}
+.cat-row:hover{background:var(--cream);border-left-color:var(--accent)}
+.cat-row:hover .cat-title{color:var(--accent)}
+.cat-title{transition:color .18s}
+.cat-row.av{border-left-color:var(--accent);background:var(--page)}
+.cat-row.av:hover{background:var(--cream-dark)}
+.cat-row.dim{opacity:.45;cursor:default}.cat-row.dim:hover{background:transparent}
+.cat-row.dimmer{opacity:.22;cursor:default}.cat-row.dimmer:hover{background:transparent}
+.cat-cover{width:100px;height:140px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:box-shadow .2s,transform .2s}
+.cat-row:hover .cat-cover{box-shadow:5px 5px 0 #1a191810;transform:translateY(-2px)}
+.cat-cover-b{position:absolute;inset:5px;border:.5px solid #1a191810}
+.cat-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
+.cat-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.4rem}
+.cat-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;font-style:italic;line-height:1.1;margin-bottom:.3rem}
+.cat-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.9rem}
+.cat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:500px}
+.cat-quote{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink-mid);line-height:1.7;max-width:500px;margin-top:.75rem}
+.cat-right{text-align:right;display:flex;flex-direction:column;gap:.75rem}
+.cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--accent);color:var(--accent);display:inline-block}
+.cat-avail{font-size:13px;color:var(--ink-mid);font-style:italic;line-height:1.6}
+.copies-track{width:80px;height:1px;background:var(--ink-ghost);margin-left:auto}
+.copies-fill{height:100%;background:var(--ink)}
+.copies-note{font-size:10px;color:var(--ink-light);margin-top:4px;font-style:italic}

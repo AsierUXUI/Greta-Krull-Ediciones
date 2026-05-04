@@ -1,0 +1,26 @@
+/* ── DISTRIBUCIÓN ── */
+.dist-header{padding:4rem 3.5rem 3rem;border-bottom:1px solid var(--ink);max-width:680px}
+.dist-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;margin-bottom:1.5rem}
+.dist-intro{font-size:16px;line-height:1.9;color:var(--ink-mid);max-width:560px}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}
+.dist-block{padding:3rem 3.5rem;border-right:1px solid var(--ink-faint);border-bottom:1px solid var(--ink-faint)}
+.dist-block:nth-child(2n){border-right:none}
+.dist-block:nth-last-child(-n+2){border-bottom:none}
+.dist-block-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:1rem}
+.dist-block-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;font-style:italic;margin-bottom:1rem}
+.dist-block-text{font-size:14px;line-height:1.85;color:var(--ink-mid)}
+.dist-block-detail{margin-top:1.25rem;display:flex;flex-direction:column;gap:.35rem}
+.dist-detail-row{display:flex;align-items:baseline;gap:.75rem;font-size:13px}
+.dist-detail-label{color:var(--ink-mid);min-width:80px;font-size:11px;letter-spacing:.05em;text-transform:uppercase}
+.dist-detail-val{color:var(--ink)}
+.dist-subject{cursor:pointer;border-bottom:1px dashed var(--ink-faint);transition:border-color .15s,color .15s;display:inline-flex;align-items:center;gap:.4rem}
+.dist-subject:hover{color:var(--accent);border-color:var(--accent)}
+.dist-subject.copied{color:var(--accent)}
+.dist-subject-icon{opacity:.45;flex-shrink:0;transition:opacity .15s}
+.dist-subject:hover .dist-subject-icon{opacity:1}
+a[href^="mailto:"]{color:var(--accent);text-decoration:none}
+a[href^="mailto:"]:hover{opacity:.75}
+.dist-statement{padding:3.5rem;border-top:none;background:var(--accent)}
+.dist-statement-inner{max-width:640px;margin:0 auto;text-align:center}
+.dist-statement-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;font-style:italic;color:var(--on-accent);margin-bottom:1rem}
+.dist-statement-text{font-size:15px;line-height:1.9;color:var(--on-accent-muted)}

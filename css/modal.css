@@ -1,0 +1,21 @@
+/* ── PURCHASE MODAL ── */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(17,16,16,0.55);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--page);width:520px;max-width:calc(100vw - 2rem);max-height:90vh;overflow-y:auto;border:1px solid var(--ink);animation:modalIn .25s ease both}
+@keyframes modalIn{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+.modal-header{padding:1.5rem 2rem 1.25rem;border-bottom:.5px solid var(--ink-faint);display:flex;justify-content:space-between;align-items:baseline}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic}
+.modal-close{background:none;border:none;cursor:pointer;font-size:22px;color:var(--ink-light);line-height:1;transition:color .15s;padding:0 0 0 1rem}
+.modal-close:hover{color:var(--ink)}
+.modal-body{padding:1.5rem 2rem 2rem;display:flex;flex-direction:column;gap:.75rem}
+.modal-intro{font-size:13px;color:var(--ink-light);font-style:italic;margin-bottom:.25rem}
+.purchase-option{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;border:1px solid var(--ink-faint);cursor:pointer;text-decoration:none;transition:border-color .2s,background .2s;gap:1rem}
+.purchase-option:hover{border-color:var(--ink);background:var(--cream)}
+.purchase-option.featured{border-color:var(--ink);background:var(--cream)}
+.purchase-option.featured:hover{background:var(--cream-dark)}
+.po-left{display:flex;flex-direction:column;gap:.2rem}
+.po-badge{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-light);margin-bottom:.1rem}
+.po-name{font-size:16px;color:var(--ink);font-family:'Cormorant Garamond',serif;font-style:italic}
+.po-desc{font-size:12px;color:var(--ink-light)}
+.po-arrow{font-size:18px;color:var(--ink-light);flex-shrink:0}
+.purchase-divider{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);text-align:center;padding:.25rem 0}
