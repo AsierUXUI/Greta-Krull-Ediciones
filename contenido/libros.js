@@ -309,4 +309,6 @@ previewPages:  null,
 titleCatalog:   "El libro imaginario",
 coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">El libro<br>imaginario</div><div class="bo">—</div><div class="bi">Ficticio</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
 coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">El libro<br>imaginario</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Ficticio</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+  }
+
 ];
