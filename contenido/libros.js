@@ -274,5 +274,39 @@ var BOOKS = [
   }
   ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
   */
+status: "upcoming",
 
+title:  "El libro imaginario",
+authors: [
+  { name: "Autor Ficticio", role: "Ensayo" },
+],
+authorByline: "Autor Ficticio",
+
+descShort:   "Un libro que no existe sobre cosas que tampoco existen.",
+descCatalog: "Ensayo especulativo sobre la naturaleza de los libros que nunca se escribieron. Una exploración de lo posible.",
+
+coverImage: null,
+
+collection: "Cuadernos Poesía y Traducción",
+subtitle:    "Sobre cosas que no existen",
+subtitleSub: null,
+
+copiesTotal:     100,
+copiesRemaining: null,
+
+quote:    null,
+synopsis: null,
+contents: null,
+specs:    null,
+colophon: null,
+
+purchaseUrl:   null,
+purchaseLabel: null,
+purchaseDesc:  null,
+
+previewPages:  null,
+
+titleCatalog:   "El libro imaginario",
+coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">El libro<br>imaginario</div><div class="bo">—</div><div class="bi">Ficticio</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">El libro<br>imaginario</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Ficticio</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
 ];
