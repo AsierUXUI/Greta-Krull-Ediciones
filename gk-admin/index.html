@@ -8,28 +8,35 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#111010;--ink-mid:#3d3a38;--ink-faint:#d4d0ca;
-  --cream:#f3f1ed;--page:#ffffff;--accent:#8c1a13;
+  --cream:#f3f1ed;--page:#ffffff;--accent:#8c1a13;--green:#2a6a2a;
 }
 body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-size:15px;min-height:100vh}
 
 /* LOGIN */
-#login{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1.5rem}
-#login h1{font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid)}
-#login input{font-family:Georgia,serif;font-size:16px;padding:.65rem 1rem;border:1px solid var(--ink-faint);background:var(--page);width:240px;outline:none;text-align:center;letter-spacing:.1em}
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1.25rem}
+#login h1{font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
+#login input{font-family:Georgia,serif;font-size:16px;padding:.65rem 1rem;border:1px solid var(--ink-faint);background:var(--page);width:260px;outline:none;text-align:center;letter-spacing:.1em}
 #login input:focus{border-color:var(--ink)}
-#login button{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 2rem;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+#login button{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 2.5rem;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
 #login button:hover{background:var(--accent);border-color:var(--accent)}
-#login-error{font-size:12px;color:var(--accent);display:none}
+.login-error{font-size:12px;color:var(--accent);min-height:1.2em}
 
 /* APP */
-#app{display:none;max-width:780px;margin:0 auto;padding:3rem 1.5rem}
-header{border-bottom:1px solid var(--ink);padding-bottom:1.5rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
-header h1{font-size:1.25rem;font-style:italic;font-weight:400}
-header span{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid)}
+#app{display:none;max-width:800px;margin:0 auto;padding:3rem 1.5rem 5rem}
+header{border-bottom:3px solid var(--accent);padding-bottom:1.25rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
+header h1{font-size:1.2rem;font-style:italic;font-weight:400}
+.header-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid)}
+
+/* STATUS BAR */
+#status-bar{display:none;font-size:12px;padding:.6rem 1rem;margin-bottom:1.5rem;border-left:3px solid var(--ink-faint);color:var(--ink-mid)}
+#status-bar.loading{border-left-color:var(--ink-faint);color:var(--ink-mid)}
+#status-bar.ok{border-left-color:var(--green);color:var(--green);display:block}
+#status-bar.error{border-left-color:var(--accent);color:var(--accent);display:block}
 
 /* TABS */
-.tabs{display:flex;gap:0;margin-bottom:2rem;border-bottom:1px solid var(--ink-faint)}
-.tab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.5rem;cursor:pointer;color:var(--ink-mid);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:Georgia,serif}
+.tabs{display:flex;margin-bottom:2rem;border-bottom:1px solid var(--ink-faint)}
+.tab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.5rem;cursor:pointer;color:var(--ink-mid);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:Georgia,serif;transition:color .15s}
+.tab:hover{color:var(--ink)}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
@@ -37,359 +44,542 @@ header span{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:v
 /* FORM */
 .field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.25rem}
 .field label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
-.field .hint{font-size:12px;color:var(--ink-mid);font-style:italic;margin-top:.15rem}
-.field input,.field select,.field textarea{font-family:Georgia,serif;font-size:15px;padding:.5rem 0;border:none;border-bottom:1px solid var(--ink-faint);background:transparent;outline:none;color:var(--ink);width:100%}
+.field .hint{font-size:12px;color:var(--ink-mid);font-style:italic}
+.field .field-error{font-size:12px;color:var(--accent);display:none}
+.field input,.field select,.field textarea{font-family:Georgia,serif;font-size:15px;padding:.5rem 0;border:none;border-bottom:1px solid var(--ink-faint);background:transparent;outline:none;color:var(--ink);width:100%;transition:border-color .15s}
 .field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--ink)}
-.field textarea{resize:vertical;min-height:72px;line-height:1.6}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);margin:1.75rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--ink-faint)}
-button.generate{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 2.5rem;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;margin-top:.5rem}
-button.generate:hover{opacity:.85}
+.field input.invalid,.field textarea.invalid{border-bottom-color:var(--accent)}
+.field textarea{resize:vertical;min-height:80px;line-height:1.6}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);margin:1.75rem 0 1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--ink-faint)}
+.section-label span{float:right;font-style:italic;text-transform:none;letter-spacing:0;color:var(--ink-faint)}
 
-/* OUTPUT */
-.output{margin-top:2rem;display:none}
-.output-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.75rem;display:flex;justify-content:space-between;align-items:center}
-.copy-btn{font-family:Georgia,serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid var(--ink-faint);background:var(--page);cursor:pointer;color:var(--ink-mid)}
-.copy-btn:hover{border-color:var(--ink);color:var(--ink)}
-.copy-btn.done{border-color:var(--accent);color:var(--accent)}
-pre{background:var(--page);border:1px solid var(--ink-faint);padding:1.25rem;font-size:12px;line-height:1.7;overflow-x:auto;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;color:var(--ink)}
-.instructions{margin-top:1rem;font-size:13px;color:var(--ink-mid);line-height:1.8;background:var(--cream);border-left:2px solid var(--ink-faint);padding:.75rem 1rem}
-.instructions strong{color:var(--ink)}
+/* SUBMIT */
+.submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:1.75rem}
+button.publish{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 2.5rem;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:opacity .15s}
+button.publish:hover{opacity:.85}
+button.publish:disabled{opacity:.4;cursor:default}
+.publish-status{font-size:13px;color:var(--ink-mid);font-style:italic}
+.publish-status.success{color:var(--green)}
+.publish-status.error{color:var(--accent)}
+
+/* EXISTING INFO */
+.info-pill{display:inline-block;font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.2rem .65rem;margin:.15rem;color:var(--ink-mid)}
+
+@media(max-width:600px){.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login">
   <h1>Greta Krull · Acceso</h1>
   <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
+  <input type="password" id="gh-token" placeholder="Token de GitHub" style="margin-top:.25rem" onkeydown="if(event.key==='Enter')checkPwd()">
   <button onclick="checkPwd()">Entrar</button>
-  <div id="login-error">Contraseña incorrecta</div>
+  <div class="login-error" id="login-error"></div>
 </div>
 
-<!-- APP -->
 <div id="app">
   <header>
     <h1>Greta Krull Ediciones — Panel de contenido</h1>
-    <span>Uso interno</span>
+    <span class="header-meta">Uso interno</span>
   </header>
 
+  <div id="status-bar"></div>
+
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('libro')">Nuevo libro</button>
-    <button class="tab" onclick="switchTab('archivo')">Nueva entrada de archivo</button>
+    <button class="tab active" onclick="switchTab('libro',this)">Nuevo libro</button>
+    <button class="tab" onclick="switchTab('archivo',this)">Nueva entrada de archivo</button>
   </div>
 
-  <!-- TAB: LIBRO -->
+  <!-- ══ TAB LIBRO ══ -->
   <div id="tab-libro" class="tab-panel active">
+
+    <div id="existing-books-info" style="margin-bottom:1.5rem;display:none">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem">Libros existentes</div>
+      <div id="existing-books-list"></div>
+    </div>
+
     <div class="section-label">Obligatorio</div>
 
     <div class="row">
       <div class="field">
-        <label>Número de libro</label>
-        <input type="number" id="l-id" placeholder="5" min="1">
-        <span class="hint">Correlativo al último del catálogo</span>
+        <label>Número de libro (id)</label>
+        <input type="number" id="l-id" placeholder="" min="1">
+        <span class="hint" id="l-id-hint"></span>
+        <span class="field-error" id="l-id-error">Este número ya existe en el catálogo</span>
       </div>
       <div class="field">
         <label>Año de publicación</label>
-        <input type="text" id="l-date" placeholder="2026">
+        <input type="text" id="l-date" placeholder="Ej: 2026">
       </div>
     </div>
 
     <div class="field">
       <label>Estado</label>
       <select id="l-status">
-        <option value="upcoming">En preparación (upcoming)</option>
-        <option value="available">Disponible (available)</option>
-        <option value="announced">Solo anunciado (announced)</option>
+        <option value="">— Seleccionar —</option>
+        <option value="upcoming">En preparación</option>
+        <option value="available">Disponible</option>
+        <option value="announced">Solo anunciado</option>
       </select>
+      <span class="field-error" id="l-status-error">Selecciona un estado</span>
     </div>
 
     <div class="field">
       <label>Título</label>
-      <input type="text" id="l-title" placeholder="Título del libro">
+      <input type="text" id="l-title" placeholder="">
+      <span class="field-error" id="l-title-error">El título es obligatorio</span>
     </div>
 
-    <div class="field">
-      <label>Autor principal</label>
-      <input type="text" id="l-author1-name" placeholder="Nombre Apellido">
-    </div>
     <div class="row">
+      <div class="field">
+        <label>Nombre del autor</label>
+        <input type="text" id="l-author1-name" placeholder="">
+        <span class="field-error" id="l-author-error">El autor es obligatorio</span>
+      </div>
       <div class="field">
         <label>Rol del autor</label>
-        <input type="text" id="l-author1-role" placeholder="Ensayo / Poesía / Traducción">
-      </div>
-      <div class="field">
-        <label>Segundo autor (opcional)</label>
-        <input type="text" id="l-author2-name" placeholder="Nombre Apellido">
+        <input type="text" id="l-author1-role" placeholder="Ej: Ensayo / Poesía / Traducción">
       </div>
     </div>
+
     <div class="row">
       <div class="field">
-        <label>Rol del segundo autor</label>
-        <input type="text" id="l-author2-role" placeholder="Poesía / Ensayo">
+        <label>Segundo autor (si hay)</label>
+        <input type="text" id="l-author2-name" placeholder="">
       </div>
       <div class="field">
-        <label>Subtítulo (opcional)</label>
-        <input type="text" id="l-subtitle" placeholder="Subtítulo breve">
+        <label>Rol del segundo autor</label>
+        <input type="text" id="l-author2-role" placeholder="">
       </div>
     </div>
 
     <div class="field">
-      <label>Descripción corta</label>
-      <input type="text" id="l-desc-short" placeholder="Una frase. Aparece en la cuadrícula de inicio. Máx. 15 palabras.">
+      <label>Descripción corta <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— aparece en la cuadrícula de inicio, máx. 15 palabras</span></label>
+      <input type="text" id="l-desc-short" placeholder="">
+      <span class="field-error" id="l-desc-short-error">La descripción corta es obligatoria</span>
     </div>
 
     <div class="field">
-      <label>Descripción catálogo</label>
-      <textarea id="l-desc-catalog" placeholder="2-4 frases. Aparece en la página de catálogo."></textarea>
+      <label>Descripción catálogo <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— 2-4 frases</span></label>
+      <textarea id="l-desc-catalog" placeholder=""></textarea>
+      <span class="field-error" id="l-desc-catalog-error">La descripción de catálogo es obligatoria</span>
     </div>
 
     <div class="field">
       <label>Nombre del archivo de portada</label>
-      <input type="text" id="l-cover" placeholder="nombre-portada.jpg">
+      <input type="text" id="l-cover" placeholder="Ej: titulo-portada.jpg">
       <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
     </div>
 
-    <div class="section-label">Opcional — rellenar cuando esté disponible</div>
+    <div class="section-label">Opcional <span>rellenar cuando esté disponible</span></div>
+
+    <div class="field">
+      <label>Subtítulo</label>
+      <input type="text" id="l-subtitle" placeholder="">
+    </div>
 
     <div class="row">
       <div class="field">
         <label>Tirada total</label>
-        <input type="number" id="l-copies-total" placeholder="100">
+        <input type="number" id="l-copies-total" placeholder="100" min="1">
       </div>
       <div class="field">
         <label>Ejemplares disponibles</label>
-        <input type="number" id="l-copies-remaining" placeholder="Dejar vacío si no se sabe">
+        <input type="number" id="l-copies-remaining" placeholder="" min="0">
       </div>
     </div>
 
     <div class="field">
-      <label>Cita destacada (opcional)</label>
-      <input type="text" id="l-quote" placeholder="«Una frase memorable del libro o sobre él»">
+      <label>Cita destacada</label>
+      <input type="text" id="l-quote" placeholder="«Una frase memorable»">
     </div>
 
     <div class="field">
-      <label>Enlace de compra (opcional)</label>
+      <label>Enlace de compra</label>
       <input type="text" id="l-purchase-url" placeholder="https://...">
     </div>
     <div class="row">
       <div class="field">
         <label>Nombre del enlace</label>
-        <input type="text" id="l-purchase-label" placeholder="IberLibro">
+        <input type="text" id="l-purchase-label" placeholder="Ej: IberLibro">
       </div>
       <div class="field">
         <label>Descripción del enlace</label>
-        <input type="text" id="l-purchase-desc" placeholder="Compra directa. Envío internacional.">
+        <input type="text" id="l-purchase-desc" placeholder="Ej: Compra directa. Envío internacional.">
       </div>
     </div>
 
-    <button class="generate" onclick="generateBook()">Generar código</button>
-
-    <div class="output" id="output-libro">
-      <div class="output-label">
-        Código generado — pégalo en contenido/libros.js justo encima del ];
-        <button class="copy-btn" id="copy-libro" onclick="copyCode('output-libro-pre','copy-libro')">Copiar</button>
-      </div>
-      <pre id="output-libro-pre"></pre>
-      <div class="instructions">
-        <strong>Cómo usarlo:</strong><br>
-        1. Copia el código de arriba<br>
-        2. Abre <strong>contenido/libros.js</strong> en GitHub<br>
-        3. Haz clic en el lápiz (editar)<br>
-        4. Ve al final del archivo, justo encima de <strong>];</strong><br>
-        5. Pega el código<br>
-        6. Haz clic en <strong>Commit changes</strong>
-      </div>
+    <div class="submit-row">
+      <button class="publish" id="btn-libro" onclick="publishBook()">Publicar en la web</button>
+      <span class="publish-status" id="status-libro"></span>
     </div>
   </div>
 
-  <!-- TAB: ARCHIVO -->
+  <!-- ══ TAB ARCHIVO ══ -->
   <div id="tab-archivo" class="tab-panel">
+
+    <div class="section-label">Obligatorio</div>
+
     <div class="field">
       <label>Tipo de entrada</label>
-      <select id="a-tipo" onchange="updateArchivoForm()">
+      <select id="a-tipo" onchange="updateArchivoFields()">
+        <option value="">— Seleccionar —</option>
         <option value="foto">Foto</option>
         <option value="video">Vídeo</option>
         <option value="mixto">Mixto (foto + vídeo)</option>
       </select>
+      <span class="field-error" id="a-tipo-error">Selecciona un tipo</span>
     </div>
-
-    <div class="section-label">Obligatorio</div>
 
     <div class="row">
       <div class="field">
         <label>Fecha</label>
-        <input type="text" id="a-fecha" placeholder="Junio 2026">
+        <input type="text" id="a-fecha" placeholder="Ej: Junio 2026">
+        <span class="field-error" id="a-fecha-error">La fecha es obligatoria</span>
       </div>
       <div class="field">
-        <label>Etiqueta</label>
-        <input type="text" id="a-etiqueta" placeholder="Fotografía · N.º 1">
-        <span class="hint">Texto pequeño sobre el título</span>
+        <label>Etiqueta <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— texto pequeño sobre el título</span></label>
+        <input type="text" id="a-etiqueta" placeholder="Ej: Fotografía · N.º 1">
       </div>
     </div>
 
     <div class="field">
       <label>Título</label>
-      <input type="text" id="a-titulo" placeholder="Título de la entrada">
+      <input type="text" id="a-titulo" placeholder="">
+      <span class="field-error" id="a-titulo-error">El título es obligatorio</span>
     </div>
 
     <div class="field">
       <label>Texto</label>
-      <textarea id="a-texto" placeholder="Texto descriptivo que aparece al abrir la entrada."></textarea>
+      <textarea id="a-texto" placeholder="Texto que aparece al abrir la entrada."></textarea>
+      <span class="field-error" id="a-texto-error">El texto es obligatorio</span>
     </div>
 
     <div id="a-imagen-fields">
       <div class="field">
         <label>Nombre del archivo de imagen</label>
-        <input type="text" id="a-imagen" placeholder="nombre-del-archivo.jpg">
+        <input type="text" id="a-imagen" placeholder="Ej: nombre-del-archivo.jpg">
         <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
+        <span class="field-error" id="a-imagen-error">El nombre de imagen es obligatorio para este tipo</span>
       </div>
       <div class="field">
-        <label>Descripción de la imagen</label>
-        <input type="text" id="a-imagealt" placeholder="Descripción breve para accesibilidad">
+        <label>Descripción de la imagen <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— para accesibilidad</span></label>
+        <input type="text" id="a-imagealt" placeholder="">
       </div>
     </div>
 
     <div id="a-video-fields" style="display:none">
       <div class="field">
         <label>ID del vídeo de YouTube</label>
-        <input type="text" id="a-videoid" placeholder="dQw4w9WgXcQ">
-        <span class="hint">Es la parte después de youtube.com/watch?v= en la URL del vídeo</span>
+        <input type="text" id="a-videoid" placeholder="Ej: dQw4w9WgXcQ">
+        <span class="hint">La parte después de youtube.com/watch?v= en la URL del vídeo</span>
+        <span class="field-error" id="a-video-error">El ID del vídeo es obligatorio para este tipo</span>
       </div>
     </div>
 
     <div class="field">
-      <label>Tags (temas)</label>
-      <input type="text" id="a-tags" placeholder="artaud, prevel">
-      <span class="hint">Separados por coma. Agrupan las entradas en el mapa del archivo. Una entrada con dos tags aparece entre los dos grupos.</span>
+      <label>Tags <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— agrupan las entradas en el mapa</span></label>
+      <input type="text" id="a-tags" placeholder="Ej: artaud, prevel">
+      <span class="hint">Separados por coma. Usa los mismos tags para entradas del mismo tema.</span>
+      <span class="field-error" id="a-tags-error">Al menos un tag es obligatorio</span>
     </div>
 
     <div class="field">
       <label>Libro relacionado (número)</label>
-      <input type="number" id="a-cuaderno" placeholder="1" min="1">
+      <input type="number" id="a-cuaderno" placeholder="Ej: 1" min="1">
+      <span class="field-error" id="a-cuaderno-error">El libro relacionado es obligatorio</span>
     </div>
 
+    <div id="existing-tags-info" style="margin-bottom:1rem;display:none">
+      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem">Tags ya usados</div>
+      <div id="existing-tags-list"></div>
+    </div>
+
+    <div class="section-label">Opcional <span>rellenar si aplica</span></div>
+
     <div class="field">
-      <label>Enlace externo (opcional)</label>
+      <label>Enlace externo</label>
       <input type="text" id="a-enlace" placeholder="https://...">
     </div>
 
-    <button class="generate" onclick="generateArchivo()">Generar código</button>
-
-    <div class="output" id="output-archivo">
-      <div class="output-label">
-        Código generado — pégalo en contenido/archivo.js justo encima del ];
-        <button class="copy-btn" id="copy-archivo" onclick="copyCode('output-archivo-pre','copy-archivo')">Copiar</button>
-      </div>
-      <pre id="output-archivo-pre"></pre>
-      <div class="instructions">
-        <strong>Cómo usarlo:</strong><br>
-        1. Copia el código de arriba<br>
-        2. Abre <strong>contenido/archivo.js</strong> en GitHub<br>
-        3. Haz clic en el lápiz (editar)<br>
-        4. Ve al final del archivo, justo encima de <strong>];</strong><br>
-        5. Pega el código<br>
-        6. Haz clic en <strong>Commit changes</strong>
-      </div>
+    <div class="submit-row">
+      <button class="publish" id="btn-archivo" onclick="publishArchivo()">Publicar en el archivo</button>
+      <span class="publish-status" id="status-archivo"></span>
     </div>
   </div>
 </div>
 
 <script>
 var PASSWORD = 'amapola26';
+var GH_TOKEN = '';
+var REPO     = 'asieruxui/Greta-Krull-Ediciones';
+var API      = 'https://api.github.com/repos/' + REPO + '/contents/';
 
+var currentBooks   = [];
+var currentArchivo = [];
+var fileShaBooksjs  = '';
+var fileShaArchivjs = '';
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
 function checkPwd() {
-  var val = document.getElementById('pwd').value;
-  if (val === PASSWORD) {
+  var token = document.getElementById('gh-token').value.trim();
+  if (document.getElementById('pwd').value === PASSWORD && token) {
+    GH_TOKEN = token;
     document.getElementById('login').style.display = 'none';
     document.getElementById('app').style.display = 'block';
-  } else {
-    document.getElementById('login-error').style.display = 'block';
+    loadData();
+  } else if (document.getElementById('pwd').value !== PASSWORD) {
+    document.getElementById('login-error').textContent = 'Contraseña incorrecta';
     document.getElementById('pwd').value = '';
     document.getElementById('pwd').focus();
+  } else {
+    document.getElementById('login-error').textContent = 'Introduce el token de GitHub';
+    document.getElementById('gh-token').focus();
   }
 }
 
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-  event.target.classList.add('active');
+// ── Load existing data ────────────────────────────────────────────────────────
+function ghGet(path) {
+  return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' }
+  }).then(function(r) { return r.json(); });
+}
+
+function parseJsArray(src, varName) {
+  try {
+    var fn = new Function(src + '; return ' + varName + ';');
+    return fn();
+  } catch(e) { return []; }
+}
+
+function loadData() {
+  setStatus('Cargando datos existentes…', 'loading');
+  document.getElementById('status-bar').style.display = 'block';
+
+  Promise.all([
+    ghGet('contenido/libros.js'),
+    ghGet('contenido/archivo.js')
+  ]).then(function(results) {
+    var librosFile  = results[0];
+    var archivoFile = results[1];
+
+    fileShaBooksjs  = librosFile.sha;
+    fileShaArchivjs = archivoFile.sha;
+
+    var librosSrc  = atob(librosFile.content.replace(/\n/g,''));
+    var archivoSrc = atob(archivoFile.content.replace(/\n/g,''));
+
+    currentBooks   = parseJsArray(librosSrc,  'BOOKS')   || [];
+    currentArchivo = parseJsArray(archivoSrc, 'ARCHIVO') || [];
+
+    // Show existing books info
+    if (currentBooks.length) {
+      var nextId = Math.max.apply(null, currentBooks.map(function(b){return b.id||0;})) + 1;
+      document.getElementById('l-id').placeholder = nextId;
+      document.getElementById('l-id-hint').textContent = 'El siguiente disponible es ' + nextId;
+      var list = currentBooks.map(function(b) {
+        return '<span class="info-pill">N.º' + b.id + ' · ' + b.title + '</span>';
+      }).join('');
+      document.getElementById('existing-books-list').innerHTML = list;
+      document.getElementById('existing-books-info').style.display = 'block';
+    }
+
+    // Show existing tags
+    var tagSet = {};
+    currentArchivo.forEach(function(e) {
+      if (e.tags) e.tags.forEach(function(t) { tagSet[t] = true; });
+    });
+    var tags = Object.keys(tagSet);
+    if (tags.length) {
+      document.getElementById('existing-tags-list').innerHTML = tags.map(function(t) {
+        return '<span class="info-pill">' + t + '</span>';
+      }).join('');
+      document.getElementById('existing-tags-info').style.display = 'block';
+    }
+
+    setStatus('', '');
+    document.getElementById('status-bar').style.display = 'none';
+  }).catch(function() {
+    setStatus('Error al cargar los datos. Comprueba la conexión.', 'error');
+  });
+}
+
+function setStatus(msg, type) {
+  var bar = document.getElementById('status-bar');
+  bar.textContent = msg;
+  bar.className = type;
+  bar.style.display = msg ? 'block' : 'none';
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')});
+  btn.classList.add('active');
   document.getElementById('tab-' + name).classList.add('active');
 }
 
-function updateArchivoForm() {
+function updateArchivoFields() {
   var tipo = document.getElementById('a-tipo').value;
-  document.getElementById('a-imagen-fields').style.display = (tipo === 'video') ? 'none' : '';
-  document.getElementById('a-video-fields').style.display  = (tipo === 'foto')  ? 'none' : '';
+  document.getElementById('a-imagen-fields').style.display = tipo === 'video' ? 'none' : '';
+  document.getElementById('a-video-fields').style.display  = tipo === 'foto'  ? 'none' : '';
 }
 
+// ── Helpers ───────────────────────────────────────────────────────────────────
 function v(id) { return document.getElementById(id).value.trim(); }
-function q(s)  { return s ? '"' + s.replace(/"/g, '\\"') + '"' : 'null'; }
+function showError(id, show) {
+  var el = document.getElementById(id);
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+function markInvalid(id, invalid) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('invalid', invalid);
+}
 
-function generateBook() {
-  var id     = parseInt(v('l-id')) || 5;
-  var date   = v('l-date') || '2026';
-  var status = v('l-status');
-  var title  = v('l-title');
-  var a1name = v('l-author1-name');
-  var a1role = v('l-author1-role');
-  var a2name = v('l-author2-name');
-  var a2role = v('l-author2-role');
-  var sub    = v('l-subtitle');
-  var ds     = v('l-desc-short');
-  var dc     = v('l-desc-catalog');
-  var cover  = v('l-cover');
-  var ct     = v('l-copies-total') || '100';
-  var cr     = v('l-copies-remaining');
-  var quote  = v('l-quote');
-  var purl   = v('l-purchase-url');
-  var plabel = v('l-purchase-label');
-  var pdesc  = v('l-purchase-desc');
+// ── GitHub commit ─────────────────────────────────────────────────────────────
+function ghCommit(path, currentSrc, newEntry, sha, message) {
+  var insertMarker = '\n];';
+  var newSrc = currentSrc.replace(/\n\s*\];(\s*)$/, '\n\n' + newEntry + '\n\n];');
+  var encoded = btoa(unescape(encodeURIComponent(newSrc)));
+  return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: {
+      'Authorization': 'token ' + GH_TOKEN,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: message, content: encoded, sha: sha })
+  }).then(function(r) { return r.json().then(function(d){ return {ok: r.ok, data: d}; }); });
+}
 
-  var authors = '      { name: "' + a1name + '", role: "' + a1role + '" }';
-  if (a2name) authors += ',\n      { name: "' + a2name + '", role: "' + a2role + '" }';
+// ── Book publish ──────────────────────────────────────────────────────────────
+function publishBook() {
+  var id       = parseInt(v('l-id'));
+  var date     = v('l-date');
+  var status   = v('l-status');
+  var title    = v('l-title');
+  var a1name   = v('l-author1-name');
+  var a1role   = v('l-author1-role');
+  var a2name   = v('l-author2-name');
+  var a2role   = v('l-author2-role');
+  var subtitle = v('l-subtitle');
+  var ds       = v('l-desc-short');
+  var dc       = v('l-desc-catalog');
+  var cover    = v('l-cover');
+  var ct       = v('l-copies-total');
+  var cr       = v('l-copies-remaining');
+  var quote    = v('l-quote');
+  var purl     = v('l-purchase-url');
+  var plabel   = v('l-purchase-label');
+  var pdesc    = v('l-purchase-desc');
+
+  // Validate
+  var ok = true;
+  var idExists = currentBooks.some(function(b){ return b.id === id; });
+  showError('l-id-error', !id || idExists);
+  markInvalid('l-id', !id || idExists);
+  if (!id || idExists) ok = false;
+
+  showError('l-status-error', !status);
+  if (!status) ok = false;
+
+  showError('l-title-error', !title);
+  markInvalid('l-title', !title);
+  if (!title) ok = false;
+
+  var titleExists = currentBooks.some(function(b){ return b.title && b.title.toLowerCase() === title.toLowerCase(); });
+  if (titleExists) {
+    document.getElementById('l-title-error').textContent = 'Ya existe un libro con este título';
+    showError('l-title-error', true);
+    markInvalid('l-title', true);
+    ok = false;
+  }
+
+  showError('l-author-error', !a1name);
+  markInvalid('l-author1-name', !a1name);
+  if (!a1name) ok = false;
+
+  showError('l-desc-short-error', !ds);
+  markInvalid('l-desc-short', !ds);
+  if (!ds) ok = false;
+
+  showError('l-desc-catalog-error', !dc);
+  markInvalid('l-desc-catalog', !dc);
+  if (!dc) ok = false;
+
+  if (!ok) return;
+
+  // Build code
   var byline = a2name ? a1name + ' · ' + a2name : a1name;
+  var authors = '      { name: "' + esc(a1name) + '", role: "' + esc(a1role) + '" }';
+  if (a2name) authors += ',\n      { name: "' + esc(a2name) + '", role: "' + esc(a2role) + '" }';
+  var tw = title.split(' ');
+  var th = tw.length > 2 ? tw.slice(0,Math.ceil(tw.length/2)).join(' ') + '<br>' + tw.slice(Math.ceil(tw.length/2)).join(' ') : title;
+  var ap = a1name.split(' ').slice(-1)[0];
 
-  var titleWords = title.split(' ');
-  var titleHtml  = titleWords.length > 2 ? titleWords.slice(0,Math.ceil(titleWords.length/2)).join(' ') + '<br>' + titleWords.slice(Math.ceil(titleWords.length/2)).join(' ') : title;
-  var apellido   = a1name.split(' ').slice(-1)[0] || 'Autor';
-
-  var code =
+  var entry =
 '  ,{\n' +
 '    id:   ' + id + ',\n' +
 '    num:  "N.º ' + id + '",\n' +
-'    date: "' + date + '",\n' +
+'    date: "' + esc(date) + '",\n' +
 '    status: "' + status + '",\n\n' +
-'    title:  ' + q(title) + ',\n' +
+'    title:  "' + esc(title) + '",\n' +
 '    authors: [\n' + authors + '\n    ],\n' +
-'    authorByline: "' + byline + '",\n\n' +
-'    descShort:   ' + q(ds) + ',\n' +
-'    descCatalog: ' + q(dc) + ',\n\n' +
-'    coverImage: ' + (cover ? '"./images/' + cover + '"' : 'null') + ',\n\n' +
-'    collection: "Cuadernos Poesía y Traducción",\n' +
-'    subtitle:    ' + q(sub) + ',\n' +
+'    authorByline: "' + esc(byline) + '",\n\n' +
+'    descShort:   "' + esc(ds) + '",\n' +
+'    descCatalog: "' + esc(dc) + '",\n\n' +
+'    coverImage: ' + (cover ? '"./images/' + esc(cover) + '"' : 'null') + ',\n\n' +
+'    collection:  "Cuadernos Poesía y Traducción",\n' +
+'    subtitle:    ' + (subtitle ? '"' + esc(subtitle) + '"' : 'null') + ',\n' +
 '    subtitleSub: null,\n\n' +
-'    copiesTotal:     ' + ct + ',\n' +
-'    copiesRemaining: ' + (cr ? cr : 'null') + ',\n\n' +
-'    quote:    ' + q(quote) + ',\n' +
+'    copiesTotal:     ' + (ct || '100') + ',\n' +
+'    copiesRemaining: ' + (cr || 'null') + ',\n\n' +
+'    quote:    ' + (quote ? '"' + esc(quote) + '"' : 'null') + ',\n' +
 '    synopsis: null,\n' +
 '    contents: null,\n' +
 '    specs:    null,\n' +
 '    colophon: null,\n\n' +
-'    purchaseUrl:   ' + q(purl) + ',\n' +
-'    purchaseLabel: ' + q(plabel) + ',\n' +
-'    purchaseDesc:  ' + q(pdesc) + ',\n\n' +
-'    previewPages:  null,\n\n' +
-'    titleCatalog:   ' + q(title) + ',\n' +
-'    coverHtml:      \'<div class="bo">— □□□ —</div><div class="bt">' + titleHtml + '</div><div class="bo">—</div><div class="bi">' + apellido + '</div><div class="bo" style="margin-top:8px">— □□□ —</div>\',\n' +
-'    coverHtmlSmall: \'<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">' + titleHtml + '</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">' + apellido + '</div><div class="bo" style="margin-top:5px">— □□□ —</div>\'\n' +
+'    purchaseUrl:   ' + (purl   ? '"' + esc(purl)   + '"' : 'null') + ',\n' +
+'    purchaseLabel: ' + (plabel ? '"' + esc(plabel) + '"' : 'null') + ',\n' +
+'    purchaseDesc:  ' + (pdesc  ? '"' + esc(pdesc)  + '"' : 'null') + ',\n\n' +
+'    previewPages: null,\n\n' +
+'    titleCatalog:   "' + esc(title) + '",\n' +
+'    coverHtml:      \'<div class="bo">— □□□ —</div><div class="bt">' + th + '</div><div class="bo">—</div><div class="bi">' + ap + '</div><div class="bo" style="margin-top:8px">— □□□ —</div>\',\n' +
+'    coverHtmlSmall: \'<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">' + th + '</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">' + ap + '</div><div class="bo" style="margin-top:5px">— □□□ —</div>\'\n' +
 '  }';
 
-  document.getElementById('output-libro-pre').textContent = code;
-  document.getElementById('output-libro').style.display = 'block';
+  var btn = document.getElementById('btn-libro');
+  var st  = document.getElementById('status-libro');
+  btn.disabled = true;
+  st.textContent = 'Publicando…';
+  st.className = 'publish-status';
+
+  ghGet('contenido/libros.js').then(function(file) {
+    var src = atob(file.content.replace(/\n/g,''));
+    return ghCommit('contenido/libros.js', src, entry, file.sha, 'Añadir libro N.º ' + id + ': ' + title);
+  }).then(function(res) {
+    if (res.ok) {
+      st.textContent = '¡Publicado! Aparecerá en la web en unos segundos.';
+      st.className = 'publish-status success';
+      currentBooks.push({ id: id, title: title });
+      // reset form
+      ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role','l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining','l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'].forEach(function(f){ document.getElementById(f).value=''; });
+      document.getElementById('l-status').value = '';
+    } else {
+      st.textContent = 'Error al publicar: ' + (res.data.message || 'inténtalo de nuevo');
+      st.className = 'publish-status error';
+    }
+    btn.disabled = false;
+  }).catch(function() {
+    st.textContent = 'Error de conexión. Inténtalo de nuevo.';
+    st.className = 'publish-status error';
+    btn.disabled = false;
+  });
 }
 
-function generateArchivo() {
+// ── Archivo publish ───────────────────────────────────────────────────────────
+function publishArchivo() {
   var tipo    = v('a-tipo');
   var fecha   = v('a-fecha');
   var etiquet = v('a-etiqueta');
@@ -399,46 +589,89 @@ function generateArchivo() {
   var imgalt  = v('a-imagealt');
   var videoid = v('a-videoid');
   var tagsRaw = v('a-tags');
-  var cuad    = v('a-cuaderno') || '1';
+  var cuad    = v('a-cuaderno');
   var enlace  = v('a-enlace');
 
-  var tags = tagsRaw.split(',').map(function(t) { return '"' + t.trim() + '"'; }).join(', ');
-  var videoUrl = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+  // Validate
+  var ok = true;
+  showError('a-tipo-error', !tipo); if (!tipo) ok = false;
+  showError('a-fecha-error', !fecha); markInvalid('a-fecha', !fecha); if (!fecha) ok = false;
+  showError('a-titulo-error', !titulo); markInvalid('a-titulo', !titulo); if (!titulo) ok = false;
+  showError('a-texto-error', !texto); markInvalid('a-texto', !texto); if (!texto) ok = false;
+  showError('a-tags-error', !tagsRaw); markInvalid('a-tags', !tagsRaw); if (!tagsRaw) ok = false;
+  showError('a-cuaderno-error', !cuad); markInvalid('a-cuaderno', !cuad); if (!cuad) ok = false;
 
-  var code = '  ,{\n' +
+  if (tipo !== 'video' && !imagen) {
+    showError('a-imagen-error', true); markInvalid('a-imagen', true); ok = false;
+  } else { showError('a-imagen-error', false); markInvalid('a-imagen', false); }
+
+  if (tipo !== 'foto' && !videoid) {
+    showError('a-video-error', true); markInvalid('a-videoid', true); ok = false;
+  } else { showError('a-video-error', false); markInvalid('a-videoid', false); }
+
+  var titleExists = currentArchivo.some(function(e){ return e.titulo && e.titulo.toLowerCase() === titulo.toLowerCase(); });
+  if (titleExists) {
+    document.getElementById('a-titulo-error').textContent = 'Ya existe una entrada con este título';
+    showError('a-titulo-error', true); markInvalid('a-titulo', true); ok = false;
+  } else {
+    document.getElementById('a-titulo-error').textContent = 'El título es obligatorio';
+  }
+
+  if (!ok) return;
+
+  var tags  = tagsRaw.split(',').map(function(t){ return '"' + t.trim() + '"'; }).join(', ');
+  var vurl  = videoid ? 'https://www.youtube.com/embed/' + videoid : null;
+
+  var entry = '  ,{\n' +
 '    tipo:     "' + tipo + '",\n' +
-'    fecha:    ' + q(fecha) + ',\n' +
-'    etiqueta: ' + q(etiquet) + ',\n' +
-'    titulo:   ' + q(titulo) + ',\n' +
-'    texto:    ' + q(texto) + ',\n';
+'    fecha:    "' + esc(fecha) + '",\n' +
+'    etiqueta: "' + esc(etiquet) + '",\n' +
+'    titulo:   "' + esc(titulo) + '",\n' +
+'    texto:    "' + esc(texto) + '",\n';
 
   if (tipo !== 'video') {
-    code += '    imagen:   ' + (imagen ? '"./images/' + imagen + '"' : 'null') + ',\n';
-    code += '    imageAlt: ' + q(imgalt) + ',\n';
+    entry += '    imagen:   ' + (imagen ? '"./images/' + esc(imagen) + '"' : 'null') + ',\n';
+    entry += '    imageAlt: "' + esc(imgalt) + '",\n';
   }
   if (tipo !== 'foto') {
-    code += '    videoUrl: ' + (videoUrl ? '"' + videoUrl + '"' : 'null') + ',\n';
+    entry += '    videoUrl: ' + (vurl ? '"' + vurl + '"' : 'null') + ',\n';
   }
-
-  code +=
-'    enlace:   ' + (enlace ? '"' + enlace + '"' : 'null') + ',\n' +
-'    tags:     [' + tags + '],\n' +
+  entry +=
+'    enlace:     ' + (enlace ? '"' + esc(enlace) + '"' : 'null') + ',\n' +
+'    tags:       [' + tags + '],\n' +
 '    cuadernoId: ' + cuad + '\n' +
 '  }';
 
-  document.getElementById('output-archivo-pre').textContent = code;
-  document.getElementById('output-archivo').style.display = 'block';
-}
+  var btn = document.getElementById('btn-archivo');
+  var st  = document.getElementById('status-archivo');
+  btn.disabled = true;
+  st.textContent = 'Publicando…';
+  st.className = 'publish-status';
 
-function copyCode(preId, btnId) {
-  var text = document.getElementById(preId).textContent;
-  navigator.clipboard.writeText(text).then(function() {
-    var btn = document.getElementById(btnId);
-    btn.textContent = '¡Copiado!';
-    btn.classList.add('done');
-    setTimeout(function() { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 2000);
+  ghGet('contenido/archivo.js').then(function(file) {
+    var src = atob(file.content.replace(/\n/g,''));
+    return ghCommit('contenido/archivo.js', src, entry, file.sha, 'Añadir entrada de archivo: ' + titulo);
+  }).then(function(res) {
+    if (res.ok) {
+      st.textContent = '¡Publicado! Aparecerá en el archivo en unos segundos.';
+      st.className = 'publish-status success';
+      currentArchivo.push({ titulo: titulo });
+      ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt','a-videoid','a-tags','a-cuaderno','a-enlace'].forEach(function(f){ document.getElementById(f).value=''; });
+      document.getElementById('a-tipo').value = '';
+      updateArchivoFields();
+    } else {
+      st.textContent = 'Error al publicar: ' + (res.data.message || 'inténtalo de nuevo');
+      st.className = 'publish-status error';
+    }
+    btn.disabled = false;
+  }).catch(function() {
+    st.textContent = 'Error de conexión. Inténtalo de nuevo.';
+    st.className = 'publish-status error';
+    btn.disabled = false;
   });
 }
+
+function esc(s) { return s ? s.replace(/\\/g,'\\\\').replace(/"/g,'\\"') : ''; }
 </script>
 </body>
 </html>
