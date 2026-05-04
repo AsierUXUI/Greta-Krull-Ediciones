@@ -275,4 +275,46 @@ var BOOKS = [
   ▲ FIN COPIA ─────────────────────────────────────────────────────────────────
   */
 
+  ,{
+    id:   5,
+    num:  "N.º 5",
+    date: "2027",
+    status: "upcoming",
+
+    title:  "x",
+    authors: [
+      { name: "x", role: "x" },
+      { name: "x", role: "x" }
+    ],
+    authorByline: "x · x",
+
+    descShort:   "x",
+    descCatalog: "x",
+
+    coverImage: "./images/x",
+
+    collection:  "Cuadernos Poesía y Traducción",
+    subtitle:    null,
+    subtitleSub: null,
+
+    copiesTotal:     100,
+    copiesRemaining: null,
+
+    quote:    null,
+    synopsis: null,
+    contents: null,
+    specs:    null,
+    colophon: null,
+
+    purchaseUrl:   null,
+    purchaseLabel: null,
+    purchaseDesc:  null,
+
+    previewPages: null,
+
+    titleCatalog:   "x",
+    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">x</div><div class="bo">—</div><div class="bi">x</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">x</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">x</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+  }
+
 ];
