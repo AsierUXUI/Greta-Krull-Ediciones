@@ -27,7 +27,6 @@ body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-s
 /* ── HEADER ── */
 .header-top{border-bottom:3px solid var(--accent);padding-bottom:1rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
 .header-top h1{font-size:1.15rem;font-style:italic;font-weight:400}
-.header-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid)}
 
 /* ── STATUS ── */
 #status-bar{font-size:12px;padding:.7rem 1rem;margin-bottom:1.5rem;border-left:3px solid var(--ink-faint);color:var(--ink-mid);display:none}
@@ -48,10 +47,6 @@ body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-s
 .mode-btn{font-family:Georgia,serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.45rem 1.25rem;border:1px solid var(--ink-faint);background:transparent;cursor:pointer;color:var(--ink-mid);transition:all .15s}
 .mode-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
 .mode-btn:hover:not(.active){border-color:var(--ink);color:var(--ink)}
-
-/* ── EDIT SELECTOR ── */
-.edit-selector{margin-bottom:1.75rem}
-.edit-selector label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem}
 
 /* ── SECTION LABELS ── */
 .section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:2rem 0 1.5rem;padding:.45rem .8rem;border-left:3px solid var(--accent);background:#faf7f4;display:flex;justify-content:space-between;align-items:center}
@@ -85,10 +80,32 @@ body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-s
 .row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
 .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem}
 
-/* ── INFO PILLS ── */
+/* ── INFO PILLS (libros existentes) ── */
 .existing-info{margin-bottom:1.5rem}
 .existing-info-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.4rem}
 .info-pill{display:inline-block;font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.2rem .65rem;margin:.15rem;color:var(--ink-mid)}
+
+/* ── IMAGE UPLOAD ── */
+input[type="file"].img-file-input{width:.1px;height:.1px;opacity:0;position:absolute;overflow:hidden;z-index:-1}
+.img-file-btn{display:block;font-family:Georgia,serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;border:1px dashed var(--ink-faint);background:var(--page);cursor:pointer;color:var(--ink-mid);transition:border-color .15s,color .15s;text-align:center}
+.img-file-btn:hover{border-color:var(--ink);color:var(--ink)}
+.img-preview-row{display:none;align-items:center;gap:1rem;margin-top:.25rem}
+.img-preview{width:72px;height:72px;object-fit:cover;border:1px solid var(--ink-faint);flex-shrink:0}
+.img-preview-name{font-size:12px;color:var(--ink-mid);font-style:italic;word-break:break-all}
+.img-warning{display:none;font-size:12px;color:var(--accent);background:#fdf5f5;border:1px solid #f0cccc;padding:.5rem .75rem;line-height:1.6}
+.img-warning a{color:var(--accent);text-decoration:underline}
+.img-name-hint{font-size:12px;color:var(--ink-mid);background:#f8f6f2;border-left:2px solid var(--ink-faint);padding:.45rem .7rem;line-height:1.65}
+.img-name-hint code{font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.05rem .3rem}
+
+/* ── TAGS ── */
+.tag-box{background:#f8f6f2;border:1px solid var(--ink-faint);padding:1rem 1.1rem;margin-bottom:1.25rem}
+.tag-box-title{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.65rem}
+.tag-box p{font-size:13px;color:var(--ink-mid);line-height:1.75;margin-bottom:.6rem}
+.tag-box p strong{color:var(--ink)}
+.tag-pills-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid);margin:.75rem 0 .35rem}
+.tag-pill-click{display:inline-block;font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.2rem .65rem;margin:.15rem;color:var(--ink-mid);cursor:pointer;transition:all .15s;user-select:none}
+.tag-pill-click:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tag-new-warn{display:none;font-size:12px;color:#7a5a10;background:#fdf8ee;border:1px solid #e8d5a0;padding:.4rem .7rem;margin-top:.3rem;line-height:1.6}
 
 /* ── SUBMIT ── */
 .submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--ink-faint)}
@@ -135,8 +152,7 @@ button.publish:disabled{opacity:.4;cursor:default}
       <button class="mode-btn" onclick="setMode('libro','editar',this)">Editar existente</button>
     </div>
 
-    <!-- Selector edición -->
-    <div id="libro-edit-selector" class="edit-selector" style="display:none">
+    <div id="libro-edit-selector" style="display:none">
       <div class="field">
         <label>Selecciona el libro a editar</label>
         <select onchange="loadBookForEdit(this.value)">
@@ -145,7 +161,6 @@ button.publish:disabled{opacity:.4;cursor:default}
       </div>
     </div>
 
-    <!-- Pills libros existentes (modo nuevo) -->
     <div id="existing-books-info" class="existing-info" style="display:none">
       <div class="existing-info-label">Libros en el catálogo</div>
       <div id="existing-books-list"></div>
@@ -217,10 +232,25 @@ button.publish:disabled{opacity:.4;cursor:default}
       <span class="field-error" id="l-desc-catalog-error">La descripción de catálogo es obligatoria</span>
     </div>
 
+    <!-- Portada -->
     <div class="field">
-      <label>Nombre del archivo de portada</label>
-      <input type="text" id="l-cover" placeholder="portada-titulo.jpg">
-      <span class="hint">Sube esta imagen a images/ con exactamente este nombre</span>
+      <label>Imagen de portada</label>
+      <input type="file" id="l-cover-file" class="img-file-input" accept="image/jpeg,image/png,image/webp" onchange="handleImageSelect('l')">
+      <label for="l-cover-file" class="img-file-btn">Seleccionar imagen…</label>
+      <div id="l-cover-preview-row" class="img-preview-row">
+        <img id="l-cover-preview" class="img-preview" src="" alt="">
+        <span id="l-cover-preview-name" class="img-preview-name"></span>
+      </div>
+      <div id="l-cover-warning" class="img-warning">
+        El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
+        <a href="https://www.iloveimg.com/es/comprimir-imagen" target="_blank">iloveimg.com →</a>
+      </div>
+      <input type="text" id="l-cover" placeholder="portada-titulo.jpg" oninput="clearFileSelect('l')">
+      <div class="img-name-hint">
+        <strong>Nombre sugerido:</strong> <code>cuaderno-[N]-titulo.jpg</code> — todo en minúsculas, sin espacios ni acentos, con guiones.<br>
+        Ejemplo: <code>cuaderno-2-carta-cabala.jpg</code><br>
+        Este nombre es como quedará guardado en GitHub y como deberás referirlo si lo necesitas en otro sitio.
+      </div>
     </div>
 
     <div class="section-label">Opcional <em>— completar cuando esté disponible</em></div>
@@ -275,8 +305,7 @@ button.publish:disabled{opacity:.4;cursor:default}
       <button class="mode-btn" onclick="setMode('archivo','editar',this)">Editar existente</button>
     </div>
 
-    <!-- Selector edición -->
-    <div id="archivo-edit-selector" class="edit-selector" style="display:none">
+    <div id="archivo-edit-selector" style="display:none">
       <div class="field">
         <label>Selecciona la entrada a editar</label>
         <select onchange="loadArchivoForEdit(this.value)">
@@ -329,21 +358,35 @@ button.publish:disabled{opacity:.4;cursor:default}
       <span class="field-error" id="a-texto-error">El texto es obligatorio</span>
     </div>
 
+    <!-- Imagen (foto / mixto) -->
     <div id="a-imagen-fields">
-      <div class="row">
-        <div class="field">
-          <label>Nombre del archivo de imagen</label>
-          <input type="text" id="a-imagen" placeholder="nombre-archivo.jpg">
-          <span class="hint">Sube esta imagen a images/ con exactamente este nombre</span>
-          <span class="field-error" id="a-imagen-error">La imagen es obligatoria para este tipo</span>
+      <div class="field">
+        <label>Imagen</label>
+        <input type="file" id="a-imagen-file" class="img-file-input" accept="image/jpeg,image/png,image/webp" onchange="handleImageSelect('a')">
+        <label for="a-imagen-file" class="img-file-btn">Seleccionar imagen…</label>
+        <div id="a-imagen-preview-row" class="img-preview-row">
+          <img id="a-imagen-preview" class="img-preview" src="" alt="">
+          <span id="a-imagen-preview-name" class="img-preview-name"></span>
         </div>
-        <div class="field">
-          <label>Descripción de la imagen <em>— accesibilidad</em></label>
-          <input type="text" id="a-imagealt">
+        <div id="a-imagen-warning" class="img-warning">
+          El archivo supera 2MB — las imágenes grandes ralentizan la web. Comprímelo antes de subir:
+          <a href="https://www.iloveimg.com/es/comprimir-imagen" target="_blank">iloveimg.com →</a>
         </div>
+        <input type="text" id="a-imagen" placeholder="nombre-archivo.jpg" oninput="clearFileSelect('a')">
+        <div class="img-name-hint">
+          <strong>Nombre sugerido:</strong> <code>archivo-[tag]-[descripcion].jpg</code> — minúsculas, sin espacios ni acentos, con guiones.<br>
+          Ejemplo: <code>archivo-prevel-retrato-1948.jpg</code><br>
+          Este nombre es como quedará en GitHub. Úsalo si necesitas referenciar la imagen en otro lugar.
+        </div>
+        <span class="field-error" id="a-imagen-error">La imagen es obligatoria para este tipo</span>
+      </div>
+      <div class="field">
+        <label>Descripción de la imagen <em>— accesibilidad</em></label>
+        <input type="text" id="a-imagealt">
       </div>
     </div>
 
+    <!-- Vídeo (video / mixto) -->
     <div id="a-video-fields" style="display:none">
       <div class="field">
         <label>ID del vídeo de YouTube</label>
@@ -353,16 +396,24 @@ button.publish:disabled{opacity:.4;cursor:default}
       </div>
     </div>
 
-    <div class="field">
-      <label>Tags <em>— agrupan las entradas en el mapa. Separados por coma.</em></label>
-      <input type="text" id="a-tags" placeholder="artaud, prevel">
-      <span class="field-error" id="a-tags-error">Al menos un tag es obligatorio</span>
+    <!-- Tags -->
+    <div class="tag-box">
+      <div class="tag-box-title">Cómo funcionan los tags</div>
+      <p>Cada tag agrupa entradas en el <strong>mapa del archivo</strong>. Entradas con el mismo tag forman un <strong>cluster</strong> y aparecen juntas.</p>
+      <p>Una entrada con <strong>dos tags</strong> aparece entre los dos clusters, conectándolos visualmente. Más de dos tags no tiene efecto adicional.</p>
+      <p>Usa siempre los mismos tags para el mismo tema. Si escribes un tag nuevo, se creará un cluster nuevo en el mapa.</p>
+      <div id="existing-tags-box" style="display:none">
+        <div class="tag-pills-label">Tags existentes — pulsa para añadir</div>
+        <div id="existing-tags-list"></div>
+      </div>
     </div>
 
-    <!-- Tags existentes -->
-    <div id="existing-tags-info" class="existing-info" style="display:none">
-      <div class="existing-info-label">Tags ya usados</div>
-      <div id="existing-tags-list"></div>
+    <div class="field">
+      <label>Tags de esta entrada</label>
+      <input type="text" id="a-tags" placeholder="artaud, prevel" oninput="checkNewTag()">
+      <span class="hint">Separados por coma. Un tag = un cluster. Dos tags = entre dos clusters.</span>
+      <div class="tag-new-warn" id="a-tags-new-warn"></div>
+      <span class="field-error" id="a-tags-error">Al menos un tag es obligatorio</span>
     </div>
 
     <div class="section-label">Opcional</div>
@@ -387,10 +438,12 @@ var API      = 'https://api.github.com/repos/' + REPO + '/contents/';
 
 var currentBooks    = [];
 var currentArchivo  = [];
+var tagCounts       = {};
 var libroEditMode   = false;
 var archivoEditMode = false;
 var libroEditId     = null;
 var archivoEditIdx  = null;
+var imageFiles      = { l: null, a: null };
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 function iniciarSesion(pwd, token) {
@@ -408,8 +461,8 @@ function cerrarSesion() {
   GH_TOKEN = '';
   document.getElementById('app').style.display   = 'none';
   document.getElementById('login').style.display = 'flex';
-  document.getElementById('pwd').value = '';
-  document.getElementById('gh-token').value = '';
+  document.getElementById('pwd').value           = '';
+  document.getElementById('gh-token').value      = '';
   document.getElementById('token-row').style.display = 'block';
 }
 
@@ -434,7 +487,6 @@ function checkPwd() {
   var savedToken = localStorage.getItem('gk_token');
   if (savedPwd === PASSWORD && savedToken) {
     document.getElementById('token-row').style.display = 'none';
-    document.getElementById('pwd').value = savedPwd;
     iniciarSesion(savedPwd, savedToken);
   }
 })();
@@ -446,13 +498,18 @@ function ghGet(path) {
   }).then(function(r) { return r.json(); });
 }
 
-function ghPut(path, src, sha, message) {
-  var encoded = btoa(unescape(encodeURIComponent(src)));
+function ghPut(path, content, sha, message) {
+  var body = { message: message, content: content };
+  if (sha) body.sha = sha;
   return fetch(API + path, {
     method: 'PUT',
     headers: { 'Authorization': 'token ' + GH_TOKEN, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: message, content: encoded, sha: sha })
+    body: JSON.stringify(body)
   }).then(function(r) { return r.json().then(function(d){ return { ok: r.ok, data: d }; }); });
+}
+
+function ghPutText(path, text, sha, message) {
+  return ghPut(path, btoa(unescape(encodeURIComponent(text))), sha, message);
 }
 
 function parseJsArray(src, varName) {
@@ -461,6 +518,55 @@ function parseJsArray(src, varName) {
 
 function decode64(b64) {
   return decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
+}
+
+// Upload image file to images/ folder
+function ghUploadImage(filename, file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var base64 = e.target.result.split(',')[1];
+      // Try to get existing SHA (in case file already exists)
+      ghGet('images/' + filename).then(function(existing) {
+        return ghPut('images/' + filename, base64, existing.sha || undefined, 'Subir imagen: ' + filename);
+      }).then(resolve).catch(reject);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── Image field handling ──────────────────────────────────────────────────────
+function handleImageSelect(prefix) {
+  var fileInputId = prefix === 'l' ? 'l-cover-file' : 'a-imagen-file';
+  var nameFieldId = prefix === 'l' ? 'l-cover'      : 'a-imagen';
+  var previewRowId= prefix === 'l' ? 'l-cover-preview-row'  : 'a-imagen-preview-row';
+  var previewImgId= prefix === 'l' ? 'l-cover-preview'      : 'a-imagen-preview';
+  var previewNmId = prefix === 'l' ? 'l-cover-preview-name' : 'a-imagen-preview-name';
+  var warningId   = prefix === 'l' ? 'l-cover-warning'      : 'a-imagen-warning';
+
+  var file = document.getElementById(fileInputId).files[0];
+  if (!file) return;
+
+  imageFiles[prefix] = file;
+  document.getElementById(nameFieldId).value = file.name;
+  document.getElementById(warningId).style.display = file.size > 2 * 1024 * 1024 ? 'block' : 'none';
+
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById(previewImgId).src = e.target.result;
+    document.getElementById(previewNmId).textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+    document.getElementById(previewRowId).style.display = 'flex';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearFileSelect(prefix) {
+  imageFiles[prefix] = null;
+  var previewRowId = prefix === 'l' ? 'l-cover-preview-row' : 'a-imagen-preview-row';
+  var warningId    = prefix === 'l' ? 'l-cover-warning'     : 'a-imagen-warning';
+  document.getElementById(previewRowId).style.display = 'none';
+  document.getElementById(warningId).style.display    = 'none';
 }
 
 // ── Load data ─────────────────────────────────────────────────────────────────
@@ -476,7 +582,6 @@ function loadData() {
     currentBooks   = parseJsArray(librosSrc,  'BOOKS')   || [];
     currentArchivo = parseJsArray(archivoSrc, 'ARCHIVO') || [];
 
-    // Next id hint
     if (currentBooks.length) {
       var nextId = Math.max.apply(null, currentBooks.map(function(b){ return b.id || 0; })) + 1;
       document.getElementById('l-id').placeholder = nextId;
@@ -486,7 +591,6 @@ function loadData() {
       }).join('');
       document.getElementById('existing-books-info').style.display = 'block';
 
-      // Populate libro edit selector
       var sel = document.querySelector('#libro-edit-selector select');
       currentBooks.forEach(function(b) {
         var o = document.createElement('option');
@@ -496,18 +600,20 @@ function loadData() {
       });
     }
 
-    // Tags existentes
-    var tagSet = {};
-    currentArchivo.forEach(function(e) { (e.tags || []).forEach(function(t){ tagSet[t] = true; }); });
-    var tags = Object.keys(tagSet);
+    // Tags con conteo
+    tagCounts = {};
+    currentArchivo.forEach(function(e) {
+      (e.tags || []).forEach(function(t){ tagCounts[t] = (tagCounts[t] || 0) + 1; });
+    });
+    var tags = Object.keys(tagCounts);
     if (tags.length) {
       document.getElementById('existing-tags-list').innerHTML = tags.map(function(t) {
-        return '<span class="info-pill">' + t + '</span>';
+        return '<span class="tag-pill-click" onclick="addTag(\'' + t.replace(/'/g,"\\'") + '\')">' +
+               t + ' <em style="opacity:.55;font-style:normal">(' + tagCounts[t] + ')</em></span>';
       }).join('');
-      document.getElementById('existing-tags-info').style.display = 'block';
+      document.getElementById('existing-tags-box').style.display = 'block';
     }
 
-    // Populate archivo edit selector
     var aSel = document.querySelector('#archivo-edit-selector select');
     currentArchivo.forEach(function(e, i) {
       var o = document.createElement('option');
@@ -527,6 +633,28 @@ function setStatus(msg, type) {
   bar.textContent = msg;
   bar.className = type;
   bar.style.display = msg ? 'block' : 'none';
+}
+
+// ── Tags ──────────────────────────────────────────────────────────────────────
+function addTag(tag) {
+  var input = document.getElementById('a-tags');
+  var parts = input.value ? input.value.split(',').map(function(t){ return t.trim(); }) : [];
+  if (parts.indexOf(tag) === -1) parts.push(tag);
+  input.value = parts.join(', ');
+  checkNewTag();
+}
+
+function checkNewTag() {
+  var input = document.getElementById('a-tags');
+  var typed = input.value.split(',').map(function(t){ return t.trim().toLowerCase(); }).filter(Boolean);
+  var newTags = typed.filter(function(t){ return t && !tagCounts[t]; });
+  var warn = document.getElementById('a-tags-new-warn');
+  if (newTags.length) {
+    warn.textContent = '«' + newTags.join('» y «') + '» ' + (newTags.length === 1 ? 'es un tag nuevo' : 'son tags nuevos') + ' — se creará un cluster nuevo en el mapa del archivo.';
+    warn.style.display = 'block';
+  } else {
+    warn.style.display = 'none';
+  }
 }
 
 // ── Tabs & mode ───────────────────────────────────────────────────────────────
@@ -560,20 +688,26 @@ function setMode(tab, mode, btn) {
 }
 
 function clearForm(tab) {
-  var fields;
   if (tab === 'libro') {
-    fields = ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role','l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining','l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'];
+    ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role',
+     'l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining',
+     'l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'].forEach(function(f){ document.getElementById(f).value = ''; });
     document.getElementById('l-status').value = '';
     document.getElementById('status-libro').textContent = '';
     document.getElementById('status-libro').className = 'publish-status';
+    clearFileSelect('l');
+    document.getElementById('l-cover-file').value = '';
   } else {
-    fields = ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt','a-videoid','a-tags','a-cuaderno','a-enlace'];
+    ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt',
+     'a-videoid','a-tags','a-cuaderno','a-enlace'].forEach(function(f){ document.getElementById(f).value = ''; });
     document.getElementById('a-tipo').value = '';
     updateArchivoFields();
     document.getElementById('status-archivo').textContent = '';
     document.getElementById('status-archivo').className = 'publish-status';
+    document.getElementById('a-tags-new-warn').style.display = 'none';
+    clearFileSelect('a');
+    document.getElementById('a-imagen-file').value = '';
   }
-  fields.forEach(function(f) { document.getElementById(f).value = ''; });
 }
 
 function updateArchivoFields() {
@@ -589,24 +723,24 @@ function loadBookForEdit(id) {
   var b = currentBooks.find(function(x){ return x.id === libroEditId; });
   if (!b) return;
   var a = b.authors || [];
-  document.getElementById('l-id').value             = b.id;
-  document.getElementById('l-date').value           = b.date           || '';
-  document.getElementById('l-status').value         = b.status         || '';
-  document.getElementById('l-title').value          = b.title          || '';
-  document.getElementById('l-author1-name').value   = (a[0]||{}).name  || '';
-  document.getElementById('l-author1-role').value   = (a[0]||{}).role  || '';
-  document.getElementById('l-author2-name').value   = (a[1]||{}).name  || '';
-  document.getElementById('l-author2-role').value   = (a[1]||{}).role  || '';
-  document.getElementById('l-subtitle').value       = b.subtitle       || '';
-  document.getElementById('l-desc-short').value     = b.descShort      || '';
-  document.getElementById('l-desc-catalog').value   = b.descCatalog    || '';
-  document.getElementById('l-cover').value          = b.coverImage ? b.coverImage.replace('./images/', '') : '';
-  document.getElementById('l-copies-total').value   = b.copiesTotal     != null ? b.copiesTotal     : '';
+  document.getElementById('l-id').value               = b.id;
+  document.getElementById('l-date').value             = b.date           || '';
+  document.getElementById('l-status').value           = b.status         || '';
+  document.getElementById('l-title').value            = b.title          || '';
+  document.getElementById('l-author1-name').value     = (a[0]||{}).name  || '';
+  document.getElementById('l-author1-role').value     = (a[0]||{}).role  || '';
+  document.getElementById('l-author2-name').value     = (a[1]||{}).name  || '';
+  document.getElementById('l-author2-role').value     = (a[1]||{}).role  || '';
+  document.getElementById('l-subtitle').value         = b.subtitle       || '';
+  document.getElementById('l-desc-short').value       = b.descShort      || '';
+  document.getElementById('l-desc-catalog').value     = b.descCatalog    || '';
+  document.getElementById('l-cover').value            = b.coverImage ? b.coverImage.replace('./images/', '') : '';
+  document.getElementById('l-copies-total').value     = b.copiesTotal     != null ? b.copiesTotal     : '';
   document.getElementById('l-copies-remaining').value = b.copiesRemaining != null ? b.copiesRemaining : '';
-  document.getElementById('l-quote').value          = b.quote          || '';
-  document.getElementById('l-purchase-url').value   = b.purchaseUrl    || '';
-  document.getElementById('l-purchase-label').value = b.purchaseLabel  || '';
-  document.getElementById('l-purchase-desc').value  = b.purchaseDesc   || '';
+  document.getElementById('l-quote').value            = b.quote          || '';
+  document.getElementById('l-purchase-url').value     = b.purchaseUrl    || '';
+  document.getElementById('l-purchase-label').value   = b.purchaseLabel  || '';
+  document.getElementById('l-purchase-desc').value    = b.purchaseDesc   || '';
 }
 
 function loadArchivoForEdit(idx) {
@@ -614,19 +748,20 @@ function loadArchivoForEdit(idx) {
   archivoEditIdx = parseInt(idx);
   var e = currentArchivo[archivoEditIdx];
   if (!e) return;
-  document.getElementById('a-tipo').value    = e.tipo     || '';
+  document.getElementById('a-tipo').value     = e.tipo     || '';
   updateArchivoFields();
-  document.getElementById('a-fecha').value   = e.fecha    || '';
-  document.getElementById('a-etiqueta').value= e.etiqueta || '';
-  document.getElementById('a-titulo').value  = e.titulo   || '';
-  document.getElementById('a-texto').value   = e.texto    || '';
-  document.getElementById('a-imagen').value  = e.imagen   ? e.imagen.replace('./images/', '') : '';
-  document.getElementById('a-imagealt').value= e.imageAlt || '';
+  document.getElementById('a-fecha').value    = e.fecha    || '';
+  document.getElementById('a-etiqueta').value = e.etiqueta || '';
+  document.getElementById('a-titulo').value   = e.titulo   || '';
+  document.getElementById('a-texto').value    = e.texto    || '';
+  document.getElementById('a-imagen').value   = e.imagen   ? e.imagen.replace('./images/', '') : '';
+  document.getElementById('a-imagealt').value = e.imageAlt || '';
   var vm = e.videoUrl ? e.videoUrl.match(/embed\/(.+)$/) : null;
-  document.getElementById('a-videoid').value = vm ? vm[1] : '';
-  document.getElementById('a-tags').value    = (e.tags || []).join(', ');
-  document.getElementById('a-cuaderno').value= e.cuadernoId || '';
-  document.getElementById('a-enlace').value  = e.enlace   || '';
+  document.getElementById('a-videoid').value  = vm ? vm[1] : '';
+  document.getElementById('a-tags').value     = (e.tags || []).join(', ');
+  document.getElementById('a-cuaderno').value = e.cuadernoId || '';
+  document.getElementById('a-enlace').value   = e.enlace   || '';
+  checkNewTag();
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -635,30 +770,18 @@ function showError(id, show) { var el = document.getElementById(id); if (el) el.
 function markInvalid(id, inv) { var el = document.getElementById(id); if (el) el.classList.toggle('invalid', inv); }
 function esc(s) { return s ? s.replace(/\\/g, '\\\\').replace(/"/g, '\\"') : ''; }
 
-// Find and replace a JS object block in source by searching for a unique field match,
-// then extracting the surrounding {} using brace counting.
 function replaceBlock(src, fieldPattern, newBlock) {
   var m = fieldPattern.exec(src);
   if (!m) return null;
-
-  // Walk backwards from the match to find the opening { of this object
   var depth = 0, blockStart = -1;
   for (var i = m.index - 1; i >= 0; i--) {
     if (src[i] === '}') depth++;
-    if (src[i] === '{') {
-      if (depth === 0) { blockStart = i; break; }
-      depth--;
-    }
+    if (src[i] === '{') { if (depth === 0) { blockStart = i; break; } depth--; }
   }
   if (blockStart === -1) return null;
-
-  // Include preceding comma + whitespace
-  var preStart = blockStart;
-  var j = blockStart - 1;
+  var preStart = blockStart, j = blockStart - 1;
   while (j >= 0 && (src[j] === ' ' || src[j] === '\n' || src[j] === '\r' || src[j] === '\t')) j--;
   if (j >= 0 && src[j] === ',') preStart = j;
-
-  // Walk forward to find the closing }
   depth = 0;
   var blockEnd = -1;
   for (var k = blockStart; k < src.length; k++) {
@@ -666,11 +789,10 @@ function replaceBlock(src, fieldPattern, newBlock) {
     if (src[k] === '}') { depth--; if (depth === 0) { blockEnd = k + 1; break; } }
   }
   if (blockEnd === -1) return null;
-
   return src.substring(0, preStart) + newBlock + src.substring(blockEnd);
 }
 
-// ── Build entry strings ───────────────────────────────────────────────────────
+// ── Build entries ─────────────────────────────────────────────────────────────
 function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, ct, cr, quote, purl, plabel, pdesc) {
   var authors = '      { name: "' + esc(a1name) + '", role: "' + esc(a1role) + '" }';
   if (a2name) authors += ',\n      { name: "' + esc(a2name) + '", role: "' + esc(a2role) + '" }';
@@ -725,11 +847,10 @@ function buildArchivoEntry(tipo, fecha, etiqueta, titulo, texto, imagen, imgalt,
   if (tipo !== 'foto') {
     s += '    videoUrl: ' + (vurl ? '"' + vurl + '"' : 'null') + ',\n';
   }
-  s +=
-    '    enlace:   ' + (enlace ? '"' + esc(enlace) + '"' : 'null') + ',\n' +
-    '    tags:     [' + tagsStr + '],\n' +
-    '    cuadernoId: ' + cuad + '\n' +
-    '  }';
+  s += '    enlace:   ' + (enlace ? '"' + esc(enlace) + '"' : 'null') + ',\n' +
+       '    tags:     [' + tagsStr + '],\n' +
+       '    cuadernoId: ' + cuad + '\n' +
+       '  }';
   return s;
 }
 
@@ -755,28 +876,17 @@ function publishBook() {
   var pdesc   = v('l-purchase-desc');
 
   var ok = true;
-
   var idExists = !libroEditMode && currentBooks.some(function(b){ return b.id === id; });
-  showError('l-id-error', !id || idExists);
-  markInvalid('l-id', !id || idExists);
-  if (!id || idExists) ok = false;
-
-  showError('l-status-error', !status);
-  markInvalid('l-status', !status);
-  if (!status) ok = false;
-
-  var titleExists = !libroEditMode && currentBooks.some(function(b){
-    return b.title && b.title.toLowerCase() === title.toLowerCase();
-  });
+  showError('l-id-error', !id || idExists); markInvalid('l-id', !id || idExists); if (!id || idExists) ok = false;
+  showError('l-status-error', !status); markInvalid('l-status', !status); if (!status) ok = false;
+  var titleExists = !libroEditMode && currentBooks.some(function(b){ return b.title && b.title.toLowerCase() === title.toLowerCase(); });
   if (!title || titleExists) {
     document.getElementById('l-title-error').textContent = titleExists ? 'Ya existe un libro con este título' : 'El título es obligatorio';
     showError('l-title-error', true); markInvalid('l-title', true); ok = false;
   } else { showError('l-title-error', false); markInvalid('l-title', false); }
-
   showError('l-author-error', !a1name); markInvalid('l-author1-name', !a1name); if (!a1name) ok = false;
   showError('l-desc-short-error', !ds); markInvalid('l-desc-short', !ds); if (!ds) ok = false;
   showError('l-desc-catalog-error', !dc); markInvalid('l-desc-catalog', !dc); if (!dc) ok = false;
-
   if (!ok) return;
 
   var byline = a2name ? a1name + ' · ' + a2name : a1name;
@@ -784,31 +894,31 @@ function publishBook() {
 
   var btn = document.getElementById('btn-libro');
   var st  = document.getElementById('status-libro');
-  btn.disabled = true;
-  st.textContent = 'Publicando…';
-  st.className = 'publish-status';
+  btn.disabled = true; st.textContent = imageFiles.l ? 'Subiendo imagen…' : 'Publicando…'; st.className = 'publish-status';
 
-  ghGet('contenido/libros.js').then(function(file) {
+  var imagePromise = imageFiles.l && cover
+    ? ghUploadImage(cover, imageFiles.l)
+    : Promise.resolve(null);
+
+  imagePromise.then(function() {
+    st.textContent = 'Publicando entrada…';
+    return ghGet('contenido/libros.js');
+  }).then(function(file) {
     var src = decode64(file.content);
     var newSrc;
     if (libroEditMode) {
       newSrc = replaceBlock(src, new RegExp('\\bid\\s*:\\s*' + id + '\\b'), entry);
-      if (!newSrc) throw new Error('No se encontró el libro N.º ' + id + ' en el archivo');
+      if (!newSrc) throw new Error('No se encontró el libro N.º ' + id);
     } else {
       newSrc = src.replace(/\n\s*\];\s*$/, '\n\n' + entry + '\n\n];');
     }
-    var msg = (libroEditMode ? 'Actualizar' : 'Añadir') + ' libro N.º ' + id + ': ' + title;
-    return ghPut('contenido/libros.js', newSrc, file.sha, msg);
+    return ghPutText('contenido/libros.js', newSrc, file.sha, (libroEditMode ? 'Actualizar' : 'Añadir') + ' libro N.º ' + id + ': ' + title);
   }).then(function(res) {
     if (res.ok) {
-      st.textContent = libroEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en la web en unos segundos.';
+      st.textContent = libroEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en la web en 1-2 minutos.';
       st.className = 'publish-status success';
-      if (libroEditMode) {
-        var b = currentBooks.find(function(x){ return x.id === id; });
-        if (b) b.title = title;
-      } else {
-        currentBooks.push({ id: id, title: title });
-      }
+      if (libroEditMode) { var b = currentBooks.find(function(x){ return x.id === id; }); if (b) b.title = title; }
+      else currentBooks.push({ id: id, title: title });
     } else {
       st.textContent = 'Error: ' + (res.data.message || 'inténtalo de nuevo');
       st.className = 'publish-status error';
@@ -857,18 +967,22 @@ function publishArchivo() {
       document.getElementById('a-titulo-error').textContent = 'El título es obligatorio';
     }
   }
-
   if (!ok) return;
 
   var entry = buildArchivoEntry(tipo, fecha, etiqueta, titulo, texto, imagen, imgalt, videoid, tags, cuad, enlace);
 
   var btn = document.getElementById('btn-archivo');
   var st  = document.getElementById('status-archivo');
-  btn.disabled = true;
-  st.textContent = 'Publicando…';
-  st.className = 'publish-status';
+  btn.disabled = true; st.textContent = imageFiles.a ? 'Subiendo imagen…' : 'Publicando…'; st.className = 'publish-status';
 
-  ghGet('contenido/archivo.js').then(function(file) {
+  var imagePromise = imageFiles.a && imagen
+    ? ghUploadImage(imagen, imageFiles.a)
+    : Promise.resolve(null);
+
+  imagePromise.then(function() {
+    st.textContent = 'Publicando entrada…';
+    return ghGet('contenido/archivo.js');
+  }).then(function(file) {
     var src = decode64(file.content);
     var newSrc;
     if (archivoEditMode && archivoEditIdx !== null) {
@@ -879,11 +993,10 @@ function publishArchivo() {
     } else {
       newSrc = src.replace(/\n\s*\];\s*$/, '\n\n' + entry + '\n\n];');
     }
-    var msg = (archivoEditMode ? 'Actualizar' : 'Añadir') + ' entrada de archivo: ' + titulo;
-    return ghPut('contenido/archivo.js', newSrc, file.sha, msg);
+    return ghPutText('contenido/archivo.js', newSrc, file.sha, (archivoEditMode ? 'Actualizar' : 'Añadir') + ' entrada de archivo: ' + titulo);
   }).then(function(res) {
     if (res.ok) {
-      st.textContent = archivoEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en el archivo en unos segundos.';
+      st.textContent = archivoEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en el archivo en 1-2 minutos.';
       st.className = 'publish-status success';
       if (!archivoEditMode) currentArchivo.push({ titulo: titulo });
     } else {
