@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK · Admin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#111010;--ink-mid:#3d3a38;--ink-faint:#d4d0ca;
+  --cream:#f3f1ed;--page:#ffffff;--accent:#8c1a13;
+}
+body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-size:15px;min-height:100vh}
+
+/* LOGIN */
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1.5rem}
+#login h1{font-size:1.1rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid)}
+#login input{font-family:Georgia,serif;font-size:16px;padding:.65rem 1rem;border:1px solid var(--ink-faint);background:var(--page);width:240px;outline:none;text-align:center;letter-spacing:.1em}
+#login input:focus{border-color:var(--ink)}
+#login button{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 2rem;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+#login button:hover{background:var(--accent);border-color:var(--accent)}
+#login-error{font-size:12px;color:var(--accent);display:none}
+
+/* APP */
+#app{display:none;max-width:780px;margin:0 auto;padding:3rem 1.5rem}
+header{border-bottom:1px solid var(--ink);padding-bottom:1.5rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
+header h1{font-size:1.25rem;font-style:italic;font-weight:400}
+header span{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid)}
+
+/* TABS */
+.tabs{display:flex;gap:0;margin-bottom:2rem;border-bottom:1px solid var(--ink-faint)}
+.tab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.5rem;cursor:pointer;color:var(--ink-mid);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:Georgia,serif}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* FORM */
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.25rem}
+.field label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
+.field .hint{font-size:12px;color:var(--ink-mid);font-style:italic;margin-top:.15rem}
+.field input,.field select,.field textarea{font-family:Georgia,serif;font-size:15px;padding:.5rem 0;border:none;border-bottom:1px solid var(--ink-faint);background:transparent;outline:none;color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--ink)}
+.field textarea{resize:vertical;min-height:72px;line-height:1.6}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);margin:1.75rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--ink-faint)}
+button.generate{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.75rem 2.5rem;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;margin-top:.5rem}
+button.generate:hover{opacity:.85}
+
+/* OUTPUT */
+.output{margin-top:2rem;display:none}
+.output-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.75rem;display:flex;justify-content:space-between;align-items:center}
+.copy-btn{font-family:Georgia,serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:.4rem 1rem;border:1px solid var(--ink-faint);background:var(--page);cursor:pointer;color:var(--ink-mid)}
+.copy-btn:hover{border-color:var(--ink);color:var(--ink)}
+.copy-btn.done{border-color:var(--accent);color:var(--accent)}
+pre{background:var(--page);border:1px solid var(--ink-faint);padding:1.25rem;font-size:12px;line-height:1.7;overflow-x:auto;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;color:var(--ink)}
+.instructions{margin-top:1rem;font-size:13px;color:var(--ink-mid);line-height:1.8;background:var(--cream);border-left:2px solid var(--ink-faint);padding:.75rem 1rem}
+.instructions strong{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <h1>Greta Krull · Acceso</h1>
+  <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
+  <button onclick="checkPwd()">Entrar</button>
+  <div id="login-error">Contraseña incorrecta</div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <h1>Greta Krull Ediciones — Panel de contenido</h1>
+    <span>Uso interno</span>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('libro')">Nuevo libro</button>
+    <button class="tab" onclick="switchTab('archivo')">Nueva entrada de archivo</button>
+  </div>
+
+  <!-- TAB: LIBRO -->
+  <div id="tab-libro" class="tab-panel active">
+    <div class="section-label">Obligatorio</div>
+
+    <div class="row">
+      <div class="field">
+        <label>Número de libro</label>
+        <input type="number" id="l-id" placeholder="5" min="1">
+        <span class="hint">Correlativo al último del catálogo</span>
+      </div>
+      <div class="field">
+        <label>Año de publicación</label>
+        <input type="text" id="l-date" placeholder="2026">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Estado</label>
+      <select id="l-status">
+        <option value="upcoming">En preparación (upcoming)</option>
+        <option value="available">Disponible (available)</option>
+        <option value="announced">Solo anunciado (announced)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Título</label>
+      <input type="text" id="l-title" placeholder="Título del libro">
+    </div>
+
+    <div class="field">
+      <label>Autor principal</label>
+      <input type="text" id="l-author1-name" placeholder="Nombre Apellido">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Rol del autor</label>
+        <input type="text" id="l-author1-role" placeholder="Ensayo / Poesía / Traducción">
+      </div>
+      <div class="field">
+        <label>Segundo autor (opcional)</label>
+        <input type="text" id="l-author2-name" placeholder="Nombre Apellido">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Rol del segundo autor</label>
+        <input type="text" id="l-author2-role" placeholder="Poesía / Ensayo">
+      </div>
+      <div class="field">
+        <label>Subtítulo (opcional)</label>
+        <input type="text" id="l-subtitle" placeholder="Subtítulo breve">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Descripción corta</label>
+      <input type="text" id="l-desc-short" placeholder="Una frase. Aparece en la cuadrícula de inicio. Máx. 15 palabras.">
+    </div>
+
+    <div class="field">
+      <label>Descripción catálogo</label>
+      <textarea id="l-desc-catalog" placeholder="2-4 frases. Aparece en la página de catálogo."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Nombre del archivo de portada</label>
+      <input type="text" id="l-cover" placeholder="nombre-portada.jpg">
+      <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
+    </div>
+
+    <div class="section-label">Opcional — rellenar cuando esté disponible</div>
+
+    <div class="row">
+      <div class="field">
+        <label>Tirada total</label>
+        <input type="number" id="l-copies-total" placeholder="100">
+      </div>
+      <div class="field">
+        <label>Ejemplares disponibles</label>
+        <input type="number" id="l-copies-remaining" placeholder="Dejar vacío si no se sabe">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Cita destacada (opcional)</label>
+      <input type="text" id="l-quote" placeholder="«Una frase memorable del libro o sobre él»">
+    </div>
+
+    <div class="field">
+      <label>Enlace de compra (opcional)</label>
+      <input type="text" id="l-purchase-url" placeholder="https://...">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Nombre del enlace</label>
+        <input type="text" id="l-purchase-label" placeholder="IberLibro">
+      </div>
+      <div class="field">
+        <label>Descripción del enlace</label>
+        <input type="text" id="l-purchase-desc" placeholder="Compra directa. Envío internacional.">
+      </div>
+    </div>
+
+    <button class="generate" onclick="generateBook()">Generar código</button>
+
+    <div class="output" id="output-libro">
+      <div class="output-label">
+        Código generado — pégalo en contenido/libros.js justo encima del ];
+        <button class="copy-btn" id="copy-libro" onclick="copyCode('output-libro-pre','copy-libro')">Copiar</button>
+      </div>
+      <pre id="output-libro-pre"></pre>
+      <div class="instructions">
+        <strong>Cómo usarlo:</strong><br>
+        1. Copia el código de arriba<br>
+        2. Abre <strong>contenido/libros.js</strong> en GitHub<br>
+        3. Haz clic en el lápiz (editar)<br>
+        4. Ve al final del archivo, justo encima de <strong>];</strong><br>
+        5. Pega el código<br>
+        6. Haz clic en <strong>Commit changes</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: ARCHIVO -->
+  <div id="tab-archivo" class="tab-panel">
+    <div class="field">
+      <label>Tipo de entrada</label>
+      <select id="a-tipo" onchange="updateArchivoForm()">
+        <option value="foto">Foto</option>
+        <option value="video">Vídeo</option>
+        <option value="mixto">Mixto (foto + vídeo)</option>
+      </select>
+    </div>
+
+    <div class="section-label">Obligatorio</div>
+
+    <div class="row">
+      <div class="field">
+        <label>Fecha</label>
+        <input type="text" id="a-fecha" placeholder="Junio 2026">
+      </div>
+      <div class="field">
+        <label>Etiqueta</label>
+        <input type="text" id="a-etiqueta" placeholder="Fotografía · N.º 1">
+        <span class="hint">Texto pequeño sobre el título</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Título</label>
+      <input type="text" id="a-titulo" placeholder="Título de la entrada">
+    </div>
+
+    <div class="field">
+      <label>Texto</label>
+      <textarea id="a-texto" placeholder="Texto descriptivo que aparece al abrir la entrada."></textarea>
+    </div>
+
+    <div id="a-imagen-fields">
+      <div class="field">
+        <label>Nombre del archivo de imagen</label>
+        <input type="text" id="a-imagen" placeholder="nombre-del-archivo.jpg">
+        <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
+      </div>
+      <div class="field">
+        <label>Descripción de la imagen</label>
+        <input type="text" id="a-imagealt" placeholder="Descripción breve para accesibilidad">
+      </div>
+    </div>
+
+    <div id="a-video-fields" style="display:none">
+      <div class="field">
+        <label>ID del vídeo de YouTube</label>
+        <input type="text" id="a-videoid" placeholder="dQw4w9WgXcQ">
+        <span class="hint">Es la parte después de youtube.com/watch?v= en la URL del vídeo</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tags (temas)</label>
+      <input type="text" id="a-tags" placeholder="artaud, prevel">
+      <span class="hint">Separados por coma. Agrupan las entradas en el mapa del archivo. Una entrada con dos tags aparece entre los dos grupos.</span>
+    </div>
+
+    <div class="field">
+      <label>Libro relacionado (número)</label>
+      <input type="number" id="a-cuaderno" placeholder="1" min="1">
+    </div>
+
+    <div class="field">
+      <label>Enlace externo (opcional)</label>
+      <input type="text" id="a-enlace" placeholder="https://...">
+    </div>
+
+    <button class="generate" onclick="generateArchivo()">Generar código</button>
+
+    <div class="output" id="output-archivo">
+      <div class="output-label">
+        Código generado — pégalo en contenido/archivo.js justo encima del ];
+        <button class="copy-btn" id="copy-archivo" onclick="copyCode('output-archivo-pre','copy-archivo')">Copiar</button>
+      </div>
+      <pre id="output-archivo-pre"></pre>
+      <div class="instructions">
+        <strong>Cómo usarlo:</strong><br>
+        1. Copia el código de arriba<br>
+        2. Abre <strong>contenido/archivo.js</strong> en GitHub<br>
+        3. Haz clic en el lápiz (editar)<br>
+        4. Ve al final del archivo, justo encima de <strong>];</strong><br>
+        5. Pega el código<br>
+        6. Haz clic en <strong>Commit changes</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var PASSWORD = 'amapola26';
+
+function checkPwd() {
+  var val = document.getElementById('pwd').value;
+  if (val === PASSWORD) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pwd').value = '';
+    document.getElementById('pwd').focus();
+  }
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  event.target.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function updateArchivoForm() {
+  var tipo = document.getElementById('a-tipo').value;
+  document.getElementById('a-imagen-fields').style.display = (tipo === 'video') ? 'none' : '';
+  document.getElementById('a-video-fields').style.display  = (tipo === 'foto')  ? 'none' : '';
+}
+
+function v(id) { return document.getElementById(id).value.trim(); }
+function q(s)  { return s ? '"' + s.replace(/"/g, '\\"') + '"' : 'null'; }
+
+function generateBook() {
+  var id     = parseInt(v('l-id')) || 5;
+  var date   = v('l-date') || '2026';
+  var status = v('l-status');
+  var title  = v('l-title');
+  var a1name = v('l-author1-name');
+  var a1role = v('l-author1-role');
+  var a2name = v('l-author2-name');
+  var a2role = v('l-author2-role');
+  var sub    = v('l-subtitle');
+  var ds     = v('l-desc-short');
+  var dc     = v('l-desc-catalog');
+  var cover  = v('l-cover');
+  var ct     = v('l-copies-total') || '100';
+  var cr     = v('l-copies-remaining');
+  var quote  = v('l-quote');
+  var purl   = v('l-purchase-url');
+  var plabel = v('l-purchase-label');
+  var pdesc  = v('l-purchase-desc');
+
+  var authors = '      { name: "' + a1name + '", role: "' + a1role + '" }';
+  if (a2name) authors += ',\n      { name: "' + a2name + '", role: "' + a2role + '" }';
+  var byline = a2name ? a1name + ' · ' + a2name : a1name;
+
+  var titleWords = title.split(' ');
+  var titleHtml  = titleWords.length > 2 ? titleWords.slice(0,Math.ceil(titleWords.length/2)).join(' ') + '<br>' + titleWords.slice(Math.ceil(titleWords.length/2)).join(' ') : title;
+  var apellido   = a1name.split(' ').slice(-1)[0] || 'Autor';
+
+  var code =
+'  ,{\n' +
+'    id:   ' + id + ',\n' +
+'    num:  "N.º ' + id + '",\n' +
+'    date: "' + date + '",\n' +
+'    status: "' + status + '",\n\n' +
+'    title:  ' + q(title) + ',\n' +
+'    authors: [\n' + authors + '\n    ],\n' +
+'    authorByline: "' + byline + '",\n\n' +
+'    descShort:   ' + q(ds) + ',\n' +
+'    descCatalog: ' + q(dc) + ',\n\n' +
+'    coverImage: ' + (cover ? '"./images/' + cover + '"' : 'null') + ',\n\n' +
+'    collection: "Cuadernos Poesía y Traducción",\n' +
+'    subtitle:    ' + q(sub) + ',\n' +
+'    subtitleSub: null,\n\n' +
+'    copiesTotal:     ' + ct + ',\n' +
+'    copiesRemaining: ' + (cr ? cr : 'null') + ',\n\n' +
+'    quote:    ' + q(quote) + ',\n' +
+'    synopsis: null,\n' +
+'    contents: null,\n' +
+'    specs:    null,\n' +
+'    colophon: null,\n\n' +
+'    purchaseUrl:   ' + q(purl) + ',\n' +
+'    purchaseLabel: ' + q(plabel) + ',\n' +
+'    purchaseDesc:  ' + q(pdesc) + ',\n\n' +
+'    previewPages:  null,\n\n' +
+'    titleCatalog:   ' + q(title) + ',\n' +
+'    coverHtml:      \'<div class="bo">— □□□ —</div><div class="bt">' + titleHtml + '</div><div class="bo">—</div><div class="bi">' + apellido + '</div><div class="bo" style="margin-top:8px">— □□□ —</div>\',\n' +
+'    coverHtmlSmall: \'<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">' + titleHtml + '</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">' + apellido + '</div><div class="bo" style="margin-top:5px">— □□□ —</div>\'\n' +
+'  }';
+
+  document.getElementById('output-libro-pre').textContent = code;
+  document.getElementById('output-libro').style.display = 'block';
+}
+
+function generateArchivo() {
+  var tipo    = v('a-tipo');
+  var fecha   = v('a-fecha');
+  var etiquet = v('a-etiqueta');
+  var titulo  = v('a-titulo');
+  var texto   = v('a-texto');
+  var imagen  = v('a-imagen');
+  var imgalt  = v('a-imagealt');
+  var videoid = v('a-videoid');
+  var tagsRaw = v('a-tags');
+  var cuad    = v('a-cuaderno') || '1';
+  var enlace  = v('a-enlace');
+
+  var tags = tagsRaw.split(',').map(function(t) { return '"' + t.trim() + '"'; }).join(', ');
+  var videoUrl = videoid ? 'https://www.youtube.com/embed/' + videoid : '';
+
+  var code = '  ,{\n' +
+'    tipo:     "' + tipo + '",\n' +
+'    fecha:    ' + q(fecha) + ',\n' +
+'    etiqueta: ' + q(etiquet) + ',\n' +
+'    titulo:   ' + q(titulo) + ',\n' +
+'    texto:    ' + q(texto) + ',\n';
+
+  if (tipo !== 'video') {
+    code += '    imagen:   ' + (imagen ? '"./images/' + imagen + '"' : 'null') + ',\n';
+    code += '    imageAlt: ' + q(imgalt) + ',\n';
+  }
+  if (tipo !== 'foto') {
+    code += '    videoUrl: ' + (videoUrl ? '"' + videoUrl + '"' : 'null') + ',\n';
+  }
+
+  code +=
+'    enlace:   ' + (enlace ? '"' + enlace + '"' : 'null') + ',\n' +
+'    tags:     [' + tags + '],\n' +
+'    cuadernoId: ' + cuad + '\n' +
+'  }';
+
+  document.getElementById('output-archivo-pre').textContent = code;
+  document.getElementById('output-archivo').style.display = 'block';
+}
+
+function copyCode(preId, btnId) {
+  var text = document.getElementById(preId).textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById(btnId);
+    btn.textContent = '¡Copiado!';
+    btn.classList.add('done');
+    setTimeout(function() { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
