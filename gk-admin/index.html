@@ -7,55 +7,91 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#111010;--ink-mid:#3d3a38;--ink-faint:#d4d0ca;
+  --ink:#111010;--ink-mid:#3d3a38;--ink-faint:#c8c4bc;
   --cream:#f3f1ed;--page:#ffffff;--accent:#8c1a13;--green:#2a6a2a;
 }
 body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-size:15px;min-height:100vh}
 
-/* LOGIN */
-#login{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1.25rem}
-#login h1{font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid)}
-#login input{font-family:Georgia,serif;font-size:16px;padding:.65rem 1rem;border:1px solid var(--ink-faint);background:var(--page);width:260px;outline:none;text-align:center;letter-spacing:.1em}
+/* ── LOGIN ── */
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;flex-direction:column;gap:1rem}
+#login h1{font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem}
+#login input{font-family:Georgia,serif;font-size:15px;padding:.6rem 1rem;border:1px solid var(--ink-faint);background:var(--page);width:280px;outline:none;text-align:center;transition:border-color .15s}
 #login input:focus{border-color:var(--ink)}
-#login button{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 2.5rem;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+#login button{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 2.5rem;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;margin-top:.25rem;transition:background .15s}
 #login button:hover{background:var(--accent);border-color:var(--accent)}
-.login-error{font-size:12px;color:var(--accent);min-height:1.2em}
+.login-error{font-size:12px;color:var(--accent);min-height:1.2em;text-align:center}
 
-/* APP */
-#app{display:none;max-width:800px;margin:0 auto;padding:3rem 1.5rem 5rem}
-header{border-bottom:3px solid var(--accent);padding-bottom:1.25rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
-header h1{font-size:1.2rem;font-style:italic;font-weight:400}
+/* ── APP ── */
+#app{display:none;max-width:820px;margin:0 auto;padding:3rem 2rem 6rem}
+
+/* ── HEADER ── */
+.header-top{border-bottom:3px solid var(--accent);padding-bottom:1rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
+.header-top h1{font-size:1.15rem;font-style:italic;font-weight:400}
 .header-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid)}
 
-/* STATUS BAR */
-#status-bar{display:none;font-size:12px;padding:.6rem 1rem;margin-bottom:1.5rem;border-left:3px solid var(--ink-faint);color:var(--ink-mid)}
-#status-bar.loading{border-left-color:var(--ink-faint);color:var(--ink-mid)}
+/* ── STATUS ── */
+#status-bar{font-size:12px;padding:.7rem 1rem;margin-bottom:1.5rem;border-left:3px solid var(--ink-faint);color:var(--ink-mid);display:none}
 #status-bar.ok{border-left-color:var(--green);color:var(--green);display:block}
 #status-bar.error{border-left-color:var(--accent);color:var(--accent);display:block}
+#status-bar.loading{display:block}
 
-/* TABS */
-.tabs{display:flex;margin-bottom:2rem;border-bottom:1px solid var(--ink-faint)}
+/* ── TABS ── */
+.tabs{display:flex;border-bottom:1px solid var(--ink-faint);margin-bottom:2rem}
 .tab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.75rem 1.5rem;cursor:pointer;color:var(--ink-mid);border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;font-family:Georgia,serif;transition:color .15s}
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
-/* FORM */
-.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1.25rem}
-.field label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid)}
+/* ── MODE TOGGLE ── */
+.mode-toggle{display:flex;gap:.5rem;margin-bottom:2rem}
+.mode-btn{font-family:Georgia,serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.45rem 1.25rem;border:1px solid var(--ink-faint);background:transparent;cursor:pointer;color:var(--ink-mid);transition:all .15s}
+.mode-btn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+.mode-btn:hover:not(.active){border-color:var(--ink);color:var(--ink)}
+
+/* ── EDIT SELECTOR ── */
+.edit-selector{margin-bottom:1.75rem}
+.edit-selector label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem}
+
+/* ── SECTION LABELS ── */
+.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:2rem 0 1.5rem;padding:.45rem .8rem;border-left:3px solid var(--accent);background:#faf7f4;display:flex;justify-content:space-between;align-items:center}
+.section-label em{font-style:italic;text-transform:none;letter-spacing:0;color:var(--ink-faint);font-size:12px}
+
+/* ── FIELDS ── */
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem}
+.field label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid)}
+.field label em{font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint);font-style:italic}
 .field .hint{font-size:12px;color:var(--ink-mid);font-style:italic}
 .field .field-error{font-size:12px;color:var(--accent);display:none}
-.field input,.field select,.field textarea{font-family:Georgia,serif;font-size:15px;padding:.5rem 0;border:none;border-bottom:1px solid var(--ink-faint);background:transparent;outline:none;color:var(--ink);width:100%;transition:border-color .15s}
-.field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--ink)}
-.field input.invalid,.field textarea.invalid{border-bottom-color:var(--accent)}
-.field textarea{resize:vertical;min-height:80px;line-height:1.6}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);margin:1.75rem 0 1.25rem;padding-bottom:.5rem;border-bottom:1px solid var(--ink-faint)}
-.section-label span{float:right;font-style:italic;text-transform:none;letter-spacing:0;color:var(--ink-faint)}
+.field input,.field select,.field textarea{
+  font-family:Georgia,serif;font-size:15px;
+  padding:.55rem .8rem;
+  border:1px solid var(--ink-faint);
+  background:var(--page);
+  outline:none;color:var(--ink);width:100%;
+  transition:border-color .15s,box-shadow .15s;
+  appearance:none;-webkit-appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%233d3a38' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .75rem center;padding-right:2.25rem;cursor:pointer;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(17,16,16,.06)}
+.field input.invalid,.field textarea.invalid,.field select.invalid{border-color:var(--accent);box-shadow:0 0 0 3px rgba(140,26,19,.07)}
+.field input:disabled{background:var(--cream);color:var(--ink-mid);cursor:default}
+.field textarea{resize:vertical;min-height:90px;line-height:1.65}
 
-/* SUBMIT */
-.submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:1.75rem}
+/* ── LAYOUT ── */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem}
+
+/* ── INFO PILLS ── */
+.existing-info{margin-bottom:1.5rem}
+.existing-info-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.4rem}
+.info-pill{display:inline-block;font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.2rem .65rem;margin:.15rem;color:var(--ink-mid)}
+
+/* ── SUBMIT ── */
+.submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--ink-faint)}
 button.publish{font-family:Georgia,serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 2.5rem;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:opacity .15s}
 button.publish:hover{opacity:.85}
 button.publish:disabled{opacity:.4;cursor:default}
@@ -63,10 +99,7 @@ button.publish:disabled{opacity:.4;cursor:default}
 .publish-status.success{color:var(--green)}
 .publish-status.error{color:var(--accent)}
 
-/* EXISTING INFO */
-.info-pill{display:inline-block;font-size:11px;background:var(--page);border:1px solid var(--ink-faint);padding:.2rem .65rem;margin:.15rem;color:var(--ink-mid)}
-
-@media(max-width:600px){.row{grid-template-columns:1fr}}
+@media(max-width:620px){.row,.row3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -74,110 +107,125 @@ button.publish:disabled{opacity:.4;cursor:default}
 <div id="login">
   <h1>Greta Krull · Acceso</h1>
   <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
-  <input type="password" id="gh-token" placeholder="Token de GitHub" style="margin-top:.25rem" onkeydown="if(event.key==='Enter')checkPwd()">
+  <input type="password" id="gh-token" placeholder="Token de GitHub" onkeydown="if(event.key==='Enter')checkPwd()">
   <button onclick="checkPwd()">Entrar</button>
   <div class="login-error" id="login-error"></div>
 </div>
 
 <div id="app">
-  <header>
+  <div class="header-top">
     <h1>Greta Krull Ediciones — Panel de contenido</h1>
     <span class="header-meta">Uso interno</span>
-  </header>
+  </div>
 
   <div id="status-bar"></div>
 
   <div class="tabs">
-    <button class="tab active" onclick="switchTab('libro',this)">Nuevo libro</button>
-    <button class="tab" onclick="switchTab('archivo',this)">Nueva entrada de archivo</button>
+    <button class="tab active" onclick="switchTab('libro',this)">Libros</button>
+    <button class="tab" onclick="switchTab('archivo',this)">Archivo</button>
   </div>
 
-  <!-- ══ TAB LIBRO ══ -->
+  <!-- ══ TAB LIBROS ══ -->
   <div id="tab-libro" class="tab-panel active">
 
-    <div id="existing-books-info" style="margin-bottom:1.5rem;display:none">
-      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem">Libros existentes</div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="setMode('libro','nuevo',this)">Nuevo libro</button>
+      <button class="mode-btn" onclick="setMode('libro','editar',this)">Editar existente</button>
+    </div>
+
+    <!-- Selector edición -->
+    <div id="libro-edit-selector" class="edit-selector" style="display:none">
+      <div class="field">
+        <label>Selecciona el libro a editar</label>
+        <select onchange="loadBookForEdit(this.value)">
+          <option value="">— Seleccionar —</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Pills libros existentes (modo nuevo) -->
+    <div id="existing-books-info" class="existing-info" style="display:none">
+      <div class="existing-info-label">Libros en el catálogo</div>
       <div id="existing-books-list"></div>
     </div>
 
     <div class="section-label">Obligatorio</div>
 
-    <div class="row">
+    <div class="row3">
       <div class="field">
-        <label>Número de libro (id)</label>
-        <input type="number" id="l-id" placeholder="" min="1">
+        <label>N.º de libro</label>
+        <input type="number" id="l-id" placeholder="5" min="1">
         <span class="hint" id="l-id-hint"></span>
-        <span class="field-error" id="l-id-error">Este número ya existe en el catálogo</span>
+        <span class="field-error" id="l-id-error">Este número ya existe</span>
       </div>
       <div class="field">
-        <label>Año de publicación</label>
-        <input type="text" id="l-date" placeholder="Ej: 2026">
+        <label>Año</label>
+        <input type="text" id="l-date" placeholder="2026">
       </div>
-    </div>
-
-    <div class="field">
-      <label>Estado</label>
-      <select id="l-status">
-        <option value="">— Seleccionar —</option>
-        <option value="upcoming">En preparación</option>
-        <option value="available">Disponible</option>
-        <option value="announced">Solo anunciado</option>
-      </select>
-      <span class="field-error" id="l-status-error">Selecciona un estado</span>
+      <div class="field">
+        <label>Estado</label>
+        <select id="l-status">
+          <option value="">— Elegir —</option>
+          <option value="upcoming">En preparación</option>
+          <option value="available">Disponible</option>
+          <option value="announced">Solo anunciado</option>
+        </select>
+        <span class="field-error" id="l-status-error">Selecciona un estado</span>
+      </div>
     </div>
 
     <div class="field">
       <label>Título</label>
-      <input type="text" id="l-title" placeholder="">
+      <input type="text" id="l-title">
       <span class="field-error" id="l-title-error">El título es obligatorio</span>
     </div>
 
     <div class="row">
       <div class="field">
         <label>Nombre del autor</label>
-        <input type="text" id="l-author1-name" placeholder="">
+        <input type="text" id="l-author1-name">
         <span class="field-error" id="l-author-error">El autor es obligatorio</span>
       </div>
       <div class="field">
-        <label>Rol del autor</label>
-        <input type="text" id="l-author1-role" placeholder="Ej: Ensayo / Poesía / Traducción">
+        <label>Rol <em>— Ensayo / Poesía / Traducción</em></label>
+        <input type="text" id="l-author1-role">
       </div>
     </div>
 
     <div class="row">
       <div class="field">
-        <label>Segundo autor (si hay)</label>
-        <input type="text" id="l-author2-name" placeholder="">
+        <label>Segundo autor <em>— si aplica</em></label>
+        <input type="text" id="l-author2-name">
       </div>
       <div class="field">
         <label>Rol del segundo autor</label>
-        <input type="text" id="l-author2-role" placeholder="">
+        <input type="text" id="l-author2-role">
       </div>
     </div>
 
     <div class="field">
-      <label>Descripción corta <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— aparece en la cuadrícula de inicio, máx. 15 palabras</span></label>
-      <input type="text" id="l-desc-short" placeholder="">
+      <label>Descripción corta <em>— cuadrícula de inicio, máx. 15 palabras</em></label>
+      <input type="text" id="l-desc-short">
       <span class="field-error" id="l-desc-short-error">La descripción corta es obligatoria</span>
     </div>
 
     <div class="field">
-      <label>Descripción catálogo <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— 2-4 frases</span></label>
-      <textarea id="l-desc-catalog" placeholder=""></textarea>
+      <label>Descripción catálogo <em>— 2-4 frases</em></label>
+      <textarea id="l-desc-catalog"></textarea>
       <span class="field-error" id="l-desc-catalog-error">La descripción de catálogo es obligatoria</span>
     </div>
 
     <div class="field">
       <label>Nombre del archivo de portada</label>
-      <input type="text" id="l-cover" placeholder="Ej: titulo-portada.jpg">
-      <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
+      <input type="text" id="l-cover" placeholder="portada-titulo.jpg">
+      <span class="hint">Sube esta imagen a images/ con exactamente este nombre</span>
     </div>
 
-    <div class="section-label">Opcional <span>rellenar cuando esté disponible</span></div>
+    <div class="section-label">Opcional <em>— completar cuando esté disponible</em></div>
 
     <div class="field">
       <label>Subtítulo</label>
-      <input type="text" id="l-subtitle" placeholder="">
+      <input type="text" id="l-subtitle">
     </div>
 
     <div class="row">
@@ -187,7 +235,7 @@ button.publish:disabled{opacity:.4;cursor:default}
       </div>
       <div class="field">
         <label>Ejemplares disponibles</label>
-        <input type="number" id="l-copies-remaining" placeholder="" min="0">
+        <input type="number" id="l-copies-remaining" min="0">
       </div>
     </div>
 
@@ -203,11 +251,11 @@ button.publish:disabled{opacity:.4;cursor:default}
     <div class="row">
       <div class="field">
         <label>Nombre del enlace</label>
-        <input type="text" id="l-purchase-label" placeholder="Ej: IberLibro">
+        <input type="text" id="l-purchase-label" placeholder="IberLibro">
       </div>
       <div class="field">
         <label>Descripción del enlace</label>
-        <input type="text" id="l-purchase-desc" placeholder="Ej: Compra directa. Envío internacional.">
+        <input type="text" id="l-purchase-desc" placeholder="Compra directa. Envío internacional.">
       </div>
     </div>
 
@@ -220,34 +268,56 @@ button.publish:disabled{opacity:.4;cursor:default}
   <!-- ══ TAB ARCHIVO ══ -->
   <div id="tab-archivo" class="tab-panel">
 
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="setMode('archivo','nuevo',this)">Nueva entrada</button>
+      <button class="mode-btn" onclick="setMode('archivo','editar',this)">Editar existente</button>
+    </div>
+
+    <!-- Selector edición -->
+    <div id="archivo-edit-selector" class="edit-selector" style="display:none">
+      <div class="field">
+        <label>Selecciona la entrada a editar</label>
+        <select onchange="loadArchivoForEdit(this.value)">
+          <option value="">— Seleccionar —</option>
+        </select>
+      </div>
+    </div>
+
     <div class="section-label">Obligatorio</div>
 
-    <div class="field">
-      <label>Tipo de entrada</label>
-      <select id="a-tipo" onchange="updateArchivoFields()">
-        <option value="">— Seleccionar —</option>
-        <option value="foto">Foto</option>
-        <option value="video">Vídeo</option>
-        <option value="mixto">Mixto (foto + vídeo)</option>
-      </select>
-      <span class="field-error" id="a-tipo-error">Selecciona un tipo</span>
+    <div class="row">
+      <div class="field">
+        <label>Tipo de entrada</label>
+        <select id="a-tipo" onchange="updateArchivoFields()">
+          <option value="">— Elegir —</option>
+          <option value="foto">Foto</option>
+          <option value="video">Vídeo</option>
+          <option value="mixto">Mixto (foto + vídeo)</option>
+        </select>
+        <span class="field-error" id="a-tipo-error">Selecciona un tipo</span>
+      </div>
+      <div class="field">
+        <label>Libro relacionado <em>— número</em></label>
+        <input type="number" id="a-cuaderno" placeholder="1" min="1">
+        <span class="field-error" id="a-cuaderno-error">El libro relacionado es obligatorio</span>
+      </div>
     </div>
 
     <div class="row">
       <div class="field">
         <label>Fecha</label>
-        <input type="text" id="a-fecha" placeholder="Ej: Junio 2026">
+        <input type="text" id="a-fecha" placeholder="Junio 2026">
         <span class="field-error" id="a-fecha-error">La fecha es obligatoria</span>
       </div>
       <div class="field">
-        <label>Etiqueta <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— texto pequeño sobre el título</span></label>
-        <input type="text" id="a-etiqueta" placeholder="Ej: Fotografía · N.º 1">
+        <label>Etiqueta <em>— texto pequeño sobre el título</em></label>
+        <input type="text" id="a-etiqueta" placeholder="Fotografía · N.º 1">
       </div>
     </div>
 
     <div class="field">
       <label>Título</label>
-      <input type="text" id="a-titulo" placeholder="">
+      <input type="text" id="a-titulo">
       <span class="field-error" id="a-titulo-error">El título es obligatorio</span>
     </div>
 
@@ -258,46 +328,42 @@ button.publish:disabled{opacity:.4;cursor:default}
     </div>
 
     <div id="a-imagen-fields">
-      <div class="field">
-        <label>Nombre del archivo de imagen</label>
-        <input type="text" id="a-imagen" placeholder="Ej: nombre-del-archivo.jpg">
-        <span class="hint">Sube esta imagen a la carpeta images/ con exactamente este nombre</span>
-        <span class="field-error" id="a-imagen-error">El nombre de imagen es obligatorio para este tipo</span>
-      </div>
-      <div class="field">
-        <label>Descripción de la imagen <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— para accesibilidad</span></label>
-        <input type="text" id="a-imagealt" placeholder="">
+      <div class="row">
+        <div class="field">
+          <label>Nombre del archivo de imagen</label>
+          <input type="text" id="a-imagen" placeholder="nombre-archivo.jpg">
+          <span class="hint">Sube esta imagen a images/ con exactamente este nombre</span>
+          <span class="field-error" id="a-imagen-error">La imagen es obligatoria para este tipo</span>
+        </div>
+        <div class="field">
+          <label>Descripción de la imagen <em>— accesibilidad</em></label>
+          <input type="text" id="a-imagealt">
+        </div>
       </div>
     </div>
 
     <div id="a-video-fields" style="display:none">
       <div class="field">
         <label>ID del vídeo de YouTube</label>
-        <input type="text" id="a-videoid" placeholder="Ej: dQw4w9WgXcQ">
-        <span class="hint">La parte después de youtube.com/watch?v= en la URL del vídeo</span>
+        <input type="text" id="a-videoid" placeholder="dQw4w9WgXcQ">
+        <span class="hint">La parte después de youtube.com/watch?v= en la URL</span>
         <span class="field-error" id="a-video-error">El ID del vídeo es obligatorio para este tipo</span>
       </div>
     </div>
 
     <div class="field">
-      <label>Tags <span style="font-style:italic;font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-faint)">— agrupan las entradas en el mapa</span></label>
-      <input type="text" id="a-tags" placeholder="Ej: artaud, prevel">
-      <span class="hint">Separados por coma. Usa los mismos tags para entradas del mismo tema.</span>
+      <label>Tags <em>— agrupan las entradas en el mapa. Separados por coma.</em></label>
+      <input type="text" id="a-tags" placeholder="artaud, prevel">
       <span class="field-error" id="a-tags-error">Al menos un tag es obligatorio</span>
     </div>
 
-    <div class="field">
-      <label>Libro relacionado (número)</label>
-      <input type="number" id="a-cuaderno" placeholder="Ej: 1" min="1">
-      <span class="field-error" id="a-cuaderno-error">El libro relacionado es obligatorio</span>
-    </div>
-
-    <div id="existing-tags-info" style="margin-bottom:1rem;display:none">
-      <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.5rem">Tags ya usados</div>
+    <!-- Tags existentes -->
+    <div id="existing-tags-info" class="existing-info" style="display:none">
+      <div class="existing-info-label">Tags ya usados</div>
       <div id="existing-tags-list"></div>
     </div>
 
-    <div class="section-label">Opcional <span>rellenar si aplica</span></div>
+    <div class="section-label">Opcional</div>
 
     <div class="field">
       <label>Enlace externo</label>
@@ -317,20 +383,23 @@ var GH_TOKEN = '';
 var REPO     = 'asieruxui/Greta-Krull-Ediciones';
 var API      = 'https://api.github.com/repos/' + REPO + '/contents/';
 
-var currentBooks   = [];
-var currentArchivo = [];
-var fileShaBooksjs  = '';
-var fileShaArchivjs = '';
+var currentBooks    = [];
+var currentArchivo  = [];
+var libroEditMode   = false;
+var archivoEditMode = false;
+var libroEditId     = null;
+var archivoEditIdx  = null;
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 function checkPwd() {
   var token = document.getElementById('gh-token').value.trim();
-  if (document.getElementById('pwd').value === PASSWORD && token) {
+  var pwd   = document.getElementById('pwd').value;
+  if (pwd === PASSWORD && token) {
     GH_TOKEN = token;
     document.getElementById('login').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
+    document.getElementById('app').style.display   = 'block';
     loadData();
-  } else if (document.getElementById('pwd').value !== PASSWORD) {
+  } else if (pwd !== PASSWORD) {
     document.getElementById('login-error').textContent = 'Contraseña incorrecta';
     document.getElementById('pwd').value = '';
     document.getElementById('pwd').focus();
@@ -340,57 +409,66 @@ function checkPwd() {
   }
 }
 
-// ── Load existing data ────────────────────────────────────────────────────────
+// ── GitHub API ────────────────────────────────────────────────────────────────
 function ghGet(path) {
-  return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+  return fetch(API + path, {
     headers: { 'Authorization': 'token ' + GH_TOKEN, 'Accept': 'application/vnd.github.v3+json' }
   }).then(function(r) { return r.json(); });
 }
 
-function parseJsArray(src, varName) {
-  try {
-    var fn = new Function(src + '; return ' + varName + ';');
-    return fn();
-  } catch(e) { return []; }
+function ghPut(path, src, sha, message) {
+  var encoded = btoa(unescape(encodeURIComponent(src)));
+  return fetch(API + path, {
+    method: 'PUT',
+    headers: { 'Authorization': 'token ' + GH_TOKEN, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: message, content: encoded, sha: sha })
+  }).then(function(r) { return r.json().then(function(d){ return { ok: r.ok, data: d }; }); });
 }
 
-function loadData() {
-  setStatus('Cargando datos existentes…', 'loading');
-  document.getElementById('status-bar').style.display = 'block';
+function parseJsArray(src, varName) {
+  try { return new Function(src + '; return ' + varName + ';')(); } catch(e) { return []; }
+}
 
+function decode64(b64) {
+  return decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
+}
+
+// ── Load data ─────────────────────────────────────────────────────────────────
+function loadData() {
+  setStatus('Cargando…', 'loading');
   Promise.all([
     ghGet('contenido/libros.js'),
     ghGet('contenido/archivo.js')
-  ]).then(function(results) {
-    var librosFile  = results[0];
-    var archivoFile = results[1];
-
-    fileShaBooksjs  = librosFile.sha;
-    fileShaArchivjs = archivoFile.sha;
-
-    var librosSrc  = decodeURIComponent(escape(atob(librosFile.content.replace(/\n/g,''))));
-    var archivoSrc = decodeURIComponent(escape(atob(archivoFile.content.replace(/\n/g,''))));
+  ]).then(function(res) {
+    var librosSrc  = decode64(res[0].content);
+    var archivoSrc = decode64(res[1].content);
 
     currentBooks   = parseJsArray(librosSrc,  'BOOKS')   || [];
     currentArchivo = parseJsArray(archivoSrc, 'ARCHIVO') || [];
 
-    // Show existing books info
+    // Next id hint
     if (currentBooks.length) {
-      var nextId = Math.max.apply(null, currentBooks.map(function(b){return b.id||0;})) + 1;
+      var nextId = Math.max.apply(null, currentBooks.map(function(b){ return b.id || 0; })) + 1;
       document.getElementById('l-id').placeholder = nextId;
       document.getElementById('l-id-hint').textContent = 'El siguiente disponible es ' + nextId;
-      var list = currentBooks.map(function(b) {
-        return '<span class="info-pill">N.º' + b.id + ' · ' + b.title + '</span>';
+      document.getElementById('existing-books-list').innerHTML = currentBooks.map(function(b) {
+        return '<span class="info-pill">N.º ' + b.id + ' · ' + b.title + '</span>';
       }).join('');
-      document.getElementById('existing-books-list').innerHTML = list;
       document.getElementById('existing-books-info').style.display = 'block';
+
+      // Populate libro edit selector
+      var sel = document.querySelector('#libro-edit-selector select');
+      currentBooks.forEach(function(b) {
+        var o = document.createElement('option');
+        o.value = b.id;
+        o.textContent = 'N.º ' + b.id + ' · ' + b.title;
+        sel.appendChild(o);
+      });
     }
 
-    // Show existing tags
+    // Tags existentes
     var tagSet = {};
-    currentArchivo.forEach(function(e) {
-      if (e.tags) e.tags.forEach(function(t) { tagSet[t] = true; });
-    });
+    currentArchivo.forEach(function(e) { (e.tags || []).forEach(function(t){ tagSet[t] = true; }); });
     var tags = Object.keys(tagSet);
     if (tags.length) {
       document.getElementById('existing-tags-list').innerHTML = tags.map(function(t) {
@@ -399,10 +477,18 @@ function loadData() {
       document.getElementById('existing-tags-info').style.display = 'block';
     }
 
+    // Populate archivo edit selector
+    var aSel = document.querySelector('#archivo-edit-selector select');
+    currentArchivo.forEach(function(e, i) {
+      var o = document.createElement('option');
+      o.value = i;
+      o.textContent = e.titulo || ('Entrada ' + (i + 1));
+      aSel.appendChild(o);
+    });
+
     setStatus('', '');
-    document.getElementById('status-bar').style.display = 'none';
   }).catch(function() {
-    setStatus('Error al cargar los datos. Comprueba la conexión.', 'error');
+    setStatus('Error al conectar con GitHub. Comprueba el token.', 'error');
   });
 }
 
@@ -413,12 +499,51 @@ function setStatus(msg, type) {
   bar.style.display = msg ? 'block' : 'none';
 }
 
-// ── Tabs ──────────────────────────────────────────────────────────────────────
+// ── Tabs & mode ───────────────────────────────────────────────────────────────
 function switchTab(name, btn) {
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
   btn.classList.add('active');
   document.getElementById('tab-' + name).classList.add('active');
+}
+
+function setMode(tab, mode, btn) {
+  var isEdit = (mode === 'editar');
+  if (tab === 'libro') {
+    libroEditMode = isEdit;
+    libroEditId   = null;
+    document.getElementById('libro-edit-selector').style.display = isEdit ? 'block' : 'none';
+    document.getElementById('existing-books-info').style.display = isEdit ? 'none' : (currentBooks.length ? 'block' : 'none');
+    document.getElementById('l-id').disabled = isEdit;
+    document.getElementById('btn-libro').textContent = isEdit ? 'Guardar cambios' : 'Publicar en la web';
+    clearForm('libro');
+  } else {
+    archivoEditMode = isEdit;
+    archivoEditIdx  = null;
+    document.getElementById('archivo-edit-selector').style.display = isEdit ? 'block' : 'none';
+    document.getElementById('btn-archivo').textContent = isEdit ? 'Guardar cambios' : 'Publicar en el archivo';
+    clearForm('archivo');
+  }
+  btn.closest('.mode-toggle').querySelectorAll('.mode-btn').forEach(function(b) {
+    b.classList.toggle('active', b === btn);
+  });
+}
+
+function clearForm(tab) {
+  var fields;
+  if (tab === 'libro') {
+    fields = ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role','l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining','l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'];
+    document.getElementById('l-status').value = '';
+    document.getElementById('status-libro').textContent = '';
+    document.getElementById('status-libro').className = 'publish-status';
+  } else {
+    fields = ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt','a-videoid','a-tags','a-cuaderno','a-enlace'];
+    document.getElementById('a-tipo').value = '';
+    updateArchivoFields();
+    document.getElementById('status-archivo').textContent = '';
+    document.getElementById('status-archivo').className = 'publish-status';
+  }
+  fields.forEach(function(f) { document.getElementById(f).value = ''; });
 }
 
 function updateArchivoFields() {
@@ -427,98 +552,102 @@ function updateArchivoFields() {
   document.getElementById('a-video-fields').style.display  = tipo === 'foto'  ? 'none' : '';
 }
 
+// ── Populate form for editing ─────────────────────────────────────────────────
+function loadBookForEdit(id) {
+  if (!id) return;
+  libroEditId = parseInt(id);
+  var b = currentBooks.find(function(x){ return x.id === libroEditId; });
+  if (!b) return;
+  var a = b.authors || [];
+  document.getElementById('l-id').value             = b.id;
+  document.getElementById('l-date').value           = b.date           || '';
+  document.getElementById('l-status').value         = b.status         || '';
+  document.getElementById('l-title').value          = b.title          || '';
+  document.getElementById('l-author1-name').value   = (a[0]||{}).name  || '';
+  document.getElementById('l-author1-role').value   = (a[0]||{}).role  || '';
+  document.getElementById('l-author2-name').value   = (a[1]||{}).name  || '';
+  document.getElementById('l-author2-role').value   = (a[1]||{}).role  || '';
+  document.getElementById('l-subtitle').value       = b.subtitle       || '';
+  document.getElementById('l-desc-short').value     = b.descShort      || '';
+  document.getElementById('l-desc-catalog').value   = b.descCatalog    || '';
+  document.getElementById('l-cover').value          = b.coverImage ? b.coverImage.replace('./images/', '') : '';
+  document.getElementById('l-copies-total').value   = b.copiesTotal     != null ? b.copiesTotal     : '';
+  document.getElementById('l-copies-remaining').value = b.copiesRemaining != null ? b.copiesRemaining : '';
+  document.getElementById('l-quote').value          = b.quote          || '';
+  document.getElementById('l-purchase-url').value   = b.purchaseUrl    || '';
+  document.getElementById('l-purchase-label').value = b.purchaseLabel  || '';
+  document.getElementById('l-purchase-desc').value  = b.purchaseDesc   || '';
+}
+
+function loadArchivoForEdit(idx) {
+  if (idx === '') return;
+  archivoEditIdx = parseInt(idx);
+  var e = currentArchivo[archivoEditIdx];
+  if (!e) return;
+  document.getElementById('a-tipo').value    = e.tipo     || '';
+  updateArchivoFields();
+  document.getElementById('a-fecha').value   = e.fecha    || '';
+  document.getElementById('a-etiqueta').value= e.etiqueta || '';
+  document.getElementById('a-titulo').value  = e.titulo   || '';
+  document.getElementById('a-texto').value   = e.texto    || '';
+  document.getElementById('a-imagen').value  = e.imagen   ? e.imagen.replace('./images/', '') : '';
+  document.getElementById('a-imagealt').value= e.imageAlt || '';
+  var vm = e.videoUrl ? e.videoUrl.match(/embed\/(.+)$/) : null;
+  document.getElementById('a-videoid').value = vm ? vm[1] : '';
+  document.getElementById('a-tags').value    = (e.tags || []).join(', ');
+  document.getElementById('a-cuaderno').value= e.cuadernoId || '';
+  document.getElementById('a-enlace').value  = e.enlace   || '';
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function v(id) { return document.getElementById(id).value.trim(); }
-function showError(id, show) {
-  var el = document.getElementById(id);
-  if (el) el.style.display = show ? 'block' : 'none';
-}
-function markInvalid(id, invalid) {
-  var el = document.getElementById(id);
-  if (el) el.classList.toggle('invalid', invalid);
-}
+function showError(id, show) { var el = document.getElementById(id); if (el) el.style.display = show ? 'block' : 'none'; }
+function markInvalid(id, inv) { var el = document.getElementById(id); if (el) el.classList.toggle('invalid', inv); }
+function esc(s) { return s ? s.replace(/\\/g, '\\\\').replace(/"/g, '\\"') : ''; }
 
-// ── GitHub commit ─────────────────────────────────────────────────────────────
-function ghCommit(path, currentSrc, newEntry, sha, message) {
-  var insertMarker = '\n];';
-  var newSrc = currentSrc.replace(/\n\s*\];(\s*)$/, '\n\n' + newEntry + '\n\n];');
-  var encoded = btoa(unescape(encodeURIComponent(newSrc)));
-  return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
-    method: 'PUT',
-    headers: {
-      'Authorization': 'token ' + GH_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message: message, content: encoded, sha: sha })
-  }).then(function(r) { return r.json().then(function(d){ return {ok: r.ok, data: d}; }); });
-}
+// Find and replace a JS object block in source by searching for a unique field match,
+// then extracting the surrounding {} using brace counting.
+function replaceBlock(src, fieldPattern, newBlock) {
+  var m = fieldPattern.exec(src);
+  if (!m) return null;
 
-// ── Book publish ──────────────────────────────────────────────────────────────
-function publishBook() {
-  var id       = parseInt(v('l-id'));
-  var date     = v('l-date');
-  var status   = v('l-status');
-  var title    = v('l-title');
-  var a1name   = v('l-author1-name');
-  var a1role   = v('l-author1-role');
-  var a2name   = v('l-author2-name');
-  var a2role   = v('l-author2-role');
-  var subtitle = v('l-subtitle');
-  var ds       = v('l-desc-short');
-  var dc       = v('l-desc-catalog');
-  var cover    = v('l-cover');
-  var ct       = v('l-copies-total');
-  var cr       = v('l-copies-remaining');
-  var quote    = v('l-quote');
-  var purl     = v('l-purchase-url');
-  var plabel   = v('l-purchase-label');
-  var pdesc    = v('l-purchase-desc');
-
-  // Validate
-  var ok = true;
-  var idExists = currentBooks.some(function(b){ return b.id === id; });
-  showError('l-id-error', !id || idExists);
-  markInvalid('l-id', !id || idExists);
-  if (!id || idExists) ok = false;
-
-  showError('l-status-error', !status);
-  if (!status) ok = false;
-
-  showError('l-title-error', !title);
-  markInvalid('l-title', !title);
-  if (!title) ok = false;
-
-  var titleExists = currentBooks.some(function(b){ return b.title && b.title.toLowerCase() === title.toLowerCase(); });
-  if (titleExists) {
-    document.getElementById('l-title-error').textContent = 'Ya existe un libro con este título';
-    showError('l-title-error', true);
-    markInvalid('l-title', true);
-    ok = false;
+  // Walk backwards from the match to find the opening { of this object
+  var depth = 0, blockStart = -1;
+  for (var i = m.index - 1; i >= 0; i--) {
+    if (src[i] === '}') depth++;
+    if (src[i] === '{') {
+      if (depth === 0) { blockStart = i; break; }
+      depth--;
+    }
   }
+  if (blockStart === -1) return null;
 
-  showError('l-author-error', !a1name);
-  markInvalid('l-author1-name', !a1name);
-  if (!a1name) ok = false;
+  // Include preceding comma + whitespace
+  var preStart = blockStart;
+  var j = blockStart - 1;
+  while (j >= 0 && (src[j] === ' ' || src[j] === '\n' || src[j] === '\r' || src[j] === '\t')) j--;
+  if (j >= 0 && src[j] === ',') preStart = j;
 
-  showError('l-desc-short-error', !ds);
-  markInvalid('l-desc-short', !ds);
-  if (!ds) ok = false;
+  // Walk forward to find the closing }
+  depth = 0;
+  var blockEnd = -1;
+  for (var k = blockStart; k < src.length; k++) {
+    if (src[k] === '{') depth++;
+    if (src[k] === '}') { depth--; if (depth === 0) { blockEnd = k + 1; break; } }
+  }
+  if (blockEnd === -1) return null;
 
-  showError('l-desc-catalog-error', !dc);
-  markInvalid('l-desc-catalog', !dc);
-  if (!dc) ok = false;
+  return src.substring(0, preStart) + newBlock + src.substring(blockEnd);
+}
 
-  if (!ok) return;
-
-  // Build code
-  var byline = a2name ? a1name + ' · ' + a2name : a1name;
+// ── Build entry strings ───────────────────────────────────────────────────────
+function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, ct, cr, quote, purl, plabel, pdesc) {
   var authors = '      { name: "' + esc(a1name) + '", role: "' + esc(a1role) + '" }';
   if (a2name) authors += ',\n      { name: "' + esc(a2name) + '", role: "' + esc(a2role) + '" }';
   var tw = title.split(' ');
-  var th = tw.length > 2 ? tw.slice(0,Math.ceil(tw.length/2)).join(' ') + '<br>' + tw.slice(Math.ceil(tw.length/2)).join(' ') : title;
-  var ap = a1name.split(' ').slice(-1)[0];
-
-  var entry =
+  var th = tw.length > 2 ? tw.slice(0, Math.ceil(tw.length / 2)).join(' ') + '<br>' + tw.slice(Math.ceil(tw.length / 2)).join(' ') : title;
+  var ap = a1name.split(' ').pop() || a1name;
+  return (
 '  ,{\n' +
 '    id:   ' + id + ',\n' +
 '    num:  "N.º ' + id + '",\n' +
@@ -547,7 +676,81 @@ function publishBook() {
 '    titleCatalog:   "' + esc(title) + '",\n' +
 '    coverHtml:      \'<div class="bo">— □□□ —</div><div class="bt">' + th + '</div><div class="bo">—</div><div class="bi">' + ap + '</div><div class="bo" style="margin-top:8px">— □□□ —</div>\',\n' +
 '    coverHtmlSmall: \'<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">' + th + '</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">' + ap + '</div><div class="bo" style="margin-top:5px">— □□□ —</div>\'\n' +
-'  }';
+'  }');
+}
+
+function buildArchivoEntry(tipo, fecha, etiqueta, titulo, texto, imagen, imgalt, videoid, tags, cuad, enlace) {
+  var vurl    = videoid ? 'https://www.youtube.com/embed/' + videoid : null;
+  var tagsStr = tags.split(',').map(function(t){ return '"' + t.trim() + '"'; }).join(', ');
+  var s = '  ,{\n' +
+    '    tipo:     "' + tipo + '",\n' +
+    '    fecha:    "' + esc(fecha) + '",\n' +
+    '    etiqueta: "' + esc(etiqueta) + '",\n' +
+    '    titulo:   "' + esc(titulo) + '",\n' +
+    '    texto:    "' + esc(texto) + '",\n';
+  if (tipo !== 'video') {
+    s += '    imagen:   ' + (imagen ? '"./images/' + esc(imagen) + '"' : 'null') + ',\n';
+    s += '    imageAlt: "' + esc(imgalt) + '",\n';
+  }
+  if (tipo !== 'foto') {
+    s += '    videoUrl: ' + (vurl ? '"' + vurl + '"' : 'null') + ',\n';
+  }
+  s +=
+    '    enlace:   ' + (enlace ? '"' + esc(enlace) + '"' : 'null') + ',\n' +
+    '    tags:     [' + tagsStr + '],\n' +
+    '    cuadernoId: ' + cuad + '\n' +
+    '  }';
+  return s;
+}
+
+// ── Publish book ──────────────────────────────────────────────────────────────
+function publishBook() {
+  var id      = parseInt(v('l-id'));
+  var date    = v('l-date');
+  var status  = v('l-status');
+  var title   = v('l-title');
+  var a1name  = v('l-author1-name');
+  var a1role  = v('l-author1-role');
+  var a2name  = v('l-author2-name');
+  var a2role  = v('l-author2-role');
+  var subtitle= v('l-subtitle');
+  var ds      = v('l-desc-short');
+  var dc      = v('l-desc-catalog');
+  var cover   = v('l-cover');
+  var ct      = v('l-copies-total');
+  var cr      = v('l-copies-remaining');
+  var quote   = v('l-quote');
+  var purl    = v('l-purchase-url');
+  var plabel  = v('l-purchase-label');
+  var pdesc   = v('l-purchase-desc');
+
+  var ok = true;
+
+  var idExists = !libroEditMode && currentBooks.some(function(b){ return b.id === id; });
+  showError('l-id-error', !id || idExists);
+  markInvalid('l-id', !id || idExists);
+  if (!id || idExists) ok = false;
+
+  showError('l-status-error', !status);
+  markInvalid('l-status', !status);
+  if (!status) ok = false;
+
+  var titleExists = !libroEditMode && currentBooks.some(function(b){
+    return b.title && b.title.toLowerCase() === title.toLowerCase();
+  });
+  if (!title || titleExists) {
+    document.getElementById('l-title-error').textContent = titleExists ? 'Ya existe un libro con este título' : 'El título es obligatorio';
+    showError('l-title-error', true); markInvalid('l-title', true); ok = false;
+  } else { showError('l-title-error', false); markInvalid('l-title', false); }
+
+  showError('l-author-error', !a1name); markInvalid('l-author1-name', !a1name); if (!a1name) ok = false;
+  showError('l-desc-short-error', !ds); markInvalid('l-desc-short', !ds); if (!ds) ok = false;
+  showError('l-desc-catalog-error', !dc); markInvalid('l-desc-catalog', !dc); if (!dc) ok = false;
+
+  if (!ok) return;
+
+  var byline = a2name ? a1name + ' · ' + a2name : a1name;
+  var entry  = buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, ct, cr, quote, purl, plabel, pdesc);
 
   var btn = document.getElementById('btn-libro');
   var st  = document.getElementById('status-libro');
@@ -556,91 +759,78 @@ function publishBook() {
   st.className = 'publish-status';
 
   ghGet('contenido/libros.js').then(function(file) {
-    var src = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
-    return ghCommit('contenido/libros.js', src, entry, file.sha, 'Añadir libro N.º ' + id + ': ' + title);
+    var src = decode64(file.content);
+    var newSrc;
+    if (libroEditMode) {
+      newSrc = replaceBlock(src, new RegExp('\\bid\\s*:\\s*' + id + '\\b'), entry);
+      if (!newSrc) throw new Error('No se encontró el libro N.º ' + id + ' en el archivo');
+    } else {
+      newSrc = src.replace(/\n\s*\];\s*$/, '\n\n' + entry + '\n\n];');
+    }
+    var msg = (libroEditMode ? 'Actualizar' : 'Añadir') + ' libro N.º ' + id + ': ' + title;
+    return ghPut('contenido/libros.js', newSrc, file.sha, msg);
   }).then(function(res) {
     if (res.ok) {
-      st.textContent = '¡Publicado! Aparecerá en la web en unos segundos.';
+      st.textContent = libroEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en la web en unos segundos.';
       st.className = 'publish-status success';
-      currentBooks.push({ id: id, title: title });
-      // reset form
-      ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role','l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining','l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'].forEach(function(f){ document.getElementById(f).value=''; });
-      document.getElementById('l-status').value = '';
+      if (libroEditMode) {
+        var b = currentBooks.find(function(x){ return x.id === id; });
+        if (b) b.title = title;
+      } else {
+        currentBooks.push({ id: id, title: title });
+      }
     } else {
-      st.textContent = 'Error al publicar: ' + (res.data.message || 'inténtalo de nuevo');
+      st.textContent = 'Error: ' + (res.data.message || 'inténtalo de nuevo');
       st.className = 'publish-status error';
     }
     btn.disabled = false;
-  }).catch(function() {
-    st.textContent = 'Error de conexión. Inténtalo de nuevo.';
+  }).catch(function(e) {
+    st.textContent = e.message || 'Error de conexión';
     st.className = 'publish-status error';
     btn.disabled = false;
   });
 }
 
-// ── Archivo publish ───────────────────────────────────────────────────────────
+// ── Publish archivo ───────────────────────────────────────────────────────────
 function publishArchivo() {
   var tipo    = v('a-tipo');
   var fecha   = v('a-fecha');
-  var etiquet = v('a-etiqueta');
+  var etiqueta= v('a-etiqueta');
   var titulo  = v('a-titulo');
   var texto   = v('a-texto');
   var imagen  = v('a-imagen');
   var imgalt  = v('a-imagealt');
   var videoid = v('a-videoid');
-  var tagsRaw = v('a-tags');
+  var tags    = v('a-tags');
   var cuad    = v('a-cuaderno');
   var enlace  = v('a-enlace');
 
-  // Validate
   var ok = true;
-  showError('a-tipo-error', !tipo); if (!tipo) ok = false;
-  showError('a-fecha-error', !fecha); markInvalid('a-fecha', !fecha); if (!fecha) ok = false;
-  showError('a-titulo-error', !titulo); markInvalid('a-titulo', !titulo); if (!titulo) ok = false;
-  showError('a-texto-error', !texto); markInvalid('a-texto', !texto); if (!texto) ok = false;
-  showError('a-tags-error', !tagsRaw); markInvalid('a-tags', !tagsRaw); if (!tagsRaw) ok = false;
-  showError('a-cuaderno-error', !cuad); markInvalid('a-cuaderno', !cuad); if (!cuad) ok = false;
+  showError('a-tipo-error', !tipo);     markInvalid('a-tipo',     !tipo);     if (!tipo)   ok = false;
+  showError('a-fecha-error', !fecha);   markInvalid('a-fecha',    !fecha);    if (!fecha)  ok = false;
+  showError('a-titulo-error', !titulo); markInvalid('a-titulo',   !titulo);   if (!titulo) ok = false;
+  showError('a-texto-error', !texto);   markInvalid('a-texto',    !texto);    if (!texto)  ok = false;
+  showError('a-tags-error', !tags);     markInvalid('a-tags',     !tags);     if (!tags)   ok = false;
+  showError('a-cuaderno-error', !cuad); markInvalid('a-cuaderno', !cuad);     if (!cuad)   ok = false;
 
-  if (tipo !== 'video' && !imagen) {
-    showError('a-imagen-error', true); markInvalid('a-imagen', true); ok = false;
-  } else { showError('a-imagen-error', false); markInvalid('a-imagen', false); }
+  if (tipo !== 'video' && !imagen) { showError('a-imagen-error', true);  markInvalid('a-imagen',  true);  ok = false; }
+  else                             { showError('a-imagen-error', false); markInvalid('a-imagen',  false); }
+  if (tipo !== 'foto'  && !videoid){ showError('a-video-error',  true);  markInvalid('a-videoid', true);  ok = false; }
+  else                             { showError('a-video-error',  false); markInvalid('a-videoid', false); }
 
-  if (tipo !== 'foto' && !videoid) {
-    showError('a-video-error', true); markInvalid('a-videoid', true); ok = false;
-  } else { showError('a-video-error', false); markInvalid('a-videoid', false); }
-
-  var titleExists = currentArchivo.some(function(e){ return e.titulo && e.titulo.toLowerCase() === titulo.toLowerCase(); });
-  if (titleExists) {
-    document.getElementById('a-titulo-error').textContent = 'Ya existe una entrada con este título';
-    showError('a-titulo-error', true); markInvalid('a-titulo', true); ok = false;
-  } else {
-    document.getElementById('a-titulo-error').textContent = 'El título es obligatorio';
+  if (!archivoEditMode) {
+    var titExists = currentArchivo.some(function(e){ return e.titulo && e.titulo.toLowerCase() === titulo.toLowerCase(); });
+    if (titExists) {
+      document.getElementById('a-titulo-error').textContent = 'Ya existe una entrada con este título';
+      showError('a-titulo-error', true); markInvalid('a-titulo', true); ok = false;
+    } else {
+      document.getElementById('a-titulo-error').textContent = 'El título es obligatorio';
+    }
   }
 
   if (!ok) return;
 
-  var tags  = tagsRaw.split(',').map(function(t){ return '"' + t.trim() + '"'; }).join(', ');
-  var vurl  = videoid ? 'https://www.youtube.com/embed/' + videoid : null;
-
-  var entry = '  ,{\n' +
-'    tipo:     "' + tipo + '",\n' +
-'    fecha:    "' + esc(fecha) + '",\n' +
-'    etiqueta: "' + esc(etiquet) + '",\n' +
-'    titulo:   "' + esc(titulo) + '",\n' +
-'    texto:    "' + esc(texto) + '",\n';
-
-  if (tipo !== 'video') {
-    entry += '    imagen:   ' + (imagen ? '"./images/' + esc(imagen) + '"' : 'null') + ',\n';
-    entry += '    imageAlt: "' + esc(imgalt) + '",\n';
-  }
-  if (tipo !== 'foto') {
-    entry += '    videoUrl: ' + (vurl ? '"' + vurl + '"' : 'null') + ',\n';
-  }
-  entry +=
-'    enlace:     ' + (enlace ? '"' + esc(enlace) + '"' : 'null') + ',\n' +
-'    tags:       [' + tags + '],\n' +
-'    cuadernoId: ' + cuad + '\n' +
-'  }';
+  var entry = buildArchivoEntry(tipo, fecha, etiqueta, titulo, texto, imagen, imgalt, videoid, tags, cuad, enlace);
 
   var btn = document.getElementById('btn-archivo');
   var st  = document.getElementById('status-archivo');
@@ -649,29 +839,34 @@ function publishArchivo() {
   st.className = 'publish-status';
 
   ghGet('contenido/archivo.js').then(function(file) {
-    var src = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
-    return ghCommit('contenido/archivo.js', src, entry, file.sha, 'Añadir entrada de archivo: ' + titulo);
+    var src = decode64(file.content);
+    var newSrc;
+    if (archivoEditMode && archivoEditIdx !== null) {
+      var oldTitulo = (currentArchivo[archivoEditIdx] || {}).titulo || '';
+      var escaped = oldTitulo.replace(/[\\.+*?^${}()|[\]]/g, '\\$&').replace(/"/g, '\\"');
+      newSrc = replaceBlock(src, new RegExp('titulo\\s*:\\s*"' + escaped + '"'), entry);
+      if (!newSrc) throw new Error('No se encontró la entrada «' + oldTitulo + '»');
+    } else {
+      newSrc = src.replace(/\n\s*\];\s*$/, '\n\n' + entry + '\n\n];');
+    }
+    var msg = (archivoEditMode ? 'Actualizar' : 'Añadir') + ' entrada de archivo: ' + titulo;
+    return ghPut('contenido/archivo.js', newSrc, file.sha, msg);
   }).then(function(res) {
     if (res.ok) {
-      st.textContent = '¡Publicado! Aparecerá en el archivo en unos segundos.';
+      st.textContent = archivoEditMode ? '¡Guardado! Los cambios aparecerán en unos segundos.' : '¡Publicado! Aparecerá en el archivo en unos segundos.';
       st.className = 'publish-status success';
-      currentArchivo.push({ titulo: titulo });
-      ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt','a-videoid','a-tags','a-cuaderno','a-enlace'].forEach(function(f){ document.getElementById(f).value=''; });
-      document.getElementById('a-tipo').value = '';
-      updateArchivoFields();
+      if (!archivoEditMode) currentArchivo.push({ titulo: titulo });
     } else {
-      st.textContent = 'Error al publicar: ' + (res.data.message || 'inténtalo de nuevo');
+      st.textContent = 'Error: ' + (res.data.message || 'inténtalo de nuevo');
       st.className = 'publish-status error';
     }
     btn.disabled = false;
-  }).catch(function() {
-    st.textContent = 'Error de conexión. Inténtalo de nuevo.';
+  }).catch(function(e) {
+    st.textContent = e.message || 'Error de conexión';
     st.className = 'publish-status error';
     btn.disabled = false;
   });
 }
-
-function esc(s) { return s ? s.replace(/\\/g,'\\\\').replace(/"/g,'\\"') : ''; }
 </script>
 </body>
 </html>
