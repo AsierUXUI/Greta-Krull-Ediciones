@@ -29,77 +29,46 @@ var BOOKS = [
   // ─────────────────────────────────────────────────────────────────────────
   // N.º 1 · Artaud y Prevel
   // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: 1,
-    num: "N.º 1",
+    ,{
+    id:   1,
+    num:  "N.º 1",
     date: "Marzo 2026",
-    collection: "Cuadernos Poesía y Traducción",
-    status: "available",         // ← cambiar a "upcoming" o "announced" si procede
+    status: "available",
 
-    title: "Artaud y Prevel",
-    titleCatalog: "Artaud y Prevel",
-    subtitle: "Un paseo por la dramática de la adicción",
-    subtitleSub: "Jacques Prevel: Diario y poemas",
-
+    title:  "Artaud y Prevel",
     authors: [
       { name: "Miguel Vega Manrique", role: "Ensayo" },
-      { name: "Jacques Prevel",        role: "Poemas · traducción del francés" },
+      { name: "Jacques Prevel", role: "Poemas · traducción del francés" }
     ],
     authorByline: "Miguel Vega Manrique · Jacques Prevel",
 
-    copiesTotal:     100,
-    copiesRemaining: 66,         // ← actualizar cuando cambien los ejemplares disponibles
-
-    descShort:   "Primera edición en español de la poesía de Prevel, con ensayo crítico sobre la dramática de la adicción.",
+    descShort:   "Primera edición en español de la poesía de Jacques Prevel, con ensayo crítico sobre la dramática de la adicción.",
     descCatalog: "Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica encolada.",
-    quote:       "«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»",
 
-    synopsis: [
-      "El primer número de Cuadernos Poesía y Traducción inaugura el catálogo de Greta Krull Ediciones con una apuesta de recuperación y lectura crítica: la figura de Jacques Prevel (1915–1951), poeta francés de posguerra cuya obra poética permanece todavía inédita en lengua española.",
-      "El volumen contiene, en la primera parte, un ensayo que aborda la lectura del diario <em>En compagnie d'Antonin Artaud</em>, situando a Prevel en el contexto de los últimos años de Artaud en París tras su salida del hospital psiquiátrico de Rodez. Lejos de reducirse a la condición de testigo, Prevel emerge como conciencia paralela, figura limítrofe cuya escritura dialoga con la experiencia radical del teatro de la crueldad, la enfermedad, la marginalidad y la supervivencia literaria.",
-      "La segunda parte del libro presenta, por primera vez en español, una antología bilingüe de diez poemas de <em>Poèmes Mortels</em> (1945), el primer libro publicado por Prevel. Esta edición enfrenta el texto francés con su traducción española, respetando ritmo, disposición y tensión original.",
-      "Cuidada en todos sus aspectos materiales —compuesta en Garamond, impresa en papel verjurado ahuesado y encuadernada en rústica— esta primera entrega inaugura una colección que aspira a tender puentes entre poesía y traducción desde el rigor filológico, la exigencia crítica y el respeto absoluto por la singularidad de cada obra.",
-      "Greta Krull Ediciones inicia así un proyecto que combina investigación, recuperación y edición literaria con vocación de permanencia."
-    ],
+    coverImage: "./images/artaud-cover.jpg",
 
-    contents: [
-      { n: "I",  title: "Artaud y Prevel: un paseo por la dramática de la adicción", sub: "Ensayo · Miguel Vega Manrique" },
-      { n: "II", title: "Diez Poemas Mortales / Dix Poèmes Mortels (1945)",           sub: "Edición bilingüe · Jacques Prevel · Con retrato de Gustaf Bolin" }
-    ],
+    collection:  "Cuadernos Poesía y Traducción",
+    subtitle:    "Un paseo por la dramática de la adicción",
+    subtitleSub: null,
 
-    specs: [
-      { k: "Colección",      v: "Cuadernos Poesía y Traducción" },
-      { k: "Número",         v: "N.º 1 · Marzo 2026" },
-      { k: "Tipografía",     v: "<em>Garamond</em>" },
-      { k: "Papel",          v: "<em>Verjurado ahuesado</em>" },
-      { k: "Encuadernación", v: "Rústica encolada" },
-      { k: "Edición",        v: "Bilingüe fr.–es." },
-    ],
+    copiesTotal:     100,
+    copiesRemaining: 66,
 
-    colophon: "Impreso en Madrid. Primera edición, marzo de 2026.<br>100 ejemplares numerados a mano. No se prevé reimpresión.<br>Primera traducción al español de la poesía de Jacques Prevel.",
+    quote:    "«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»",
+    synopsis: null,
+    contents: null,
+    specs:    null,
+    colophon: null,
 
     purchaseUrl:   "https://www.iberlibro.com/primera-edicion/ARTAUD-PREVEL-paseo-dram%C3%A1tica-adicci%C3%B3n-MIGUEL/32408732281/bd",
     purchaseLabel: "IberLibro",
     purchaseDesc:  "Compra directa. Envío internacional disponible.",
 
-    // Imagen de portada real (ruta relativa desde la raíz del sitio)
-    coverImage: "./images/artaud-cover.jpg",
+    previewPages: null,
 
-    // Páginas para la previsualización en flipbook
-    previewPages: [
-      "./images/preview/artaud-preview-p03.jpg",
-      "./images/preview/artaud-preview-p05.jpg",
-      "./images/preview/artaud-preview-p27.jpg",
-      "./images/preview/artaud-preview-p29.jpg",
-      "./images/preview/artaud-teaser-01.jpg",
-      "./images/preview/artaud-teaser-02.jpg"
-    ],
-
-    // Portada grande (héroe y detalle) — no modificar salvo cambio de título/autor
-    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi">Un paseo por la<br>dramática de<br>la adicción</div><div class="bo" style="margin:8px 0">□</div><div class="bs">Miguel Vega Manrique</div><div class="bo" style="margin:7px 0">— □ —</div><div class="bi" style="font-size:6.5px">Seguido de Diez</div><div class="bt" style="font-size:7px;font-style:italic;margin:2px 0">Poemas Mortales</div><div class="bi" style="font-size:6.5px">de Jacques Prevel</div><div class="bs" style="font-size:5.5px;margin-top:2px">(edición bilingüe)</div><div class="bo" style="margin:9px 0 3px">— □□□ —</div><div class="bs" style="font-size:5.5px">Cuadernos Poesía y Traducción</div><div class="bs" style="font-size:5.5px">Madrid · Marzo 2026 · N.º 1</div>',
-
-    // Portada pequeña (cuadrícula y catálogo) — no modificar salvo cambio de título/autor
-    coverHtmlSmall: '<div class="bo" style="font-size:8px">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Un paseo por la<br>dramática<br>de la adicción</div><div class="bo">□</div><div class="bs" style="font-size:5.5px;margin-top:3px">Vega Manrique</div>'
+    titleCatalog:   "Artaud y Prevel",
+    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Artaud y<br>Prevel</div><div class="bo">—</div><div class="bi">Manrique</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Artaud y<br>Prevel</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Manrique</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   },
 
   // ─────────────────────────────────────────────────────────────────────────
