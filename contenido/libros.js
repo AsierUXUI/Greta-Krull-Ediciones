@@ -29,91 +29,119 @@ var BOOKS = [
   // ─────────────────────────────────────────────────────────────────────────
   // N.º 1 · Artaud y Prevel
   // ─────────────────────────────────────────────────────────────────────────
-    ,{
-    id:   1,
-    num:  "N.º 1",
+  {
+    id: 1,
+    num: "N.º 1",
     date: "Marzo 2026",
-    status: "available",
+    collection: "Cuadernos Poesía y Traducción",
+    status: "available",         // ← cambiar a "upcoming" o "announced" si procede
 
-    title:  "Artaud y Prevel",
+    title: "Artaud y Prevel",
+    titleCatalog: "Artaud y Prevel",
+    subtitle: "Un paseo por la dramática de la adicción",
+    subtitleSub: "Jacques Prevel: Diario y poemas",
+
     authors: [
       { name: "Miguel Vega Manrique", role: "Ensayo" },
-      { name: "Jacques Prevel", role: "Poemas · traducción del francés" }
+      { name: "Jacques Prevel",        role: "Poemas · traducción del francés" },
     ],
     authorByline: "Miguel Vega Manrique · Jacques Prevel",
 
+    copiesTotal:     100,
+    copiesRemaining: 66,         // ← actualizar cuando cambien los ejemplares disponibles
+
     descShort:   "Primera edición en español de la poesía de Jacques Prevel, con ensayo crítico sobre la dramática de la adicción.",
     descCatalog: "Ensayo sobre la dramática de la adicción seguido de la primera edición bilingüe en español de <em>Diez Poemas Mortales</em>. Garamond. Papel verjurado ahuesado. Rústica encolada.",
+    quote:       "«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»",
 
-    coverImage: "./images/artaud-cover.jpg",
+    synopsis: [
+      "El primer número de Cuadernos Poesía y Traducción inaugura el catálogo de Greta Krull Ediciones con una apuesta de recuperación y lectura crítica: la figura de Jacques Prevel (1915–1951), poeta francés de posguerra cuya obra poética permanece todavía inédita en lengua española.",
+      "El volumen contiene, en la primera parte, un ensayo que aborda la lectura del diario <em>En compagnie d'Antonin Artaud</em>, situando a Prevel en el contexto de los últimos años de Artaud en París tras su salida del hospital psiquiátrico de Rodez. Lejos de reducirse a la condición de testigo, Prevel emerge como conciencia paralela, figura limítrofe cuya escritura dialoga con la experiencia radical del teatro de la crueldad, la enfermedad, la marginalidad y la supervivencia literaria.",
+      "La segunda parte del libro presenta, por primera vez en español, una antología bilingüe de diez poemas de <em>Poèmes Mortels</em> (1945), el primer libro publicado por Prevel. Esta edición enfrenta el texto francés con su traducción española, respetando ritmo, disposición y tensión original.",
+      "Cuidada en todos sus aspectos materiales —compuesta en Garamond, impresa en papel verjurado ahuesado y encuadernada en rústica— esta primera entrega inaugura una colección que aspira a tender puentes entre poesía y traducción desde el rigor filológico, la exigencia crítica y el respeto absoluto por la singularidad de cada obra.",
+      "Greta Krull Ediciones inicia así un proyecto que combina investigación, recuperación y edición literaria con vocación de permanencia."
+    ],
 
-    collection:  "Cuadernos Poesía y Traducción",
-    subtitle:    "Un paseo por la dramática de la adicción",
-    subtitleSub: null,
+    contents: [
+      { n: "I",  title: "Artaud y Prevel: un paseo por la dramática de la adicción", sub: "Ensayo · Miguel Vega Manrique" },
+      { n: "II", title: "Diez Poemas Mortales / Dix Poèmes Mortels (1945)",           sub: "Edición bilingüe · Jacques Prevel · Con retrato de Gustaf Bolin" }
+    ],
 
-    copiesTotal:     100,
-    copiesRemaining: 66,
+    specs: [
+      { k: "Colección",      v: "Cuadernos Poesía y Traducción" },
+      { k: "Número",         v: "N.º 1 · Marzo 2026" },
+      { k: "Tipografía",     v: "<em>Garamond</em>" },
+      { k: "Papel",          v: "<em>Verjurado ahuesado</em>" },
+      { k: "Encuadernación", v: "Rústica encolada" },
+      { k: "Edición",        v: "Bilingüe fr.–es." },
+    ],
 
-    quote:    "«Prevel no era un epígono de Artaud. Era su interlocutor extremo.»",
-    synopsis: null,
-    contents: null,
-    specs:    null,
-    colophon: null,
+    colophon: "Impreso en Madrid. Primera edición, marzo de 2026.<br>100 ejemplares numerados a mano. No se prevé reimpresión.<br>Primera traducción al español de la poesía de Jacques Prevel.",
 
     purchaseUrl:   "https://www.iberlibro.com/primera-edicion/ARTAUD-PREVEL-paseo-dram%C3%A1tica-adicci%C3%B3n-MIGUEL/32408732281/bd",
     purchaseLabel: "IberLibro",
     purchaseDesc:  "Compra directa. Envío internacional disponible.",
 
-    previewPages: null,
+    // Imagen de portada real (ruta relativa desde la raíz del sitio)
+    coverImage: "./images/artaud-cover.jpg",
 
-    titleCatalog:   "Artaud y Prevel",
-    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Artaud y<br>Prevel</div><div class="bo">—</div><div class="bi">Manrique</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
-    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Artaud y<br>Prevel</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Manrique</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+    // Páginas para la previsualización en flipbook
+    previewPages: [
+      "./images/preview/artaud-preview-p03.jpg",
+      "./images/preview/artaud-preview-p05.jpg",
+      "./images/preview/artaud-preview-p27.jpg",
+      "./images/preview/artaud-preview-p29.jpg",
+      "./images/preview/artaud-teaser-01.jpg",
+      "./images/preview/artaud-teaser-02.jpg"
+    ],
+
+    // Portada grande (héroe y detalle) — no modificar salvo cambio de título/autor
+    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi">Un paseo por la<br>dramática de<br>la adicción</div><div class="bo" style="margin:8px 0">□</div><div class="bs">Miguel Vega Manrique</div><div class="bo" style="margin:7px 0">— □ —</div><div class="bi" style="font-size:6.5px">Seguido de Diez</div><div class="bt" style="font-size:7px;font-style:italic;margin:2px 0">Poemas Mortales</div><div class="bi" style="font-size:6.5px">de Jacques Prevel</div><div class="bs" style="font-size:5.5px;margin-top:2px">(edición bilingüe)</div><div class="bo" style="margin:9px 0 3px">— □□□ —</div><div class="bs" style="font-size:5.5px">Cuadernos Poesía y Traducción</div><div class="bs" style="font-size:5.5px">Madrid · Marzo 2026 · N.º 1</div>',
+
+    // Portada pequeña (cuadrícula y catálogo) — no modificar salvo cambio de título/autor
+    coverHtmlSmall: '<div class="bo" style="font-size:8px">— □□□ —</div><div class="bt">Artaud y Prevel</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Un paseo por la<br>dramática<br>de la adicción</div><div class="bo">□</div><div class="bs" style="font-size:5.5px;margin-top:3px">Vega Manrique</div>'
   },
 
   // ─────────────────────────────────────────────────────────────────────────
   // N.º 2 · Carta contra la Cábala
   // ─────────────────────────────────────────────────────────────────────────
-    ,{
-    id:   2,
-    num:  "N.º 2",
+  {
+    id: 2,
+    num: "N.º 2",
     date: "2026",
+    collection: "Cuadernos Poesía y Traducción",
     status: "upcoming",
 
-    title:  "Carta contra la Cábala",
+    title: "Carta contra la Cábala",
+    titleCatalog: "Carta contra la Cábala<br>dirigida a Jacques Prevel",
+    subtitle: "Dirigida a Jacques Prevel",
+    subtitleSub: null,
+
     authors: [
-      { name: "Antonin Artaud", role: "Ensayo" },
-      { name: "Miguel Vega Manrique", role: "Traductor" }
+      { name: "Antonin Artaud",       role: "Ensayo" },
+      { name: "Miguel Vega Manrique", role: "Traducción" },
     ],
     authorByline: "Antonin Artaud · Miguel Vega Manrique",
 
+    copiesTotal:     100,
+    copiesRemaining: null,       // ← rellenar cuando se publique
+
     descShort:   "Edición bilingüe anotada. Incluye estudio preliminar.",
     descCatalog: "Edición bilingüe anotada. Primera traducción al español de este escrito desconocido de Antonin Artaud, exhumado desde la correspondencia con quien fuera su interlocutor privilegiado, Jacques Prevel.",
-
-    coverImage: null,
-
-    collection:  "Cuadernos Poesía y Traducción",
-    subtitle:    "Dirigida a Jacques Prevel",
-    subtitleSub: null,
-
-    copiesTotal:     100,
-    copiesRemaining: null,
-
-    quote:    null,
-    synopsis: null,
-    contents: null,
-    specs:    null,
-    colophon: null,
-
+    quote:       null,
+    synopsis:    null,
+    contents:    null,
+    specs:       null,
+    colophon:    null,
     purchaseUrl:   null,
     purchaseLabel: null,
     purchaseDesc:  null,
 
+    coverImage: null,
     previewPages: null,
 
-    titleCatalog:   "Carta contra la Cábala",
-    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi">Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
-    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi">Antonin Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6px">Antonin Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   },
 
   // ─────────────────────────────────────────────────────────────────────────
@@ -147,6 +175,9 @@ var BOOKS = [
     purchaseUrl:   null,
     purchaseLabel: null,
     purchaseDesc:  null,
+
+    coverImage: null,
+    previewPages: null,
 
     coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi">Mallarmé</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
     coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Mallarmé</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
@@ -183,6 +214,9 @@ var BOOKS = [
     purchaseUrl:   null,
     purchaseLabel: null,
     purchaseDesc:  null,
+
+    coverImage: null,
+    previewPages: null,
 
     coverHtml: '<div class="bo">— □□□ —</div><div class="bt">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi">Philippe Muray</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
     coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Philippe Muray</div><div class="bo" style="margin-top:5px">— □□□ —</div>'

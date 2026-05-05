@@ -812,7 +812,8 @@ function replaceBlock(src, fieldPattern, newBlock) {
   if (blockStart === -1) return null;
   var preStart = blockStart, j = blockStart - 1;
   while (j >= 0 && (src[j] === ' ' || src[j] === '\n' || src[j] === '\r' || src[j] === '\t')) j--;
-  if (j >= 0 && src[j] === ',') preStart = j;
+  var hadPrecedingComma = (j >= 0 && src[j] === ',');
+  if (hadPrecedingComma) preStart = j;
   depth = 0;
   var blockEnd = -1;
   for (var k = blockStart; k < src.length; k++) {
@@ -820,7 +821,8 @@ function replaceBlock(src, fieldPattern, newBlock) {
     if (src[k] === '}') { depth--; if (depth === 0) { blockEnd = k + 1; break; } }
   }
   if (blockEnd === -1) return null;
-  return src.substring(0, preStart) + newBlock + src.substring(blockEnd);
+  var insertBlock = hadPrecedingComma ? newBlock : newBlock.replace(/^(\s*),/, '$1');
+  return src.substring(0, preStart) + insertBlock + src.substring(blockEnd);
 }
 
 // ── Build entries ─────────────────────────────────────────────────────────────
