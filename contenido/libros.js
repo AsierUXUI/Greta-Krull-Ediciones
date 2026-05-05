@@ -74,37 +74,46 @@ var BOOKS = [
   // ─────────────────────────────────────────────────────────────────────────
   // N.º 2 · Carta contra la Cábala
   // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: 2,
-    num: "N.º 2",
-    date: "Próximamente",
-    collection: "Cuadernos Poesía y Traducción",
+    ,{
+    id:   2,
+    num:  "N.º 2",
+    date: "2026",
     status: "upcoming",
 
-    title: "Carta contra la Cábala",
-    titleCatalog: "Carta contra la Cábala<br>dirigida a Jacques Prevel",
-    subtitle: null,
+    title:  "Carta contra la Cábala",
+    authors: [
+      { name: "Antonin Artaud", role: "Ensayo" },
+      { name: "Miguel Vega Manrique", role: "Traductor" }
+    ],
+    authorByline: "Antonin Artaud · Miguel Vega Manrique",
+
+    descShort:   "Edición bilingüe anotada. Incluye estudio preliminar.",
+    descCatalog: "Edición bilingüe anotada. Primera traducción al español de este escrito desconocido de Antonin Artaud, exhumado desde la correspondencia con quien fuera su interlocutor privilegiado, Jacques Prevel.",
+
+    coverImage: null,
+
+    collection:  "Cuadernos Poesía y Traducción",
+    subtitle:    "Dirigida a Jacques Prevel",
     subtitleSub: null,
 
-    authors: [{ name: "Antonin Artaud", role: "" }],
-    authorByline: "Antonin Artaud",
-
     copiesTotal:     100,
-    copiesRemaining: null,       // ← rellenar cuando se publique
+    copiesRemaining: null,
 
-    descShort:   "Edición bilingüe. Primera traducción al español de este texto capital.",
-    descCatalog: "Edición bilingüe. Primera traducción al español de este texto capital de Artaud, revisitado desde la correspondencia con Prevel.",
-    quote:       null,
-    synopsis:    null,
-    contents:    null,
-    specs:       null,
-    colophon:    null,
+    quote:    null,
+    synopsis: null,
+    contents: null,
+    specs:    null,
+    colophon: null,
+
     purchaseUrl:   null,
     purchaseLabel: null,
     purchaseDesc:  null,
 
-    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi">Antonin Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
-    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6px">Antonin Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
+    previewPages: null,
+
+    titleCatalog:   "Carta contra la Cábala",
+    coverHtml:      '<div class="bo">— □□□ —</div><div class="bt">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi">Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
+    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Artaud</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   },
 
   // ─────────────────────────────────────────────────────────────────────────
