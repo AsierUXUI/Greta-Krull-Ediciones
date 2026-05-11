@@ -183,45 +183,6 @@ var BOOKS = [
     coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">Veinte cartas<br>sobre la poesía</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Mallarmé</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
   },
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // N.º 4 · La última alegría de Baudelaire
-  // ─────────────────────────────────────────────────────────────────────────
-  {
-    id: 4,
-    num: "N.º 4",
-    date: "2026",
-    collection: "Cuadernos Poesía y Traducción",
-    status: "announced",
-
-    title: "La última alegría de Baudelaire",
-    titleCatalog: "La última alegría de Charles Baudelaire",
-    subtitle: null,
-    subtitleSub: null,
-
-    authors: [{ name: "Philippe Muray", role: "" }],
-    authorByline: "Philippe Muray",
-
-    copiesTotal:     100,
-    copiesRemaining: null,
-
-    descShort:   "Ensayo crítico. Primera traducción al español.",
-    descCatalog: "Ensayo crítico. Primera traducción al español.",
-    quote:       null,
-    synopsis:    null,
-    contents:    null,
-    specs:       null,
-    colophon:    null,
-    purchaseUrl:   null,
-    purchaseLabel: null,
-    purchaseDesc:  null,
-
-    coverImage: null,
-    previewPages: null,
-
-    coverHtml: '<div class="bo">— □□□ —</div><div class="bt">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi">Philippe Muray</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
-    coverHtmlSmall: '<div class="bo">— □□□ —</div><div class="bt" style="font-size:6px">La última alegría<br>de Baudelaire</div><div class="bo">—</div><div class="bi" style="font-size:6.5px">Philippe Muray</div><div class="bo" style="margin-top:5px">— □□□ —</div>'
-  }
-
   /*
   ╔══════════════════════════════════════════════════════════════════════════╗
   ║  PLANTILLA — NUEVO LIBRO                                                ║
