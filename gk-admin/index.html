@@ -265,17 +265,6 @@ button.publish:disabled{opacity:.4;cursor:default}
       <input type="text" id="l-subtitle">
     </div>
 
-    <div class="row">
-      <div class="field">
-        <label>Tirada total</label>
-        <input type="number" id="l-copies-total" placeholder="100" min="1">
-      </div>
-      <div class="field">
-        <label>Ejemplares disponibles</label>
-        <input type="number" id="l-copies-remaining" min="0">
-      </div>
-    </div>
-
     <div class="field">
       <label>Cita destacada</label>
       <input type="text" id="l-quote" placeholder="«Una frase memorable»">
@@ -711,7 +700,7 @@ function setMode(tab, mode, btn) {
 function clearForm(tab) {
   if (tab === 'libro') {
     ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role',
-     'l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining',
+     'l-subtitle','l-desc-short','l-desc-catalog','l-cover',
      'l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'].forEach(function(f){ document.getElementById(f).value = ''; });
     document.getElementById('l-status').value = '';
     document.getElementById('status-libro').textContent = '';
@@ -762,8 +751,6 @@ function loadBookForEdit(id) {
   var lCoverDiv = document.getElementById('l-cover-current');
   if (lCover) { lCoverDiv.textContent = 'Imagen actual: ' + lCover; lCoverDiv.style.display = 'block'; }
   else { lCoverDiv.textContent = ''; lCoverDiv.style.display = 'none'; }
-  document.getElementById('l-copies-total').value     = b.copiesTotal     != null ? b.copiesTotal     : '';
-  document.getElementById('l-copies-remaining').value = b.copiesRemaining != null ? b.copiesRemaining : '';
   document.getElementById('l-quote').value            = b.quote          || '';
   document.getElementById('l-purchase-url').value     = b.purchaseUrl    || '';
   document.getElementById('l-purchase-label').value   = b.purchaseLabel  || '';
@@ -847,8 +834,8 @@ function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role,
 '    collection:  "Cuadernos Poesía y Traducción",\n' +
 '    subtitle:    ' + (subtitle ? '"' + esc(subtitle) + '"' : 'null') + ',\n' +
 '    subtitleSub: null,\n\n' +
-'    copiesTotal:     ' + (ct || '100') + ',\n' +
-'    copiesRemaining: ' + (cr || 'null') + ',\n\n' +
+'    copiesTotal:     100,\n' +
+'    copiesRemaining: null,\n\n' +
 '    quote:    ' + (quote ? '"' + esc(quote) + '"' : 'null') + ',\n' +
 '    synopsis: null,\n' +
 '    contents: null,\n' +
@@ -901,8 +888,6 @@ function publishBook() {
   var ds      = v('l-desc-short');
   var dc      = v('l-desc-catalog');
   var cover   = v('l-cover');
-  var ct      = v('l-copies-total');
-  var cr      = v('l-copies-remaining');
   var quote   = v('l-quote');
   var purl    = v('l-purchase-url');
   var plabel  = v('l-purchase-label');
