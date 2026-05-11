@@ -76,7 +76,7 @@ var BOOKS = [
       { k: "Edición",        v: "Bilingüe fr.–es." },
     ],
 
-    colophon: "Impreso en Madrid. Primera edición, marzo de 2026.<br>100 ejemplares numerados a mano. No se prevé reimpresión.<br>Primera traducción al español de la poesía de Jacques Prevel.",
+    colophon: null,
 
     purchaseUrl:   "https://www.iberlibro.com/primera-edicion/ARTAUD-PREVEL-paseo-dram%C3%A1tica-adicci%C3%B3n-MIGUEL/32408732281/bd",
     purchaseLabel: "IberLibro",
