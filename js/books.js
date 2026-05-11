@@ -83,7 +83,7 @@ function renderCatalog() {
       rightCol =
         '<div class="cat-right">' +
           '<div class="cat-badge">Disponible</div>' +
-          '<div class="cat-avail">Edición única<br>Sin reimpresión</div>' +
+          '<div class="cat-avail">Ejemplares únicos<br>Sin reimpresión</div>' +
         '</div>';
     } else {
       rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">Sin reimpresión</div></div>';
