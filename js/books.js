@@ -217,7 +217,7 @@ function renderPurchaseModal(bookId) {
   if (!el || !book) return;
   var onlineOption = '';
   if (book.purchaseUrl) {
-    onlineOption =
+    var links =
       '<a class="purchase-option featured" href="' + book.purchaseUrl + '" target="_blank" rel="noopener">' +
         '<div class="po-left">' +
           '<div class="po-badge">Compra en línea · Recomendado</div>' +
@@ -225,8 +225,19 @@ function renderPurchaseModal(bookId) {
           '<div class="po-desc">' + book.purchaseDesc + '</div>' +
         '</div>' +
         '<div class="po-arrow">&#8599;</div>' +
-      '</a>' +
-      '<div class="purchase-divider">o bien</div>';
+      '</a>';
+    if (book.purchaseUrl2) {
+      links +=
+        '<a class="purchase-option featured" href="' + book.purchaseUrl2 + '" target="_blank" rel="noopener">' +
+          '<div class="po-left">' +
+            '<div class="po-badge">Compra en línea</div>' +
+            '<div class="po-name">' + book.purchaseLabel2 + '</div>' +
+            '<div class="po-desc">' + book.purchaseDesc2 + '</div>' +
+          '</div>' +
+          '<div class="po-arrow">&#8599;</div>' +
+        '</a>';
+    }
+    onlineOption = links + '<div class="purchase-divider">o bien</div>';
   }
   el.innerHTML =
     '<div class="modal-intro">' + book.title + ' &middot; ' + book.num + '</div>' +

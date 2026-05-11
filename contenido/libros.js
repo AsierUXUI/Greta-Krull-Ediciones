@@ -82,6 +82,10 @@ var BOOKS = [
     purchaseLabel: "IberLibro",
     purchaseDesc:  "Compra directa. Envío internacional disponible.",
 
+    purchaseUrl2:   "https://es.wallapop.com/item/artaud-y-prevel-un-paseo-por-miguel-vega-1241891456",
+    purchaseLabel2: "Wallapop",
+    purchaseDesc2:  "Disponible en Wallapop.",
+
     // Imagen de portada real (ruta relativa desde la raíz del sitio)
     coverImage: "./images/artaud-cover.jpg",
 
