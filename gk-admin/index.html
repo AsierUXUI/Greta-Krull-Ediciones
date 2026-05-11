@@ -22,7 +22,7 @@ body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-s
 .login-error{font-size:12px;color:var(--accent);min-height:1.2em;text-align:center}
 
 /* ── APP ── */
-#app{display:none;max-width:820px;margin:0 auto;padding:3rem 2rem 6rem}
+#app{display:none;max-width:1240px;margin:0 auto;padding:3rem 2rem 6rem}
 
 /* ── HEADER ── */
 .header-top{border-bottom:3px solid var(--accent);padding-bottom:1rem;margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:baseline}
@@ -41,6 +41,30 @@ body{font-family:'Georgia',serif;background:var(--cream);color:var(--ink);font-s
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
+
+/* ── TWO-COLUMN LAYOUT ── */
+.admin-cols{display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start}
+.admin-form-col{min-width:0}
+.preview-col{position:sticky;top:2rem}
+.preview-panel-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid);padding-bottom:.6rem;border-bottom:1px solid var(--ink-faint);margin-bottom:1.25rem}
+.prev-empty{font-size:13px;color:var(--ink-faint);font-style:italic;text-align:center;padding:3rem 1rem;border:1px dashed var(--ink-faint)}
+/* preview card */
+.prev-card{border:1px solid var(--ink-faint);background:var(--page);overflow:hidden}
+.prev-card-cover{width:100%;height:180px;background:#eeeae0;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#bbb;font-size:11px;letter-spacing:.08em}
+.prev-card-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.prev-card-body{padding:.9rem 1rem 1rem}
+.prev-card-num{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
+.prev-card-title{font-size:15px;margin-bottom:.2rem;line-height:1.3}
+.prev-card-author{font-size:12px;color:var(--ink-mid);margin-bottom:.55rem}
+.prev-card-short{font-size:12px;color:var(--ink-mid);line-height:1.6;margin-bottom:.4rem}
+.prev-card-catalog{font-size:12px;color:var(--ink-mid);line-height:1.6;padding-top:.4rem;border-top:1px solid #eee;margin-bottom:.4rem}
+.prev-card-quote{font-size:12px;color:var(--ink-mid);font-style:italic;line-height:1.6;margin-bottom:.5rem}
+.prev-card-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;background:var(--accent);color:#fff}
+.prev-card-tag.upcoming{background:transparent;color:var(--ink-mid);border:1px solid var(--ink-faint);font-style:italic;letter-spacing:0;text-transform:none}
+.prev-note{font-size:11px;color:var(--ink-faint);font-style:italic;margin-top:.75rem;line-height:1.5}
+/* word counter */
+.word-count{font-size:11px;color:var(--ink-mid);text-align:right;margin-top:.2rem}
+.word-count.over{color:var(--accent);font-weight:bold}
 
 /* ── MODE TOGGLE ── */
 .mode-toggle{display:flex;gap:.5rem;margin-bottom:2rem}
@@ -119,6 +143,7 @@ button.publish:disabled{opacity:.4;cursor:default}
 .publish-status.success{color:var(--green)}
 .publish-status.error{color:var(--accent)}
 
+@media(max-width:960px){.admin-cols{grid-template-columns:1fr}.preview-col{position:static;margin-top:2rem}}
 @media(max-width:620px){.row,.row3{grid-template-columns:1fr}}
 </style>
 </head>
@@ -127,9 +152,6 @@ button.publish:disabled{opacity:.4;cursor:default}
 <div id="login">
   <h1>Greta Krull · Acceso</h1>
   <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
-  <div id="token-row">
-    <input type="password" id="gh-token" placeholder="Token de GitHub" onkeydown="if(event.key==='Enter')checkPwd()">
-  </div>
   <button onclick="checkPwd()">Entrar</button>
   <div class="login-error" id="login-error"></div>
 </div>
@@ -149,6 +171,8 @@ button.publish:disabled{opacity:.4;cursor:default}
 
   <!-- ══ TAB LIBROS ══ -->
   <div id="tab-libro" class="tab-panel active">
+  <div class="admin-cols">
+  <div class="admin-form-col">
 
     <div class="mode-toggle">
       <button class="mode-btn active" onclick="setMode('libro','nuevo',this)">Nuevo libro</button>
@@ -174,21 +198,22 @@ button.publish:disabled{opacity:.4;cursor:default}
     <div class="row3">
       <div class="field">
         <label>N.º de libro</label>
-        <input type="number" id="l-id" placeholder="5" min="1">
+        <input type="number" id="l-id" placeholder="5" min="1" oninput="updatePreview()">
         <span class="hint" id="l-id-hint"></span>
         <span class="field-error" id="l-id-error">Este número ya existe</span>
       </div>
       <div class="field">
         <label>Año</label>
-        <input type="text" id="l-date" placeholder="2026">
+        <input type="text" id="l-date" placeholder="2026" oninput="updatePreview()">
+        <span class="hint">Solo el año, p. ej. 2026</span>
       </div>
       <div class="field">
         <label>Estado</label>
-        <select id="l-status">
+        <select id="l-status" onchange="updatePreview()">
           <option value="">— Elegir —</option>
-          <option value="upcoming">En preparación</option>
-          <option value="available">Disponible</option>
-          <option value="announced">Solo anunciado</option>
+          <option value="upcoming">En preparación — aparece en el catálogo, aún no disponible</option>
+          <option value="available">Disponible — se puede solicitar</option>
+          <option value="announced">Solo anunciado — sin ficha completa todavía</option>
         </select>
         <span class="field-error" id="l-status-error">Selecciona un estado</span>
       </div>
@@ -196,42 +221,46 @@ button.publish:disabled{opacity:.4;cursor:default}
 
     <div class="field">
       <label>Título</label>
-      <input type="text" id="l-title">
+      <input type="text" id="l-title" oninput="updatePreview()">
       <span class="field-error" id="l-title-error">El título es obligatorio</span>
     </div>
 
     <div class="row">
       <div class="field">
         <label>Nombre del autor</label>
-        <input type="text" id="l-author1-name">
+        <input type="text" id="l-author1-name" oninput="updatePreview()">
         <span class="field-error" id="l-author-error">El autor es obligatorio</span>
       </div>
       <div class="field">
         <label>Rol <em>— Ensayo / Poesía / Traducción</em></label>
-        <input type="text" id="l-author1-role">
+        <input type="text" id="l-author1-role" placeholder="Poesía" oninput="updatePreview()">
+        <span class="hint">Ej: Poesía, Ensayo, Traducción del francés</span>
       </div>
     </div>
 
     <div class="row">
       <div class="field">
         <label>Segundo autor <em>— si aplica</em></label>
-        <input type="text" id="l-author2-name">
+        <input type="text" id="l-author2-name" oninput="updatePreview()">
       </div>
       <div class="field">
         <label>Rol del segundo autor</label>
-        <input type="text" id="l-author2-role">
+        <input type="text" id="l-author2-role" placeholder="Traducción" oninput="updatePreview()">
       </div>
     </div>
 
     <div class="field">
       <label>Descripción corta <em>— cuadrícula de inicio, máx. 15 palabras</em></label>
-      <input type="text" id="l-desc-short">
+      <input type="text" id="l-desc-short" oninput="updateWordCount()">
+      <div id="desc-short-count" class="word-count"></div>
+      <span class="hint">Aparece en la cuadrícula de la página de inicio. Breve y directa.</span>
       <span class="field-error" id="l-desc-short-error">La descripción corta es obligatoria</span>
     </div>
 
     <div class="field">
       <label>Descripción catálogo <em>— 2-4 frases</em></label>
-      <textarea id="l-desc-catalog"></textarea>
+      <textarea id="l-desc-catalog" oninput="updatePreview()"></textarea>
+      <span class="hint">Aparece en la ficha completa del catálogo. Describe el libro con claridad.</span>
       <span class="field-error" id="l-desc-catalog-error">La descripción de catálogo es obligatoria</span>
     </div>
 
@@ -262,28 +291,19 @@ button.publish:disabled{opacity:.4;cursor:default}
 
     <div class="field">
       <label>Subtítulo</label>
-      <input type="text" id="l-subtitle">
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label>Tirada total</label>
-        <input type="number" id="l-copies-total" placeholder="100" min="1">
-      </div>
-      <div class="field">
-        <label>Ejemplares disponibles</label>
-        <input type="number" id="l-copies-remaining" min="0">
-      </div>
+      <input type="text" id="l-subtitle" placeholder="Cartas a Artaud (1949-1960)" oninput="updatePreview()">
     </div>
 
     <div class="field">
       <label>Cita destacada</label>
-      <input type="text" id="l-quote" placeholder="«Una frase memorable»">
+      <input type="text" id="l-quote" placeholder="«Una frase memorable del libro»" oninput="updatePreview()">
+      <span class="hint">Aparece en la ficha del catálogo, en cursiva. Opcional pero recomendable.</span>
     </div>
 
     <div class="field">
       <label>Enlace de compra</label>
       <input type="text" id="l-purchase-url" placeholder="https://...">
+      <span class="hint">URL completa con https://. Solo cuando el libro esté disponible.</span>
     </div>
     <div class="row">
       <div class="field">
@@ -300,7 +320,18 @@ button.publish:disabled{opacity:.4;cursor:default}
       <button class="publish" id="btn-libro" onclick="publishBook()">Publicar en la web</button>
       <span class="publish-status" id="status-libro"></span>
     </div>
+
+  </div><!-- /.admin-form-col -->
+
+  <div class="preview-col">
+    <div class="preview-panel-title">Vista previa en tiempo real</div>
+    <div id="libro-preview">
+      <div class="prev-empty">Rellena los campos de la izquierda para ver cómo quedará el libro</div>
+    </div>
   </div>
+
+  </div><!-- /.admin-cols -->
+  </div><!-- /#tab-libro -->
 
   <!-- ══ TAB ARCHIVO ══ -->
   <div id="tab-archivo" class="tab-panel">
@@ -326,15 +357,16 @@ button.publish:disabled{opacity:.4;cursor:default}
         <label>Tipo de entrada</label>
         <select id="a-tipo" onchange="updateArchivoFields()">
           <option value="">— Elegir —</option>
-          <option value="foto">Foto</option>
-          <option value="video">Vídeo</option>
-          <option value="mixto">Mixto (foto + vídeo)</option>
+          <option value="foto">Foto — imagen + texto</option>
+          <option value="video">Vídeo — vídeo de YouTube + texto</option>
+          <option value="mixto">Mixto — foto + vídeo + texto</option>
         </select>
         <span class="field-error" id="a-tipo-error">Selecciona un tipo</span>
       </div>
       <div class="field">
         <label>Libro relacionado <em>— número</em></label>
         <input type="number" id="a-cuaderno" placeholder="1" min="1">
+        <span class="hint">El número de cuaderno al que pertenece esta entrada</span>
         <span class="field-error" id="a-cuaderno-error">El libro relacionado es obligatorio</span>
       </div>
     </div>
@@ -342,12 +374,14 @@ button.publish:disabled{opacity:.4;cursor:default}
     <div class="row">
       <div class="field">
         <label>Fecha</label>
-        <input type="text" id="a-fecha" placeholder="Junio 2026">
+        <input type="text" id="a-fecha" placeholder="Mayo 2026">
+        <span class="hint">Ej: Mayo 2026 o 12 de mayo de 2026</span>
         <span class="field-error" id="a-fecha-error">La fecha es obligatoria</span>
       </div>
       <div class="field">
         <label>Etiqueta <em>— texto pequeño sobre el título</em></label>
         <input type="text" id="a-etiqueta" placeholder="Fotografía · N.º 1">
+        <span class="hint">Ej: Fotografía · N.º 1, Reseña, Evento</span>
       </div>
     </div>
 
@@ -360,6 +394,7 @@ button.publish:disabled{opacity:.4;cursor:default}
     <div class="field">
       <label>Texto</label>
       <textarea id="a-texto" placeholder="Texto que aparece al abrir la entrada."></textarea>
+      <span class="hint">Escribe el texto completo de la entrada. Puede ser un párrafo o varios.</span>
       <span class="field-error" id="a-texto-error">El texto es obligatorio</span>
     </div>
 
@@ -389,7 +424,8 @@ button.publish:disabled{opacity:.4;cursor:default}
       </div>
       <div class="field">
         <label>Descripción de la imagen <em>— accesibilidad</em></label>
-        <input type="text" id="a-imagealt">
+        <input type="text" id="a-imagealt" placeholder="Retrato de Jacques Prevel, París, 1948">
+        <span class="hint">Describe brevemente qué muestra la imagen. Importante para accesibilidad.</span>
       </div>
     </div>
 
@@ -398,7 +434,7 @@ button.publish:disabled{opacity:.4;cursor:default}
       <div class="field">
         <label>ID del vídeo de YouTube</label>
         <input type="text" id="a-videoid" placeholder="dQw4w9WgXcQ">
-        <span class="hint">La parte después de youtube.com/watch?v= en la URL</span>
+        <span class="hint">La parte después de <em>youtube.com/watch?v=</em> en la URL del vídeo</span>
         <span class="field-error" id="a-video-error">El ID del vídeo es obligatorio para este tipo</span>
       </div>
     </div>
@@ -428,6 +464,7 @@ button.publish:disabled{opacity:.4;cursor:default}
     <div class="field">
       <label>Enlace externo</label>
       <input type="text" id="a-enlace" placeholder="https://...">
+      <span class="hint">URL de un artículo, reseña o recurso relacionado con esta entrada.</span>
     </div>
 
     <div class="submit-row">
@@ -438,10 +475,11 @@ button.publish:disabled{opacity:.4;cursor:default}
 </div>
 
 <script>
-var PASSWORD = 'amapola26';
-var GH_TOKEN = '';
-var REPO     = 'asieruxui/Greta-Krull-Ediciones';
-var API      = 'https://api.github.com/repos/' + REPO + '/contents/';
+var PASSWORD       = 'amapola26';
+var GH_TOKEN_FIXED = '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';
+var GH_TOKEN       = '';
+var REPO           = 'asieruxui/Greta-Krull-Ediciones';
+var API            = 'https://api.github.com/repos/' + REPO + '/contents/';
 
 var currentBooks    = [];
 var currentArchivo  = [];
@@ -455,46 +493,36 @@ var imageFiles      = { l: null, a: null };
 // ── Auth ──────────────────────────────────────────────────────────────────────
 function iniciarSesion(pwd, token) {
   GH_TOKEN = token;
-  localStorage.setItem('gk_token', token);
-  localStorage.setItem('gk_pwd',   pwd);
+  localStorage.setItem('gk_pwd', pwd);
   document.getElementById('login').style.display = 'none';
   document.getElementById('app').style.display   = 'block';
   loadData();
 }
 
 function cerrarSesion() {
-  localStorage.removeItem('gk_token');
   localStorage.removeItem('gk_pwd');
   GH_TOKEN = '';
   document.getElementById('app').style.display   = 'none';
   document.getElementById('login').style.display = 'flex';
   document.getElementById('pwd').value           = '';
-  document.getElementById('gh-token').value      = '';
-  document.getElementById('token-row').style.display = 'block';
 }
 
 function checkPwd() {
-  var token = document.getElementById('gh-token').value.trim();
-  var pwd   = document.getElementById('pwd').value;
-  if (pwd === PASSWORD && token) {
-    iniciarSesion(pwd, token);
-  } else if (pwd !== PASSWORD) {
+  var pwd = document.getElementById('pwd').value;
+  if (pwd === PASSWORD) {
+    iniciarSesion(pwd, GH_TOKEN_FIXED);
+  } else {
     document.getElementById('login-error').textContent = 'Contraseña incorrecta';
     document.getElementById('pwd').value = '';
     document.getElementById('pwd').focus();
-  } else {
-    document.getElementById('login-error').textContent = 'Introduce el token de GitHub';
-    document.getElementById('gh-token').focus();
   }
 }
 
 // Auto-login si hay sesión guardada
 (function() {
-  var savedPwd   = localStorage.getItem('gk_pwd');
-  var savedToken = localStorage.getItem('gk_token');
-  if (savedPwd === PASSWORD && savedToken) {
-    document.getElementById('token-row').style.display = 'none';
-    iniciarSesion(savedPwd, savedToken);
+  var savedPwd = localStorage.getItem('gk_pwd');
+  if (savedPwd === PASSWORD) {
+    iniciarSesion(savedPwd, GH_TOKEN_FIXED);
   }
 })();
 
@@ -533,7 +561,6 @@ function ghUploadImage(filename, file) {
     var reader = new FileReader();
     reader.onload = function(e) {
       var base64 = e.target.result.split(',')[1];
-      // Try to get existing SHA (in case file already exists)
       ghGet('images/' + filename).then(function(existing) {
         return ghPut('images/' + filename, base64, existing.sha || undefined, 'Subir imagen: ' + filename);
       }).then(resolve).catch(reject);
@@ -567,6 +594,7 @@ function handleImageSelect(prefix) {
     document.getElementById(previewImgId).src = e.target.result;
     document.getElementById(previewNmId).textContent = file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
     document.getElementById(previewRowId).style.display = 'flex';
+    if (prefix === 'l') updatePreview();
   };
   reader.readAsDataURL(file);
 }
@@ -588,6 +616,7 @@ function removeImage(prefix) {
   document.getElementById(fileInputId).value = '';
   document.getElementById(nameFieldId).value = '';
   clearFileSelect(prefix);
+  if (prefix === 'l') updatePreview();
 }
 
 // ── Load data ─────────────────────────────────────────────────────────────────
@@ -645,7 +674,7 @@ function loadData() {
 
     setStatus('', '');
   }).catch(function() {
-    setStatus('Error al conectar con GitHub. Comprueba el token.', 'error');
+    setStatus('Error al conectar con GitHub. Comprueba el token configurado en el panel.', 'error');
   });
 }
 
@@ -711,7 +740,7 @@ function setMode(tab, mode, btn) {
 function clearForm(tab) {
   if (tab === 'libro') {
     ['l-id','l-date','l-title','l-author1-name','l-author1-role','l-author2-name','l-author2-role',
-     'l-subtitle','l-desc-short','l-desc-catalog','l-cover','l-copies-total','l-copies-remaining',
+     'l-subtitle','l-desc-short','l-desc-catalog','l-cover',
      'l-quote','l-purchase-url','l-purchase-label','l-purchase-desc'].forEach(function(f){ document.getElementById(f).value = ''; });
     document.getElementById('l-status').value = '';
     document.getElementById('status-libro').textContent = '';
@@ -719,6 +748,8 @@ function clearForm(tab) {
     document.getElementById('l-cover').value = '';
     clearFileSelect('l');
     document.getElementById('l-cover-file').value = '';
+    document.getElementById('desc-short-count').textContent = '';
+    updatePreview();
   } else {
     ['a-fecha','a-etiqueta','a-titulo','a-texto','a-imagen','a-imagealt',
      'a-videoid','a-tags','a-cuaderno','a-enlace'].forEach(function(f){ document.getElementById(f).value = ''; });
@@ -737,6 +768,63 @@ function updateArchivoFields() {
   var tipo = document.getElementById('a-tipo').value;
   document.getElementById('a-imagen-fields').style.display = tipo === 'video' ? 'none' : '';
   document.getElementById('a-video-fields').style.display  = tipo === 'foto'  ? 'none' : '';
+}
+
+// ── Live preview ──────────────────────────────────────────────────────────────
+function updatePreview() {
+  var title  = v('l-title');
+  var date   = v('l-date');
+  var id     = v('l-id');
+  var status = document.getElementById('l-status').value;
+  var a1name = v('l-author1-name');
+  var a2name = v('l-author2-name');
+  var ds     = v('l-desc-short');
+  var dc     = v('l-desc-catalog');
+  var quote  = v('l-quote');
+
+  var container = document.getElementById('libro-preview');
+  if (!title && !a1name) {
+    container.innerHTML = '<div class="prev-empty">Rellena los campos de la izquierda para ver cómo quedará el libro</div>';
+    return;
+  }
+
+  var coverPreview = document.getElementById('l-cover-preview');
+  var hasCover = coverPreview && coverPreview.src && coverPreview.naturalWidth > 0;
+
+  var byline    = a2name ? (a1name || '—') + ' · ' + a2name : (a1name || '—');
+  var numStr    = id ? 'N.º ' + id : 'N.º —';
+  var dateStr   = date || '—';
+  var statusMap = { available: 'Disponible', upcoming: 'En preparación', announced: 'Solo anunciado' };
+  var statusTxt = statusMap[status] || '—';
+  var tagCls    = status === 'available' ? '' : ' upcoming';
+
+  var coverHtml = hasCover
+    ? '<img src="' + coverPreview.src + '" alt="Portada">'
+    : 'SIN PORTADA';
+
+  container.innerHTML =
+    '<div class="prev-card">' +
+      '<div class="prev-card-cover">' + coverHtml + '</div>' +
+      '<div class="prev-card-body">' +
+        '<div class="prev-card-num">' + numStr + ' · ' + dateStr + '</div>' +
+        '<div class="prev-card-title">' + (title || '—') + '</div>' +
+        '<div class="prev-card-author">' + byline + '</div>' +
+        (ds ? '<div class="prev-card-short">' + ds + '</div>' : '') +
+        (dc ? '<div class="prev-card-catalog">' + dc + '</div>' : '') +
+        (quote ? '<div class="prev-card-quote">«' + quote + '»</div>' : '') +
+        '<div style="margin-top:.6rem"><span class="prev-card-tag' + tagCls + '">' + statusTxt + '</span></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="prev-note">La portada, tipografía y disposición exactas pueden diferir ligeramente en la web.</div>';
+}
+
+function updateWordCount() {
+  var val   = document.getElementById('l-desc-short').value.trim();
+  var count = val ? val.split(/\s+/).length : 0;
+  var el    = document.getElementById('desc-short-count');
+  el.textContent = count > 0 ? count + ' / 15 palabras' : '';
+  el.className   = 'word-count' + (count > 15 ? ' over' : '');
+  updatePreview();
 }
 
 // ── Populate form for editing ─────────────────────────────────────────────────
@@ -762,12 +850,17 @@ function loadBookForEdit(id) {
   var lCoverDiv = document.getElementById('l-cover-current');
   if (lCover) { lCoverDiv.textContent = 'Imagen actual: ' + lCover; lCoverDiv.style.display = 'block'; }
   else { lCoverDiv.textContent = ''; lCoverDiv.style.display = 'none'; }
-  document.getElementById('l-copies-total').value     = b.copiesTotal     != null ? b.copiesTotal     : '';
-  document.getElementById('l-copies-remaining').value = b.copiesRemaining != null ? b.copiesRemaining : '';
   document.getElementById('l-quote').value            = b.quote          || '';
   document.getElementById('l-purchase-url').value     = b.purchaseUrl    || '';
   document.getElementById('l-purchase-label').value   = b.purchaseLabel  || '';
   document.getElementById('l-purchase-desc').value    = b.purchaseDesc   || '';
+  // Actualizar contador y preview
+  var ds = b.descShort || '';
+  var count = ds.trim() ? ds.trim().split(/\s+/).length : 0;
+  var wc = document.getElementById('desc-short-count');
+  wc.textContent = count > 0 ? count + ' / 15 palabras' : '';
+  wc.className = 'word-count' + (count > 15 ? ' over' : '');
+  updatePreview();
 }
 
 function loadArchivoForEdit(idx) {
@@ -826,7 +919,7 @@ function replaceBlock(src, fieldPattern, newBlock) {
 }
 
 // ── Build entries ─────────────────────────────────────────────────────────────
-function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, ct, cr, quote, purl, plabel, pdesc) {
+function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, quote, purl, plabel, pdesc) {
   var authors = '      { name: "' + esc(a1name) + '", role: "' + esc(a1role) + '" }';
   if (a2name) authors += ',\n      { name: "' + esc(a2name) + '", role: "' + esc(a2role) + '" }';
   var tw = title.split(' ');
@@ -847,8 +940,8 @@ function buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role,
 '    collection:  "Cuadernos Poesía y Traducción",\n' +
 '    subtitle:    ' + (subtitle ? '"' + esc(subtitle) + '"' : 'null') + ',\n' +
 '    subtitleSub: null,\n\n' +
-'    copiesTotal:     ' + (ct || '100') + ',\n' +
-'    copiesRemaining: ' + (cr || 'null') + ',\n\n' +
+'    copiesTotal:     100,\n' +
+'    copiesRemaining: null,\n\n' +
 '    quote:    ' + (quote ? '"' + esc(quote) + '"' : 'null') + ',\n' +
 '    synopsis: null,\n' +
 '    contents: null,\n' +
@@ -901,8 +994,6 @@ function publishBook() {
   var ds      = v('l-desc-short');
   var dc      = v('l-desc-catalog');
   var cover   = v('l-cover');
-  var ct      = v('l-copies-total');
-  var cr      = v('l-copies-remaining');
   var quote   = v('l-quote');
   var purl    = v('l-purchase-url');
   var plabel  = v('l-purchase-label');
@@ -923,7 +1014,7 @@ function publishBook() {
   if (!ok) return;
 
   var byline = a2name ? a1name + ' · ' + a2name : a1name;
-  var entry  = buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, ct, cr, quote, purl, plabel, pdesc);
+  var entry  = buildBookEntry(id, date, status, title, a1name, a1role, a2name, a2role, byline, ds, dc, cover, subtitle, quote, purl, plabel, pdesc);
 
   var btn = document.getElementById('btn-libro');
   var st  = document.getElementById('status-libro');

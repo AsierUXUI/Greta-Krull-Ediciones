@@ -5,10 +5,6 @@ function bookById(id) {
   for (var i = 0; i < BOOKS.length; i++) { if (BOOKS[i].id === id) return BOOKS[i]; }
   return null;
 }
-function copiesPct(book) {
-  if (!book.copiesTotal || book.copiesRemaining === null) return 0;
-  return Math.round((book.copiesRemaining / book.copiesTotal) * 100);
-}
 function statusLabel(book) {
   if (book.status === 'available') return 'Disponible';
   if (book.status === 'upcoming')  return 'En preparación';
@@ -90,7 +86,7 @@ function renderCatalog() {
           '<div class="cat-avail">Edición única<br>Sin reimpresión</div>' +
         '</div>';
     } else {
-      rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">' + book.copiesTotal + ' ejemplares · Sin reimpr.</div></div>';
+      rightCol = '<div class="cat-right"><div class="cat-avail" style="font-style:italic">En preparación</div><div class="cat-avail">Sin reimpresión</div></div>';
     }
     var catCoverInner = book.coverImage
       ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
