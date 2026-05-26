@@ -12,11 +12,12 @@
   nav{padding:0 1.25rem;position:relative}
   .nav-logo img{height:38px}
   .nav-toggle{display:flex;align-items:center;height:100%;gap:.5rem}
-  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--page);border-bottom:1px solid var(--ink);flex-direction:column;height:auto;z-index:300}
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--ink);border-bottom:none;flex-direction:column;height:auto;z-index:300}
   .nav-links.open{display:flex}
   .nav-links li{height:auto;width:100%}
-  .nav-links a{border-left:none;border-top:1px solid var(--ink-faint);padding:.9rem 1.25rem;font-size:12px;width:100%;justify-content:flex-start}
-  .nav-links a.active{border-bottom:none;border-left:2px solid var(--accent);color:var(--accent)}
+  .nav-links a{border-left:none;border-top:1px solid rgba(255,255,255,.1);padding:.9rem 1.25rem;font-size:12px;width:100%;justify-content:flex-start;color:rgba(255,255,255,.72)}
+  .nav-links a:hover{background:rgba(255,255,255,.06);color:#fff}
+  .nav-links a.active{border-bottom:none;border-left:2px solid var(--accent);color:#fff}
 
   /* Home hero */
   .home-hero{grid-template-columns:1fr;min-height:auto}
