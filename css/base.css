@@ -7,11 +7,11 @@
   --on-accent:#fff;--on-accent-muted:rgba(255,255,255,.72);
 }
 html{scroll-behavior:smooth}
-body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.6;display:flex;flex-direction:column;min-height:100vh}
 
 /* PAGES */
 .page{display:none}
-.page.active{display:block;animation:fadeUp .25s ease both}
+.page.active{display:block;flex:1;max-width:1440px;width:100%;margin:0 auto;animation:fadeUp .25s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ── GEOMETRIC PATTERN (overlapping circles / cathedral windows)
