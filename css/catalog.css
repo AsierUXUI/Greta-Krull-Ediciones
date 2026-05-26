@@ -10,40 +10,38 @@
 .cat-col-tab.disabled{opacity:.32;cursor:default;pointer-events:none}
 .cat-col-pill{font-size:8px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink-ghost);color:var(--ink-mid);padding:2px 7px;margin-left:.6rem;vertical-align:middle}
 
-/* Section labels */
-.cat-section{padding:1.75rem 2.5rem .75rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid);display:flex;justify-content:space-between;border-bottom:.5px solid var(--ink-faint)}
+/* Zone labels */
+.cat-zone-label{padding:1.75rem 3.5rem .75rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid);display:flex;justify-content:space-between;border-bottom:.5px solid var(--ink-faint)}
+.cat-zone-label--future{border-top:1px solid var(--ink);padding-top:2.5rem}
 
-/* Catalog rows */
-.cat-row{display:grid;grid-template-columns:116px 1fr auto;gap:3rem;padding:2.5rem 2.5rem;border-bottom:1px solid var(--ink-faint);cursor:pointer;transition:background .18s,border-left .18s;border-left:3px solid transparent;align-items:start}
-.cat-row:hover{background:var(--cream);border-left-color:var(--accent)}
-.cat-row:hover .cat-title{color:var(--accent)}
-.cat-title{transition:color .18s}
-.cat-row.av{border-left-color:var(--accent);background:var(--page)}
-.cat-row.av:hover{background:var(--cream)}
-.cat-row.dim{opacity:.45;cursor:default}.cat-row.dim:hover{background:transparent;border-left-color:transparent}
-.cat-row.dimmer{opacity:.22;cursor:default}.cat-row.dimmer:hover{background:transparent;border-left-color:transparent}
+/* ── Featured available book ── */
+.cat-featured{display:grid;grid-template-columns:240px 1fr;gap:4.5rem;padding:3.5rem 3.5rem 4rem;border-bottom:1px solid var(--ink);cursor:pointer;transition:background .2s;align-items:start}
+.cat-featured:hover{background:var(--cream)}
+.cat-feat-cover-wrap{position:relative;padding-left:8px;flex-shrink:0}
+.cat-feat-cover{width:240px;height:336px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:16px;box-shadow:10px 10px 0 #1a191812,20px 20px 0 #1a191808;transition:transform .35s cubic-bezier(.22,.68,0,1.2),box-shadow .35s}
+.cat-featured:hover .cat-feat-cover{transform:translateY(-8px) rotate(.3deg);box-shadow:20px 22px 0 #1a191818,38px 40px 0 #1a19180a}
+.cat-feat-spine{position:absolute;left:-7px;top:3px;bottom:3px;width:7px;background:#d4d0c4;border:.5px solid #2a2a2a18}
+.cat-feat-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:1rem}
+.cat-feat-title{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;line-height:.97;letter-spacing:-.015em;margin-bottom:.35rem}
+.cat-feat-subtitle{font-size:16px;color:var(--ink-mid);font-style:italic;margin-bottom:.9rem;line-height:1.4}
+.cat-feat-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:1.5rem}
+.cat-feat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:480px;margin-bottom:1rem}
+.cat-feat-quote{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.6;color:var(--ink-mid);max-width:480px;margin-bottom:2rem}
+.cat-feat-actions{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.25rem}
+.cat-feat-btn{padding:10px 24px;border:1px solid var(--accent);background:var(--accent);font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:#fff;transition:opacity .15s;font-family:inherit}
+.cat-feat-btn:hover{opacity:.82}
+.cat-feat-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;transition:color .15s}
+.cat-feat-link:hover{color:var(--ink)}
+.cat-feat-specs{font-size:12px;color:var(--ink-light);font-style:italic}
 
-/* Covers */
-.cat-cover{width:116px;height:163px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:box-shadow .2s,transform .2s}
-.cat-row.av .cat-cover{box-shadow:5px 5px 0 #1a19180e}
-.cat-row.av:hover .cat-cover{box-shadow:10px 10px 0 #1a191814;transform:translateY(-4px)}
-.cat-row.dim:hover .cat-cover,.cat-row.dimmer:hover .cat-cover{box-shadow:none;transform:none}
-.cat-cover-b{position:absolute;inset:5px;border:.5px solid #1a191810}
+/* ── Upcoming grid ── */
+.cat-upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.cat-upcoming-card{padding:2rem 2.5rem 2.5rem;border-right:1px solid var(--ink-faint);opacity:.52}
+.cat-upcoming-card:last-child{border-right:none}
+.cat-upcoming-cover{width:80px;height:112px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:8px;margin-bottom:1.25rem}
+.cat-cover-b{position:absolute;inset:4px;border:.5px solid #1a191810}
 .cat-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
-
-/* Text */
-.cat-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.4rem}
-.cat-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;font-style:italic;line-height:1.1;margin-bottom:.3rem}
-.cat-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.9rem}
-.cat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:520px}
-.cat-quote{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--ink-mid);line-height:1.7;max-width:520px;margin-top:.75rem}
-
-/* Right column */
-.cat-right{text-align:right;display:flex;flex-direction:column;gap:.75rem;padding-top:.2rem;min-width:120px}
-.cat-badge{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:.5px solid var(--accent);color:var(--accent);display:inline-block}
-.cat-avail{font-size:13px;color:var(--ink-mid);font-style:italic;line-height:1.6}
-
-/* Legacy */
-.copies-track{width:80px;height:1px;background:var(--ink-ghost);margin-left:auto}
-.copies-fill{height:100%;background:var(--ink)}
-.copies-note{font-size:10px;color:var(--ink-light);margin-top:4px;font-style:italic}
+.cat-upcoming-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
+.cat-upcoming-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;line-height:1.15;margin-bottom:.25rem}
+.cat-upcoming-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.75rem}
+.cat-upcoming-tag{font-size:12px;color:var(--ink-mid);font-style:italic}
