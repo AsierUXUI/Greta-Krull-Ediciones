@@ -69,67 +69,36 @@ function renderHomeGrid() {
 function renderCatalog() {
   var el = document.getElementById('catalog-rows');
   if (!el) return;
-  var published = BOOKS.filter(function(b) { return b.status === 'available'; });
-  var future    = BOOKS.filter(function(b) { return b.status !== 'available'; });
-  var html = '';
 
-  function featuredBook(book) {
-    var specsText = '';
-    if (book.specs) {
-      var parts = [];
-      ['Tipografía','Papel','Encuadernación','Edición'].forEach(function(k) {
-        book.specs.forEach(function(s) { if (s.k === k) parts.push(s.v); });
-      });
-      specsText = parts.join(' · ');
-    }
+  function catCard(book) {
+    var available = book.status === 'available';
+    var dimCls = book.status === 'upcoming' ? ' upcoming' : book.status === 'announced' ? ' announced' : '';
+    var click = available ? ' onclick="go(\'detail\',' + book.id + ')"' : '';
+    var coverBg = !available ? ' style="background:#eeeae0"' : '';
     var coverInner = book.coverImage
       ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
-      : '<div class="dc-b1"></div><div class="dc-b2"></div><div class="dc-txt">' + book.coverHtml + '</div>';
-    return '<div class="cat-featured" onclick="go(\'detail\',' + book.id + ')">' +
-      '<div class="cat-feat-cover-wrap">' +
-        '<div class="cat-feat-cover' + (book.coverImage ? ' has-real-img' : '') + '">' +
-          '<div class="cat-feat-spine"></div>' + coverInner +
+      : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
+    var badge = book.novedad ? '<span class="novedad-badge">Novedad</span>' : '';
+    var statusTag = available
+      ? '<div class="cat-card-cta">Solicitar &rarr;</div>'
+      : '<div class="cat-card-tag">En preparación</div>';
+    return '<div class="cat-card' + dimCls + '"' + click + '>' +
+      '<div class="cat-card-cover-wrap">' +
+        badge +
+        '<div class="cat-card-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : coverBg) + '>' +
+          coverInner +
         '</div>' +
       '</div>' +
-      '<div class="cat-feat-body">' +
-        '<div class="cat-feat-eyebrow">' + book.collection + ' · ' + book.num + ' · ' + book.date + '</div>' +
-        '<h2 class="cat-feat-title">' + book.title + '</h2>' +
-        (book.subtitle ? '<div class="cat-feat-subtitle">' + book.subtitle + '</div>' : '') +
-        '<div class="cat-feat-author">' + book.authorByline + '</div>' +
-        '<div class="cat-feat-desc">' + book.descCatalog + '</div>' +
-        (book.quote ? '<div class="cat-feat-quote">' + book.quote + '</div>' : '') +
-        '<div class="cat-feat-actions">' +
-          '<button class="cat-feat-btn" onclick="event.stopPropagation();currentBookId=' + book.id + ';openPurchaseModal()">Solicitar ejemplar</button>' +
-          '<span class="cat-feat-link">Ver detalle &rarr;</span>' +
-        '</div>' +
-        (specsText ? '<div class="cat-feat-specs">' + specsText + '</div>' : '') +
-      '</div>' +
+      '<div class="cat-card-num">' + book.num + ' · ' + book.date + '</div>' +
+      '<div class="cat-card-title">' + book.title + '</div>' +
+      '<div class="cat-card-author">' + book.authorByline + '</div>' +
+      statusTag +
     '</div>';
   }
 
-  function upcomingCard(book) {
-    var coverInner = book.coverImage
-      ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
-      : '<div class="cat-cover-b"></div><div class="cat-cover-txt">' + book.coverHtmlSmall + '</div>';
-    return '<div class="cat-upcoming-card">' +
-      '<div class="cat-upcoming-cover' + (book.coverImage ? ' has-real-img' : '') + '"' + (book.coverImage ? '' : ' style="background:#eeeae0"') + '>' + coverInner + '</div>' +
-      '<div class="cat-upcoming-num">' + book.num + ' · ' + book.date + '</div>' +
-      '<div class="cat-upcoming-title">' + (book.titleCatalog || book.title) + '</div>' +
-      '<div class="cat-upcoming-author">' + book.authorByline + '</div>' +
-      '<div class="cat-upcoming-tag">En preparación</div>' +
-    '</div>';
-  }
-
-  if (published.length) {
-    html += '<div class="cat-zone-label"><span>Disponible</span><span>' + published.length + ' título' + (published.length > 1 ? 's' : '') + '</span></div>';
-    published.forEach(function(b) { html += featuredBook(b); });
-  }
-  if (future.length) {
-    html += '<div class="cat-zone-label cat-zone-label--future"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>';
-    html += '<div class="cat-upcoming-grid">';
-    future.forEach(function(b) { html += upcomingCard(b); });
-    html += '</div>';
-  }
+  var html = '<div class="cat-unified-grid">';
+  BOOKS.forEach(function(b) { html += catCard(b); });
+  html += '</div>';
   el.innerHTML = html;
 }
 

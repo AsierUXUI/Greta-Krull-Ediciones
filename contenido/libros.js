@@ -35,6 +35,7 @@ var BOOKS = [
     date: "Marzo 2026",
     collection: "Cuadernos Poesía y Traducción",
     status: "available",         // ← cambiar a "upcoming" o "announced" si procede
+    novedad: true,               // ← quitar cuando deje de ser novedad
 
     title: "Artaud y Prevel",
     titleCatalog: "Artaud y Prevel",
