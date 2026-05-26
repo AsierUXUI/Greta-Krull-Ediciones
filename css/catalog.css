@@ -4,44 +4,34 @@
 .cat-note{font-size:13px;color:var(--ink-mid);font-style:italic;text-align:right;line-height:1.8}
 
 /* Collection navigation */
-.cat-collections{display:flex;gap:0;border-bottom:1px solid var(--ink);background:var(--page)}
+.cat-collections{display:flex;border-bottom:1px solid var(--ink);background:var(--page)}
 .cat-col-tab{font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;color:var(--ink-mid);transition:color .15s,border-color .15s;font-family:inherit;line-height:1}
 .cat-col-tab.active{color:var(--ink);border-bottom-color:var(--ink)}
 .cat-col-tab.disabled{opacity:.32;cursor:default;pointer-events:none}
 .cat-col-pill{font-size:8px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink-ghost);color:var(--ink-mid);padding:2px 7px;margin-left:.6rem;vertical-align:middle}
 
-/* Zone labels */
-.cat-zone-label{padding:1.75rem 3.5rem .75rem;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mid);display:flex;justify-content:space-between;border-bottom:.5px solid var(--ink-faint)}
-.cat-zone-label--future{border-top:1px solid var(--ink);padding-top:2.5rem}
+/* ── Unified grid ── */
+.cat-unified-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}
 
-/* ── Featured available book ── */
-.cat-featured{display:grid;grid-template-columns:240px 1fr;gap:4.5rem;padding:3.5rem 3.5rem 4rem;border-bottom:1px solid var(--ink);cursor:pointer;transition:background .2s;align-items:start}
-.cat-featured:hover{background:var(--cream)}
-.cat-feat-cover-wrap{position:relative;padding-left:8px;flex-shrink:0}
-.cat-feat-cover{width:240px;height:336px;background:#f0ece0;border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:16px;box-shadow:10px 10px 0 #1a191812,20px 20px 0 #1a191808;transition:transform .35s cubic-bezier(.22,.68,0,1.2),box-shadow .35s}
-.cat-featured:hover .cat-feat-cover{transform:translateY(-8px) rotate(.3deg);box-shadow:20px 22px 0 #1a191818,38px 40px 0 #1a19180a}
-.cat-feat-spine{position:absolute;left:-7px;top:3px;bottom:3px;width:7px;background:#d4d0c4;border:.5px solid #2a2a2a18}
-.cat-feat-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:1rem}
-.cat-feat-title{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic;line-height:.97;letter-spacing:-.015em;margin-bottom:.35rem}
-.cat-feat-subtitle{font-size:16px;color:var(--ink-mid);font-style:italic;margin-bottom:.9rem;line-height:1.4}
-.cat-feat-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:1.5rem}
-.cat-feat-desc{font-size:15px;line-height:1.85;color:var(--ink-mid);max-width:480px;margin-bottom:1rem}
-.cat-feat-quote{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.6;color:var(--ink-mid);max-width:480px;margin-bottom:2rem}
-.cat-feat-actions{display:flex;gap:1.25rem;align-items:center;margin-bottom:1.25rem}
-.cat-feat-btn{padding:10px 24px;border:1px solid var(--accent);background:var(--accent);font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:#fff;transition:opacity .15s;font-family:inherit}
-.cat-feat-btn:hover{opacity:.82}
-.cat-feat-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;transition:color .15s}
-.cat-feat-link:hover{color:var(--ink)}
-.cat-feat-specs{font-size:12px;color:var(--ink-light);font-style:italic}
+.cat-card{padding:2.25rem 1.75rem 2.5rem;border-right:1px solid var(--ink-faint);border-top:2px solid transparent;display:flex;flex-direction:column;transition:background .18s,border-top-color .18s}
+.cat-card:last-child{border-right:none}
+.cat-card:not(.upcoming):not(.announced){cursor:pointer}
+.cat-card:not(.upcoming):not(.announced):hover{background:var(--cream);border-top-color:var(--accent)}
+.cat-card:not(.upcoming):not(.announced):hover .cat-card-cover{transform:translateY(-4px);box-shadow:5px 8px 0 #1a191814}
+.cat-card:not(.upcoming):not(.announced):hover .cat-card-cta{opacity:1}
+.cat-card.upcoming{opacity:.48}
+.cat-card.announced{opacity:.26}
 
-/* ── Upcoming grid ── */
-.cat-upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.cat-upcoming-card{padding:2rem 2.5rem 2.5rem;border-right:1px solid var(--ink-faint);opacity:.52}
-.cat-upcoming-card:last-child{border-right:none}
-.cat-upcoming-cover{width:80px;height:112px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:8px;margin-bottom:1.25rem}
-.cat-cover-b{position:absolute;inset:4px;border:.5px solid #1a191810}
-.cat-cover-txt{position:relative;z-index:1;text-align:center;width:100%}
-.cat-upcoming-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
-.cat-upcoming-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;line-height:1.15;margin-bottom:.25rem}
-.cat-upcoming-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.75rem}
-.cat-upcoming-tag{font-size:12px;color:var(--ink-mid);font-style:italic}
+/* Cover */
+.cat-card-cover-wrap{position:relative;display:flex;justify-content:center;margin-bottom:1.5rem}
+.cat-card-cover{width:130px;height:182px;background:var(--cream);border:.5px solid var(--ink-faint);position:relative;display:flex;align-items:center;justify-content:center;padding:10px;transition:transform .22s cubic-bezier(.22,.68,0,1.2),box-shadow .22s}
+
+/* Novedad badge */
+.novedad-badge{position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;z-index:2;font-family:inherit;pointer-events:none}
+
+/* Card text */
+.cat-card-num{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
+.cat-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;font-style:italic;line-height:1.2;margin-bottom:.2rem}
+.cat-card-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);flex:1;margin-bottom:.75rem}
+.cat-card-cta{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .18s;margin-top:auto}
+.cat-card-tag{font-size:12px;font-style:italic;color:var(--ink-mid);margin-top:auto}

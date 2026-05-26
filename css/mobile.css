@@ -47,16 +47,12 @@
   .cat-collections{overflow-x:auto;scrollbar-width:none}
   .cat-collections::-webkit-scrollbar{display:none}
   .cat-col-tab{padding:.9rem 1.5rem;white-space:nowrap}
-  .cat-zone-label{padding:1.25rem 1.25rem .6rem}
-  .cat-featured{grid-template-columns:1fr;gap:1.75rem;padding:2rem 1.25rem 2.5rem}
-  .cat-feat-cover-wrap{display:flex;justify-content:center}
-  .cat-feat-cover{width:160px;height:224px}
-  .cat-feat-title{font-size:36px}
-  .cat-feat-actions{flex-direction:column;align-items:flex-start;gap:.75rem}
-  .cat-feat-btn{width:100%}
-  .cat-upcoming-grid{grid-template-columns:1fr}
-  .cat-upcoming-card{border-right:none;border-bottom:1px solid var(--ink-faint);padding:1.5rem 1.25rem}
-  .cat-upcoming-card:last-child{border-bottom:none}
+  .cat-unified-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-card{padding:1.5rem 1.25rem 2rem}
+  .cat-card:nth-child(2n){border-right:none}
+  .cat-card:nth-child(n+3){border-top:1px solid var(--ink-faint)}
+  .cat-card-cover{width:100px;height:140px}
+  .cat-card-cta{opacity:1}
 
   /* Detail */
   .detail-layout{grid-template-columns:1fr}
