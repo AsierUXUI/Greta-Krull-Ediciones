@@ -5,7 +5,7 @@
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var pts = [];
-  var maxAge = 700;
+  var maxAge = 280;
 
   function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   resize();
@@ -13,7 +13,7 @@
 
   document.addEventListener('mousemove', function (e) {
     pts.push({ x: e.clientX, y: e.clientY, t: Date.now() });
-    if (pts.length > 60) pts.shift();
+    if (pts.length > 18) pts.shift();
   });
 
   function draw() {
@@ -28,8 +28,8 @@
       var p0 = pts[i - 1], p1 = pts[i];
       var age = now - p1.t;
       var ratio = 1 - age / maxAge;
-      ctx.strokeStyle = 'rgba(26,25,24,' + (ratio * 0.18) + ')';
-      ctx.lineWidth = ratio * 1.4 + 0.2;
+      ctx.strokeStyle = 'rgba(140,26,19,' + (ratio * 0.07) + ')';
+      ctx.lineWidth = ratio * 1.1;
       ctx.beginPath();
       ctx.moveTo(p0.x, p0.y);
       ctx.lineTo(p1.x, p1.y);
