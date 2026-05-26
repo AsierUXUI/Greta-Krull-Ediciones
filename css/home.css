@@ -27,10 +27,15 @@
 .hero-cap-num{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.4rem}
 .hero-cap-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;font-style:italic;line-height:1.15;margin-bottom:.25rem}
 .hero-cap-author{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid)}
+.hero-quote{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;font-style:italic;color:var(--ink-mid);line-height:1.65;margin-top:1.5rem;opacity:.82}
+
+@media(min-width:1441px){
+  .hero-left{padding-left:calc((100vw - 1440px) / 2 + 3.5rem)}
+}
 
 /* Grid */
-.section-bar{padding:1rem 2.5rem;border-top:2px solid var(--accent);border-bottom:1px solid var(--ink);background:var(--cream);display:flex;justify-content:space-between;align-items:center}
-.section-bar-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.section-bar{padding:1rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center}
+.section-bar-label{font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-mid)}
 .section-bar-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mid);cursor:pointer;text-decoration:none;transition:color .15s}
 .section-bar-link:hover{color:var(--ink)}
 .home-grid,.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--ink)}

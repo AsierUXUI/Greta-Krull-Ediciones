@@ -31,6 +31,10 @@ footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:f
 .footer-social .social-sep{color:var(--on-accent-muted);opacity:.4}
 .social-icon{width:13px;height:13px;flex-shrink:0}
 
+/* ── INK TRAIL ── */
+#ink-trail{position:fixed;top:0;left:0;pointer-events:none;z-index:9999}
+@media(hover:none){#ink-trail{display:none}}
+
 /* ── REAL COVER IMAGE ── */
 .has-real-img{padding:4px!important}
 .has-real-img .dc-b1,.has-real-img .dc-b2,.has-real-img .book-obj-b1,.has-real-img .book-obj-b2,.has-real-img .grid-cover-b,.has-real-img .cat-cover-b{display:none}

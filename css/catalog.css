@@ -34,4 +34,5 @@
 .cat-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;font-style:italic;line-height:1.2;margin-bottom:.2rem}
 .cat-card-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);flex:1;margin-bottom:.75rem}
 .cat-card-cta{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .18s;margin-top:auto}
+.cat-card-excerpt{font-size:12px;font-style:italic;color:var(--ink-mid);line-height:1.7;margin-top:auto}
 .cat-card-tag{font-size:12px;font-style:italic;color:var(--ink-mid);margin-top:auto}
