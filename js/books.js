@@ -79,9 +79,16 @@ function renderCatalog() {
       ? '<img src="' + book.coverImage + '" alt="Portada ' + book.title + '" loading="lazy">'
       : '<div class="grid-cover-b"></div><div class="grid-cover-txt">' + book.coverHtmlSmall + '</div>';
     var badge = book.novedad ? '<span class="novedad-badge">Novedad</span>' : '';
-    var statusTag = available
-      ? '<div class="cat-card-cta">Solicitar &rarr;</div>'
-      : '<div class="cat-card-tag">En preparación</div>';
+    var statusTag;
+    if (available) {
+      var srcText = (book.synopsis && book.synopsis[0]) ? book.synopsis[0] : (book.descCatalog || '');
+      var plain = srcText.replace(/<[^>]+>/g, '');
+      var words = plain.split(/\s+/);
+      var excerpt = words.slice(0, 22).join(' ') + (words.length > 22 ? '…' : '');
+      statusTag = '<div class="cat-card-excerpt">' + excerpt + '</div>';
+    } else {
+      statusTag = '<div class="cat-card-tag">En preparación</div>';
+    }
     return '<div class="cat-card' + dimCls + '"' + click + '>' +
       '<div class="cat-card-cover-wrap">' +
         badge +
@@ -142,8 +149,10 @@ function renderDetail(bookId) {
 
   var leftButtons = '';
   if (book.status === 'available') {
-    leftButtons = '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
-                  '<button class="btn-ghost" onclick="go(\'consulta\')">Consulta &rarr;</button>';
+    leftButtons = '<div class="detail-btns">' +
+                  '<button class="btn-primary" onclick="openPurchaseModal()">Solicitar ejemplar</button>' +
+                  '<button class="btn-ghost" onclick="go(\'consulta\')">Consulta &rarr;</button>' +
+                  '</div>';
   }
 
   var copiesHtml = '';

@@ -5,7 +5,7 @@ html.archivo-active,body.archivo-active{background:#EAE4D6}
 #page-archivo:active{cursor:grabbing}
 #arc-canvas{position:absolute;top:0;left:0;width:0;height:0;will-change:transform}
 /* Cards base */
-.arc-card{position:absolute;cursor:pointer;transition:box-shadow .2s ease;overflow:hidden}
+.arc-card{position:absolute;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Ccircle cx='9' cy='9' r='6.5' fill='none' stroke='%231a1918' stroke-width='1.5'/%3E%3Cline x1='14.1' y1='14.1' x2='20' y2='20' stroke='%231a1918' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") 9 9, zoom-in;transition:box-shadow .2s ease;overflow:hidden}
 .arc-card:hover{z-index:10}
 .arc-hover-overlay{position:absolute;inset:0;background:rgba(17,16,16,.45);opacity:0;transition:opacity .22s;pointer-events:none;z-index:5}
 .arc-card:hover .arc-hover-overlay{opacity:1}

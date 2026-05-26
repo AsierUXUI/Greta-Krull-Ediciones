@@ -1,3 +1,44 @@
+// ─── Ink trail ───────────────────────────────────────────────────────────────
+(function () {
+  if (window.matchMedia('(hover:none)').matches) return;
+  var canvas = document.getElementById('ink-trail');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var pts = [];
+  var maxAge = 700;
+
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', function () { resize(); pts = []; });
+
+  document.addEventListener('mousemove', function (e) {
+    pts.push({ x: e.clientX, y: e.clientY, t: Date.now() });
+    if (pts.length > 60) pts.shift();
+  });
+
+  function draw() {
+    requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var now = Date.now();
+    pts = pts.filter(function (p) { return now - p.t < maxAge; });
+    if (pts.length < 2) return;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for (var i = 1; i < pts.length; i++) {
+      var p0 = pts[i - 1], p1 = pts[i];
+      var age = now - p1.t;
+      var ratio = 1 - age / maxAge;
+      ctx.strokeStyle = 'rgba(26,25,24,' + (ratio * 0.18) + ')';
+      ctx.lineWidth = ratio * 1.4 + 0.2;
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.lineTo(p1.x, p1.y);
+      ctx.stroke();
+    }
+  }
+  draw();
+})();
+
 // ─── Init ────────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', function(e) {
   if (document.getElementById('flipbook-overlay').classList.contains('open')) {
