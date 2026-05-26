@@ -25,6 +25,9 @@ body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--
 footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
 .footer-l{font-size:11px;color:var(--on-accent-muted);letter-spacing:.1em;text-transform:uppercase;line-height:1.9}
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--on-accent);font-style:italic}
+.footer-social{display:flex;gap:1.5rem}
+.footer-social a{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-accent-muted);text-decoration:none;transition:color .15s}
+.footer-social a:hover{color:#fff}
 
 /* ── REAL COVER IMAGE ── */
 .has-real-img{padding:4px!important}

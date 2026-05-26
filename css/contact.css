@@ -8,6 +8,9 @@
 .contact-info-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.25rem}
 .contact-info-val{font-size:15px;color:var(--ink)}
 .contact-foot{font-size:13px;color:var(--ink-mid);font-style:italic;line-height:1.8}
+.contact-social{display:flex;gap:1.25rem;margin-top:.25rem}
+.contact-social a{font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink-faint);padding-bottom:1px;transition:color .15s,border-color .15s}
+.contact-social a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .contact-right{padding:5rem 3.5rem;display:flex;flex-direction:column;gap:1.75rem}
 .contact-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mid)}
 .cf{display:flex;flex-direction:column;gap:.4rem}
