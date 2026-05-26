@@ -105,13 +105,11 @@ function renderCatalog() {
   }
 
   if (published.length) {
-    html += '<div class="cat-section"><span>Publicados</span><span>' + published.length + ' título' + (published.length > 1 ? 's' : '') + '</span></div>';
-    html += '<div class="cat-grid">';
-    published.forEach(function(b) { html += renderGridBook(b); });
-    html += '</div>';
+    html += '<div class="cat-section"><span>Publicado</span><span>' + published.length + ' título' + (published.length > 1 ? 's' : '') + '</span></div>';
+    published.forEach(function(b) { html += catRow(b); });
   }
   if (upcoming.length || announced.length) {
-    html += '<div class="cat-section" style="margin-top:.5rem"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>';
+    html += '<div class="cat-section"><span>Próximamente</span><span>Publicación mensual aproximada</span></div>';
     upcoming.forEach(function(b)  { html += catRow(b); });
     announced.forEach(function(b) { html += catRow(b); });
   }
