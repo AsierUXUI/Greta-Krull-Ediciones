@@ -22,7 +22,9 @@
 .btn-primary:hover{opacity:.82}
 .btn-ghost{width:100%;padding:11px;border:1px solid var(--ink-faint);background:transparent;font-family:'EB Garamond',serif;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;color:var(--ink-mid);transition:background .15s;margin-top:.5rem}
 .btn-ghost:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
+.detail-specs-wrap{width:100%}
 .detail-specs{width:100%}
+.specs-toggle{display:none}
 .spec-row{display:flex;justify-content:space-between;align-items:baseline;padding:.5rem 0;border-top:.5px solid var(--ink-faint);font-size:12px}
 .spec-row:last-child{border-bottom:.5px solid var(--ink-faint)}
 .spec-k{color:var(--ink-mid)}

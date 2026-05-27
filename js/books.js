@@ -188,7 +188,7 @@ function renderDetail(bookId) {
         '<div class="detail-caption">' + book.collection + ' · ' + book.num + '</div>' +
         copiesHtml +
         leftButtons +
-        (specsHtml ? '<div class="detail-specs">' + specsHtml + '</div>' : '') +
+        (specsHtml ? '<div class="detail-specs-wrap"><button class="specs-toggle" onclick="toggleSpecs(this)"><span>Ficha técnica</span><span class="specs-arrow">&#9656;</span></button><div class="detail-specs">' + specsHtml + '</div></div>' : '') +
       '</div>' +
       '<div class="detail-right">' +
         '<div class="detail-eyebrow">' + book.collection + ' · ' + book.num + ' · ' + book.date + '</div>' +
@@ -201,6 +201,13 @@ function renderDetail(bookId) {
       '</div>' +
     '</div>' +
     '<div class="booknav">' + prevCard + nextCard + '</div>';
+}
+
+// ─── Specs toggle ────────────────────────────────────────────────────────────
+function toggleSpecs(btn) {
+  var wrap = btn.closest('.detail-specs-wrap');
+  wrap.classList.toggle('open');
+  btn.querySelector('.specs-arrow').style.transform = wrap.classList.contains('open') ? 'rotate(90deg)' : '';
 }
 
 // ─── Purchase modal ──────────────────────────────────────────────────────────
