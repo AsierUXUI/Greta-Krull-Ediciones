@@ -11,7 +11,9 @@
 .hero-cta:hover{opacity:.7}
 .hero-right{position:relative;overflow:hidden;cursor:pointer;background:var(--cream) url('../images/artaud-portrait.jpg') center 18% / cover no-repeat;display:flex;flex-direction:column;transition:background-position .6s ease}
 .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(245,241,232,.28) 0%,rgba(245,241,232,.18) 42%,rgba(245,241,232,.82) 78%,rgba(245,241,232,.97) 100%);z-index:0;transition:opacity .4s}
+.hero-right::after{content:'';position:absolute;inset:0;background:rgba(26,25,24,.22);z-index:0;pointer-events:none;transition:opacity .4s}
 .hero-right:hover::before{opacity:.78}
+.hero-right:hover::after{opacity:.14}
 .hero-right:hover{background-position:center 14%}
 .hero-book-area{flex:1;display:flex;align-items:center;justify-content:center;padding:3.5rem 4rem 2rem;position:relative;z-index:1}
 .hero-caption{padding:1.5rem 2.5rem 2rem;border-top:1px solid var(--ink-faint);position:relative;z-index:1}
