@@ -1,11 +1,11 @@
 /* ── CATÁLOGO ── */
 .cat-header{padding:3.5rem 2.5rem 2.5rem;border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:flex-end}
 .cat-h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;font-style:italic}
-.cat-note{font-size:13px;color:var(--ink-mid);font-style:italic;text-align:right;line-height:1.8}
+.cat-note{font-size:15px;color:var(--ink-mid);font-style:italic;text-align:right;line-height:1.8}
 
 /* Collection navigation */
 .cat-collections{display:flex;border-bottom:1px solid var(--ink);background:var(--page)}
-.cat-col-tab{font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;color:var(--ink-mid);transition:color .15s,border-color .15s;font-family:inherit;line-height:1}
+.cat-col-tab{font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;color:var(--ink-mid);transition:color .15s,border-color .15s;font-family:inherit;line-height:1}
 .cat-col-tab.active{color:var(--ink);border-bottom-color:var(--ink)}
 .cat-col-tab.disabled{opacity:.32;cursor:default;pointer-events:none}
 .cat-col-pill{font-size:8px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink-ghost);color:var(--ink-mid);padding:2px 7px;margin-left:.6rem;vertical-align:middle}
@@ -30,9 +30,9 @@
 .novedad-badge{position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-size:8px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;z-index:2;font-family:inherit;pointer-events:none}
 
 /* Card text */
-.cat-card-num{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
+.cat-card-num{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:.3rem}
 .cat-card-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;font-style:italic;line-height:1.2;margin-bottom:.2rem}
-.cat-card-author{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);flex:1;margin-bottom:.75rem}
-.cat-card-cta{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .18s;margin-top:auto}
-.cat-card-excerpt{font-size:12px;font-style:italic;color:var(--ink-mid);line-height:1.7;margin-top:auto}
-.cat-card-tag{font-size:12px;font-style:italic;color:var(--ink-mid);margin-top:auto}
+.cat-card-author{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid);flex:1;margin-bottom:.75rem}
+.cat-card-cta{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);opacity:0;transition:opacity .18s;margin-top:auto}
+.cat-card-excerpt{font-size:14px;font-style:italic;color:var(--ink-mid);line-height:1.7;margin-top:auto}
+.cat-card-tag{font-size:14px;font-style:italic;color:var(--ink-mid);margin-top:auto}
