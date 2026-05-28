@@ -23,7 +23,7 @@ body{font-family:'EB Garamond',Georgia,serif;background:var(--page);color:var(--
 
 /* FOOTER */
 footer{border-top:none;background:var(--accent);padding:1.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden;isolation:isolate}
-footer::after{content:'';position:absolute;inset:0;background:url('../images/amapolas.svg') center / 300px auto repeat;opacity:.13;filter:invert(1);z-index:-1;pointer-events:none}
+footer::after{content:'';position:absolute;inset:0;background:url('../images/footer-pattern.svg') center / 300px auto repeat-x;opacity:.16;z-index:-1;pointer-events:none}
 .footer-l{font-size:13px;color:var(--on-accent-muted);letter-spacing:.1em;text-transform:uppercase;line-height:1.9}
 .footer-r{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--on-accent);font-style:italic}
 .footer-social{display:flex;gap:.75rem;align-items:center}
