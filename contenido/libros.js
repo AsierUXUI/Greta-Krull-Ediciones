@@ -113,7 +113,7 @@ var BOOKS = [
   {
     id: 2,
     num: "N.º 2",
-    date: "2026",
+    date: "Junio 2026",
     collection: "Cuadernos Poesía y Traducción",
     status: "upcoming",
 
@@ -142,7 +142,7 @@ var BOOKS = [
     purchaseLabel: null,
     purchaseDesc:  null,
 
-    coverImage: null,
+    coverImage: "./images/carta-contra-la-cabala-cover.jpg",
     previewPages: null,
 
     coverHtml: '<div class="bo">— □□□ —</div><div class="bt">Carta contra<br>la Cábala</div><div class="bo">—</div><div class="bi">Antonin Artaud</div><div class="bo" style="margin-top:8px">— □□□ —</div>',
